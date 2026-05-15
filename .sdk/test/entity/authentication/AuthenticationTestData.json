@@ -1,0 +1,42 @@
+{
+  "existing": {
+    "authentication": {
+      "AUTHENTICATION00": {
+        "error": "s3c",
+        "ok": "s3d",
+        "redirect": "s3e",
+        "u_id": "U01",
+        "user": {},
+        "wrong_password": "s41"
+      },
+      "AUTHENTICATION01": {
+        "error": "s78",
+        "ok": "s79",
+        "redirect": "s7a",
+        "u_id": "U01",
+        "user": {},
+        "wrong_password": "s7d"
+      },
+      "AUTHENTICATION02": {
+        "error": "sb4",
+        "ok": "sb5",
+        "redirect": "sb6",
+        "u_id": "U01",
+        "user": {},
+        "wrong_password": "sb9"
+      }
+    }
+  },
+  "new": {
+    "authentication": {
+      "authentication_ref01": {
+        "error": "sf0",
+        "ok": "sf1",
+        "redirect": "sf2",
+        "u_id": "U01",
+        "user": {},
+        "wrong_password": "sf5"
+      }
+    }
+  }
+}

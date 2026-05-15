@@ -1,0 +1,24 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "Openwhyd API Documentation"
+        url: "https://openwhyd.github.io/openwhyd/API"
+      }
+      description: "Openwhyd is a free and open-source music curation service that allows users to create playlists of music tracks from various streaming platforms (YouTube, SoundCloud, Vimeo, Deezer…) and to discover the music posted by other users. The API provides two main APIs: the Data Export API for downloading public data without authentication, and the User API for authenticated interactions with user accounts."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://openwhyd.org"
+        }
+      ]
+      title: "Openwhyd API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

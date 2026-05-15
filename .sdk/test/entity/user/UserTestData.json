@@ -1,0 +1,36 @@
+{
+  "existing": {
+    "user": {
+      "USER00": {
+        "id": "USER00",
+        "name": "s29",
+        "nb_track": "s2a",
+        "url": "s2b",
+        "username": "USERNAME01"
+      },
+      "USER01": {
+        "id": "USER01",
+        "name": "s51",
+        "nb_track": "s52",
+        "url": "s53",
+        "username": "USERNAME01"
+      },
+      "USER02": {
+        "id": "USER02",
+        "name": "s79",
+        "nb_track": "s7a",
+        "url": "s7b",
+        "username": "USERNAME01"
+      }
+    }
+  },
+  "new": {
+    "user": {
+      "user_ref01": {
+        "name": "sa1",
+        "nb_track": "sa2",
+        "url": "sa3"
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+# BasicSubscriptionFlow
+
+main: kit: flow: BasicSubscriptionFlow:
+{
+  entity: "subscription",
+  kind: "basic",
+  name: "BasicSubscriptionFlow",
+  step: [
+    {
+      input: {
+        ref: "subscription_ref01",
+        srcdatavar: "subscription_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "subscription01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-subscription_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSubscriptionFlow"
+}

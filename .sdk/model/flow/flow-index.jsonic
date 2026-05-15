@@ -1,0 +1,9 @@
+# Flows
+
+@"BasicAuthenticationFlow.jsonic"
+@"BasicGetUserPostFlow.jsonic"
+@"BasicPlaylistFlow.jsonic"
+@"BasicPostFlow.jsonic"
+@"BasicSearchFlow.jsonic"
+@"BasicSubscriptionFlow.jsonic"
+@"BasicUserFlow.jsonic"

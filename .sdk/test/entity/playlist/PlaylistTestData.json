@@ -1,0 +1,36 @@
+{
+  "existing": {
+    "playlist": {
+      "PLAYLIST00": {
+        "id": "PLAYLIST00",
+        "name": "s29",
+        "nb_track": "s2a",
+        "url": "s2b",
+        "username": "USERNAME01"
+      },
+      "PLAYLIST01": {
+        "id": "PLAYLIST01",
+        "name": "s51",
+        "nb_track": "s52",
+        "url": "s53",
+        "username": "USERNAME01"
+      },
+      "PLAYLIST02": {
+        "id": "PLAYLIST02",
+        "name": "s79",
+        "nb_track": "s7a",
+        "url": "s7b",
+        "username": "USERNAME01"
+      }
+    }
+  },
+  "new": {
+    "playlist": {
+      "playlist_ref01": {
+        "name": "sa1",
+        "nb_track": "sa2",
+        "url": "sa3"
+      }
+    }
+  }
+}

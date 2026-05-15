@@ -1,0 +1,69 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 7
+  metrics: count: path: 12
+  metrics: count: method: 14
+
+  entity: authentication: {
+    path: "/login": {
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/logout": {
+      op: load: method: *GET
+    }
+    path: "/register": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: get_user_post: {
+    path: "/{username}": {
+      rename: param: "username": *"id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: playlist: {
+    path: "/{username}/playlists": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: post: {
+    path: "/hot/{genre}": {
+      op: load: method: *GET
+    }
+    path: "/{username}/playlist/{playlistId}": {
+      rename: param: "playlistId": *"playlist_id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: search: {
+    path: "/search": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: subscription: {
+    path: "/api/follow/fetchFollowers/{id}": {
+      op: load: method: *GET
+    }
+    path: "/api/follow/fetchFollowing/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: user: {
+    path: "/api/user": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/{username}/info": {
+      op: list: method: *GET
+    }
+  }
+
+}

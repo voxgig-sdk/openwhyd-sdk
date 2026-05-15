@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "search": {
+      "SEARCH00": {
+        "q": "s14",
+        "result": []
+      },
+      "SEARCH01": {
+        "q": "s28",
+        "result": []
+      },
+      "SEARCH02": {
+        "q": "s3c",
+        "result": []
+      }
+    }
+  },
+  "new": {
+    "search": {
+      "search_ref01": {
+        "q": "s50",
+        "result": []
+      }
+    }
+  }
+}

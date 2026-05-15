@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "subscription": {
+      "SUBSCRIPTION00": {
+        "is_subscribing": true,
+        "u_id": "U01",
+        "u_nm": "s20"
+      },
+      "SUBSCRIPTION01": {
+        "is_subscribing": true,
+        "u_id": "U01",
+        "u_nm": "s3e"
+      },
+      "SUBSCRIPTION02": {
+        "is_subscribing": true,
+        "u_id": "U01",
+        "u_nm": "s5c"
+      }
+    }
+  },
+  "new": {
+    "subscription": {
+      "subscription_ref01": {
+        "is_subscribing": true,
+        "u_id": "U01",
+        "u_nm": "s7a"
+      }
+    }
+  }
+}

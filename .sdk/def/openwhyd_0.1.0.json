@@ -1,0 +1,1301 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Openwhyd API",
+    "description": "Openwhyd is a free and open-source music curation service that allows users to create playlists of music tracks from various streaming platforms (YouTube, SoundCloud, Vimeo, Deezer…) and to discover the music posted by other users. The API provides two main APIs: the Data Export API for downloading public data without authentication, and the User API for authenticated interactions with user accounts.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Openwhyd API Documentation",
+      "url": "https://openwhyd.github.io/openwhyd/API"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://openwhyd.org",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Data Export",
+      "description": "Public data export endpoints (no authentication required)"
+    },
+    {
+      "name": "Authentication",
+      "description": "User session and authentication endpoints"
+    },
+    {
+      "name": "User",
+      "description": "User profile management"
+    },
+    {
+      "name": "Search",
+      "description": "Search tracks, users, and playlists"
+    },
+    {
+      "name": "Subscriptions",
+      "description": "User subscriptions and followers"
+    }
+  ],
+  "paths": {
+    "/{username}": {
+      "get": {
+        "tags": [
+          "Data Export"
+        ],
+        "summary": "Get user's list of posts",
+        "description": "Returns a list of tracks posted by a user. No authentication required.",
+        "operationId": "getUserPosts",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Username of the user"
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "links"
+              ]
+            },
+            "description": "Response format: json or links"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 20
+            },
+            "description": "Number of posts to return"
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Identifier of the post from which entries must be returned (for pagination)"
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "JavaScript function name for JSONP access"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Post"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "description": "List of URLs, one per line"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{username}/info": {
+      "get": {
+        "tags": [
+          "Data Export"
+        ],
+        "summary": "Get user's public info",
+        "description": "Returns public information about a user. No authentication required.",
+        "operationId": "getUserInfo",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Username of the user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{username}/playlists": {
+      "get": {
+        "tags": [
+          "Data Export"
+        ],
+        "summary": "Get user's list of playlists",
+        "description": "Returns a list of playlists created by a user. No authentication required.",
+        "operationId": "getUserPlaylists",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Username of the user"
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "links"
+              ]
+            },
+            "description": "Response format: json or links"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Playlist"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{username}/playlist/{playlistId}": {
+      "get": {
+        "tags": [
+          "Data Export"
+        ],
+        "summary": "Get playlist tracks",
+        "description": "Returns tracks from a specific playlist. No authentication required.",
+        "operationId": "getPlaylistTracks",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Username of the user"
+          },
+          {
+            "name": "playlistId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the playlist"
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "links"
+              ]
+            },
+            "description": "Response format: json or links"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 20
+            },
+            "description": "Number of posts to return"
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Identifier of the post from which entries must be returned (for pagination)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Post"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "description": "List of URLs, one per line"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hot/{genre}": {
+      "get": {
+        "tags": [
+          "Data Export"
+        ],
+        "summary": "Get hot tracks by genre",
+        "description": "Returns trending tracks for a specific genre. No authentication required.",
+        "operationId": "getHotTracks",
+        "parameters": [
+          {
+            "name": "genre",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Genre name (e.g., 'electro')"
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "links"
+              ]
+            },
+            "description": "Response format: json or links"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 20
+            },
+            "description": "Number of posts to return"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Post"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Login or password reset",
+        "description": "Login with credentials or request password reset",
+        "operationId": "login",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "login",
+                "forgot"
+              ]
+            },
+            "description": "Action to perform: login or forgot password"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Email address or username"
+          },
+          {
+            "name": "md5",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "MD5-hashed password (for login action)"
+          },
+          {
+            "name": "ajax",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Return JSON response instead of HTML"
+          },
+          {
+            "name": "includeUser",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Include user object in response (for login action)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message if any"
+                    },
+                    "ok": {
+                      "type": "string",
+                      "description": "Success message for forgot password"
+                    },
+                    "wrongPassword": {
+                      "type": "integer",
+                      "description": "Set to 1 if password is incorrect"
+                    },
+                    "redirect": {
+                      "type": "string",
+                      "description": "URL to redirect to after successful login"
+                    },
+                    "user": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  }
+                }
+              },
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Login with credentials",
+        "description": "Login with email and password",
+        "operationId": "loginPost",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "enum": [
+                      "login",
+                      "forgot"
+                    ]
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "md5": {
+                    "type": "string"
+                  },
+                  "ajax": {
+                    "type": "boolean"
+                  },
+                  "includeUser": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "action"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "wrongPassword": {
+                      "type": "integer"
+                    },
+                    "redirect": {
+                      "type": "string"
+                    },
+                    "user": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Logout",
+        "description": "Clear session and cookie",
+        "operationId": "logout",
+        "parameters": [
+          {
+            "name": "ajax",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Return JSON response instead of HTML"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful logout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ]
+      }
+    },
+    "/register": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Register a new user",
+        "description": "Sign up a new user account",
+        "operationId": "register",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Full name of the user"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "Email address"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "Password"
+                  },
+                  "redirect": {
+                    "type": "string",
+                    "description": "URL to redirect to after successful signup"
+                  },
+                  "ajax": {
+                    "type": "string",
+                    "description": "Set to 'true' for JSON response"
+                  },
+                  "inviteCode": {
+                    "type": "string",
+                    "description": "Invite code (deprecated)"
+                  },
+                  "iBy": {
+                    "type": "string",
+                    "description": "ID of user who invited this user"
+                  },
+                  "iPg": {
+                    "type": "string",
+                    "description": "URL of sign up page"
+                  },
+                  "iRf": {
+                    "type": "string",
+                    "description": "Referrer of sign up page"
+                  },
+                  "iPo": {
+                    "type": "string",
+                    "description": "Post ID from invitation (deprecated)"
+                  }
+                },
+                "required": [
+                  "name",
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful registration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message if any"
+                    },
+                    "uId": {
+                      "type": "string",
+                      "description": "ID of new user if successful"
+                    },
+                    "redirect": {
+                      "type": "string",
+                      "description": "URL to redirect to"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get user data",
+        "description": "Get information about a user (logged in user by default)",
+        "operationId": "getUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "User ID (logged in user if not provided)"
+          },
+          {
+            "name": "isSubscr",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Include subscription status"
+          },
+          {
+            "name": "countPosts",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Include post count"
+          },
+          {
+            "name": "countLikes",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Include likes count"
+          },
+          {
+            "name": "includeSubscr",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Include subscriber and subscription counts"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update user data",
+        "description": "Update one or more fields of the logged in user",
+        "operationId": "updateUser",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Full user name"
+                  },
+                  "img": {
+                    "type": "string",
+                    "description": "Avatar URL"
+                  },
+                  "cvrImg": {
+                    "type": "string",
+                    "description": "Cover image URL"
+                  },
+                  "pwd": {
+                    "type": "string",
+                    "description": "New password (requires oldPwd)"
+                  },
+                  "oldPwd": {
+                    "type": "string",
+                    "description": "Old password (required for password change)"
+                  },
+                  "handle": {
+                    "type": "string",
+                    "description": "Username/handle"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "Email address"
+                  },
+                  "twId": {
+                    "type": "string",
+                    "description": "Twitter handle"
+                  },
+                  "twTok": {
+                    "type": "string",
+                    "description": "Twitter session token"
+                  },
+                  "twSec": {
+                    "type": "string",
+                    "description": "Twitter session secret"
+                  },
+                  "bio": {
+                    "type": "string",
+                    "description": "User biography"
+                  },
+                  "loc": {
+                    "type": "string",
+                    "description": "User location"
+                  },
+                  "lnk_home": {
+                    "type": "string",
+                    "description": "Homepage URL"
+                  },
+                  "lnk_fb": {
+                    "type": "string",
+                    "description": "Facebook profile URL"
+                  },
+                  "lnk_tw": {
+                    "type": "string",
+                    "description": "Twitter profile URL"
+                  },
+                  "lnk_sc": {
+                    "type": "string",
+                    "description": "SoundCloud profile URL"
+                  },
+                  "lnk_yt": {
+                    "type": "string",
+                    "description": "YouTube profile URL"
+                  },
+                  "lnk_igrm": {
+                    "type": "string",
+                    "description": "Instagram profile URL"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful update",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/User"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ]
+      }
+    },
+    "/search": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Search tracks, users, and playlists",
+        "description": "Combined search returning posts, users, and playlists",
+        "operationId": "search",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query"
+          },
+          {
+            "name": "context",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "addTrack",
+                "quick"
+              ]
+            },
+            "description": "Search context: addTrack (search others), quick (search own + others)"
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json"
+              ]
+            },
+            "description": "Response format"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful search",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "q": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "oneOf": [
+                          {
+                            "$ref": "#/components/schemas/Post"
+                          },
+                          {
+                            "$ref": "#/components/schemas/User"
+                          },
+                          {
+                            "$ref": "#/components/schemas/Playlist"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/follow/fetchFollowers/{id}": {
+      "get": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "List subscribers of a user",
+        "description": "Get list of users following a specific user",
+        "operationId": "getFollowers",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "User ID"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Number of subscribers to skip (pagination)"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 50
+            },
+            "description": "Number of subscribers to return"
+          },
+          {
+            "name": "isSubscr",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Include subscription status for logged in user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "uId": {
+                        "type": "string",
+                        "description": "User ID"
+                      },
+                      "uNm": {
+                        "type": "string",
+                        "description": "User name"
+                      },
+                      "isSubscribing": {
+                        "type": "boolean",
+                        "description": "Whether logged in user follows this user"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ]
+      }
+    },
+    "/api/follow/fetchFollowing/{id}": {
+      "get": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "List subscriptions of a user",
+        "description": "Get list of users that a specific user is following",
+        "operationId": "getFollowing",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "User ID"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Number of subscriptions to skip (pagination)"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 50
+            },
+            "description": "Number of subscriptions to return"
+          },
+          {
+            "name": "isSubscr",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Include subscription status for logged in user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "uId": {
+                        "type": "string",
+                        "description": "User ID"
+                      },
+                      "uNm": {
+                        "type": "string",
+                        "description": "User name"
+                      },
+                      "isSubscribing": {
+                        "type": "boolean",
+                        "description": "Whether logged in user follows this user"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Post": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Post ID"
+          },
+          "uId": {
+            "type": "string",
+            "description": "User ID of poster"
+          },
+          "uNm": {
+            "type": "string",
+            "description": "User name of poster"
+          },
+          "text": {
+            "type": "string",
+            "description": "Post text/comment"
+          },
+          "name": {
+            "type": "string",
+            "description": "Track name"
+          },
+          "eId": {
+            "type": "string",
+            "description": "External ID (platform identifier)"
+          },
+          "img": {
+            "type": "string",
+            "description": "Track image URL"
+          },
+          "nbP": {
+            "type": "integer",
+            "description": "Number of plays"
+          },
+          "nbR": {
+            "type": "integer",
+            "description": "Number of reposts"
+          },
+          "lov": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "User IDs who liked this post"
+          },
+          "ctx": {
+            "type": "string",
+            "description": "Context"
+          },
+          "src": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Source URL"
+              },
+              "name": {
+                "type": "string",
+                "description": "Source name"
+              }
+            }
+          },
+          "url": {
+            "type": "string",
+            "description": "Direct URL to track"
+          },
+          "score": {
+            "type": "number",
+            "description": "Search relevance score"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "User ID"
+          },
+          "name": {
+            "type": "string",
+            "description": "Full name"
+          },
+          "handle": {
+            "type": "string",
+            "description": "Username/handle"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email address"
+          },
+          "bio": {
+            "type": "string",
+            "description": "User biography"
+          },
+          "loc": {
+            "type": "string",
+            "description": "User location"
+          },
+          "img": {
+            "type": "string",
+            "description": "Avatar URL"
+          },
+          "cvrImg": {
+            "type": "string",
+            "description": "Cover image URL"
+          },
+          "isSubscribing": {
+            "type": "boolean",
+            "description": "Whether logged in user subscribes to this user"
+          },
+          "nbSubscribers": {
+            "type": "integer",
+            "description": "Number of subscribers"
+          },
+          "nbPosts": {
+            "type": "integer",
+            "description": "Number of posts"
+          },
+          "nbLikes": {
+            "type": "integer",
+            "description": "Number of likes"
+          },
+          "nbSubscriptions": {
+            "type": "integer",
+            "description": "Number of subscriptions"
+          },
+          "lastArtists": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Recently posted artists"
+          },
+          "twId": {
+            "type": "string",
+            "description": "Twitter handle"
+          },
+          "twTok": {
+            "type": "string",
+            "description": "Twitter session token"
+          },
+          "twSec": {
+            "type": "string",
+            "description": "Twitter session secret"
+          },
+          "lastFm": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Last.fm username"
+              },
+              "sk": {
+                "type": "string",
+                "description": "Last.fm session key"
+              }
+            }
+          },
+          "lnk": {
+            "type": "object",
+            "properties": {
+              "fb": {
+                "type": "string",
+                "description": "Facebook URL"
+              },
+              "igrm": {
+                "type": "string",
+                "description": "Instagram handle"
+              },
+              "sc": {
+                "type": "string",
+                "description": "SoundCloud handle"
+              },
+              "tw": {
+                "type": "string",
+                "description": "Twitter handle"
+              },
+              "yt": {
+                "type": "string",
+                "description": "YouTube handle"
+              },
+              "home": {
+                "type": "string",
+                "description": "Home page URL"
+              }
+            }
+          },
+          "pl": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Playlist"
+            },
+            "description": "User playlists"
+          }
+        }
+      },
+      "Playlist": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Playlist number"
+          },
+          "name": {
+            "type": "string",
+            "description": "Playlist name"
+          },
+          "url": {
+            "type": "string",
+            "description": "Playlist URL"
+          },
+          "nbTracks": {
+            "type": "integer",
+            "description": "Number of tracks in playlist"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "whydSid",
+        "description": "Session cookie obtained after successful login"
+      }
+    }
+  }
+}

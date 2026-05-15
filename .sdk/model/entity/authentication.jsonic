@@ -1,0 +1,164 @@
+# Entity: authentication
+
+main: kit: entity: authentication: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "error"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "ok"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "redirect"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "u_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "user"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "wrong_password"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "authentication"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/login"
+          parts: [
+            "login"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/register"
+          parts: [
+            "register"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "action"
+                orig: "action"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "ajax"
+                orig: "ajax"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "email"
+                orig: "email"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "include_user"
+                orig: "include_user"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "md5"
+                orig: "md5"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/login"
+          parts: [
+            "login"
+          ]
+          select: {
+            exist: [
+              "action"
+              "ajax"
+              "email"
+              "include_user"
+              "md5"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "ajax"
+                orig: "ajax"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/logout"
+          parts: [
+            "logout"
+          ]
+          select: {
+            exist: [
+              "ajax"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

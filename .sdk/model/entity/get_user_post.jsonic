@@ -1,0 +1,163 @@
+# Entity: get_user_post
+
+main: kit: entity: get_user_post: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "ctx"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "e_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "img"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "lov"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "nb_p"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "nb_r"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "score"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "src"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "text"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "u_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "u_nm"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "url"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "get_user_post"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "username"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "after"
+                orig: "after"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "callback"
+                orig: "callback"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 20
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{username}"
+          parts: [
+            "{id}"
+          ]
+          rename: {
+            param: {
+              username: "id"
+            }
+          }
+          select: {
+            exist: [
+              "after"
+              "callback"
+              "format"
+              "id"
+              "limit"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
