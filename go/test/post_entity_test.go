@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/openwhyd-sdk"
-	"github.com/voxgig-sdk/openwhyd-sdk/core"
+	sdk "github.com/voxgig-sdk/openwhyd-sdk/go"
+	"github.com/voxgig-sdk/openwhyd-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/openwhyd-sdk/go/utility/struct"
 )
 
 func TestPostEntity(t *testing.T) {

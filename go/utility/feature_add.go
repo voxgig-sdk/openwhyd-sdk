@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/openwhyd-sdk/core"
+import "github.com/voxgig-sdk/openwhyd-sdk/go/core"
 
 func featureAddUtil(ctx *core.Context, f core.Feature) {
 	client := ctx.Client

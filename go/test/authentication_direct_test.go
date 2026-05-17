@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/openwhyd-sdk"
-	"github.com/voxgig-sdk/openwhyd-sdk/core"
+	sdk "github.com/voxgig-sdk/openwhyd-sdk/go"
+	"github.com/voxgig-sdk/openwhyd-sdk/go/core"
 )
 
 func TestAuthenticationDirect(t *testing.T) {

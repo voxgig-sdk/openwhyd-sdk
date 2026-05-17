@@ -4,17 +4,20 @@
       "SUBSCRIPTION00": {
         "is_subscribing": true,
         "u_id": "U01",
-        "u_nm": "s20"
+        "u_nm": "s20",
+        "id": "SUBSCRIPTION00"
       },
       "SUBSCRIPTION01": {
         "is_subscribing": true,
         "u_id": "U01",
-        "u_nm": "s3e"
+        "u_nm": "s3e",
+        "id": "SUBSCRIPTION01"
       },
       "SUBSCRIPTION02": {
         "is_subscribing": true,
         "u_id": "U01",
-        "u_nm": "s5c"
+        "u_nm": "s5c",
+        "id": "SUBSCRIPTION02"
       }
     }
   },

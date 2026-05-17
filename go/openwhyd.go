@@ -1,10 +1,10 @@
 package voxgigopenwhydsdk
 
 import (
-	"github.com/voxgig-sdk/openwhyd-sdk/core"
-	"github.com/voxgig-sdk/openwhyd-sdk/entity"
-	"github.com/voxgig-sdk/openwhyd-sdk/feature"
-	_ "github.com/voxgig-sdk/openwhyd-sdk/utility"
+	"github.com/voxgig-sdk/openwhyd-sdk/go/core"
+	"github.com/voxgig-sdk/openwhyd-sdk/go/entity"
+	"github.com/voxgig-sdk/openwhyd-sdk/go/feature"
+	_ "github.com/voxgig-sdk/openwhyd-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

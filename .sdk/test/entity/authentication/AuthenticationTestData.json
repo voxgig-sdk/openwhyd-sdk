@@ -7,7 +7,8 @@
         "redirect": "s3e",
         "u_id": "U01",
         "user": {},
-        "wrong_password": "s41"
+        "wrong_password": "s41",
+        "id": "AUTHENTICATION00"
       },
       "AUTHENTICATION01": {
         "error": "s78",
@@ -15,7 +16,8 @@
         "redirect": "s7a",
         "u_id": "U01",
         "user": {},
-        "wrong_password": "s7d"
+        "wrong_password": "s7d",
+        "id": "AUTHENTICATION01"
       },
       "AUTHENTICATION02": {
         "error": "sb4",
@@ -23,7 +25,8 @@
         "redirect": "sb6",
         "u_id": "U01",
         "user": {},
-        "wrong_password": "sb9"
+        "wrong_password": "sb9",
+        "id": "AUTHENTICATION02"
       }
     }
   },

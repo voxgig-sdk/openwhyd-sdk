@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/openwhyd-sdk/core"
+	"github.com/voxgig-sdk/openwhyd-sdk/go/core"
 )
 
 type BaseFeature struct {
