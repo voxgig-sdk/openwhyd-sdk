@@ -117,14 +117,12 @@ func subscriptionDirectSetup(mockres any) *subscriptionDirectSetupResult {
 	env := envOverride(map[string]any{
 		"OPENWHYD_TEST_SUBSCRIPTION_ENTID": map[string]any{},
 		"OPENWHYD_TEST_LIVE":    "FALSE",
-		"OPENWHYD_APIKEY":       "NONE",
 	})
 
 	live := env["OPENWHYD_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["OPENWHYD_APIKEY"],
 		}
 		client := sdk.NewOpenwhydSDK(mergedOpts)
 

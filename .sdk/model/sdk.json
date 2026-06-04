@@ -17,7 +17,23 @@
           }
         ],
         "title": "Openwhyd API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Curate and discover music playlists drawn from YouTube, SoundCloud, Vimeo, Deezer and Bandcamp",
+        "homepage": "https://openwhyd.org",
+        "docs_url": "https://openwhyd.github.io/openwhyd/API",
+        "license_short": "MIT License (open source, community-maintained)",
+        "license_md": "- Openwhyd is maintained collaboratively under the MIT License\n- Source code and issue tracker live on GitHub at [openwhyd/openwhyd](https://github.com/openwhyd/openwhyd)\n- Public data export endpoints can be used without authentication; user-scoped actions require a session cookie\n- Music itself is streamed from third-party sources (YouTube, SoundCloud, Deezer, Vimeo, Bandcamp) and remains subject to their respective terms",
+        "about_md": "[Openwhyd](https://openwhyd.org) is a free, open-source music curation service that lets users collect tracks from across the web into shareable playlists and a community feed. It is maintained collaboratively under the MIT License, with source code hosted on [GitHub](https://github.com/openwhyd/openwhyd).\n\nThe API exposes:\n\n- User profiles, followers, and following relationships (`/api/follow/...`, `/api/user`)\n- Posts (tracks) with like, repost, comment, play-count, and Last.fm scrobble actions (`/api/post?action=...`)\n- Playlists you can read, create, rename, reorder, and share (`/api/playlist`, `/api/playlist/<id>`)\n- Search across tracks, users, and playlists (`/search?q=...`)\n- A public data export for any user's posts, playlists, and profile via `/<user>`, `/<user>/playlists`, `/<user>/playlist/<id>` with `?format=json`\n\nTracks are identified by a compact `eId` syntax that encodes the source platform, for example `/yt/<id>` for YouTube, `/sc/<uri>` for SoundCloud, `/dz/<id>` for Deezer, `/vi/<id>` for Vimeo, `/bc/<id>` for Bandcamp, and `/dm/<id>` for Dailymotion.\n\nPublic export endpoints accept `format`, `limit`, `after` (pagination cursor), and `callback` (JSONP) query parameters. Authenticated calls rely on a session cookie obtained via `/login` or `/register`. CORS is enabled on some endpoints and disabled on others, so server-side calls are the safer default for browser clients.",
+        "entity_desc": {
+          "authentication": "Session-based login, logout, registration, and password-reset flows via `/login`, `/logout`, and `/register`.",
+          "get_user_post": "Public data export of a user's posted tracks at `/<user>` or `/u/<userId>` with `?format=json` for machine-readable output.",
+          "playlist": "Read, create, rename, reorder, delete, and share playlists via `/api/playlist` and `/api/playlist/<id>`.",
+          "post": "Tracks (posts) and their actions — insert, delete, love/unlove, list lovers and reposts, increment play counter, scrobble to Last.fm, and comment — via `/api/post?action=...` and `/c/<postId>?format=json` for detail.",
+          "search": "Combined and contextual search over posts, users, and playlists via `/search?q=...`, with `context=addTrack` and `context=quick` variants.",
+          "subscription": "Follow graph operations — list followers and following, check status, subscribe and unsubscribe — via `/api/follow/fetchFollowers/<id>`, `/api/follow/fetchFollowing/<id>`, and `/api/follow?action=...`.",
+          "user": "User profile retrieval and updates via `/api/user`, plus public profile info at `/<user>/info`."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -25,7 +41,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "authentication": {

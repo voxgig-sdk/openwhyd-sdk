@@ -15,9 +15,6 @@ module OpenwhydConfig
       },
       "options" => {
         "base" => "https://openwhyd.org",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

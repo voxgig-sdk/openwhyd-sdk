@@ -103,7 +103,6 @@ def _user_basic_setup(extra):
         "OPENWHYD_TEST_USER_ENTID": idmap,
         "OPENWHYD_TEST_LIVE": "FALSE",
         "OPENWHYD_TEST_EXPLAIN": "FALSE",
-        "OPENWHYD_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -114,7 +113,6 @@ def _user_basic_setup(extra):
     if env.get("OPENWHYD_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("OPENWHYD_APIKEY"),
             },
             extra or {},
         ])

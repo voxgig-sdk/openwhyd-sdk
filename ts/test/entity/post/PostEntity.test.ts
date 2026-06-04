@@ -114,7 +114,6 @@ function basicSetup(extra?: any) {
     'OPENWHYD_TEST_POST_ENTID': idmap,
     'OPENWHYD_TEST_LIVE': 'FALSE',
     'OPENWHYD_TEST_EXPLAIN': 'FALSE',
-    'OPENWHYD_APIKEY': 'NONE',
   })
 
   idmap = env['OPENWHYD_TEST_POST_ENTID']
@@ -124,7 +123,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new OpenwhydSDK(merge([
       {
-        apikey: env.OPENWHYD_APIKEY,
       },
       extra
     ]))

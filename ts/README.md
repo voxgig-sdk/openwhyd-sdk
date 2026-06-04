@@ -17,9 +17,7 @@ loading a specific record.
 ```ts
 import { OpenwhydSDK } from 'openwhyd'
 
-const client = new OpenwhydSDK({
-  apikey: process.env.OPENWHYD_APIKEY,
-})
+const client = new OpenwhydSDK({})
 ```
 
 ### 3. Load a authentication
@@ -92,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new OpenwhydSDK({ apikey: '...' })
+const client = new OpenwhydSDK()
 const testClient = client.tester()
 ```
 
@@ -128,7 +126,6 @@ const logger = {
 }
 
 const client = new OpenwhydSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -139,7 +136,6 @@ Create a `.env.local` file at the project root:
 
 ```
 OPENWHYD_TEST_LIVE=TRUE
-OPENWHYD_APIKEY=<your-key>
 ```
 
 Then run:
@@ -157,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new OpenwhydSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -168,7 +163,6 @@ new OpenwhydSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
