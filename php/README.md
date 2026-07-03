@@ -10,7 +10,7 @@ The PHP SDK for the Openwhyd API — an entity-oriented client using PHP convent
 
 ## Install
 ```bash
-composer require voxgig/openwhyd-sdk
+composer require voxgig-sdk/openwhyd
 ```
 
 

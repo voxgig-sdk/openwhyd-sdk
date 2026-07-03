@@ -10,13 +10,13 @@ The Ruby SDK for the Openwhyd API — an entity-oriented client using idiomatic 
 
 ## Install
 ```bash
-gem install openwhyd-sdk
+gem install voxgig-sdk-openwhyd
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "openwhyd-sdk"
+gem "voxgig-sdk-openwhyd"
 ```
 
 Then run:

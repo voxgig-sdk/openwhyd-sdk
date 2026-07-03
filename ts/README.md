@@ -10,7 +10,7 @@ The TypeScript SDK for the Openwhyd API — a type-safe, entity-oriented client 
 
 ## Install
 ```bash
-npm install openwhyd
+npm install @voxgig-sdk/openwhyd
 ```
 ## Tutorial: your first API call
 

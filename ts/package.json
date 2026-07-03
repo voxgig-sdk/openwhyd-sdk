@@ -1,7 +1,23 @@
 {
   "name": "@voxgig-sdk/openwhyd",
   "version": "0.0.1",
-  "description": "DESCRIPTION",
+  "description": "Unofficial generated TypeScript SDK for the Openwhyd public API. Not affiliated with or endorsed by the upstream API provider.",
+  "keywords": [
+    "voxgig",
+    "sdk",
+    "generated-sdk",
+    "openapi",
+    "api-client",
+    "openwhyd"
+  ],
+  "homepage": "https://github.com/voxgig-sdk/openwhyd-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxgig-sdk/openwhyd-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/voxgig-sdk/openwhyd-sdk/issues"
+  },
   "main": "dist/OpenwhydSDK.js",
   "type": "commonjs",
   "types": "dist/OpenwhydSDK.d.ts",
@@ -14,7 +30,10 @@
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm run build && npm test"
   },
-  "author": "Openwhyd",
+  "author": {
+    "name": "Voxgig",
+    "url": "https://voxgig.com"
+  },
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {},

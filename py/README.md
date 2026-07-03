@@ -10,7 +10,7 @@ The Python SDK for the Openwhyd API — an entity-oriented client following Pyth
 
 ## Install
 ```bash
-pip install openwhyd-sdk
+pip install voxgig-sdk-openwhyd
 ```
 
 Or install from source:

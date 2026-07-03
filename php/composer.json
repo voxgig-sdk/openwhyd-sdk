@@ -1,8 +1,17 @@
 {
   "name": "voxgig-sdk/openwhyd",
-  "description": "Openwhyd SDK for PHP",
+  "description": "Unofficial generated PHP SDK for the Openwhyd public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
+  "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "openwhyd"],
+  "homepage": "https://github.com/voxgig-sdk/openwhyd-sdk",
   "license": "MIT",
+  "authors": [
+    { "name": "Voxgig", "homepage": "https://voxgig.com" }
+  ],
+  "support": {
+    "issues": "https://github.com/voxgig-sdk/openwhyd-sdk/issues",
+    "source": "https://github.com/voxgig-sdk/openwhyd-sdk"
+  },
   "minimum-stability": "stable",
   "require": {
     "php": ">=8.2"
