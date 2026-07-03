@@ -76,12 +76,14 @@ def playlist_direct_setup(mockres)
   env = Runner.env_override({
     "OPENWHYD_TEST_PLAYLIST_ENTID" => {},
     "OPENWHYD_TEST_LIVE" => "FALSE",
+    "OPENWHYD_APIKEY" => "NONE",
   })
 
   live = env["OPENWHYD_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["OPENWHYD_APIKEY"],
     }
     client = OpenwhydSDK.new(merged_opts)
     return {

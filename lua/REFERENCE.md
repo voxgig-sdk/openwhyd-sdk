@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -129,8 +129,8 @@ local authentication = client:Authentication(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Authentication(nil):create({
-}, nil)
+local result, err = client:Authentication():create({
+})
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -138,7 +138,7 @@ local result, err = client:Authentication(nil):create({
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Authentication(nil):load({ id = "authentication_id" }, nil)
+local result, err = client:Authentication():load({ id = "authentication_id" })
 ```
 
 ### Common Methods
@@ -203,7 +203,7 @@ local get_user_post = client:GetUserPost(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:GetUserPost(nil):list(nil, nil)
+local results, err = client:GetUserPost():list()
 ```
 
 ### Common Methods
@@ -258,7 +258,7 @@ local playlist = client:Playlist(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Playlist(nil):list(nil, nil)
+local results, err = client:Playlist():list()
 ```
 
 ### Common Methods
@@ -323,7 +323,7 @@ local post = client:Post(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Post(nil):load({ id = "post_id" }, nil)
+local result, err = client:Post():load({ id = "post_id" })
 ```
 
 ### Common Methods
@@ -376,7 +376,7 @@ local search = client:Search(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Search(nil):list(nil, nil)
+local results, err = client:Search():list()
 ```
 
 ### Common Methods
@@ -430,7 +430,7 @@ local subscription = client:Subscription(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Subscription(nil):load({ id = "subscription_id" }, nil)
+local result, err = client:Subscription():load({ id = "subscription_id" })
 ```
 
 ### Common Methods
@@ -485,8 +485,8 @@ local user = client:User(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:User(nil):create({
-}, nil)
+local result, err = client:User():create({
+})
 ```
 
 #### `list(reqmatch, ctrl) -> any, err`
@@ -494,7 +494,7 @@ local result, err = client:User(nil):create({
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:User(nil):list(nil, nil)
+local results, err = client:User():list()
 ```
 
 ### Common Methods

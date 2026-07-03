@@ -93,12 +93,14 @@ func searchDirectSetup(mockres any) *searchDirectSetupResult {
 	env := envOverride(map[string]any{
 		"OPENWHYD_TEST_SEARCH_ENTID": map[string]any{},
 		"OPENWHYD_TEST_LIVE":    "FALSE",
+		"OPENWHYD_APIKEY":       "NONE",
 	})
 
 	live := env["OPENWHYD_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["OPENWHYD_APIKEY"],
 		}
 		client := sdk.NewOpenwhydSDK(mergedOpts)
 

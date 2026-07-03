@@ -86,6 +86,7 @@ def post_basic_setup(extra)
     "OPENWHYD_TEST_POST_ENTID" => idmap,
     "OPENWHYD_TEST_LIVE" => "FALSE",
     "OPENWHYD_TEST_EXPLAIN" => "FALSE",
+    "OPENWHYD_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -97,6 +98,7 @@ def post_basic_setup(extra)
   if env["OPENWHYD_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
+        "apikey" => env["OPENWHYD_APIKEY"],
       },
       extra || {},
     ])

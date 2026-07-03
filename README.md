@@ -1,24 +1,8 @@
 # Openwhyd SDK
 
-Curate and discover music playlists drawn from YouTube, SoundCloud, Vimeo, Deezer and Bandcamp
+Openwhyd API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Openwhyd API
-
-[Openwhyd](https://openwhyd.org) is a free, open-source music curation service that lets users collect tracks from across the web into shareable playlists and a community feed. It is maintained collaboratively under the MIT License, with source code hosted on [GitHub](https://github.com/openwhyd/openwhyd).
-
-The API exposes:
-
-- User profiles, followers, and following relationships (`/api/follow/...`, `/api/user`)
-- Posts (tracks) with like, repost, comment, play-count, and Last.fm scrobble actions (`/api/post?action=...`)
-- Playlists you can read, create, rename, reorder, and share (`/api/playlist`, `/api/playlist/<id>`)
-- Search across tracks, users, and playlists (`/search?q=...`)
-- A public data export for any user's posts, playlists, and profile via `/<user>`, `/<user>/playlists`, `/<user>/playlist/<id>` with `?format=json`
-
-Tracks are identified by a compact `eId` syntax that encodes the source platform, for example `/yt/<id>` for YouTube, `/sc/<uri>` for SoundCloud, `/dz/<id>` for Deezer, `/vi/<id>` for Vimeo, `/bc/<id>` for Bandcamp, and `/dm/<id>` for Dailymotion.
-
-Public export endpoints accept `format`, `limit`, `after` (pagination cursor), and `callback` (JSONP) query parameters. Authenticated calls rely on a session cookie obtained via `/login` or `/register`. CORS is enabled on some endpoints and disabled on others, so server-side calls are the safer default for browser clients.
 
 ## Try it
 
@@ -52,27 +36,31 @@ gem install openwhyd-sdk
 luarocks install openwhyd-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { OpenwhydSDK } from 'openwhyd'
 
-const client = new OpenwhydSDK({})
+const client = new OpenwhydSDK({
+  apikey: process.env.OPENWHYD_APIKEY,
+})
 
+// Load authentication data
+const authentication = await client.Authentication().load({})
+console.log(authentication.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -102,13 +90,13 @@ The API exposes 7 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Authentication** | Session-based login, logout, registration, and password-reset flows via `/login`, `/logout`, and `/register`. | `/login` |
-| **GetUserPost** | Public data export of a user's posted tracks at `/<user>` or `/u/<userId>` with `?format=json` for machine-readable output. | `/{username}` |
-| **Playlist** | Read, create, rename, reorder, delete, and share playlists via `/api/playlist` and `/api/playlist/<id>`. | `/{username}/playlists` |
-| **Post** | Tracks (posts) and their actions — insert, delete, love/unlove, list lovers and reposts, increment play counter, scrobble to Last.fm, and comment — via `/api/post?action=...` and `/c/<postId>?format=json` for detail. | `/{username}/playlist/{playlistId}` |
-| **Search** | Combined and contextual search over posts, users, and playlists via `/search?q=...`, with `context=addTrack` and `context=quick` variants. | `/search` |
-| **Subscription** | Follow graph operations — list followers and following, check status, subscribe and unsubscribe — via `/api/follow/fetchFollowers/<id>`, `/api/follow/fetchFollowing/<id>`, and `/api/follow?action=...`. | `/api/follow/fetchFollowers/{id}` |
-| **User** | User profile retrieval and updates via `/api/user`, plus public profile info at `/<user>/info`. | `/api/user` |
+| **Authentication** |  | `/login` |
+| **GetUserPost** |  | `/{username}` |
+| **Playlist** |  | `/{username}/playlists` |
+| **Post** |  | `/{username}/playlist/{playlistId}` |
+| **Search** |  | `/search` |
+| **Subscription** |  | `/api/follow/fetchFollowers/{id}` |
+| **User** |  | `/api/user` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -118,15 +106,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from openwhyd_sdk import OpenwhydSDK
 
-client = OpenwhydSDK({})
+client = OpenwhydSDK({
+    "apikey": os.environ.get("OPENWHYD_APIKEY"),
+})
 
 
 # Load a specific authentication
-authentication, err = client.Authentication(None).load(
-    {"id": "example_id"}, None
-)
+authentication, err = client.Authentication().load({"id": "example_id"})
+print(authentication)
 ```
 
 ### PHP
@@ -135,13 +125,14 @@ authentication, err = client.Authentication(None).load(
 <?php
 require_once 'openwhyd_sdk.php';
 
-$client = new OpenwhydSDK([]);
+$client = new OpenwhydSDK([
+    "apikey" => getenv("OPENWHYD_APIKEY"),
+]);
 
 
 // Load a specific authentication
-[$authentication, $err] = $client->Authentication(null)->load(
-    ["id" => "example_id"], null
-);
+[$authentication, $err] = $client->Authentication()->load(["id" => "example_id"]);
+print_r($authentication);
 ```
 
 ### Golang
@@ -149,8 +140,13 @@ $client = new OpenwhydSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/openwhyd-sdk/go"
 
-client := sdk.NewOpenwhydSDK(map[string]any{})
+client := sdk.NewOpenwhydSDK(map[string]any{
+    "apikey": os.Getenv("OPENWHYD_APIKEY"),
+})
 
+// Load authentication data
+authentication, err := client.Authentication(nil).Load(map[string]any{}, nil)
+fmt.Println(authentication)
 ```
 
 ### Ruby
@@ -158,13 +154,14 @@ client := sdk.NewOpenwhydSDK(map[string]any{})
 ```ruby
 require_relative "Openwhyd_sdk"
 
-client = OpenwhydSDK.new({})
+client = OpenwhydSDK.new({
+  "apikey" => ENV["OPENWHYD_APIKEY"],
+})
 
 
 # Load a specific authentication
-authentication, err = client.Authentication(nil).load(
-  { "id" => "example_id" }, nil
-)
+authentication, err = client.Authentication().load({ "id" => "example_id" })
+puts authentication
 ```
 
 ### Lua
@@ -172,13 +169,14 @@ authentication, err = client.Authentication(nil).load(
 ```lua
 local sdk = require("openwhyd_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("OPENWHYD_APIKEY"),
+})
 
 
 -- Load a specific authentication
-local authentication, err = client:Authentication(nil):load(
-  { id = "example_id" }, nil
-)
+local authentication, err = client:Authentication():load({ id = "example_id" })
+print(authentication)
 ```
 
 ## Unit testing in offline mode
@@ -197,25 +195,21 @@ const result = await client.Authentication().load({ id: 'test01' })
 ### Python
 
 ```python
-client = OpenwhydSDK.test(None, None)
-result, err = client.Authentication(None).load(
-    {"id": "test01"}, None
-)
+client = OpenwhydSDK.test()
+result, err = client.Authentication().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = OpenwhydSDK::test(null, null);
-[$result, $err] = $client->Authentication(null)->load(
-    ["id" => "test01"], null
-);
+$client = OpenwhydSDK::test();
+[$result, $err] = $client->Authentication()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Authentication(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -224,19 +218,15 @@ result, err := client.Authentication(nil).Load(
 ### Ruby
 
 ```ruby
-client = OpenwhydSDK.test(nil, nil)
-result, err = client.Authentication(nil).load(
-  { "id" => "test01" }, nil
-)
+client = OpenwhydSDK.test
+result, err = client.Authentication().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Authentication(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Authentication():load({ id = "test01" })
 ```
 
 ## How it works
@@ -340,16 +330,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Openwhyd API
-
-- Upstream: [https://openwhyd.org](https://openwhyd.org)
-- API docs: [https://openwhyd.github.io/openwhyd/API](https://openwhyd.github.io/openwhyd/API)
-
-- Openwhyd is maintained collaboratively under the MIT License
-- Source code and issue tracker live on GitHub at [openwhyd/openwhyd](https://github.com/openwhyd/openwhyd)
-- Public data export endpoints can be used without authentication; user-scoped actions require a session cookie
-- Music itself is streamed from third-party sources (YouTube, SoundCloud, Deezer, Vimeo, Bandcamp) and remains subject to their respective terms
 
 ---
 

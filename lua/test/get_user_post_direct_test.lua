@@ -77,12 +77,14 @@ function get_user_post_direct_setup(mockres)
   local env = runner.env_override({
     ["OPENWHYD_TEST_GET_USER_POST_ENTID"] = {},
     ["OPENWHYD_TEST_LIVE"] = "FALSE",
+    ["OPENWHYD_APIKEY"] = "NONE",
   })
 
   local live = env["OPENWHYD_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["OPENWHYD_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

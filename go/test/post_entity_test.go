@@ -123,6 +123,7 @@ func postBasicSetup(extra map[string]any) *entityTestSetup {
 		"OPENWHYD_TEST_POST_ENTID": idmap,
 		"OPENWHYD_TEST_LIVE":      "FALSE",
 		"OPENWHYD_TEST_EXPLAIN":   "FALSE",
+		"OPENWHYD_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["OPENWHYD_TEST_POST_ENTID"])
@@ -133,6 +134,7 @@ func postBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["OPENWHYD_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["OPENWHYD_APIKEY"],
 			},
 			extra,
 		})

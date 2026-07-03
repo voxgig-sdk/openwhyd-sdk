@@ -69,12 +69,14 @@ def _subscription_direct_setup(mockres):
     env = runner.env_override({
         "OPENWHYD_TEST_SUBSCRIPTION_ENTID": {},
         "OPENWHYD_TEST_LIVE": "FALSE",
+        "OPENWHYD_APIKEY": "NONE",
     })
 
     live = env.get("OPENWHYD_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("OPENWHYD_APIKEY"),
         }
         client = OpenwhydSDK(merged_opts)
         return {
