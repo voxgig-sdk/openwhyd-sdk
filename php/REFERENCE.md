@@ -110,7 +110,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## AuthenticationEntity
 
 ```php
-$authentication = $client->authentication();
+$authentication = $client->Authentication();
 ```
 
 ### Fields
@@ -131,7 +131,7 @@ $authentication = $client->authentication();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->authentication()->create([
+$result = $client->Authentication()->create([
 ]);
 ```
 
@@ -140,7 +140,7 @@ $result = $client->authentication()->create([
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->authentication()->load(["id" => "authentication_id"]);
+$result = $client->Authentication()->load(["id" => "authentication_id"]);
 ```
 
 ### Common Methods
@@ -176,7 +176,7 @@ Return the entity name.
 ## GetUserPostEntity
 
 ```php
-$get_user_post = $client->get_user_post();
+$get_user_post = $client->GetUserPost();
 ```
 
 ### Fields
@@ -205,7 +205,7 @@ $get_user_post = $client->get_user_post();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->get_user_post()->list([]);
+$results = $client->GetUserPost()->list([]);
 ```
 
 ### Common Methods
@@ -241,7 +241,7 @@ Return the entity name.
 ## PlaylistEntity
 
 ```php
-$playlist = $client->playlist();
+$playlist = $client->Playlist();
 ```
 
 ### Fields
@@ -260,7 +260,7 @@ $playlist = $client->playlist();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->playlist()->list([]);
+$results = $client->Playlist()->list([]);
 ```
 
 ### Common Methods
@@ -296,7 +296,7 @@ Return the entity name.
 ## PostEntity
 
 ```php
-$post = $client->post();
+$post = $client->Post();
 ```
 
 ### Fields
@@ -325,7 +325,7 @@ $post = $client->post();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->post()->load(["id" => "post_id"]);
+$result = $client->Post()->load(["id" => "post_id"]);
 ```
 
 ### Common Methods
@@ -361,7 +361,7 @@ Return the entity name.
 ## SearchEntity
 
 ```php
-$search = $client->search();
+$search = $client->Search();
 ```
 
 ### Fields
@@ -378,7 +378,7 @@ $search = $client->search();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->search()->list([]);
+$results = $client->Search()->list([]);
 ```
 
 ### Common Methods
@@ -414,7 +414,7 @@ Return the entity name.
 ## SubscriptionEntity
 
 ```php
-$subscription = $client->subscription();
+$subscription = $client->Subscription();
 ```
 
 ### Fields
@@ -432,7 +432,7 @@ $subscription = $client->subscription();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->subscription()->load(["id" => "subscription_id"]);
+$result = $client->Subscription()->load(["id" => "subscription_id"]);
 ```
 
 ### Common Methods
@@ -468,7 +468,7 @@ Return the entity name.
 ## UserEntity
 
 ```php
-$user = $client->user();
+$user = $client->User();
 ```
 
 ### Fields
@@ -487,7 +487,7 @@ $user = $client->user();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->user()->create([
+$result = $client->User()->create([
 ]);
 ```
 
@@ -496,7 +496,7 @@ $result = $client->user()->create([
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->user()->list([]);
+$results = $client->User()->list([]);
 ```
 
 ### Common Methods

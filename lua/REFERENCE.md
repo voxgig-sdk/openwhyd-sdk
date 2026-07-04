@@ -108,7 +108,7 @@ same parameters as `direct()`.
 ## AuthenticationEntity
 
 ```lua
-local authentication = client:authentication(nil)
+local authentication = client:Authentication(nil)
 ```
 
 ### Fields
@@ -129,7 +129,7 @@ local authentication = client:authentication(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:authentication():create({
+local result, err = client:Authentication():create({
 })
 ```
 
@@ -138,7 +138,7 @@ local result, err = client:authentication():create({
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:authentication():load({ id = "authentication_id" })
+local result, err = client:Authentication():load({ id = "authentication_id" })
 ```
 
 ### Common Methods
@@ -174,7 +174,7 @@ Return the entity name.
 ## GetUserPostEntity
 
 ```lua
-local get_user_post = client:get_user_post(nil)
+local get_user_post = client:GetUserPost(nil)
 ```
 
 ### Fields
@@ -203,7 +203,7 @@ local get_user_post = client:get_user_post(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:get_user_post():list()
+local results, err = client:GetUserPost():list()
 ```
 
 ### Common Methods
@@ -239,7 +239,7 @@ Return the entity name.
 ## PlaylistEntity
 
 ```lua
-local playlist = client:playlist(nil)
+local playlist = client:Playlist(nil)
 ```
 
 ### Fields
@@ -258,7 +258,7 @@ local playlist = client:playlist(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:playlist():list()
+local results, err = client:Playlist():list()
 ```
 
 ### Common Methods
@@ -294,7 +294,7 @@ Return the entity name.
 ## PostEntity
 
 ```lua
-local post = client:post(nil)
+local post = client:Post(nil)
 ```
 
 ### Fields
@@ -323,7 +323,7 @@ local post = client:post(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:post():load({ id = "post_id" })
+local result, err = client:Post():load({ id = "post_id" })
 ```
 
 ### Common Methods
@@ -359,7 +359,7 @@ Return the entity name.
 ## SearchEntity
 
 ```lua
-local search = client:search(nil)
+local search = client:Search(nil)
 ```
 
 ### Fields
@@ -376,7 +376,7 @@ local search = client:search(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:search():list()
+local results, err = client:Search():list()
 ```
 
 ### Common Methods
@@ -412,7 +412,7 @@ Return the entity name.
 ## SubscriptionEntity
 
 ```lua
-local subscription = client:subscription(nil)
+local subscription = client:Subscription(nil)
 ```
 
 ### Fields
@@ -430,7 +430,7 @@ local subscription = client:subscription(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:subscription():load({ id = "subscription_id" })
+local result, err = client:Subscription():load({ id = "subscription_id" })
 ```
 
 ### Common Methods
@@ -466,7 +466,7 @@ Return the entity name.
 ## UserEntity
 
 ```lua
-local user = client:user(nil)
+local user = client:User(nil)
 ```
 
 ### Fields
@@ -485,7 +485,7 @@ local user = client:user(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:user():create({
+local result, err = client:User():create({
 })
 ```
 
@@ -494,7 +494,7 @@ local result, err = client:user():create({
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:user():list()
+local results, err = client:User():list()
 ```
 
 ### Common Methods

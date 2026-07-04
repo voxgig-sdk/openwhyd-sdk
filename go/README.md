@@ -30,7 +30,12 @@ go mod edit -replace github.com/voxgig-sdk/openwhyd-sdk/go=../openwhyd-sdk/go
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
@@ -38,44 +43,28 @@ package main
 import (
     "fmt"
     "os"
-
     sdk "github.com/voxgig-sdk/openwhyd-sdk/go"
-    "github.com/voxgig-sdk/openwhyd-sdk/go/core"
 )
 
 func main() {
     client := sdk.NewOpenwhydSDK(map[string]any{
         "apikey": os.Getenv("OPENWHYD_APIKEY"),
     })
-```
 
-### 3. Load an authentication
-
-```go
-    result, err = client.Authentication(nil).Load(
-        map[string]any{"id": "example_id"}, nil,
-    )
+    // Load a single authentication — the value is the loaded record.
+    authentication, err := client.Authentication(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
+    fmt.Println(authentication)
 
-    rm = core.ToMapAny(result)
-    if rm["ok"] == true {
-        fmt.Println(rm["data"])
+    // Create a authentication.
+    created, err := client.Authentication(nil).Create(map[string]any{"name": "Example"}, nil)
+    if err != nil {
+        panic(err)
     }
+    fmt.Println(created)
 }
-```
-
-### 4. Create, update, and remove
-
-```go
-// Create
-created, _ := client.Authentication(nil).Create(
-    map[string]any{"name": "Example"}, nil,
-)
-cm := core.ToMapAny(created)
-newID := core.ToMapAny(cm["data"])["id"]
-
 ```
 
 
@@ -125,10 +114,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Authentication(nil).Load(
+authentication, err := client.Authentication(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(authentication) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -207,13 +199,13 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `Authentication` | `(data map[string]any) OpenwhydEntity` | Create a Authentication entity instance. |
+| `Authentication` | `(data map[string]any) OpenwhydEntity` | Create an Authentication entity instance. |
 | `GetUserPost` | `(data map[string]any) OpenwhydEntity` | Create a GetUserPost entity instance. |
 | `Playlist` | `(data map[string]any) OpenwhydEntity` | Create a Playlist entity instance. |
 | `Post` | `(data map[string]any) OpenwhydEntity` | Create a Post entity instance. |
 | `Search` | `(data map[string]any) OpenwhydEntity` | Create a Search entity instance. |
 | `Subscription` | `(data map[string]any) OpenwhydEntity` | Create a Subscription entity instance. |
-| `User` | `(data map[string]any) OpenwhydEntity` | Create a User entity instance. |
+| `User` | `(data map[string]any) OpenwhydEntity` | Create an User entity instance. |
 
 ### Entity interface (OpenwhydEntity)
 
@@ -233,17 +225,24 @@ All entities implement the `OpenwhydEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    authentication, err := client.Authentication(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // authentication is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -387,7 +386,11 @@ Create an instance: `authentication := client.Authentication(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Authentication(nil).Load(map[string]any{"id": "authentication_id"}, nil)
+authentication, err := client.Authentication(nil).Load(map[string]any{"id": "authentication_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(authentication) // the loaded record
 ```
 
 #### Example: Create
@@ -430,7 +433,11 @@ Create an instance: `get_user_post := client.GetUserPost(nil)`
 #### Example: List
 
 ```go
-results, err := client.GetUserPost(nil).List(nil, nil)
+get_user_posts, err := client.GetUserPost(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(get_user_posts) // the array of records
 ```
 
 
@@ -456,7 +463,11 @@ Create an instance: `playlist := client.Playlist(nil)`
 #### Example: List
 
 ```go
-results, err := client.Playlist(nil).List(nil, nil)
+playlists, err := client.Playlist(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(playlists) // the array of records
 ```
 
 
@@ -492,7 +503,11 @@ Create an instance: `post := client.Post(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Post(nil).Load(map[string]any{"id": "post_id"}, nil)
+post, err := client.Post(nil).Load(map[string]any{"id": "post_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(post) // the loaded record
 ```
 
 
@@ -516,7 +531,11 @@ Create an instance: `search := client.Search(nil)`
 #### Example: List
 
 ```go
-results, err := client.Search(nil).List(nil, nil)
+searchs, err := client.Search(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(searchs) // the array of records
 ```
 
 
@@ -541,7 +560,11 @@ Create an instance: `subscription := client.Subscription(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Subscription(nil).Load(map[string]any{"id": "subscription_id"}, nil)
+subscription, err := client.Subscription(nil).Load(map[string]any{"id": "subscription_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(subscription) // the loaded record
 ```
 
 
@@ -568,7 +591,11 @@ Create an instance: `user := client.User(nil)`
 #### Example: List
 
 ```go
-results, err := client.User(nil).List(nil, nil)
+users, err := client.User(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(users) // the array of records
 ```
 
 #### Example: Create

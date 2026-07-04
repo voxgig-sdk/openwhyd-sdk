@@ -32,19 +32,22 @@ const client = new OpenwhydSDK({
 
 ### 3. Load an authentication
 
-```ts
-const result = await client.authentication.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const authentication = await client.Authentication().load({ id: 'example_id' })
+  console.log(authentication)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
 ### 4. Create, update, and remove
 
 ```ts
-// Create
-const created = await client.authentication.create({
+// Create — returns the created Authentication
+const created = await client.Authentication().create({
   name: 'Example',
 })
 
@@ -64,6 +67,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -92,9 +98,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = OpenwhydSDK.test()
 
-const result = await client.authentication.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const authentication = await client.Authentication().load({ id: 'test01' })
+// authentication is a bare entity populated with mock response data
+console.log(authentication)
 ```
 
 You can also use the instance method:
@@ -109,7 +115,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.authentication
+const entity = client.Authentication()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -191,13 +197,13 @@ new OpenwhydSDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `Authentication(data?)` | `AuthenticationEntity` | Create a Authentication entity instance. |
+| `Authentication(data?)` | `AuthenticationEntity` | Create an Authentication entity instance. |
 | `GetUserPost(data?)` | `GetUserPostEntity` | Create a GetUserPost entity instance. |
 | `Playlist(data?)` | `PlaylistEntity` | Create a Playlist entity instance. |
 | `Post(data?)` | `PostEntity` | Create a Post entity instance. |
 | `Search(data?)` | `SearchEntity` | Create a Search entity instance. |
 | `Subscription(data?)` | `SubscriptionEntity` | Create a Subscription entity instance. |
-| `User(data?)` | `UserEntity` | Create a User entity instance. |
+| `User(data?)` | `UserEntity` | Create an User entity instance. |
 | `tester(testopts?, sdkopts?)` | `OpenwhydSDK` | Create a test-mode client instance. |
 
 #### Static methods
@@ -214,29 +220,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): OpenwhydSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -385,7 +392,7 @@ API path: `/api/user`
 
 ### Authentication
 
-Create an instance: `const authentication = client.authentication`
+Create an instance: `const authentication = client.Authentication()`
 
 #### Operations
 
@@ -408,20 +415,20 @@ Create an instance: `const authentication = client.authentication`
 #### Example: Load
 
 ```ts
-const authentication = await client.authentication.load({ id: 'authentication_id' })
+const authentication = await client.Authentication().load({ id: 'authentication_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const authentication = await client.authentication.create({
+const authentication = await client.Authentication().create({
 })
 ```
 
 
 ### GetUserPost
 
-Create an instance: `const get_user_post = client.get_user_post`
+Create an instance: `const get_user_post = client.GetUserPost()`
 
 #### Operations
 
@@ -451,13 +458,13 @@ Create an instance: `const get_user_post = client.get_user_post`
 #### Example: List
 
 ```ts
-const get_user_posts = await client.get_user_post.list()
+const get_user_posts = await client.GetUserPost().list()
 ```
 
 
 ### Playlist
 
-Create an instance: `const playlist = client.playlist`
+Create an instance: `const playlist = client.Playlist()`
 
 #### Operations
 
@@ -477,13 +484,13 @@ Create an instance: `const playlist = client.playlist`
 #### Example: List
 
 ```ts
-const playlists = await client.playlist.list()
+const playlists = await client.Playlist().list()
 ```
 
 
 ### Post
 
-Create an instance: `const post = client.post`
+Create an instance: `const post = client.Post()`
 
 #### Operations
 
@@ -513,13 +520,13 @@ Create an instance: `const post = client.post`
 #### Example: Load
 
 ```ts
-const post = await client.post.load({ id: 'post_id' })
+const post = await client.Post().load({ id: 'post_id' })
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `const search = client.Search()`
 
 #### Operations
 
@@ -537,13 +544,13 @@ Create an instance: `const search = client.search`
 #### Example: List
 
 ```ts
-const searchs = await client.search.list()
+const searchs = await client.Search().list()
 ```
 
 
 ### Subscription
 
-Create an instance: `const subscription = client.subscription`
+Create an instance: `const subscription = client.Subscription()`
 
 #### Operations
 
@@ -562,13 +569,13 @@ Create an instance: `const subscription = client.subscription`
 #### Example: Load
 
 ```ts
-const subscription = await client.subscription.load({ id: 'subscription_id' })
+const subscription = await client.Subscription().load({ id: 'subscription_id' })
 ```
 
 
 ### User
 
-Create an instance: `const user = client.user`
+Create an instance: `const user = client.User()`
 
 #### Operations
 
@@ -589,13 +596,13 @@ Create an instance: `const user = client.user`
 #### Example: List
 
 ```ts
-const users = await client.user.list()
+const users = await client.User().list()
 ```
 
 #### Example: Create
 
 ```ts
-const user = await client.user.create({
+const user = await client.User().create({
 })
 ```
 
@@ -667,7 +674,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const authentication = client.authentication
+const authentication = client.Authentication()
 await authentication.load({ id: "example_id" })
 
 // authentication.data() now returns the loaded authentication data

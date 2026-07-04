@@ -4,145 +4,133 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Authentication:
-    error: Optional[str] = None
-    ok: Optional[str] = None
-    redirect: Optional[str] = None
-    u_id: Optional[str] = None
-    user: Optional[dict] = None
-    wrong_password: Optional[int] = None
+class Authentication(TypedDict, total=False):
+    error: str
+    ok: str
+    redirect: str
+    u_id: str
+    user: dict
+    wrong_password: int
 
 
-@dataclass
-class AuthenticationLoadMatch:
-    error: Optional[str] = None
-    ok: Optional[str] = None
-    redirect: Optional[str] = None
-    u_id: Optional[str] = None
-    user: Optional[dict] = None
-    wrong_password: Optional[int] = None
+class AuthenticationLoadMatch(TypedDict, total=False):
+    error: str
+    ok: str
+    redirect: str
+    u_id: str
+    user: dict
+    wrong_password: int
 
 
-@dataclass
-class AuthenticationCreateData:
-    error: Optional[str] = None
-    ok: Optional[str] = None
-    redirect: Optional[str] = None
-    u_id: Optional[str] = None
-    user: Optional[dict] = None
-    wrong_password: Optional[int] = None
+class AuthenticationCreateData(TypedDict, total=False):
+    error: str
+    ok: str
+    redirect: str
+    u_id: str
+    user: dict
+    wrong_password: int
 
 
-@dataclass
-class GetUserPost:
-    ctx: Optional[str] = None
-    e_id: Optional[str] = None
-    id: Optional[str] = None
-    img: Optional[str] = None
-    lov: Optional[list] = None
-    name: Optional[str] = None
-    nb_p: Optional[int] = None
-    nb_r: Optional[int] = None
-    score: Optional[float] = None
-    src: Optional[dict] = None
-    text: Optional[str] = None
-    u_id: Optional[str] = None
-    u_nm: Optional[str] = None
-    url: Optional[str] = None
+class GetUserPost(TypedDict, total=False):
+    ctx: str
+    e_id: str
+    id: str
+    img: str
+    lov: list
+    name: str
+    nb_p: int
+    nb_r: int
+    score: float
+    src: dict
+    text: str
+    u_id: str
+    u_nm: str
+    url: str
 
 
-@dataclass
-class GetUserPostListMatch:
+class GetUserPostListMatch(TypedDict):
     id: str
 
 
-@dataclass
-class Playlist:
-    id: Optional[int] = None
-    name: Optional[str] = None
-    nb_track: Optional[int] = None
-    url: Optional[str] = None
+class Playlist(TypedDict, total=False):
+    id: int
+    name: str
+    nb_track: int
+    url: str
 
 
-@dataclass
-class PlaylistListMatch:
+class PlaylistListMatch(TypedDict):
     username: str
 
 
-@dataclass
-class Post:
-    ctx: Optional[str] = None
-    e_id: Optional[str] = None
-    id: Optional[str] = None
-    img: Optional[str] = None
-    lov: Optional[list] = None
-    name: Optional[str] = None
-    nb_p: Optional[int] = None
-    nb_r: Optional[int] = None
-    score: Optional[float] = None
-    src: Optional[dict] = None
-    text: Optional[str] = None
-    u_id: Optional[str] = None
-    u_nm: Optional[str] = None
-    url: Optional[str] = None
+class Post(TypedDict, total=False):
+    ctx: str
+    e_id: str
+    id: str
+    img: str
+    lov: list
+    name: str
+    nb_p: int
+    nb_r: int
+    score: float
+    src: dict
+    text: str
+    u_id: str
+    u_nm: str
+    url: str
 
 
-@dataclass
-class PostLoadMatch:
+class PostLoadMatch(TypedDict):
     playlist_id: str
     username: str
     genre: str
 
 
-@dataclass
-class Search:
-    q: Optional[str] = None
-    result: Optional[list] = None
+class Search(TypedDict, total=False):
+    q: str
+    result: list
 
 
-@dataclass
-class SearchListMatch:
-    q: Optional[str] = None
-    result: Optional[list] = None
+class SearchListMatch(TypedDict, total=False):
+    q: str
+    result: list
 
 
-@dataclass
-class Subscription:
-    is_subscribing: Optional[bool] = None
-    u_id: Optional[str] = None
-    u_nm: Optional[str] = None
+class Subscription(TypedDict, total=False):
+    is_subscribing: bool
+    u_id: str
+    u_nm: str
 
 
-@dataclass
-class SubscriptionLoadMatch:
+class SubscriptionLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class User:
-    id: Optional[int] = None
-    name: Optional[str] = None
-    nb_track: Optional[int] = None
-    url: Optional[str] = None
+class User(TypedDict, total=False):
+    id: int
+    name: str
+    nb_track: int
+    url: str
 
 
-@dataclass
-class UserListMatch:
+class UserListMatch(TypedDict):
     username: str
 
 
-@dataclass
-class UserCreateData:
-    id: Optional[int] = None
-    name: Optional[str] = None
-    nb_track: Optional[int] = None
-    url: Optional[str] = None
-
+class UserCreateData(TypedDict, total=False):
+    id: int
+    name: str
+    nb_track: int
+    url: str

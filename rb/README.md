@@ -34,8 +34,9 @@ client = OpenwhydSDK.new({
 
 ```ruby
 begin
-  result = client.authentication.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Authentication record (raises on error).
+  authentication = client.Authentication.load({ "id" => "example_id" })
+  puts authentication
 rescue => err
   warn "load failed: #{err}"
 end
@@ -44,8 +45,8 @@ end
 ### 4. Create, update, and remove
 
 ```ruby
-# Create
-created = client.authentication.create({ "name" => "Example" })
+# create returns the bare created Authentication record.
+created = client.Authentication.create({ "name" => "Example" })
 
 ```
 
@@ -90,13 +91,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = OpenwhydSDK.test
+client = OpenwhydSDK.test({
+  "entity" => { "authentication" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.authentication.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+authentication = client.Authentication.load({ "id" => "test01" })
+puts authentication
 ```
 
 ### Use a custom fetch function
@@ -174,13 +179,13 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Authentication` | `(data) -> AuthenticationEntity` | Create a Authentication entity instance. |
+| `Authentication` | `(data) -> AuthenticationEntity` | Create an Authentication entity instance. |
 | `GetUserPost` | `(data) -> GetUserPostEntity` | Create a GetUserPost entity instance. |
 | `Playlist` | `(data) -> PlaylistEntity` | Create a Playlist entity instance. |
 | `Post` | `(data) -> PostEntity` | Create a Post entity instance. |
 | `Search` | `(data) -> SearchEntity` | Create a Search entity instance. |
 | `Subscription` | `(data) -> SubscriptionEntity` | Create a Subscription entity instance. |
-| `User` | `(data) -> UserEntity` | Create a User entity instance. |
+| `User` | `(data) -> UserEntity` | Create an User entity instance. |
 
 ### Entity interface
 
@@ -336,7 +341,7 @@ API path: `/api/user`
 
 ### Authentication
 
-Create an instance: `const authentication = client.authentication`
+Create an instance: `authentication = client.Authentication`
 
 #### Operations
 
@@ -358,21 +363,22 @@ Create an instance: `const authentication = client.authentication`
 
 #### Example: Load
 
-```ts
-const authentication = await client.authentication.load({ id: 'authentication_id' })
+```ruby
+# load returns the bare Authentication record (raises on error).
+authentication = client.Authentication.load({ "id" => "authentication_id" })
 ```
 
 #### Example: Create
 
-```ts
-const authentication = await client.authentication.create({
+```ruby
+authentication = client.Authentication.create({
 })
 ```
 
 
 ### GetUserPost
 
-Create an instance: `const get_user_post = client.get_user_post`
+Create an instance: `get_user_post = client.GetUserPost`
 
 #### Operations
 
@@ -401,14 +407,15 @@ Create an instance: `const get_user_post = client.get_user_post`
 
 #### Example: List
 
-```ts
-const get_user_posts = await client.get_user_post.list()
+```ruby
+# list returns an Array of GetUserPost records (raises on error).
+get_user_posts = client.GetUserPost.list
 ```
 
 
 ### Playlist
 
-Create an instance: `const playlist = client.playlist`
+Create an instance: `playlist = client.Playlist`
 
 #### Operations
 
@@ -427,14 +434,15 @@ Create an instance: `const playlist = client.playlist`
 
 #### Example: List
 
-```ts
-const playlists = await client.playlist.list()
+```ruby
+# list returns an Array of Playlist records (raises on error).
+playlists = client.Playlist.list
 ```
 
 
 ### Post
 
-Create an instance: `const post = client.post`
+Create an instance: `post = client.Post`
 
 #### Operations
 
@@ -463,14 +471,15 @@ Create an instance: `const post = client.post`
 
 #### Example: Load
 
-```ts
-const post = await client.post.load({ id: 'post_id' })
+```ruby
+# load returns the bare Post record (raises on error).
+post = client.Post.load({ "id" => "post_id" })
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `search = client.Search`
 
 #### Operations
 
@@ -487,14 +496,15 @@ Create an instance: `const search = client.search`
 
 #### Example: List
 
-```ts
-const searchs = await client.search.list()
+```ruby
+# list returns an Array of Search records (raises on error).
+searchs = client.Search.list
 ```
 
 
 ### Subscription
 
-Create an instance: `const subscription = client.subscription`
+Create an instance: `subscription = client.Subscription`
 
 #### Operations
 
@@ -512,14 +522,15 @@ Create an instance: `const subscription = client.subscription`
 
 #### Example: Load
 
-```ts
-const subscription = await client.subscription.load({ id: 'subscription_id' })
+```ruby
+# load returns the bare Subscription record (raises on error).
+subscription = client.Subscription.load({ "id" => "subscription_id" })
 ```
 
 
 ### User
 
-Create an instance: `const user = client.user`
+Create an instance: `user = client.User`
 
 #### Operations
 
@@ -539,14 +550,15 @@ Create an instance: `const user = client.user`
 
 #### Example: List
 
-```ts
-const users = await client.user.list()
+```ruby
+# list returns an Array of User records (raises on error).
+users = client.User.list
 ```
 
 #### Example: Create
 
-```ts
-const user = await client.user.create({
+```ruby
+user = client.User.create({
 })
 ```
 
@@ -622,7 +634,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-authentication = client.authentication
+authentication = client.Authentication
 authentication.load({ "id" => "example_id" })
 
 # authentication.data_get now returns the loaded authentication data

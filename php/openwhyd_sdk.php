@@ -233,10 +233,10 @@ class OpenwhydSDK
 
     private $_authentication = null;
 
-    // Idiomatic facade: $client->authentication()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Authentication() (PHP method
-    // names are case-insensitive).
-    public function authentication($data = null)
+    // Canonical facade: $client->Authentication()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->authentication()
+    // resolves here too.
+    public function Authentication($data = null)
     {
         require_once __DIR__ . '/entity/authentication_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class OpenwhydSDK
 
     private $_get_user_post = null;
 
-    // Idiomatic facade: $client->get_user_post()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GetUserPost() (PHP method
-    // names are case-insensitive).
-    public function get_user_post($data = null)
+    // Canonical facade: $client->GetUserPost()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->get_user_post()
+    // resolves here too.
+    public function GetUserPost($data = null)
     {
         require_once __DIR__ . '/entity/get_user_post_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class OpenwhydSDK
 
     private $_playlist = null;
 
-    // Idiomatic facade: $client->playlist()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Playlist() (PHP method
-    // names are case-insensitive).
-    public function playlist($data = null)
+    // Canonical facade: $client->Playlist()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->playlist()
+    // resolves here too.
+    public function Playlist($data = null)
     {
         require_once __DIR__ . '/entity/playlist_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class OpenwhydSDK
 
     private $_post = null;
 
-    // Idiomatic facade: $client->post()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Post() (PHP method
-    // names are case-insensitive).
-    public function post($data = null)
+    // Canonical facade: $client->Post()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->post()
+    // resolves here too.
+    public function Post($data = null)
     {
         require_once __DIR__ . '/entity/post_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class OpenwhydSDK
 
     private $_search = null;
 
-    // Idiomatic facade: $client->search()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Search() (PHP method
-    // names are case-insensitive).
-    public function search($data = null)
+    // Canonical facade: $client->Search()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->search()
+    // resolves here too.
+    public function Search($data = null)
     {
         require_once __DIR__ . '/entity/search_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class OpenwhydSDK
 
     private $_subscription = null;
 
-    // Idiomatic facade: $client->subscription()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Subscription() (PHP method
-    // names are case-insensitive).
-    public function subscription($data = null)
+    // Canonical facade: $client->Subscription()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->subscription()
+    // resolves here too.
+    public function Subscription($data = null)
     {
         require_once __DIR__ . '/entity/subscription_entity.php';
         if ($data === null) {
@@ -341,10 +341,10 @@ class OpenwhydSDK
 
     private $_user = null;
 
-    // Idiomatic facade: $client->user()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias User() (PHP method
-    // names are case-insensitive).
-    public function user($data = null)
+    // Canonical facade: $client->User()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->user()
+    // resolves here too.
+    public function User($data = null)
     {
         require_once __DIR__ . '/entity/user_entity.php';
         if ($data === null) {

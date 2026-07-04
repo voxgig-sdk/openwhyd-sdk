@@ -111,7 +111,7 @@ same parameters as `direct()`. Raises on error.
 ## AuthenticationEntity
 
 ```ruby
-authentication = client.authentication
+authentication = client.Authentication
 ```
 
 ### Fields
@@ -132,7 +132,7 @@ authentication = client.authentication
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.authentication.create({
+result = client.Authentication.create({
 })
 ```
 
@@ -141,7 +141,7 @@ result = client.authentication.create({
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.authentication.load({ "id" => "authentication_id" })
+result = client.Authentication.load({ "id" => "authentication_id" })
 ```
 
 ### Common Methods
@@ -177,7 +177,7 @@ Return the entity name.
 ## GetUserPostEntity
 
 ```ruby
-get_user_post = client.get_user_post
+get_user_post = client.GetUserPost
 ```
 
 ### Fields
@@ -206,7 +206,7 @@ get_user_post = client.get_user_post
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.get_user_post.list(nil)
+results = client.GetUserPost.list(nil)
 ```
 
 ### Common Methods
@@ -242,7 +242,7 @@ Return the entity name.
 ## PlaylistEntity
 
 ```ruby
-playlist = client.playlist
+playlist = client.Playlist
 ```
 
 ### Fields
@@ -261,7 +261,7 @@ playlist = client.playlist
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.playlist.list(nil)
+results = client.Playlist.list(nil)
 ```
 
 ### Common Methods
@@ -297,7 +297,7 @@ Return the entity name.
 ## PostEntity
 
 ```ruby
-post = client.post
+post = client.Post
 ```
 
 ### Fields
@@ -326,7 +326,7 @@ post = client.post
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.post.load({ "id" => "post_id" })
+result = client.Post.load({ "id" => "post_id" })
 ```
 
 ### Common Methods
@@ -362,7 +362,7 @@ Return the entity name.
 ## SearchEntity
 
 ```ruby
-search = client.search
+search = client.Search
 ```
 
 ### Fields
@@ -379,7 +379,7 @@ search = client.search
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.search.list(nil)
+results = client.Search.list(nil)
 ```
 
 ### Common Methods
@@ -415,7 +415,7 @@ Return the entity name.
 ## SubscriptionEntity
 
 ```ruby
-subscription = client.subscription
+subscription = client.Subscription
 ```
 
 ### Fields
@@ -433,7 +433,7 @@ subscription = client.subscription
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.subscription.load({ "id" => "subscription_id" })
+result = client.Subscription.load({ "id" => "subscription_id" })
 ```
 
 ### Common Methods
@@ -469,7 +469,7 @@ Return the entity name.
 ## UserEntity
 
 ```ruby
-user = client.user
+user = client.User
 ```
 
 ### Fields
@@ -488,7 +488,7 @@ user = client.user
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.user.create({
+result = client.User.create({
 })
 ```
 
@@ -497,7 +497,7 @@ result = client.user.create({
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.user.list(nil)
+results = client.User.list(nil)
 ```
 
 ### Common Methods

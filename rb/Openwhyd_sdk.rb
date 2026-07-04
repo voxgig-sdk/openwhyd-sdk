@@ -208,91 +208,49 @@ class OpenwhydSDK
   end
 
 
-  # Idiomatic facade: client.authentication.list / client.authentication.load({ "id" => ... })
-  def authentication
-    require_relative 'entity/authentication_entity'
-    @authentication ||= AuthenticationEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.authentication instead.
+  # Canonical facade: client.Authentication.list / client.Authentication.load({ "id" => ... })
   def Authentication(data = nil)
     require_relative 'entity/authentication_entity'
     AuthenticationEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.get_user_post.list / client.get_user_post.load({ "id" => ... })
-  def get_user_post
-    require_relative 'entity/get_user_post_entity'
-    @get_user_post ||= GetUserPostEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.get_user_post instead.
+  # Canonical facade: client.GetUserPost.list / client.GetUserPost.load({ "id" => ... })
   def GetUserPost(data = nil)
     require_relative 'entity/get_user_post_entity'
     GetUserPostEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.playlist.list / client.playlist.load({ "id" => ... })
-  def playlist
-    require_relative 'entity/playlist_entity'
-    @playlist ||= PlaylistEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.playlist instead.
+  # Canonical facade: client.Playlist.list / client.Playlist.load({ "id" => ... })
   def Playlist(data = nil)
     require_relative 'entity/playlist_entity'
     PlaylistEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.post.list / client.post.load({ "id" => ... })
-  def post
-    require_relative 'entity/post_entity'
-    @post ||= PostEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.post instead.
+  # Canonical facade: client.Post.list / client.Post.load({ "id" => ... })
   def Post(data = nil)
     require_relative 'entity/post_entity'
     PostEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.search.list / client.search.load({ "id" => ... })
-  def search
-    require_relative 'entity/search_entity'
-    @search ||= SearchEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.search instead.
+  # Canonical facade: client.Search.list / client.Search.load({ "id" => ... })
   def Search(data = nil)
     require_relative 'entity/search_entity'
     SearchEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.subscription.list / client.subscription.load({ "id" => ... })
-  def subscription
-    require_relative 'entity/subscription_entity'
-    @subscription ||= SubscriptionEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.subscription instead.
+  # Canonical facade: client.Subscription.list / client.Subscription.load({ "id" => ... })
   def Subscription(data = nil)
     require_relative 'entity/subscription_entity'
     SubscriptionEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.user.list / client.user.load({ "id" => ... })
-  def user
-    require_relative 'entity/user_entity'
-    @user ||= UserEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.user instead.
+  # Canonical facade: client.User.list / client.User.load({ "id" => ... })
   def User(data = nil)
     require_relative 'entity/user_entity'
     UserEntity.new(self, data)

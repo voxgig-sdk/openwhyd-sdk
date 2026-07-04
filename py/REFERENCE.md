@@ -105,7 +105,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## AuthenticationEntity
 
 ```python
-authentication = client.authentication
+authentication = client.Authentication()
 ```
 
 ### Fields
@@ -126,7 +126,7 @@ authentication = client.authentication
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.authentication.create({
+result = client.Authentication().create({
 })
 ```
 
@@ -135,7 +135,7 @@ result = client.authentication.create({
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.authentication.load({"id": "authentication_id"})
+result = client.Authentication().load({"id": "authentication_id"})
 ```
 
 ### Common Methods
@@ -170,7 +170,7 @@ Return the entity name.
 ## GetUserPostEntity
 
 ```python
-get_user_post = client.get_user_post
+get_user_post = client.GetUserPost()
 ```
 
 ### Fields
@@ -199,7 +199,9 @@ get_user_post = client.get_user_post
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.get_user_post.list({})
+results = client.GetUserPost().list({})
+for get_user_post in results:
+    print(get_user_post)
 ```
 
 ### Common Methods
@@ -234,7 +236,7 @@ Return the entity name.
 ## PlaylistEntity
 
 ```python
-playlist = client.playlist
+playlist = client.Playlist()
 ```
 
 ### Fields
@@ -253,7 +255,9 @@ playlist = client.playlist
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.playlist.list({})
+results = client.Playlist().list({})
+for playlist in results:
+    print(playlist)
 ```
 
 ### Common Methods
@@ -288,7 +292,7 @@ Return the entity name.
 ## PostEntity
 
 ```python
-post = client.post
+post = client.Post()
 ```
 
 ### Fields
@@ -317,7 +321,7 @@ post = client.post
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.post.load({"id": "post_id"})
+result = client.Post().load({"id": "post_id"})
 ```
 
 ### Common Methods
@@ -352,7 +356,7 @@ Return the entity name.
 ## SearchEntity
 
 ```python
-search = client.search
+search = client.Search()
 ```
 
 ### Fields
@@ -369,7 +373,9 @@ search = client.search
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.search.list({})
+results = client.Search().list({})
+for search in results:
+    print(search)
 ```
 
 ### Common Methods
@@ -404,7 +410,7 @@ Return the entity name.
 ## SubscriptionEntity
 
 ```python
-subscription = client.subscription
+subscription = client.Subscription()
 ```
 
 ### Fields
@@ -422,7 +428,7 @@ subscription = client.subscription
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.subscription.load({"id": "subscription_id"})
+result = client.Subscription().load({"id": "subscription_id"})
 ```
 
 ### Common Methods
@@ -457,7 +463,7 @@ Return the entity name.
 ## UserEntity
 
 ```python
-user = client.user
+user = client.User()
 ```
 
 ### Fields
@@ -476,7 +482,7 @@ user = client.user
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.user.create({
+result = client.User().create({
 })
 ```
 
@@ -485,7 +491,9 @@ result = client.user.create({
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.user.list({})
+results = client.User().list({})
+for user in results:
+    print(user)
 ```
 
 ### Common Methods

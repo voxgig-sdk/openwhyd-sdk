@@ -36,16 +36,17 @@ local client = sdk.new({
 ### 3. Load an authentication
 
 ```lua
-local result, err = client:authentication():load({ id = "example_id" })
+local authentication, err = client:Authentication():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(authentication)
 ```
 
 ### 4. Create, update, and remove
 
 ```lua
 -- Create
-local created, _ = client:authentication():create({ name = "Example" })
+local created, err = client:Authentication():create({ name = "Example" })
+if err then error(err) end
 
 ```
 
@@ -92,8 +93,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:authentication():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Authentication():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -173,13 +174,13 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `Authentication` | `(data) -> AuthenticationEntity` | Create a Authentication entity instance. |
+| `Authentication` | `(data) -> AuthenticationEntity` | Create an Authentication entity instance. |
 | `GetUserPost` | `(data) -> GetUserPostEntity` | Create a GetUserPost entity instance. |
 | `Playlist` | `(data) -> PlaylistEntity` | Create a Playlist entity instance. |
 | `Post` | `(data) -> PostEntity` | Create a Post entity instance. |
 | `Search` | `(data) -> SearchEntity` | Create a Search entity instance. |
 | `Subscription` | `(data) -> SubscriptionEntity` | Create a Subscription entity instance. |
-| `User` | `(data) -> UserEntity` | Create a User entity instance. |
+| `User` | `(data) -> UserEntity` | Create an User entity instance. |
 
 ### Entity interface
 
@@ -201,17 +202,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local authentication, err = client:Authentication():load({ id = "example_id" })
+    if err then error(err) end
+    -- authentication is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -332,7 +338,7 @@ API path: `/api/user`
 
 ### Authentication
 
-Create an instance: `const authentication = client.authentication`
+Create an instance: `local authentication = client:Authentication(nil)`
 
 #### Operations
 
@@ -354,21 +360,21 @@ Create an instance: `const authentication = client.authentication`
 
 #### Example: Load
 
-```ts
-const authentication = await client.authentication.load({ id: 'authentication_id' })
+```lua
+local authentication, err = client:Authentication():load({ id = "authentication_id" })
 ```
 
 #### Example: Create
 
-```ts
-const authentication = await client.authentication.create({
+```lua
+local authentication, err = client:Authentication():create({
 })
 ```
 
 
 ### GetUserPost
 
-Create an instance: `const get_user_post = client.get_user_post`
+Create an instance: `local get_user_post = client:GetUserPost(nil)`
 
 #### Operations
 
@@ -397,14 +403,14 @@ Create an instance: `const get_user_post = client.get_user_post`
 
 #### Example: List
 
-```ts
-const get_user_posts = await client.get_user_post.list()
+```lua
+local get_user_posts, err = client:GetUserPost():list()
 ```
 
 
 ### Playlist
 
-Create an instance: `const playlist = client.playlist`
+Create an instance: `local playlist = client:Playlist(nil)`
 
 #### Operations
 
@@ -423,14 +429,14 @@ Create an instance: `const playlist = client.playlist`
 
 #### Example: List
 
-```ts
-const playlists = await client.playlist.list()
+```lua
+local playlists, err = client:Playlist():list()
 ```
 
 
 ### Post
 
-Create an instance: `const post = client.post`
+Create an instance: `local post = client:Post(nil)`
 
 #### Operations
 
@@ -459,14 +465,14 @@ Create an instance: `const post = client.post`
 
 #### Example: Load
 
-```ts
-const post = await client.post.load({ id: 'post_id' })
+```lua
+local post, err = client:Post():load({ id = "post_id" })
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `local search = client:Search(nil)`
 
 #### Operations
 
@@ -483,14 +489,14 @@ Create an instance: `const search = client.search`
 
 #### Example: List
 
-```ts
-const searchs = await client.search.list()
+```lua
+local searchs, err = client:Search():list()
 ```
 
 
 ### Subscription
 
-Create an instance: `const subscription = client.subscription`
+Create an instance: `local subscription = client:Subscription(nil)`
 
 #### Operations
 
@@ -508,14 +514,14 @@ Create an instance: `const subscription = client.subscription`
 
 #### Example: Load
 
-```ts
-const subscription = await client.subscription.load({ id: 'subscription_id' })
+```lua
+local subscription, err = client:Subscription():load({ id = "subscription_id" })
 ```
 
 
 ### User
 
-Create an instance: `const user = client.user`
+Create an instance: `local user = client:User(nil)`
 
 #### Operations
 
@@ -535,14 +541,14 @@ Create an instance: `const user = client.user`
 
 #### Example: List
 
-```ts
-const users = await client.user.list()
+```lua
+local users, err = client:User():list()
 ```
 
 #### Example: Create
 
-```ts
-const user = await client.user.create({
+```lua
+local user, err = client:User():create({
 })
 ```
 
@@ -618,7 +624,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local authentication = client:authentication()
+local authentication = client:Authentication()
 authentication:load({ id = "example_id" })
 
 -- authentication:data_get() now returns the loaded authentication data

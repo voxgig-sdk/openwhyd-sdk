@@ -35,9 +35,10 @@ $client = new OpenwhydSDK([
 
 ```php
 try {
-    $result = $client->authentication()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Authentication record (throws on error).
+    $authentication = $client->Authentication()->load(["id" => "example_id"]);
+    print_r($authentication);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -45,8 +46,8 @@ try {
 ### 4. Create, update, and remove
 
 ```php
-// Create
-$created = $client->authentication()->create(["name" => "Example"]);
+// create() returns the bare created Authentication record.
+$created = $client->Authentication()->create(["name" => "Example"]);
 
 ```
 
@@ -91,13 +92,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = OpenwhydSDK::test();
+$client = OpenwhydSDK::test([
+    "entity" => ["authentication" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->authentication()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$authentication = $client->Authentication()->load(["id" => "test01"]);
+print_r($authentication);
 ```
 
 ### Use a custom fetch function
@@ -178,13 +183,13 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Authentication` | `($data): AuthenticationEntity` | Create a Authentication entity instance. |
+| `Authentication` | `($data): AuthenticationEntity` | Create an Authentication entity instance. |
 | `GetUserPost` | `($data): GetUserPostEntity` | Create a GetUserPost entity instance. |
 | `Playlist` | `($data): PlaylistEntity` | Create a Playlist entity instance. |
 | `Post` | `($data): PostEntity` | Create a Post entity instance. |
 | `Search` | `($data): SearchEntity` | Create a Search entity instance. |
 | `Subscription` | `($data): SubscriptionEntity` | Create a Subscription entity instance. |
-| `User` | `($data): UserEntity` | Create a User entity instance. |
+| `User` | `($data): UserEntity` | Create an User entity instance. |
 
 ### Entity interface
 
@@ -341,7 +346,7 @@ API path: `/api/user`
 
 ### Authentication
 
-Create an instance: `const authentication = client.authentication`
+Create an instance: `$authentication = $client->Authentication();`
 
 #### Operations
 
@@ -363,21 +368,22 @@ Create an instance: `const authentication = client.authentication`
 
 #### Example: Load
 
-```ts
-const authentication = await client.authentication.load({ id: 'authentication_id' })
+```php
+// load() returns the bare Authentication record (throws on error).
+$authentication = $client->Authentication()->load(["id" => "authentication_id"]);
 ```
 
 #### Example: Create
 
-```ts
-const authentication = await client.authentication.create({
-})
+```php
+$authentication = $client->Authentication()->create([
+]);
 ```
 
 
 ### GetUserPost
 
-Create an instance: `const get_user_post = client.get_user_post`
+Create an instance: `$get_user_post = $client->GetUserPost();`
 
 #### Operations
 
@@ -406,14 +412,15 @@ Create an instance: `const get_user_post = client.get_user_post`
 
 #### Example: List
 
-```ts
-const get_user_posts = await client.get_user_post.list()
+```php
+// list() returns an array of GetUserPost records (throws on error).
+$get_user_posts = $client->GetUserPost()->list();
 ```
 
 
 ### Playlist
 
-Create an instance: `const playlist = client.playlist`
+Create an instance: `$playlist = $client->Playlist();`
 
 #### Operations
 
@@ -432,14 +439,15 @@ Create an instance: `const playlist = client.playlist`
 
 #### Example: List
 
-```ts
-const playlists = await client.playlist.list()
+```php
+// list() returns an array of Playlist records (throws on error).
+$playlists = $client->Playlist()->list();
 ```
 
 
 ### Post
 
-Create an instance: `const post = client.post`
+Create an instance: `$post = $client->Post();`
 
 #### Operations
 
@@ -468,14 +476,15 @@ Create an instance: `const post = client.post`
 
 #### Example: Load
 
-```ts
-const post = await client.post.load({ id: 'post_id' })
+```php
+// load() returns the bare Post record (throws on error).
+$post = $client->Post()->load(["id" => "post_id"]);
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `$search = $client->Search();`
 
 #### Operations
 
@@ -492,14 +501,15 @@ Create an instance: `const search = client.search`
 
 #### Example: List
 
-```ts
-const searchs = await client.search.list()
+```php
+// list() returns an array of Search records (throws on error).
+$searchs = $client->Search()->list();
 ```
 
 
 ### Subscription
 
-Create an instance: `const subscription = client.subscription`
+Create an instance: `$subscription = $client->Subscription();`
 
 #### Operations
 
@@ -517,14 +527,15 @@ Create an instance: `const subscription = client.subscription`
 
 #### Example: Load
 
-```ts
-const subscription = await client.subscription.load({ id: 'subscription_id' })
+```php
+// load() returns the bare Subscription record (throws on error).
+$subscription = $client->Subscription()->load(["id" => "subscription_id"]);
 ```
 
 
 ### User
 
-Create an instance: `const user = client.user`
+Create an instance: `$user = $client->User();`
 
 #### Operations
 
@@ -544,15 +555,16 @@ Create an instance: `const user = client.user`
 
 #### Example: List
 
-```ts
-const users = await client.user.list()
+```php
+// list() returns an array of User records (throws on error).
+$users = $client->User()->list();
 ```
 
 #### Example: Create
 
-```ts
-const user = await client.user.create({
-})
+```php
+$user = $client->User()->create([
+]);
 ```
 
 
@@ -627,7 +639,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$authentication = $client->authentication();
+$authentication = $client->Authentication();
 $authentication->load(["id" => "example_id"]);
 
 // $authentication->dataGet() now returns the loaded authentication data

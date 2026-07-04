@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:authentication():list() / client:authentication():load({ id = ... })
-function OpenwhydSDK:authentication(data)
+-- Idiomatic facade: client:Authentication():list() / client:Authentication():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function OpenwhydSDK:Authentication(data)
   local EntityMod = require("entity.authentication_entity")
   if data == nil then
     if self._authentication == nil then
@@ -256,15 +257,10 @@ function OpenwhydSDK:authentication(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:authentication() instead.
-function OpenwhydSDK:Authentication(data)
-  local EntityMod = require("entity.authentication_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:get_user_post():list() / client:get_user_post():load({ id = ... })
-function OpenwhydSDK:get_user_post(data)
+-- Idiomatic facade: client:GetUserPost():list() / client:GetUserPost():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function OpenwhydSDK:GetUserPost(data)
   local EntityMod = require("entity.get_user_post_entity")
   if data == nil then
     if self._get_user_post == nil then
@@ -275,15 +271,10 @@ function OpenwhydSDK:get_user_post(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:get_user_post() instead.
-function OpenwhydSDK:GetUserPost(data)
-  local EntityMod = require("entity.get_user_post_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:playlist():list() / client:playlist():load({ id = ... })
-function OpenwhydSDK:playlist(data)
+-- Idiomatic facade: client:Playlist():list() / client:Playlist():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function OpenwhydSDK:Playlist(data)
   local EntityMod = require("entity.playlist_entity")
   if data == nil then
     if self._playlist == nil then
@@ -294,15 +285,10 @@ function OpenwhydSDK:playlist(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:playlist() instead.
-function OpenwhydSDK:Playlist(data)
-  local EntityMod = require("entity.playlist_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:post():list() / client:post():load({ id = ... })
-function OpenwhydSDK:post(data)
+-- Idiomatic facade: client:Post():list() / client:Post():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function OpenwhydSDK:Post(data)
   local EntityMod = require("entity.post_entity")
   if data == nil then
     if self._post == nil then
@@ -313,15 +299,10 @@ function OpenwhydSDK:post(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:post() instead.
-function OpenwhydSDK:Post(data)
-  local EntityMod = require("entity.post_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:search():list() / client:search():load({ id = ... })
-function OpenwhydSDK:search(data)
+-- Idiomatic facade: client:Search():list() / client:Search():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function OpenwhydSDK:Search(data)
   local EntityMod = require("entity.search_entity")
   if data == nil then
     if self._search == nil then
@@ -332,15 +313,10 @@ function OpenwhydSDK:search(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:search() instead.
-function OpenwhydSDK:Search(data)
-  local EntityMod = require("entity.search_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:subscription():list() / client:subscription():load({ id = ... })
-function OpenwhydSDK:subscription(data)
+-- Idiomatic facade: client:Subscription():list() / client:Subscription():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function OpenwhydSDK:Subscription(data)
   local EntityMod = require("entity.subscription_entity")
   if data == nil then
     if self._subscription == nil then
@@ -351,15 +327,10 @@ function OpenwhydSDK:subscription(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:subscription() instead.
-function OpenwhydSDK:Subscription(data)
-  local EntityMod = require("entity.subscription_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:user():list() / client:user():load({ id = ... })
-function OpenwhydSDK:user(data)
+-- Idiomatic facade: client:User():list() / client:User():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function OpenwhydSDK:User(data)
   local EntityMod = require("entity.user_entity")
   if data == nil then
     if self._user == nil then
@@ -367,12 +338,6 @@ function OpenwhydSDK:user(data)
     end
     return self._user
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:user() instead.
-function OpenwhydSDK:User(data)
-  local EntityMod = require("entity.user_entity")
   return EntityMod.new(self, data)
 end
 

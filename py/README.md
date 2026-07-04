@@ -36,10 +36,12 @@ client = OpenwhydSDK({
 
 ### 3. Load an authentication
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.authentication.load({"id": "example_id"})
-    print(result)
+    authentication = client.Authentication().load({"id": "example_id"})
+    print(authentication)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -47,8 +49,8 @@ except Exception as err:
 ### 4. Create, update, and remove
 
 ```python
-# Create
-created = client.authentication.create({"name": "Example"})
+# Create — returns the bare created record (a dict)
+created = client.Authentication().create({"name": "Example"})
 
 ```
 
@@ -95,8 +97,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = OpenwhydSDK.test()
 
-result = client.authentication.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+authentication = client.Authentication().load({"id": "test01"})
+# authentication contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -174,13 +177,13 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `Authentication` | `(data) -> AuthenticationEntity` | Create a Authentication entity instance. |
+| `Authentication` | `(data) -> AuthenticationEntity` | Create an Authentication entity instance. |
 | `GetUserPost` | `(data) -> GetUserPostEntity` | Create a GetUserPost entity instance. |
 | `Playlist` | `(data) -> PlaylistEntity` | Create a Playlist entity instance. |
 | `Post` | `(data) -> PostEntity` | Create a Post entity instance. |
 | `Search` | `(data) -> SearchEntity` | Create a Search entity instance. |
 | `Subscription` | `(data) -> SubscriptionEntity` | Create a Subscription entity instance. |
-| `User` | `(data) -> UserEntity` | Create a User entity instance. |
+| `User` | `(data) -> UserEntity` | Create an User entity instance. |
 
 ### Entity interface
 
@@ -337,7 +340,7 @@ API path: `/api/user`
 
 ### Authentication
 
-Create an instance: `const authentication = client.authentication`
+Create an instance: `authentication = client.Authentication()`
 
 #### Operations
 
@@ -359,21 +362,21 @@ Create an instance: `const authentication = client.authentication`
 
 #### Example: Load
 
-```ts
-const authentication = await client.authentication.load({ id: 'authentication_id' })
+```python
+authentication = client.Authentication().load({"id": "authentication_id"})
 ```
 
 #### Example: Create
 
-```ts
-const authentication = await client.authentication.create({
+```python
+authentication = client.Authentication().create({
 })
 ```
 
 
 ### GetUserPost
 
-Create an instance: `const get_user_post = client.get_user_post`
+Create an instance: `get_user_post = client.GetUserPost()`
 
 #### Operations
 
@@ -402,14 +405,14 @@ Create an instance: `const get_user_post = client.get_user_post`
 
 #### Example: List
 
-```ts
-const get_user_posts = await client.get_user_post.list()
+```python
+get_user_posts = client.GetUserPost().list({})
 ```
 
 
 ### Playlist
 
-Create an instance: `const playlist = client.playlist`
+Create an instance: `playlist = client.Playlist()`
 
 #### Operations
 
@@ -428,14 +431,14 @@ Create an instance: `const playlist = client.playlist`
 
 #### Example: List
 
-```ts
-const playlists = await client.playlist.list()
+```python
+playlists = client.Playlist().list({})
 ```
 
 
 ### Post
 
-Create an instance: `const post = client.post`
+Create an instance: `post = client.Post()`
 
 #### Operations
 
@@ -464,14 +467,14 @@ Create an instance: `const post = client.post`
 
 #### Example: Load
 
-```ts
-const post = await client.post.load({ id: 'post_id' })
+```python
+post = client.Post().load({"id": "post_id"})
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `search = client.Search()`
 
 #### Operations
 
@@ -488,14 +491,14 @@ Create an instance: `const search = client.search`
 
 #### Example: List
 
-```ts
-const searchs = await client.search.list()
+```python
+searchs = client.Search().list({})
 ```
 
 
 ### Subscription
 
-Create an instance: `const subscription = client.subscription`
+Create an instance: `subscription = client.Subscription()`
 
 #### Operations
 
@@ -513,14 +516,14 @@ Create an instance: `const subscription = client.subscription`
 
 #### Example: Load
 
-```ts
-const subscription = await client.subscription.load({ id: 'subscription_id' })
+```python
+subscription = client.Subscription().load({"id": "subscription_id"})
 ```
 
 
 ### User
 
-Create an instance: `const user = client.user`
+Create an instance: `user = client.User()`
 
 #### Operations
 
@@ -540,14 +543,14 @@ Create an instance: `const user = client.user`
 
 #### Example: List
 
-```ts
-const users = await client.user.list()
+```python
+users = client.User().list({})
 ```
 
 #### Example: Create
 
-```ts
-const user = await client.user.create({
+```python
+user = client.User().create({
 })
 ```
 
@@ -622,7 +625,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-authentication = client.authentication
+authentication = client.Authentication()
 authentication.load({"id": "example_id"})
 
 # authentication.data_get() now returns the loaded authentication data

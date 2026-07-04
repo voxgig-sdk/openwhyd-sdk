@@ -28,9 +28,9 @@ const client = new OpenwhydSDK({
   apikey: process.env.OPENWHYD_APIKEY,
 })
 
-// Load authentication data
-const authentication = await client.authentication.load({})
-console.log(authentication.data)
+// Load authentication data (returns a Authentication)
+const authentication = await client.Authentication().load()
+console.log(authentication)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -95,8 +95,8 @@ client = OpenwhydSDK({
 })
 
 
-# Load a specific authentication
-authentication = client.authentication.load({"id": "example_id"})
+# Load a specific authentication (returns the record, raises on error)
+authentication = client.Authentication().load({"id": "example_id"})
 print(authentication)
 ```
 
@@ -111,8 +111,8 @@ $client = new OpenwhydSDK([
 ]);
 
 
-// Load a specific authentication
-$authentication = $client->authentication()->load(["id" => "example_id"]);
+// Load a specific authentication (returns the bare record; throws on error)
+$authentication = $client->Authentication()->load(["id" => "example_id"]);
 print_r($authentication);
 ```
 
@@ -140,8 +140,8 @@ client = OpenwhydSDK.new({
 })
 
 
-# Load a specific authentication
-authentication = client.authentication.load({ "id" => "example_id" })
+# Load a specific authentication (returns the bare record; raises on error)
+authentication = client.Authentication.load({ "id" => "example_id" })
 puts authentication
 ```
 
@@ -156,7 +156,7 @@ local client = sdk.new({
 
 
 -- Load a specific authentication
-local authentication, err = client:authentication():load({ id = "example_id" })
+local authentication, err = client:Authentication():load({ id = "example_id" })
 print(authentication)
 ```
 
@@ -169,22 +169,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = OpenwhydSDK.test()
-const result = await client.authentication.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const authentication = await client.Authentication().load({ id: 'test01' })
+// authentication is a bare Authentication populated with mock data
+console.log(authentication)
 ```
 
 ### Python
 
 ```python
 client = OpenwhydSDK.test()
-result = client.authentication.load({"id": "test01"})
+authentication = client.Authentication().load({"id": "test01"})
+print(authentication)
 ```
 
 ### PHP
 
 ```php
-$client = OpenwhydSDK::test();
-$result = $client->authentication()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = OpenwhydSDK::test([
+    "entity" => ["authentication" => ["test01" => ["id" => "test01"]]],
+]);
+$authentication = $client->Authentication()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -199,15 +204,18 @@ result, err := client.Authentication(nil).Load(
 ### Ruby
 
 ```ruby
-client = OpenwhydSDK.test
-result = client.authentication.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = OpenwhydSDK.test({
+  "entity" => { "authentication" => { "test01" => { "id" => "test01" } } },
+})
+authentication = client.Authentication.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:authentication():load({ id = "test01" })
+local result, err = client:Authentication():load({ id = "test01" })
 ```
 
 ## How it works
@@ -255,6 +263,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 
