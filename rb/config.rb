@@ -342,6 +342,7 @@ module OpenwhydConfig
                         "orig" => "username",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [
@@ -461,6 +462,7 @@ module OpenwhydConfig
                         "orig" => "username",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [
@@ -618,6 +620,7 @@ module OpenwhydConfig
                         "orig" => "playlist_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                       {
                         "active" => true,
@@ -626,6 +629,7 @@ module OpenwhydConfig
                         "orig" => "username",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 1,
                       },
                     ],
                     "query" => [
@@ -694,6 +698,7 @@ module OpenwhydConfig
                         "orig" => "genre",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [
@@ -870,6 +875,7 @@ module OpenwhydConfig
                         "orig" => "id",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [
@@ -933,6 +939,7 @@ module OpenwhydConfig
                         "orig" => "id",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [
@@ -1131,6 +1138,7 @@ module OpenwhydConfig
                         "orig" => "username",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                   },

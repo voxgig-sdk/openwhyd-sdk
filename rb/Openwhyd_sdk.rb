@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'Openwhyd_types'
+
 
 class OpenwhydSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class OpenwhydSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class OpenwhydSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue OpenwhydError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = OpenwhydHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class OpenwhydSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,52 +198,101 @@ class OpenwhydSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.authentication.list / client.authentication.load({ "id" => ... })
+  def authentication
+    require_relative 'entity/authentication_entity'
+    @authentication ||= AuthenticationEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.authentication instead.
   def Authentication(data = nil)
     require_relative 'entity/authentication_entity'
     AuthenticationEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.get_user_post.list / client.get_user_post.load({ "id" => ... })
+  def get_user_post
+    require_relative 'entity/get_user_post_entity'
+    @get_user_post ||= GetUserPostEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.get_user_post instead.
   def GetUserPost(data = nil)
     require_relative 'entity/get_user_post_entity'
     GetUserPostEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.playlist.list / client.playlist.load({ "id" => ... })
+  def playlist
+    require_relative 'entity/playlist_entity'
+    @playlist ||= PlaylistEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.playlist instead.
   def Playlist(data = nil)
     require_relative 'entity/playlist_entity'
     PlaylistEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.post.list / client.post.load({ "id" => ... })
+  def post
+    require_relative 'entity/post_entity'
+    @post ||= PostEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.post instead.
   def Post(data = nil)
     require_relative 'entity/post_entity'
     PostEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.search.list / client.search.load({ "id" => ... })
+  def search
+    require_relative 'entity/search_entity'
+    @search ||= SearchEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.search instead.
   def Search(data = nil)
     require_relative 'entity/search_entity'
     SearchEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.subscription.list / client.subscription.load({ "id" => ... })
+  def subscription
+    require_relative 'entity/subscription_entity'
+    @subscription ||= SubscriptionEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.subscription instead.
   def Subscription(data = nil)
     require_relative 'entity/subscription_entity'
     SubscriptionEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.user.list / client.user.load({ "id" => ... })
+  def user
+    require_relative 'entity/user_entity'
+    @user ||= UserEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.user instead.
   def User(data = nil)
     require_relative 'entity/user_entity'
     UserEntity.new(self, data)

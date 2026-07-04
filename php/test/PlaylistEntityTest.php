@@ -52,8 +52,7 @@ class PlaylistEntityTest extends TestCase
             "username" => $setup["idmap"]["username01"],
         ];
 
-        [$playlist_ref01_list_result, $err] = $playlist_ref01_ent->list($playlist_ref01_match, null);
-        $this->assertNull($err);
+        $playlist_ref01_list_result = $playlist_ref01_ent->list($playlist_ref01_match, null);
         $this->assertIsArray($playlist_ref01_list_result);
 
     }

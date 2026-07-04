@@ -52,8 +52,7 @@ class GetUserPostEntityTest extends TestCase
             "username" => $setup["idmap"]["username01"],
         ];
 
-        [$get_user_post_ref01_list_result, $err] = $get_user_post_ref01_ent->list($get_user_post_ref01_match, null);
-        $this->assertNull($err);
+        $get_user_post_ref01_list_result = $get_user_post_ref01_ent->list($get_user_post_ref01_match, null);
         $this->assertIsArray($get_user_post_ref01_list_result);
 
     }

@@ -245,36 +245,57 @@ func (sdk *OpenwhydSDK) Direct(fetchargs map[string]any) (map[string]any, error)
 }
 
 
+// Authentication returns a Authentication entity bound to this client.
+// Idiomatic usage: client.Authentication(nil).List(nil, nil) or
+// client.Authentication(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenwhydSDK) Authentication(data map[string]any) OpenwhydEntity {
 	return NewAuthenticationEntityFunc(sdk, data)
 }
 
 
+// GetUserPost returns a GetUserPost entity bound to this client.
+// Idiomatic usage: client.GetUserPost(nil).List(nil, nil) or
+// client.GetUserPost(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenwhydSDK) GetUserPost(data map[string]any) OpenwhydEntity {
 	return NewGetUserPostEntityFunc(sdk, data)
 }
 
 
+// Playlist returns a Playlist entity bound to this client.
+// Idiomatic usage: client.Playlist(nil).List(nil, nil) or
+// client.Playlist(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenwhydSDK) Playlist(data map[string]any) OpenwhydEntity {
 	return NewPlaylistEntityFunc(sdk, data)
 }
 
 
+// Post returns a Post entity bound to this client.
+// Idiomatic usage: client.Post(nil).List(nil, nil) or
+// client.Post(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenwhydSDK) Post(data map[string]any) OpenwhydEntity {
 	return NewPostEntityFunc(sdk, data)
 }
 
 
+// Search returns a Search entity bound to this client.
+// Idiomatic usage: client.Search(nil).List(nil, nil) or
+// client.Search(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenwhydSDK) Search(data map[string]any) OpenwhydEntity {
 	return NewSearchEntityFunc(sdk, data)
 }
 
 
+// Subscription returns a Subscription entity bound to this client.
+// Idiomatic usage: client.Subscription(nil).List(nil, nil) or
+// client.Subscription(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenwhydSDK) Subscription(data map[string]any) OpenwhydEntity {
 	return NewSubscriptionEntityFunc(sdk, data)
 }
 
 
+// User returns a User entity bound to this client.
+// Idiomatic usage: client.User(nil).List(nil, nil) or
+// client.User(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenwhydSDK) User(data map[string]any) OpenwhydEntity {
 	return NewUserEntityFunc(sdk, data)
 }

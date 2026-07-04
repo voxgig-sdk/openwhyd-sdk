@@ -342,6 +342,7 @@ def make_config():
                       "orig": "username",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -461,6 +462,7 @@ def make_config():
                       "orig": "username",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -618,6 +620,7 @@ def make_config():
                       "orig": "playlist_id",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -626,6 +629,7 @@ def make_config():
                       "orig": "username",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 1,
                     },
                   ],
                   "query": [
@@ -694,6 +698,7 @@ def make_config():
                       "orig": "genre",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -870,6 +875,7 @@ def make_config():
                       "orig": "id",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -933,6 +939,7 @@ def make_config():
                       "orig": "id",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -1131,6 +1138,7 @@ def make_config():
                       "orig": "username",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                 },

@@ -52,8 +52,7 @@ class TestGetUserPostEntity:
             "username": setup["idmap"]["username01"],
         }
 
-        get_user_post_ref01_list_result, err = get_user_post_ref01_ent.list(get_user_post_ref01_match, None)
-        assert err is None
+        get_user_post_ref01_list_result = get_user_post_ref01_ent.list(get_user_post_ref01_match, None)
         assert isinstance(get_user_post_ref01_list_result, list)
 
 

@@ -9,12 +9,9 @@ The Lua SDK for the Openwhyd API — an entity-oriented client using Lua convent
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-openwhyd
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/openwhyd-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -36,10 +33,10 @@ local client = sdk.new({
 })
 ```
 
-### 3. Load a authentication
+### 3. Load an authentication
 
 ```lua
-local result, err = client:Authentication():load({ id = "example_id" })
+local result, err = client:authentication():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -48,7 +45,7 @@ print(result)
 
 ```lua
 -- Create
-local created, _ = client:Authentication():create({ name = "Example" })
+local created, _ = client:authentication():create({ name = "Example" })
 
 ```
 
@@ -95,7 +92,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Openwhyd():load({ id = "test01" })
+local result, err = client:authentication():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -335,7 +332,7 @@ API path: `/api/user`
 
 ### Authentication
 
-Create an instance: `const authentication = client.Authentication()`
+Create an instance: `const authentication = client.authentication`
 
 #### Operations
 
@@ -358,20 +355,20 @@ Create an instance: `const authentication = client.Authentication()`
 #### Example: Load
 
 ```ts
-const authentication = await client.Authentication().load({ id: 'authentication_id' })
+const authentication = await client.authentication.load({ id: 'authentication_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const authentication = await client.Authentication().create({
+const authentication = await client.authentication.create({
 })
 ```
 
 
 ### GetUserPost
 
-Create an instance: `const get_user_post = client.GetUserPost()`
+Create an instance: `const get_user_post = client.get_user_post`
 
 #### Operations
 
@@ -401,13 +398,13 @@ Create an instance: `const get_user_post = client.GetUserPost()`
 #### Example: List
 
 ```ts
-const get_user_posts = await client.GetUserPost().list()
+const get_user_posts = await client.get_user_post.list()
 ```
 
 
 ### Playlist
 
-Create an instance: `const playlist = client.Playlist()`
+Create an instance: `const playlist = client.playlist`
 
 #### Operations
 
@@ -427,13 +424,13 @@ Create an instance: `const playlist = client.Playlist()`
 #### Example: List
 
 ```ts
-const playlists = await client.Playlist().list()
+const playlists = await client.playlist.list()
 ```
 
 
 ### Post
 
-Create an instance: `const post = client.Post()`
+Create an instance: `const post = client.post`
 
 #### Operations
 
@@ -463,13 +460,13 @@ Create an instance: `const post = client.Post()`
 #### Example: Load
 
 ```ts
-const post = await client.Post().load({ id: 'post_id' })
+const post = await client.post.load({ id: 'post_id' })
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.Search()`
+Create an instance: `const search = client.search`
 
 #### Operations
 
@@ -487,13 +484,13 @@ Create an instance: `const search = client.Search()`
 #### Example: List
 
 ```ts
-const searchs = await client.Search().list()
+const searchs = await client.search.list()
 ```
 
 
 ### Subscription
 
-Create an instance: `const subscription = client.Subscription()`
+Create an instance: `const subscription = client.subscription`
 
 #### Operations
 
@@ -512,13 +509,13 @@ Create an instance: `const subscription = client.Subscription()`
 #### Example: Load
 
 ```ts
-const subscription = await client.Subscription().load({ id: 'subscription_id' })
+const subscription = await client.subscription.load({ id: 'subscription_id' })
 ```
 
 
 ### User
 
-Create an instance: `const user = client.User()`
+Create an instance: `const user = client.user`
 
 #### Operations
 
@@ -539,13 +536,13 @@ Create an instance: `const user = client.User()`
 #### Example: List
 
 ```ts
-const users = await client.User().list()
+const users = await client.user.list()
 ```
 
 #### Example: Create
 
 ```ts
-const user = await client.User().create({
+const user = await client.user.create({
 })
 ```
 
@@ -621,11 +618,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local authentication = client:authentication()
+authentication:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- authentication:data_get() now returns the loaded authentication data
+-- authentication:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

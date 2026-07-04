@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch GetUserPostListMatch
+---@param ctrl? table
+---@return GetUserPost[]
+---@return string? err
 function GetUserPostEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

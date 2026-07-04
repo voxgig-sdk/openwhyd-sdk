@@ -49,8 +49,7 @@ class TestSubscriptionEntity:
         # LOAD
         subscription_ref01_ent = client.Subscription(None)
         subscription_ref01_match_dt0 = {}
-        subscription_ref01_data_dt0_loaded, err = subscription_ref01_ent.load(subscription_ref01_match_dt0, None)
-        assert err is None
+        subscription_ref01_data_dt0_loaded = subscription_ref01_ent.load(subscription_ref01_match_dt0, None)
         assert subscription_ref01_data_dt0_loaded is not None
 
 

@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Authentication,
+  AuthenticationLoadMatch,
+  AuthenticationCreateData,
+} from '../OpenwhydTypes'
 
 // TODO: needs Entity superclass
-class AuthenticationEntity extends OpenwhydEntityBase {
+class AuthenticationEntity extends OpenwhydEntityBase<Authentication> {
 
   constructor(client: OpenwhydSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class AuthenticationEntity extends OpenwhydEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: AuthenticationLoadMatch, ctrl?: Control): Promise<Authentication> {
 
     const utility = this._utility
 
@@ -136,7 +141,9 @@ class AuthenticationEntity extends OpenwhydEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Authentication> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
@@ -144,7 +151,7 @@ class AuthenticationEntity extends OpenwhydEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: AuthenticationCreateData, ctrl?: Control): Promise<Authentication> {
 
     const utility = this._utility
     const {
@@ -243,7 +250,9 @@ class AuthenticationEntity extends OpenwhydEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Authentication> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

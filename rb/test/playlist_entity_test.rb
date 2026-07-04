@@ -45,8 +45,7 @@ class PlaylistEntityTest < Minitest::Test
       "username" => setup[:idmap]["username01"],
     }
 
-    playlist_ref01_list_result, err = playlist_ref01_ent.list(playlist_ref01_match, nil)
-    assert_nil err
+    playlist_ref01_list_result = playlist_ref01_ent.list(playlist_ref01_match, nil)
     assert playlist_ref01_list_result.is_a?(Array)
 
   end

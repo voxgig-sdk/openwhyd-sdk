@@ -52,8 +52,7 @@ class TestPlaylistEntity:
             "username": setup["idmap"]["username01"],
         }
 
-        playlist_ref01_list_result, err = playlist_ref01_ent.list(playlist_ref01_match, None)
-        assert err is None
+        playlist_ref01_list_result = playlist_ref01_ent.list(playlist_ref01_match, None)
         assert isinstance(playlist_ref01_list_result, list)
 
 

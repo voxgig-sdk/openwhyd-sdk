@@ -45,6 +45,7 @@ class SubscriptionEntity
     end
   end
 
+  # @return [Subscription, Hash] the current Subscription data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class SubscriptionEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Subscription fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Subscription.
+  #
+  # @param reqmatch [SubscriptionLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Subscription, Hash] the loaded Subscription; raises OpenwhydError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

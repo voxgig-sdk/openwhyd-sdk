@@ -51,8 +51,7 @@ class TestPostEntity:
         post_ref01_match_dt0 = {
             "id": post_ref01_data["id"],
         }
-        post_ref01_data_dt0_loaded, err = post_ref01_ent.load(post_ref01_match_dt0, None)
-        assert err is None
+        post_ref01_data_dt0_loaded = post_ref01_ent.load(post_ref01_match_dt0, None)
         post_ref01_data_dt0_load_result = helpers.to_map(post_ref01_data_dt0_loaded)
         assert post_ref01_data_dt0_load_result is not None
         assert post_ref01_data_dt0_load_result["id"] == post_ref01_data["id"]

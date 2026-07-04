@@ -8,6 +8,8 @@ import { SearchEntity } from './entity/SearchEntity'
 import { SubscriptionEntity } from './entity/SubscriptionEntity'
 import { UserEntity } from './entity/UserEntity'
 
+export type * from './OpenwhydTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -208,42 +210,98 @@ class OpenwhydSDK {
 
 
 
+  _authentication?: AuthenticationEntity
+
+  // Idiomatic facade: `client.authentication.list()` / `client.authentication.load({ id })`.
+  get authentication(): AuthenticationEntity {
+    return (this._authentication ??= new AuthenticationEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.authentication` instead. */
   Authentication(data?: any) {
     const self = this
     return new AuthenticationEntity(self,data)
   }
 
 
+  _get_user_post?: GetUserPostEntity
+
+  // Idiomatic facade: `client.get_user_post.list()` / `client.get_user_post.load({ id })`.
+  get get_user_post(): GetUserPostEntity {
+    return (this._get_user_post ??= new GetUserPostEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.get_user_post` instead. */
   GetUserPost(data?: any) {
     const self = this
     return new GetUserPostEntity(self,data)
   }
 
 
+  _playlist?: PlaylistEntity
+
+  // Idiomatic facade: `client.playlist.list()` / `client.playlist.load({ id })`.
+  get playlist(): PlaylistEntity {
+    return (this._playlist ??= new PlaylistEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.playlist` instead. */
   Playlist(data?: any) {
     const self = this
     return new PlaylistEntity(self,data)
   }
 
 
+  _post?: PostEntity
+
+  // Idiomatic facade: `client.post.list()` / `client.post.load({ id })`.
+  get post(): PostEntity {
+    return (this._post ??= new PostEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.post` instead. */
   Post(data?: any) {
     const self = this
     return new PostEntity(self,data)
   }
 
 
+  _search?: SearchEntity
+
+  // Idiomatic facade: `client.search.list()` / `client.search.load({ id })`.
+  get search(): SearchEntity {
+    return (this._search ??= new SearchEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.search` instead. */
   Search(data?: any) {
     const self = this
     return new SearchEntity(self,data)
   }
 
 
+  _subscription?: SubscriptionEntity
+
+  // Idiomatic facade: `client.subscription.list()` / `client.subscription.load({ id })`.
+  get subscription(): SubscriptionEntity {
+    return (this._subscription ??= new SubscriptionEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.subscription` instead. */
   Subscription(data?: any) {
     const self = this
     return new SubscriptionEntity(self,data)
   }
 
 
+  _user?: UserEntity
+
+  // Idiomatic facade: `client.user.list()` / `client.user.load({ id })`.
+  get user(): UserEntity {
+    return (this._user ??= new UserEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.user` instead. */
   User(data?: any) {
     const self = this
     return new UserEntity(self,data)

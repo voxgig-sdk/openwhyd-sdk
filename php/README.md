@@ -9,9 +9,10 @@ The PHP SDK for the Openwhyd API — an entity-oriented client using PHP convent
 
 
 ## Install
-```bash
-composer require voxgig-sdk/openwhyd
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/openwhyd-sdk/releases](https://github.com/voxgig-sdk/openwhyd-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -30,19 +31,22 @@ $client = new OpenwhydSDK([
 ]);
 ```
 
-### 3. Load a authentication
+### 3. Load an authentication
 
 ```php
-[$result, $err] = $client->Authentication()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->authentication()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 ### 4. Create, update, and remove
 
 ```php
 // Create
-[$created, $_] = $client->Authentication()->create(["name" => "Example"]);
+$created = $client->authentication()->create(["name" => "Example"]);
 
 ```
 
@@ -54,28 +58,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -89,7 +96,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = OpenwhydSDK::test();
 
-[$result, $err] = $client->Openwhyd()->load(["id" => "test01"]);
+$result = $client->authentication()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -199,8 +206,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -330,7 +341,7 @@ API path: `/api/user`
 
 ### Authentication
 
-Create an instance: `const authentication = client.Authentication()`
+Create an instance: `const authentication = client.authentication`
 
 #### Operations
 
@@ -353,20 +364,20 @@ Create an instance: `const authentication = client.Authentication()`
 #### Example: Load
 
 ```ts
-const authentication = await client.Authentication().load({ id: 'authentication_id' })
+const authentication = await client.authentication.load({ id: 'authentication_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const authentication = await client.Authentication().create({
+const authentication = await client.authentication.create({
 })
 ```
 
 
 ### GetUserPost
 
-Create an instance: `const get_user_post = client.GetUserPost()`
+Create an instance: `const get_user_post = client.get_user_post`
 
 #### Operations
 
@@ -396,13 +407,13 @@ Create an instance: `const get_user_post = client.GetUserPost()`
 #### Example: List
 
 ```ts
-const get_user_posts = await client.GetUserPost().list()
+const get_user_posts = await client.get_user_post.list()
 ```
 
 
 ### Playlist
 
-Create an instance: `const playlist = client.Playlist()`
+Create an instance: `const playlist = client.playlist`
 
 #### Operations
 
@@ -422,13 +433,13 @@ Create an instance: `const playlist = client.Playlist()`
 #### Example: List
 
 ```ts
-const playlists = await client.Playlist().list()
+const playlists = await client.playlist.list()
 ```
 
 
 ### Post
 
-Create an instance: `const post = client.Post()`
+Create an instance: `const post = client.post`
 
 #### Operations
 
@@ -458,13 +469,13 @@ Create an instance: `const post = client.Post()`
 #### Example: Load
 
 ```ts
-const post = await client.Post().load({ id: 'post_id' })
+const post = await client.post.load({ id: 'post_id' })
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.Search()`
+Create an instance: `const search = client.search`
 
 #### Operations
 
@@ -482,13 +493,13 @@ Create an instance: `const search = client.Search()`
 #### Example: List
 
 ```ts
-const searchs = await client.Search().list()
+const searchs = await client.search.list()
 ```
 
 
 ### Subscription
 
-Create an instance: `const subscription = client.Subscription()`
+Create an instance: `const subscription = client.subscription`
 
 #### Operations
 
@@ -507,13 +518,13 @@ Create an instance: `const subscription = client.Subscription()`
 #### Example: Load
 
 ```ts
-const subscription = await client.Subscription().load({ id: 'subscription_id' })
+const subscription = await client.subscription.load({ id: 'subscription_id' })
 ```
 
 
 ### User
 
-Create an instance: `const user = client.User()`
+Create an instance: `const user = client.user`
 
 #### Operations
 
@@ -534,13 +545,13 @@ Create an instance: `const user = client.User()`
 #### Example: List
 
 ```ts
-const users = await client.User().list()
+const users = await client.user.list()
 ```
 
 #### Example: Create
 
 ```ts
-const user = await client.User().create({
+const user = await client.user.create({
 })
 ```
 
@@ -616,11 +627,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$authentication = $client->authentication();
+$authentication->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $authentication->dataGet() now returns the loaded authentication data
+// $authentication->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

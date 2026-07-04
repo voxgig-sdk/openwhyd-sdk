@@ -45,8 +45,7 @@ class GetUserPostEntityTest < Minitest::Test
       "username" => setup[:idmap]["username01"],
     }
 
-    get_user_post_ref01_list_result, err = get_user_post_ref01_ent.list(get_user_post_ref01_match, nil)
-    assert_nil err
+    get_user_post_ref01_list_result = get_user_post_ref01_ent.list(get_user_post_ref01_match, nil)
     assert get_user_post_ref01_list_result.is_a?(Array)
 
   end

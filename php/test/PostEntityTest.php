@@ -51,8 +51,7 @@ class PostEntityTest extends TestCase
         $post_ref01_match_dt0 = [
             "id" => $post_ref01_data["id"],
         ];
-        [$post_ref01_data_dt0_loaded, $err] = $post_ref01_ent->load($post_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $post_ref01_data_dt0_loaded = $post_ref01_ent->load($post_ref01_match_dt0, null);
         $post_ref01_data_dt0_load_result = Helpers::to_map($post_ref01_data_dt0_loaded);
         $this->assertNotNull($post_ref01_data_dt0_load_result);
         $this->assertEquals($post_ref01_data_dt0_load_result["id"], $post_ref01_data["id"]);

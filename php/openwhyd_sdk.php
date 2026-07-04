@@ -103,7 +103,7 @@ class OpenwhydSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class OpenwhydSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class OpenwhydSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,66 +216,143 @@ class OpenwhydSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function Authentication($data = null)
+    private $_authentication = null;
+
+    // Idiomatic facade: $client->authentication()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Authentication() (PHP method
+    // names are case-insensitive).
+    public function authentication($data = null)
     {
         require_once __DIR__ . '/entity/authentication_entity.php';
+        if ($data === null) {
+            if ($this->_authentication === null) {
+                $this->_authentication = new AuthenticationEntity($this, null);
+            }
+            return $this->_authentication;
+        }
         return new AuthenticationEntity($this, $data);
     }
 
 
-    public function GetUserPost($data = null)
+    private $_get_user_post = null;
+
+    // Idiomatic facade: $client->get_user_post()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias GetUserPost() (PHP method
+    // names are case-insensitive).
+    public function get_user_post($data = null)
     {
         require_once __DIR__ . '/entity/get_user_post_entity.php';
+        if ($data === null) {
+            if ($this->_get_user_post === null) {
+                $this->_get_user_post = new GetUserPostEntity($this, null);
+            }
+            return $this->_get_user_post;
+        }
         return new GetUserPostEntity($this, $data);
     }
 
 
-    public function Playlist($data = null)
+    private $_playlist = null;
+
+    // Idiomatic facade: $client->playlist()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Playlist() (PHP method
+    // names are case-insensitive).
+    public function playlist($data = null)
     {
         require_once __DIR__ . '/entity/playlist_entity.php';
+        if ($data === null) {
+            if ($this->_playlist === null) {
+                $this->_playlist = new PlaylistEntity($this, null);
+            }
+            return $this->_playlist;
+        }
         return new PlaylistEntity($this, $data);
     }
 
 
-    public function Post($data = null)
+    private $_post = null;
+
+    // Idiomatic facade: $client->post()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Post() (PHP method
+    // names are case-insensitive).
+    public function post($data = null)
     {
         require_once __DIR__ . '/entity/post_entity.php';
+        if ($data === null) {
+            if ($this->_post === null) {
+                $this->_post = new PostEntity($this, null);
+            }
+            return $this->_post;
+        }
         return new PostEntity($this, $data);
     }
 
 
-    public function Search($data = null)
+    private $_search = null;
+
+    // Idiomatic facade: $client->search()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Search() (PHP method
+    // names are case-insensitive).
+    public function search($data = null)
     {
         require_once __DIR__ . '/entity/search_entity.php';
+        if ($data === null) {
+            if ($this->_search === null) {
+                $this->_search = new SearchEntity($this, null);
+            }
+            return $this->_search;
+        }
         return new SearchEntity($this, $data);
     }
 
 
-    public function Subscription($data = null)
+    private $_subscription = null;
+
+    // Idiomatic facade: $client->subscription()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Subscription() (PHP method
+    // names are case-insensitive).
+    public function subscription($data = null)
     {
         require_once __DIR__ . '/entity/subscription_entity.php';
+        if ($data === null) {
+            if ($this->_subscription === null) {
+                $this->_subscription = new SubscriptionEntity($this, null);
+            }
+            return $this->_subscription;
+        }
         return new SubscriptionEntity($this, $data);
     }
 
 
-    public function User($data = null)
+    private $_user = null;
+
+    // Idiomatic facade: $client->user()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias User() (PHP method
+    // names are case-insensitive).
+    public function user($data = null)
     {
         require_once __DIR__ . '/entity/user_entity.php';
+        if ($data === null) {
+            if ($this->_user === null) {
+                $this->_user = new UserEntity($this, null);
+            }
+            return $this->_user;
+        }
         return new UserEntity($this, $data);
     }
 

@@ -45,9 +45,7 @@ class TestUserEntity:
             vs.getpath(setup["data"], "new.user"), "user_ref01"))
         user_ref01_data["username"] = setup["idmap"]["username01"]
 
-        user_ref01_data_result, err = user_ref01_ent.create(user_ref01_data, None)
-        assert err is None
-        user_ref01_data = helpers.to_map(user_ref01_data_result)
+        user_ref01_data = helpers.to_map(user_ref01_ent.create(user_ref01_data, None))
         assert user_ref01_data is not None
         assert user_ref01_data["id"] is not None
 
@@ -56,8 +54,7 @@ class TestUserEntity:
             "username": setup["idmap"]["username01"],
         }
 
-        user_ref01_list_result, err = user_ref01_ent.list(user_ref01_match, None)
-        assert err is None
+        user_ref01_list_result = user_ref01_ent.list(user_ref01_match, None)
         assert isinstance(user_ref01_list_result, list)
 
         found_item = vs.select(

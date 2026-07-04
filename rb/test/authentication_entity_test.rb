@@ -36,15 +36,13 @@ class AuthenticationEntityTest < Minitest::Test
     authentication_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.authentication"), "authentication_ref01"))
 
-    authentication_ref01_data_result, err = authentication_ref01_ent.create(authentication_ref01_data, nil)
-    assert_nil err
+    authentication_ref01_data_result = authentication_ref01_ent.create(authentication_ref01_data, nil)
     authentication_ref01_data = Helpers.to_map(authentication_ref01_data_result)
     assert !authentication_ref01_data.nil?
 
     # LOAD
     authentication_ref01_match_dt0 = {}
-    authentication_ref01_data_dt0_loaded, err = authentication_ref01_ent.load(authentication_ref01_match_dt0, nil)
-    assert_nil err
+    authentication_ref01_data_dt0_loaded = authentication_ref01_ent.load(authentication_ref01_match_dt0, nil)
     assert !authentication_ref01_data_dt0_loaded.nil?
 
   end

@@ -244,42 +244,133 @@ end
 
 
 
+-- Idiomatic facade: client:authentication():list() / client:authentication():load({ id = ... })
+function OpenwhydSDK:authentication(data)
+  local EntityMod = require("entity.authentication_entity")
+  if data == nil then
+    if self._authentication == nil then
+      self._authentication = EntityMod.new(self, nil)
+    end
+    return self._authentication
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:authentication() instead.
 function OpenwhydSDK:Authentication(data)
   local EntityMod = require("entity.authentication_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:get_user_post():list() / client:get_user_post():load({ id = ... })
+function OpenwhydSDK:get_user_post(data)
+  local EntityMod = require("entity.get_user_post_entity")
+  if data == nil then
+    if self._get_user_post == nil then
+      self._get_user_post = EntityMod.new(self, nil)
+    end
+    return self._get_user_post
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:get_user_post() instead.
 function OpenwhydSDK:GetUserPost(data)
   local EntityMod = require("entity.get_user_post_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:playlist():list() / client:playlist():load({ id = ... })
+function OpenwhydSDK:playlist(data)
+  local EntityMod = require("entity.playlist_entity")
+  if data == nil then
+    if self._playlist == nil then
+      self._playlist = EntityMod.new(self, nil)
+    end
+    return self._playlist
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:playlist() instead.
 function OpenwhydSDK:Playlist(data)
   local EntityMod = require("entity.playlist_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:post():list() / client:post():load({ id = ... })
+function OpenwhydSDK:post(data)
+  local EntityMod = require("entity.post_entity")
+  if data == nil then
+    if self._post == nil then
+      self._post = EntityMod.new(self, nil)
+    end
+    return self._post
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:post() instead.
 function OpenwhydSDK:Post(data)
   local EntityMod = require("entity.post_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:search():list() / client:search():load({ id = ... })
+function OpenwhydSDK:search(data)
+  local EntityMod = require("entity.search_entity")
+  if data == nil then
+    if self._search == nil then
+      self._search = EntityMod.new(self, nil)
+    end
+    return self._search
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:search() instead.
 function OpenwhydSDK:Search(data)
   local EntityMod = require("entity.search_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:subscription():list() / client:subscription():load({ id = ... })
+function OpenwhydSDK:subscription(data)
+  local EntityMod = require("entity.subscription_entity")
+  if data == nil then
+    if self._subscription == nil then
+      self._subscription = EntityMod.new(self, nil)
+    end
+    return self._subscription
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:subscription() instead.
 function OpenwhydSDK:Subscription(data)
   local EntityMod = require("entity.subscription_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:user():list() / client:user():load({ id = ... })
+function OpenwhydSDK:user(data)
+  local EntityMod = require("entity.user_entity")
+  if data == nil then
+    if self._user == nil then
+      self._user = EntityMod.new(self, nil)
+    end
+    return self._user
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:user() instead.
 function OpenwhydSDK:User(data)
   local EntityMod = require("entity.user_entity")
   return EntityMod.new(self, data)

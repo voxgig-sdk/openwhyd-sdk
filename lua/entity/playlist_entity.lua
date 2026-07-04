@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch PlaylistListMatch
+---@param ctrl? table
+---@return Playlist[]
+---@return string? err
 function PlaylistEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

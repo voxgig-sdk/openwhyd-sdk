@@ -9,9 +9,12 @@ The TypeScript SDK for the Openwhyd API — a type-safe, entity-oriented client 
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/openwhyd
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/openwhyd-sdk/releases](https://github.com/voxgig-sdk/openwhyd-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,17 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { OpenwhydSDK } from 'openwhyd'
+import { OpenwhydSDK } from '@voxgig-sdk/openwhyd'
 
 const client = new OpenwhydSDK({
   apikey: process.env.OPENWHYD_APIKEY,
 })
 ```
 
-### 3. Load a authentication
+### 3. Load an authentication
 
 ```ts
-const result = await client.Authentication().load({ id: 'example_id' })
+const result = await client.authentication.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -41,7 +44,7 @@ if (result.ok) {
 
 ```ts
 // Create
-const created = await client.Authentication().create({
+const created = await client.authentication.create({
   name: 'Example',
 })
 
@@ -89,7 +92,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = OpenwhydSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.authentication.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -106,7 +109,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.authentication
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -382,7 +385,7 @@ API path: `/api/user`
 
 ### Authentication
 
-Create an instance: `const authentication = client.Authentication()`
+Create an instance: `const authentication = client.authentication`
 
 #### Operations
 
@@ -405,20 +408,20 @@ Create an instance: `const authentication = client.Authentication()`
 #### Example: Load
 
 ```ts
-const authentication = await client.Authentication().load({ id: 'authentication_id' })
+const authentication = await client.authentication.load({ id: 'authentication_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const authentication = await client.Authentication().create({
+const authentication = await client.authentication.create({
 })
 ```
 
 
 ### GetUserPost
 
-Create an instance: `const get_user_post = client.GetUserPost()`
+Create an instance: `const get_user_post = client.get_user_post`
 
 #### Operations
 
@@ -448,13 +451,13 @@ Create an instance: `const get_user_post = client.GetUserPost()`
 #### Example: List
 
 ```ts
-const get_user_posts = await client.GetUserPost().list()
+const get_user_posts = await client.get_user_post.list()
 ```
 
 
 ### Playlist
 
-Create an instance: `const playlist = client.Playlist()`
+Create an instance: `const playlist = client.playlist`
 
 #### Operations
 
@@ -474,13 +477,13 @@ Create an instance: `const playlist = client.Playlist()`
 #### Example: List
 
 ```ts
-const playlists = await client.Playlist().list()
+const playlists = await client.playlist.list()
 ```
 
 
 ### Post
 
-Create an instance: `const post = client.Post()`
+Create an instance: `const post = client.post`
 
 #### Operations
 
@@ -510,13 +513,13 @@ Create an instance: `const post = client.Post()`
 #### Example: Load
 
 ```ts
-const post = await client.Post().load({ id: 'post_id' })
+const post = await client.post.load({ id: 'post_id' })
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.Search()`
+Create an instance: `const search = client.search`
 
 #### Operations
 
@@ -534,13 +537,13 @@ Create an instance: `const search = client.Search()`
 #### Example: List
 
 ```ts
-const searchs = await client.Search().list()
+const searchs = await client.search.list()
 ```
 
 
 ### Subscription
 
-Create an instance: `const subscription = client.Subscription()`
+Create an instance: `const subscription = client.subscription`
 
 #### Operations
 
@@ -559,13 +562,13 @@ Create an instance: `const subscription = client.Subscription()`
 #### Example: Load
 
 ```ts
-const subscription = await client.Subscription().load({ id: 'subscription_id' })
+const subscription = await client.subscription.load({ id: 'subscription_id' })
 ```
 
 
 ### User
 
-Create an instance: `const user = client.User()`
+Create an instance: `const user = client.user`
 
 #### Operations
 
@@ -586,13 +589,13 @@ Create an instance: `const user = client.User()`
 #### Example: List
 
 ```ts
-const users = await client.User().list()
+const users = await client.user.list()
 ```
 
 #### Example: Create
 
 ```ts
-const user = await client.User().create({
+const user = await client.user.create({
 })
 ```
 
@@ -654,7 +657,7 @@ openwhyd/
 Import the SDK from the package root:
 
 ```ts
-import { OpenwhydSDK } from 'openwhyd'
+import { OpenwhydSDK } from '@voxgig-sdk/openwhyd'
 ```
 
 ### Entity state
@@ -664,11 +667,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const authentication = client.authentication
+await authentication.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// authentication.data() now returns the loaded authentication data
+// authentication.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

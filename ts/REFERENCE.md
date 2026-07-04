@@ -182,7 +182,7 @@ Alias for `OpenwhydSDK.test()`.
 ## AuthenticationEntity
 
 ```ts
-const authentication = client.Authentication()
+const authentication = client.authentication
 ```
 
 ### Fields
@@ -203,7 +203,7 @@ const authentication = client.Authentication()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.Authentication().create({
+const result = await client.authentication.create({
 })
 ```
 
@@ -212,7 +212,7 @@ const result = await client.Authentication().create({
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Authentication().load({ id: 'authentication_id' })
+const result = await client.authentication.load({ id: 'authentication_id' })
 ```
 
 ### Common Methods
@@ -246,7 +246,7 @@ Return a copy of the entity options.
 ## GetUserPostEntity
 
 ```ts
-const get_user_post = client.GetUserPost()
+const get_user_post = client.get_user_post
 ```
 
 ### Fields
@@ -275,7 +275,7 @@ const get_user_post = client.GetUserPost()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.GetUserPost().list()
+const results = await client.get_user_post.list()
 ```
 
 ### Common Methods
@@ -309,7 +309,7 @@ Return a copy of the entity options.
 ## PlaylistEntity
 
 ```ts
-const playlist = client.Playlist()
+const playlist = client.playlist
 ```
 
 ### Fields
@@ -328,7 +328,7 @@ const playlist = client.Playlist()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Playlist().list()
+const results = await client.playlist.list()
 ```
 
 ### Common Methods
@@ -362,7 +362,7 @@ Return a copy of the entity options.
 ## PostEntity
 
 ```ts
-const post = client.Post()
+const post = client.post
 ```
 
 ### Fields
@@ -391,7 +391,7 @@ const post = client.Post()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Post().load({ id: 'post_id' })
+const result = await client.post.load({ id: 'post_id' })
 ```
 
 ### Common Methods
@@ -425,7 +425,7 @@ Return a copy of the entity options.
 ## SearchEntity
 
 ```ts
-const search = client.Search()
+const search = client.search
 ```
 
 ### Fields
@@ -442,7 +442,7 @@ const search = client.Search()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Search().list()
+const results = await client.search.list()
 ```
 
 ### Common Methods
@@ -476,7 +476,7 @@ Return a copy of the entity options.
 ## SubscriptionEntity
 
 ```ts
-const subscription = client.Subscription()
+const subscription = client.subscription
 ```
 
 ### Fields
@@ -494,7 +494,7 @@ const subscription = client.Subscription()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Subscription().load({ id: 'subscription_id' })
+const result = await client.subscription.load({ id: 'subscription_id' })
 ```
 
 ### Common Methods
@@ -528,7 +528,7 @@ Return a copy of the entity options.
 ## UserEntity
 
 ```ts
-const user = client.User()
+const user = client.user
 ```
 
 ### Fields
@@ -547,7 +547,7 @@ const user = client.User()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.User().create({
+const result = await client.user.create({
 })
 ```
 
@@ -556,7 +556,7 @@ const result = await client.User().create({
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.User().list()
+const results = await client.user.list()
 ```
 
 ### Common Methods

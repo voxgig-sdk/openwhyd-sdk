@@ -45,6 +45,7 @@ class PlaylistEntity
     end
   end
 
+  # @return [Playlist, Hash] the current Playlist data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class PlaylistEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Playlist fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class PlaylistEntity
   
 
   
+  # List Playlist items matching the given filter.
+  #
+  # @param reqmatch [PlaylistListMatch, Hash, nil] match filter (any subset of Playlist fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Playlist>, Array] the matching Playlist items; raises OpenwhydError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

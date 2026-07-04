@@ -44,15 +44,12 @@ class TestAuthenticationEntity:
         authentication_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.authentication"), "authentication_ref01"))
 
-        authentication_ref01_data_result, err = authentication_ref01_ent.create(authentication_ref01_data, None)
-        assert err is None
-        authentication_ref01_data = helpers.to_map(authentication_ref01_data_result)
+        authentication_ref01_data = helpers.to_map(authentication_ref01_ent.create(authentication_ref01_data, None))
         assert authentication_ref01_data is not None
 
         # LOAD
         authentication_ref01_match_dt0 = {}
-        authentication_ref01_data_dt0_loaded, err = authentication_ref01_ent.load(authentication_ref01_match_dt0, None)
-        assert err is None
+        authentication_ref01_data_dt0_loaded = authentication_ref01_ent.load(authentication_ref01_match_dt0, None)
         assert authentication_ref01_data_dt0_loaded is not None
 
 

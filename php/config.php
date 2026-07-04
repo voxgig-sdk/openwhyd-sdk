@@ -347,6 +347,7 @@ class OpenwhydConfig
                         'orig' => 'username',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -466,6 +467,7 @@ class OpenwhydConfig
                         'orig' => 'username',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -623,6 +625,7 @@ class OpenwhydConfig
                         'orig' => 'playlist_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -631,6 +634,7 @@ class OpenwhydConfig
                         'orig' => 'username',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 1,
                       ],
                     ],
                     'query' => [
@@ -699,6 +703,7 @@ class OpenwhydConfig
                         'orig' => 'genre',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -875,6 +880,7 @@ class OpenwhydConfig
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -938,6 +944,7 @@ class OpenwhydConfig
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -1136,6 +1143,7 @@ class OpenwhydConfig
                         'orig' => 'username',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],
