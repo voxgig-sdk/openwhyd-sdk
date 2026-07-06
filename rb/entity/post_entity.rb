@@ -67,10 +67,12 @@ class PostEntity
   
   # Load a single Post.
   #
-  # @param reqmatch [PostLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param reqmatch [PostLoadMatch, Hash, nil] match criteria (id/query fields);
+  #   optional — an entity with no id-like key loads with no match (nil is treated
+  #   as an empty match, so client.Post.load works with no args).
   # @param ctrl [Object, nil] optional per-call control
   # @return [Post, Hash] the loaded Post; raises OpenwhydError on failure
-  def load(reqmatch, ctrl = nil)
+  def load(reqmatch = nil, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
       "opname" => "load",

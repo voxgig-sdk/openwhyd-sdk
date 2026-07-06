@@ -18,8 +18,7 @@ type Authentication struct {
 	WrongPassword *int `json:"wrong_password,omitempty"`
 }
 
-// AuthenticationLoadMatch mirrors the authentication fields as an all-optional match
-// filter (Go analog of Partial<Authentication>).
+// AuthenticationLoadMatch is the typed request payload for Authentication.LoadTyped.
 type AuthenticationLoadMatch struct {
 	Error *string `json:"error,omitempty"`
 	Ok *string `json:"ok,omitempty"`
@@ -29,8 +28,7 @@ type AuthenticationLoadMatch struct {
 	WrongPassword *int `json:"wrong_password,omitempty"`
 }
 
-// AuthenticationCreateData mirrors the authentication fields as an all-optional match
-// filter (Go analog of Partial<Authentication>).
+// AuthenticationCreateData is the typed request payload for Authentication.CreateTyped.
 type AuthenticationCreateData struct {
 	Error *string `json:"error,omitempty"`
 	Ok *string `json:"ok,omitempty"`
@@ -107,8 +105,7 @@ type Search struct {
 	Result *[]any `json:"result,omitempty"`
 }
 
-// SearchListMatch mirrors the search fields as an all-optional match
-// filter (Go analog of Partial<Search>).
+// SearchListMatch is the typed request payload for Search.ListTyped.
 type SearchListMatch struct {
 	Q *string `json:"q,omitempty"`
 	Result *[]any `json:"result,omitempty"`
@@ -139,8 +136,7 @@ type UserListMatch struct {
 	Username string `json:"username"`
 }
 
-// UserCreateData mirrors the user fields as an all-optional match
-// filter (Go analog of Partial<User>).
+// UserCreateData is the typed request payload for User.CreateTyped.
 type UserCreateData struct {
 	Id *int `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`

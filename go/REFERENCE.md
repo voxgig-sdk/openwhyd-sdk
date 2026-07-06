@@ -122,12 +122,12 @@ authentication := client.Authentication(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `error` | ``$STRING`` | No |  |
-| `ok` | ``$STRING`` | No |  |
-| `redirect` | ``$STRING`` | No |  |
-| `u_id` | ``$STRING`` | No |  |
-| `user` | ``$OBJECT`` | No |  |
-| `wrong_password` | ``$INTEGER`` | No |  |
+| `error` | `string` | No |  |
+| `ok` | `string` | No |  |
+| `redirect` | `string` | No |  |
+| `u_id` | `string` | No |  |
+| `user` | `map[string]any` | No |  |
+| `wrong_password` | `int` | No |  |
 
 ### Operations
 
@@ -145,7 +145,7 @@ result, err := client.Authentication(nil).Create(map[string]any{
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Authentication(nil).Load(map[string]any{"id": "authentication_id"}, nil)
+result, err := client.Authentication(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -182,20 +182,20 @@ get_user_post := client.GetUserPost(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ctx` | ``$STRING`` | No |  |
-| `e_id` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `img` | ``$STRING`` | No |  |
-| `lov` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nb_p` | ``$INTEGER`` | No |  |
-| `nb_r` | ``$INTEGER`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `src` | ``$OBJECT`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `u_id` | ``$STRING`` | No |  |
-| `u_nm` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `ctx` | `string` | No |  |
+| `e_id` | `string` | No |  |
+| `id` | `string` | No |  |
+| `img` | `string` | No |  |
+| `lov` | `[]any` | No |  |
+| `name` | `string` | No |  |
+| `nb_p` | `int` | No |  |
+| `nb_r` | `int` | No |  |
+| `score` | `float64` | No |  |
+| `src` | `map[string]any` | No |  |
+| `text` | `string` | No |  |
+| `u_id` | `string` | No |  |
+| `u_nm` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -241,10 +241,10 @@ playlist := client.Playlist(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nb_track` | ``$INTEGER`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `id` | `int` | No |  |
+| `name` | `string` | No |  |
+| `nb_track` | `int` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -290,20 +290,20 @@ post := client.Post(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ctx` | ``$STRING`` | No |  |
-| `e_id` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `img` | ``$STRING`` | No |  |
-| `lov` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nb_p` | ``$INTEGER`` | No |  |
-| `nb_r` | ``$INTEGER`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `src` | ``$OBJECT`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `u_id` | ``$STRING`` | No |  |
-| `u_nm` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `ctx` | `string` | No |  |
+| `e_id` | `string` | No |  |
+| `id` | `string` | No |  |
+| `img` | `string` | No |  |
+| `lov` | `[]any` | No |  |
+| `name` | `string` | No |  |
+| `nb_p` | `int` | No |  |
+| `nb_r` | `int` | No |  |
+| `score` | `float64` | No |  |
+| `src` | `map[string]any` | No |  |
+| `text` | `string` | No |  |
+| `u_id` | `string` | No |  |
+| `u_nm` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -312,7 +312,7 @@ post := client.Post(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Post(nil).Load(map[string]any{"id": "post_id"}, nil)
+result, err := client.Post(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -349,8 +349,8 @@ search := client.Search(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `q` | ``$STRING`` | No |  |
-| `result` | ``$ARRAY`` | No |  |
+| `q` | `string` | No |  |
+| `result` | `[]any` | No |  |
 
 ### Operations
 
@@ -396,9 +396,9 @@ subscription := client.Subscription(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `is_subscribing` | ``$BOOLEAN`` | No |  |
-| `u_id` | ``$STRING`` | No |  |
-| `u_nm` | ``$STRING`` | No |  |
+| `is_subscribing` | `bool` | No |  |
+| `u_id` | `string` | No |  |
+| `u_nm` | `string` | No |  |
 
 ### Operations
 
@@ -444,10 +444,10 @@ user := client.User(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nb_track` | ``$INTEGER`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `id` | `int` | No |  |
+| `name` | `string` | No |  |
+| `nb_track` | `int` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 

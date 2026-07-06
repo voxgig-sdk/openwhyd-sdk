@@ -15,8 +15,20 @@
 ---@field wrong_password? number
 
 ---@class AuthenticationLoadMatch
+---@field error? string
+---@field ok? string
+---@field redirect? string
+---@field u_id? string
+---@field user? table
+---@field wrong_password? number
 
 ---@class AuthenticationCreateData
+---@field error? string
+---@field ok? string
+---@field redirect? string
+---@field u_id? string
+---@field user? table
+---@field wrong_password? number
 
 ---@class GetUserPost
 ---@field ctx? string
@@ -72,6 +84,8 @@
 ---@field result? table
 
 ---@class SearchListMatch
+---@field q? string
+---@field result? table
 
 ---@class Subscription
 ---@field is_subscribing? boolean
@@ -91,6 +105,10 @@
 ---@field username string
 
 ---@class UserCreateData
+---@field id? number
+---@field name? string
+---@field nb_track? number
+---@field url? string
 
 local M = {}
 

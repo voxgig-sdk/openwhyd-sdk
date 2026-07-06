@@ -37,7 +37,7 @@ Authentication = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Authentication#load (any subset of Authentication fields).
+# Request payload for Authentication#load.
 #
 # @!attribute [rw] error
 #   @return [String, nil]
@@ -66,7 +66,7 @@ AuthenticationLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Authentication#create (any subset of Authentication fields).
+# Request payload for Authentication#create.
 #
 # @!attribute [rw] error
 #   @return [String, nil]
@@ -286,7 +286,7 @@ Search = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Search#list (any subset of Search fields).
+# Request payload for Search#list.
 #
 # @!attribute [rw] q
 #   @return [String, nil]
@@ -355,7 +355,7 @@ UserListMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for User#create (any subset of User fields).
+# Request payload for User#create.
 #
 # @!attribute [rw] id
 #   @return [Integer, nil]

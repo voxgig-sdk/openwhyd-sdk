@@ -4,6 +4,8 @@
 
 The Lua SDK for the Openwhyd API — an entity-oriented client using Lua conventions.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:Authentication()` — each with the same small set of operations (`list`, `load`, `create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -36,7 +38,7 @@ local client = sdk.new({
 ### 3. Load an authentication
 
 ```lua
-local authentication, err = client:Authentication():load({ id = "example_id" })
+local authentication, err = client:Authentication():load()
 if err then error(err) end
 print(authentication)
 ```
@@ -45,9 +47,31 @@ print(authentication)
 
 ```lua
 -- Create
-local created, err = client:Authentication():create({ name = "Example" })
+local created, err = client:Authentication():create({ error = "example", ok = "example" })
 if err then error(err) end
 
+```
+
+
+## Error handling
+
+Entity operations return `(value, err)`. Check `err` before using
+the value:
+
+```lua
+local authentication, err = client:Authentication():load()
+if err then error(err) end
+```
+
+`direct` follows the same `(value, err)` convention:
+
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example_id" },
+})
+if err then error(err) end
 ```
 
 
@@ -93,8 +117,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Authentication():load({ id = "test01" })
--- result is the loaded data; err is set on failure
+local result, err = client:Authentication():load()
+-- result is the returned data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -191,8 +215,6 @@ All entities share the same interface.
 | `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
 | `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
 | `create` | `(reqdata, ctrl) -> any, err` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> any, err` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> any, err` | Remove an entity. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -207,12 +229,12 @@ data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `load` / `create` | the entity record (a `table`) |
 | `list` | an array (`table`) of entity records |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local authentication, err = client:Authentication():load({ id = "example_id" })
+    local authentication, err = client:Authentication():load()
     if err then error(err) end
     -- authentication is the loaded record
 
@@ -351,17 +373,17 @@ Create an instance: `local authentication = client:Authentication(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `error` | ``$STRING`` |  |
-| `ok` | ``$STRING`` |  |
-| `redirect` | ``$STRING`` |  |
-| `u_id` | ``$STRING`` |  |
-| `user` | ``$OBJECT`` |  |
-| `wrong_password` | ``$INTEGER`` |  |
+| `error` | `string` |  |
+| `ok` | `string` |  |
+| `redirect` | `string` |  |
+| `u_id` | `string` |  |
+| `user` | `table` |  |
+| `wrong_password` | `number` |  |
 
 #### Example: Load
 
 ```lua
-local authentication, err = client:Authentication():load({ id = "authentication_id" })
+local authentication, err = client:Authentication():load()
 ```
 
 #### Example: Create
@@ -386,20 +408,20 @@ Create an instance: `local get_user_post = client:GetUserPost(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ctx` | ``$STRING`` |  |
-| `e_id` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `img` | ``$STRING`` |  |
-| `lov` | ``$ARRAY`` |  |
-| `name` | ``$STRING`` |  |
-| `nb_p` | ``$INTEGER`` |  |
-| `nb_r` | ``$INTEGER`` |  |
-| `score` | ``$NUMBER`` |  |
-| `src` | ``$OBJECT`` |  |
-| `text` | ``$STRING`` |  |
-| `u_id` | ``$STRING`` |  |
-| `u_nm` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `ctx` | `string` |  |
+| `e_id` | `string` |  |
+| `id` | `string` |  |
+| `img` | `string` |  |
+| `lov` | `table` |  |
+| `name` | `string` |  |
+| `nb_p` | `number` |  |
+| `nb_r` | `number` |  |
+| `score` | `number` |  |
+| `src` | `table` |  |
+| `text` | `string` |  |
+| `u_id` | `string` |  |
+| `u_nm` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: List
 
@@ -422,10 +444,10 @@ Create an instance: `local playlist = client:Playlist(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$INTEGER`` |  |
-| `name` | ``$STRING`` |  |
-| `nb_track` | ``$INTEGER`` |  |
-| `url` | ``$STRING`` |  |
+| `id` | `number` |  |
+| `name` | `string` |  |
+| `nb_track` | `number` |  |
+| `url` | `string` |  |
 
 #### Example: List
 
@@ -448,25 +470,25 @@ Create an instance: `local post = client:Post(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ctx` | ``$STRING`` |  |
-| `e_id` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `img` | ``$STRING`` |  |
-| `lov` | ``$ARRAY`` |  |
-| `name` | ``$STRING`` |  |
-| `nb_p` | ``$INTEGER`` |  |
-| `nb_r` | ``$INTEGER`` |  |
-| `score` | ``$NUMBER`` |  |
-| `src` | ``$OBJECT`` |  |
-| `text` | ``$STRING`` |  |
-| `u_id` | ``$STRING`` |  |
-| `u_nm` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `ctx` | `string` |  |
+| `e_id` | `string` |  |
+| `id` | `string` |  |
+| `img` | `string` |  |
+| `lov` | `table` |  |
+| `name` | `string` |  |
+| `nb_p` | `number` |  |
+| `nb_r` | `number` |  |
+| `score` | `number` |  |
+| `src` | `table` |  |
+| `text` | `string` |  |
+| `u_id` | `string` |  |
+| `u_nm` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local post, err = client:Post():load({ id = "post_id" })
+local post, err = client:Post():load()
 ```
 
 
@@ -484,8 +506,8 @@ Create an instance: `local search = client:Search(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `q` | ``$STRING`` |  |
-| `result` | ``$ARRAY`` |  |
+| `q` | `string` |  |
+| `result` | `table` |  |
 
 #### Example: List
 
@@ -508,9 +530,9 @@ Create an instance: `local subscription = client:Subscription(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `is_subscribing` | ``$BOOLEAN`` |  |
-| `u_id` | ``$STRING`` |  |
-| `u_nm` | ``$STRING`` |  |
+| `is_subscribing` | `boolean` |  |
+| `u_id` | `string` |  |
+| `u_nm` | `string` |  |
 
 #### Example: Load
 
@@ -534,10 +556,10 @@ Create an instance: `local user = client:User(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$INTEGER`` |  |
-| `name` | ``$STRING`` |  |
-| `nb_track` | ``$INTEGER`` |  |
-| `url` | ``$STRING`` |  |
+| `id` | `number` |  |
+| `name` | `string` |  |
+| `nb_track` | `number` |  |
+| `url` | `string` |  |
 
 #### Example: List
 
@@ -553,12 +575,16 @@ local user, err = client:User():create({
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -575,8 +601,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -625,9 +652,9 @@ stores the returned data and match criteria internally.
 
 ```lua
 local authentication = client:Authentication()
-authentication:load({ id = "example_id" })
+authentication:load()
 
--- authentication:data_get() now returns the loaded authentication data
+-- authentication:data_get() now returns the authentication data from the last load
 -- authentication:match_get() returns the last match criteria
 ```
 

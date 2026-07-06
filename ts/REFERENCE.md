@@ -189,12 +189,12 @@ const authentication = client.Authentication()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `error` | ``$STRING`` | No |  |
-| `ok` | ``$STRING`` | No |  |
-| `redirect` | ``$STRING`` | No |  |
-| `u_id` | ``$STRING`` | No |  |
-| `user` | ``$OBJECT`` | No |  |
-| `wrong_password` | ``$INTEGER`` | No |  |
+| `error` | `string` | No |  |
+| `ok` | `string` | No |  |
+| `redirect` | `string` | No |  |
+| `u_id` | `string` | No |  |
+| `user` | `Record<string, any>` | No |  |
+| `wrong_password` | `number` | No |  |
 
 ### Operations
 
@@ -212,7 +212,7 @@ const result = await client.Authentication().create({
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Authentication().load({ id: 'authentication_id' })
+const result = await client.Authentication().load()
 ```
 
 ### Common Methods
@@ -253,20 +253,20 @@ const get_user_post = client.GetUserPost()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ctx` | ``$STRING`` | No |  |
-| `e_id` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `img` | ``$STRING`` | No |  |
-| `lov` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nb_p` | ``$INTEGER`` | No |  |
-| `nb_r` | ``$INTEGER`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `src` | ``$OBJECT`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `u_id` | ``$STRING`` | No |  |
-| `u_nm` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `ctx` | `string` | No |  |
+| `e_id` | `string` | No |  |
+| `id` | `string` | No |  |
+| `img` | `string` | No |  |
+| `lov` | `any[]` | No |  |
+| `name` | `string` | No |  |
+| `nb_p` | `number` | No |  |
+| `nb_r` | `number` | No |  |
+| `score` | `number` | No |  |
+| `src` | `Record<string, any>` | No |  |
+| `text` | `string` | No |  |
+| `u_id` | `string` | No |  |
+| `u_nm` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -316,10 +316,10 @@ const playlist = client.Playlist()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nb_track` | ``$INTEGER`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `id` | `number` | No |  |
+| `name` | `string` | No |  |
+| `nb_track` | `number` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -369,20 +369,20 @@ const post = client.Post()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ctx` | ``$STRING`` | No |  |
-| `e_id` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `img` | ``$STRING`` | No |  |
-| `lov` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nb_p` | ``$INTEGER`` | No |  |
-| `nb_r` | ``$INTEGER`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `src` | ``$OBJECT`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `u_id` | ``$STRING`` | No |  |
-| `u_nm` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `ctx` | `string` | No |  |
+| `e_id` | `string` | No |  |
+| `id` | `string` | No |  |
+| `img` | `string` | No |  |
+| `lov` | `any[]` | No |  |
+| `name` | `string` | No |  |
+| `nb_p` | `number` | No |  |
+| `nb_r` | `number` | No |  |
+| `score` | `number` | No |  |
+| `src` | `Record<string, any>` | No |  |
+| `text` | `string` | No |  |
+| `u_id` | `string` | No |  |
+| `u_nm` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -391,7 +391,7 @@ const post = client.Post()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Post().load({ id: 'post_id' })
+const result = await client.Post().load()
 ```
 
 ### Common Methods
@@ -432,8 +432,8 @@ const search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `q` | ``$STRING`` | No |  |
-| `result` | ``$ARRAY`` | No |  |
+| `q` | `string` | No |  |
+| `result` | `any[]` | No |  |
 
 ### Operations
 
@@ -483,9 +483,9 @@ const subscription = client.Subscription()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `is_subscribing` | ``$BOOLEAN`` | No |  |
-| `u_id` | ``$STRING`` | No |  |
-| `u_nm` | ``$STRING`` | No |  |
+| `is_subscribing` | `boolean` | No |  |
+| `u_id` | `string` | No |  |
+| `u_nm` | `string` | No |  |
 
 ### Operations
 
@@ -535,10 +535,10 @@ const user = client.User()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nb_track` | ``$INTEGER`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `id` | `number` | No |  |
+| `name` | `string` | No |  |
+| `nb_track` | `number` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 

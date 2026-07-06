@@ -112,12 +112,12 @@ authentication = client.Authentication()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `error` | ``$STRING`` | No |  |
-| `ok` | ``$STRING`` | No |  |
-| `redirect` | ``$STRING`` | No |  |
-| `u_id` | ``$STRING`` | No |  |
-| `user` | ``$OBJECT`` | No |  |
-| `wrong_password` | ``$INTEGER`` | No |  |
+| `error` | `str` | No |  |
+| `ok` | `str` | No |  |
+| `redirect` | `str` | No |  |
+| `u_id` | `str` | No |  |
+| `user` | `dict` | No |  |
+| `wrong_password` | `int` | No |  |
 
 ### Operations
 
@@ -135,7 +135,7 @@ result = client.Authentication().create({
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Authentication().load({"id": "authentication_id"})
+result = client.Authentication().load()
 ```
 
 ### Common Methods
@@ -177,29 +177,29 @@ get_user_post = client.GetUserPost()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ctx` | ``$STRING`` | No |  |
-| `e_id` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `img` | ``$STRING`` | No |  |
-| `lov` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nb_p` | ``$INTEGER`` | No |  |
-| `nb_r` | ``$INTEGER`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `src` | ``$OBJECT`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `u_id` | ``$STRING`` | No |  |
-| `u_nm` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `ctx` | `str` | No |  |
+| `e_id` | `str` | No |  |
+| `id` | `str` | No |  |
+| `img` | `str` | No |  |
+| `lov` | `list` | No |  |
+| `name` | `str` | No |  |
+| `nb_p` | `int` | No |  |
+| `nb_r` | `int` | No |  |
+| `score` | `float` | No |  |
+| `src` | `dict` | No |  |
+| `text` | `str` | No |  |
+| `u_id` | `str` | No |  |
+| `u_nm` | `str` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.GetUserPost().list({})
+results = client.GetUserPost().list()
 for get_user_post in results:
     print(get_user_post)
 ```
@@ -243,19 +243,19 @@ playlist = client.Playlist()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nb_track` | ``$INTEGER`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `id` | `int` | No |  |
+| `name` | `str` | No |  |
+| `nb_track` | `int` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Playlist().list({})
+results = client.Playlist().list()
 for playlist in results:
     print(playlist)
 ```
@@ -299,20 +299,20 @@ post = client.Post()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ctx` | ``$STRING`` | No |  |
-| `e_id` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `img` | ``$STRING`` | No |  |
-| `lov` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nb_p` | ``$INTEGER`` | No |  |
-| `nb_r` | ``$INTEGER`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `src` | ``$OBJECT`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `u_id` | ``$STRING`` | No |  |
-| `u_nm` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `ctx` | `str` | No |  |
+| `e_id` | `str` | No |  |
+| `id` | `str` | No |  |
+| `img` | `str` | No |  |
+| `lov` | `list` | No |  |
+| `name` | `str` | No |  |
+| `nb_p` | `int` | No |  |
+| `nb_r` | `int` | No |  |
+| `score` | `float` | No |  |
+| `src` | `dict` | No |  |
+| `text` | `str` | No |  |
+| `u_id` | `str` | No |  |
+| `u_nm` | `str` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
@@ -321,7 +321,7 @@ post = client.Post()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Post().load({"id": "post_id"})
+result = client.Post().load()
 ```
 
 ### Common Methods
@@ -363,17 +363,17 @@ search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `q` | ``$STRING`` | No |  |
-| `result` | ``$ARRAY`` | No |  |
+| `q` | `str` | No |  |
+| `result` | `list` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Search().list({})
+results = client.Search().list()
 for search in results:
     print(search)
 ```
@@ -417,9 +417,9 @@ subscription = client.Subscription()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `is_subscribing` | ``$BOOLEAN`` | No |  |
-| `u_id` | ``$STRING`` | No |  |
-| `u_nm` | ``$STRING`` | No |  |
+| `is_subscribing` | `bool` | No |  |
+| `u_id` | `str` | No |  |
+| `u_nm` | `str` | No |  |
 
 ### Operations
 
@@ -470,10 +470,10 @@ user = client.User()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nb_track` | ``$INTEGER`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `id` | `int` | No |  |
+| `name` | `str` | No |  |
+| `nb_track` | `int` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
@@ -486,12 +486,12 @@ result = client.User().create({
 })
 ```
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.User().list({})
+results = client.User().list()
 for user in results:
     print(user)
 ```

@@ -23,7 +23,7 @@ class Authentication
     public ?int $wrong_password = null;
 }
 
-/** Match filter for Authentication#load (any subset of Authentication fields). */
+/** Request payload for Authentication#load. */
 class AuthenticationLoadMatch
 {
     public ?string $error = null;
@@ -34,7 +34,7 @@ class AuthenticationLoadMatch
     public ?int $wrong_password = null;
 }
 
-/** Match filter for Authentication#create (any subset of Authentication fields). */
+/** Request payload for Authentication#create. */
 class AuthenticationCreateData
 {
     public ?string $error = null;
@@ -119,7 +119,7 @@ class Search
     public ?array $result = null;
 }
 
-/** Match filter for Search#list (any subset of Search fields). */
+/** Request payload for Search#list. */
 class SearchListMatch
 {
     public ?string $q = null;
@@ -155,7 +155,7 @@ class UserListMatch
     public string $username;
 }
 
-/** Match filter for User#create (any subset of User fields). */
+/** Request payload for User#create. */
 class UserCreateData
 {
     public ?int $id = null;

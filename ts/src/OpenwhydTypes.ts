@@ -14,9 +14,23 @@ export interface Authentication {
   wrong_password?: number
 }
 
-export type AuthenticationLoadMatch = Partial<Authentication>
+export interface AuthenticationLoadMatch {
+  error?: string
+  ok?: string
+  redirect?: string
+  u_id?: string
+  user?: Record<string, any>
+  wrong_password?: number
+}
 
-export type AuthenticationCreateData = Partial<Authentication>
+export interface AuthenticationCreateData {
+  error?: string
+  ok?: string
+  redirect?: string
+  u_id?: string
+  user?: Record<string, any>
+  wrong_password?: number
+}
 
 export interface GetUserPost {
   ctx?: string
@@ -78,7 +92,10 @@ export interface Search {
   result?: any[]
 }
 
-export type SearchListMatch = Partial<Search>
+export interface SearchListMatch {
+  q?: string
+  result?: any[]
+}
 
 export interface Subscription {
   is_subscribing?: boolean
@@ -101,5 +118,10 @@ export interface UserListMatch {
   username: string
 }
 
-export type UserCreateData = Partial<User>
+export interface UserCreateData {
+  id?: number
+  name?: string
+  nb_track?: number
+  url?: string
+}
 

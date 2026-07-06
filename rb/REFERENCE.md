@@ -8,7 +8,7 @@ Complete API reference for the Openwhyd Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'openwhyd_sdk'
+require_relative 'Openwhyd_sdk'
 
 client = OpenwhydSDK.new(options)
 ```
@@ -118,12 +118,12 @@ authentication = client.Authentication
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `error` | ``$STRING`` | No |  |
-| `ok` | ``$STRING`` | No |  |
-| `redirect` | ``$STRING`` | No |  |
-| `u_id` | ``$STRING`` | No |  |
-| `user` | ``$OBJECT`` | No |  |
-| `wrong_password` | ``$INTEGER`` | No |  |
+| `error` | `String` | No |  |
+| `ok` | `String` | No |  |
+| `redirect` | `String` | No |  |
+| `u_id` | `String` | No |  |
+| `user` | `Hash` | No |  |
+| `wrong_password` | `Integer` | No |  |
 
 ### Operations
 
@@ -141,7 +141,7 @@ result = client.Authentication.create({
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Authentication.load({ "id" => "authentication_id" })
+result = client.Authentication.load()
 ```
 
 ### Common Methods
@@ -184,29 +184,29 @@ get_user_post = client.GetUserPost
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ctx` | ``$STRING`` | No |  |
-| `e_id` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `img` | ``$STRING`` | No |  |
-| `lov` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nb_p` | ``$INTEGER`` | No |  |
-| `nb_r` | ``$INTEGER`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `src` | ``$OBJECT`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `u_id` | ``$STRING`` | No |  |
-| `u_nm` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `ctx` | `String` | No |  |
+| `e_id` | `String` | No |  |
+| `id` | `String` | No |  |
+| `img` | `String` | No |  |
+| `lov` | `Array` | No |  |
+| `name` | `String` | No |  |
+| `nb_p` | `Integer` | No |  |
+| `nb_r` | `Integer` | No |  |
+| `score` | `Float` | No |  |
+| `src` | `Hash` | No |  |
+| `text` | `String` | No |  |
+| `u_id` | `String` | No |  |
+| `u_nm` | `String` | No |  |
+| `url` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.GetUserPost.list(nil)
+results = client.GetUserPost.list
 ```
 
 ### Common Methods
@@ -249,19 +249,19 @@ playlist = client.Playlist
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nb_track` | ``$INTEGER`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `id` | `Integer` | No |  |
+| `name` | `String` | No |  |
+| `nb_track` | `Integer` | No |  |
+| `url` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Playlist.list(nil)
+results = client.Playlist.list
 ```
 
 ### Common Methods
@@ -304,20 +304,20 @@ post = client.Post
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ctx` | ``$STRING`` | No |  |
-| `e_id` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `img` | ``$STRING`` | No |  |
-| `lov` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nb_p` | ``$INTEGER`` | No |  |
-| `nb_r` | ``$INTEGER`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `src` | ``$OBJECT`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `u_id` | ``$STRING`` | No |  |
-| `u_nm` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `ctx` | `String` | No |  |
+| `e_id` | `String` | No |  |
+| `id` | `String` | No |  |
+| `img` | `String` | No |  |
+| `lov` | `Array` | No |  |
+| `name` | `String` | No |  |
+| `nb_p` | `Integer` | No |  |
+| `nb_r` | `Integer` | No |  |
+| `score` | `Float` | No |  |
+| `src` | `Hash` | No |  |
+| `text` | `String` | No |  |
+| `u_id` | `String` | No |  |
+| `u_nm` | `String` | No |  |
+| `url` | `String` | No |  |
 
 ### Operations
 
@@ -326,7 +326,7 @@ post = client.Post
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Post.load({ "id" => "post_id" })
+result = client.Post.load()
 ```
 
 ### Common Methods
@@ -369,17 +369,17 @@ search = client.Search
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `q` | ``$STRING`` | No |  |
-| `result` | ``$ARRAY`` | No |  |
+| `q` | `String` | No |  |
+| `result` | `Array` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Search.list(nil)
+results = client.Search.list
 ```
 
 ### Common Methods
@@ -422,9 +422,9 @@ subscription = client.Subscription
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `is_subscribing` | ``$BOOLEAN`` | No |  |
-| `u_id` | ``$STRING`` | No |  |
-| `u_nm` | ``$STRING`` | No |  |
+| `is_subscribing` | `Boolean` | No |  |
+| `u_id` | `String` | No |  |
+| `u_nm` | `String` | No |  |
 
 ### Operations
 
@@ -476,10 +476,10 @@ user = client.User
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nb_track` | ``$INTEGER`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `id` | `Integer` | No |  |
+| `name` | `String` | No |  |
+| `nb_track` | `Integer` | No |  |
+| `url` | `String` | No |  |
 
 ### Operations
 
@@ -492,12 +492,12 @@ result = client.User.create({
 })
 ```
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.User.list(nil)
+results = client.User.list
 ```
 
 ### Common Methods

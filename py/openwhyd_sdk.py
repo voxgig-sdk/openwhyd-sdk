@@ -221,43 +221,43 @@ class OpenwhydSDK:
 
 
     def Authentication(self, data=None) -> "AuthenticationEntity":
-        """Entity factory: client.Authentication().list({}) / client.Authentication().load({"id": ...})."""
+        """Entity factory: client.Authentication().list() / client.Authentication().load({"id": ...})."""
         from entity.authentication_entity import AuthenticationEntity
         return AuthenticationEntity(self, data)
 
 
     def GetUserPost(self, data=None) -> "GetUserPostEntity":
-        """Entity factory: client.GetUserPost().list({}) / client.GetUserPost().load({"id": ...})."""
+        """Entity factory: client.GetUserPost().list() / client.GetUserPost().load({"id": ...})."""
         from entity.get_user_post_entity import GetUserPostEntity
         return GetUserPostEntity(self, data)
 
 
     def Playlist(self, data=None) -> "PlaylistEntity":
-        """Entity factory: client.Playlist().list({}) / client.Playlist().load({"id": ...})."""
+        """Entity factory: client.Playlist().list() / client.Playlist().load({"id": ...})."""
         from entity.playlist_entity import PlaylistEntity
         return PlaylistEntity(self, data)
 
 
     def Post(self, data=None) -> "PostEntity":
-        """Entity factory: client.Post().list({}) / client.Post().load({"id": ...})."""
+        """Entity factory: client.Post().list() / client.Post().load({"id": ...})."""
         from entity.post_entity import PostEntity
         return PostEntity(self, data)
 
 
     def Search(self, data=None) -> "SearchEntity":
-        """Entity factory: client.Search().list({}) / client.Search().load({"id": ...})."""
+        """Entity factory: client.Search().list() / client.Search().load({"id": ...})."""
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 
 
     def Subscription(self, data=None) -> "SubscriptionEntity":
-        """Entity factory: client.Subscription().list({}) / client.Subscription().load({"id": ...})."""
+        """Entity factory: client.Subscription().list() / client.Subscription().load({"id": ...})."""
         from entity.subscription_entity import SubscriptionEntity
         return SubscriptionEntity(self, data)
 
 
     def User(self, data=None) -> "UserEntity":
-        """Entity factory: client.User().list({}) / client.User().load({"id": ...})."""
+        """Entity factory: client.User().list() / client.User().load({"id": ...})."""
         from entity.user_entity import UserEntity
         return UserEntity(self, data)
 

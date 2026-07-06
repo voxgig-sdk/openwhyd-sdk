@@ -115,12 +115,12 @@ local authentication = client:Authentication(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `error` | ``$STRING`` | No |  |
-| `ok` | ``$STRING`` | No |  |
-| `redirect` | ``$STRING`` | No |  |
-| `u_id` | ``$STRING`` | No |  |
-| `user` | ``$OBJECT`` | No |  |
-| `wrong_password` | ``$INTEGER`` | No |  |
+| `error` | `string` | No |  |
+| `ok` | `string` | No |  |
+| `redirect` | `string` | No |  |
+| `u_id` | `string` | No |  |
+| `user` | `table` | No |  |
+| `wrong_password` | `number` | No |  |
 
 ### Operations
 
@@ -138,7 +138,7 @@ local result, err = client:Authentication():create({
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Authentication():load({ id = "authentication_id" })
+local result, err = client:Authentication():load()
 ```
 
 ### Common Methods
@@ -181,20 +181,20 @@ local get_user_post = client:GetUserPost(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ctx` | ``$STRING`` | No |  |
-| `e_id` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `img` | ``$STRING`` | No |  |
-| `lov` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nb_p` | ``$INTEGER`` | No |  |
-| `nb_r` | ``$INTEGER`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `src` | ``$OBJECT`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `u_id` | ``$STRING`` | No |  |
-| `u_nm` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `ctx` | `string` | No |  |
+| `e_id` | `string` | No |  |
+| `id` | `string` | No |  |
+| `img` | `string` | No |  |
+| `lov` | `table` | No |  |
+| `name` | `string` | No |  |
+| `nb_p` | `number` | No |  |
+| `nb_r` | `number` | No |  |
+| `score` | `number` | No |  |
+| `src` | `table` | No |  |
+| `text` | `string` | No |  |
+| `u_id` | `string` | No |  |
+| `u_nm` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -246,10 +246,10 @@ local playlist = client:Playlist(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nb_track` | ``$INTEGER`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `id` | `number` | No |  |
+| `name` | `string` | No |  |
+| `nb_track` | `number` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -301,20 +301,20 @@ local post = client:Post(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ctx` | ``$STRING`` | No |  |
-| `e_id` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `img` | ``$STRING`` | No |  |
-| `lov` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nb_p` | ``$INTEGER`` | No |  |
-| `nb_r` | ``$INTEGER`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `src` | ``$OBJECT`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `u_id` | ``$STRING`` | No |  |
-| `u_nm` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `ctx` | `string` | No |  |
+| `e_id` | `string` | No |  |
+| `id` | `string` | No |  |
+| `img` | `string` | No |  |
+| `lov` | `table` | No |  |
+| `name` | `string` | No |  |
+| `nb_p` | `number` | No |  |
+| `nb_r` | `number` | No |  |
+| `score` | `number` | No |  |
+| `src` | `table` | No |  |
+| `text` | `string` | No |  |
+| `u_id` | `string` | No |  |
+| `u_nm` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -323,7 +323,7 @@ local post = client:Post(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Post():load({ id = "post_id" })
+local result, err = client:Post():load()
 ```
 
 ### Common Methods
@@ -366,8 +366,8 @@ local search = client:Search(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `q` | ``$STRING`` | No |  |
-| `result` | ``$ARRAY`` | No |  |
+| `q` | `string` | No |  |
+| `result` | `table` | No |  |
 
 ### Operations
 
@@ -419,9 +419,9 @@ local subscription = client:Subscription(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `is_subscribing` | ``$BOOLEAN`` | No |  |
-| `u_id` | ``$STRING`` | No |  |
-| `u_nm` | ``$STRING`` | No |  |
+| `is_subscribing` | `boolean` | No |  |
+| `u_id` | `string` | No |  |
+| `u_nm` | `string` | No |  |
 
 ### Operations
 
@@ -473,10 +473,10 @@ local user = client:User(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nb_track` | ``$INTEGER`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `id` | `number` | No |  |
+| `name` | `string` | No |  |
+| `nb_track` | `number` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
