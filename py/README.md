@@ -55,7 +55,7 @@ except Exception as err:
 
 ```python
 # Create — returns the bare created record (a dict)
-created = client.Authentication().create({"error": "example", "ok": "example"})
+created = client.Authentication().create({"error": "example_error", "ok": "example_ok"})
 
 ```
 

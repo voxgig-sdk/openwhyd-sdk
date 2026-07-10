@@ -47,7 +47,7 @@ print(authentication)
 
 ```lua
 -- Create
-local created, err = client:Authentication():create({ error = "example", ok = "example" })
+local created, err = client:Authentication():create({ error = "example_error", ok = "example_ok" })
 if err then error(err) end
 
 ```

@@ -15,7 +15,7 @@ local function make_config()
     options = {
       base = "https://openwhyd.org",
       auth = {
-        prefix = "Bearer",
+        prefix = "",
       },
       headers = {
         ["content-type"] = "application/json",

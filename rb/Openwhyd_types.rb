@@ -259,13 +259,13 @@ Post = Struct.new(
 # Request payload for Post#load.
 #
 # @!attribute [rw] playlist_id
-#   @return [String]
+#   @return [String, nil]
 #
 # @!attribute [rw] username
-#   @return [String]
+#   @return [String, nil]
 #
 # @!attribute [rw] genre
-#   @return [String]
+#   @return [String, nil]
 PostLoadMatch = Struct.new(
   :playlist_id,
   :username,
@@ -349,7 +349,7 @@ User = Struct.new(
 # Request payload for User#list.
 #
 # @!attribute [rw] username
-#   @return [String]
+#   @return [String, nil]
 UserListMatch = Struct.new(
   :username,
   keyword_init: true

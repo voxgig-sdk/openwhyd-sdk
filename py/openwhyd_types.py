@@ -92,7 +92,7 @@ class Post(TypedDict, total=False):
     url: str
 
 
-class PostLoadMatch(TypedDict):
+class PostLoadMatch(TypedDict, total=False):
     playlist_id: str
     username: str
     genre: str
@@ -125,7 +125,7 @@ class User(TypedDict, total=False):
     url: str
 
 
-class UserListMatch(TypedDict):
+class UserListMatch(TypedDict, total=False):
     username: str
 
 

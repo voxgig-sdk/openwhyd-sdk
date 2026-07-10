@@ -116,6 +116,7 @@ same parameters as `Direct()`.
 
 ```go
 authentication := client.Authentication(nil)
+fmt.Println(authentication.GetName()) // "authentication"
 ```
 
 ### Fields
@@ -131,6 +132,18 @@ authentication := client.Authentication(nil)
 
 ### Operations
 
+#### `Load(reqmatch, ctrl map[string]any) (any, error)`
+
+Load a single entity matching the given criteria.
+
+```go
+result, err := client.Authentication(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
 #### `Create(reqdata, ctrl map[string]any) (any, error)`
 
 Create a new entity with the given data.
@@ -138,14 +151,10 @@ Create a new entity with the given data.
 ```go
 result, err := client.Authentication(nil).Create(map[string]any{
 }, nil)
-```
-
-#### `Load(reqmatch, ctrl map[string]any) (any, error)`
-
-Load a single entity matching the given criteria.
-
-```go
-result, err := client.Authentication(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -175,7 +184,8 @@ Return the entity name.
 ## GetUserPostEntity
 
 ```go
-get_user_post := client.GetUserPost(nil)
+getUserPost := client.GetUserPost(nil)
+fmt.Println(getUserPost.GetName()) // "get_user_post"
 ```
 
 ### Fields
@@ -205,6 +215,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.GetUserPost(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -235,6 +249,7 @@ Return the entity name.
 
 ```go
 playlist := client.Playlist(nil)
+fmt.Println(playlist.GetName()) // "playlist"
 ```
 
 ### Fields
@@ -254,6 +269,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Playlist(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -284,6 +303,7 @@ Return the entity name.
 
 ```go
 post := client.Post(nil)
+fmt.Println(post.GetName()) // "post"
 ```
 
 ### Fields
@@ -313,6 +333,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Post(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -343,6 +367,7 @@ Return the entity name.
 
 ```go
 search := client.Search(nil)
+fmt.Println(search.GetName()) // "search"
 ```
 
 ### Fields
@@ -360,6 +385,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Search(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -390,6 +419,7 @@ Return the entity name.
 
 ```go
 subscription := client.Subscription(nil)
+fmt.Println(subscription.GetName()) // "subscription"
 ```
 
 ### Fields
@@ -408,6 +438,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Subscription(nil).Load(map[string]any{"id": "subscription_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -438,6 +472,7 @@ Return the entity name.
 
 ```go
 user := client.User(nil)
+fmt.Println(user.GetName()) // "user"
 ```
 
 ### Fields
@@ -451,6 +486,18 @@ user := client.User(nil)
 
 ### Operations
 
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns an array.
+
+```go
+results, err := client.User(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
+```
+
 #### `Create(reqdata, ctrl map[string]any) (any, error)`
 
 Create a new entity with the given data.
@@ -458,14 +505,10 @@ Create a new entity with the given data.
 ```go
 result, err := client.User(nil).Create(map[string]any{
 }, nil)
-```
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns an array.
-
-```go
-results, err := client.User(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

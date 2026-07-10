@@ -1,9 +1,0 @@
-# Entity Models
-
-@"authentication.jsonic"
-@"get_user_post.jsonic"
-@"playlist.jsonic"
-@"post.jsonic"
-@"search.jsonic"
-@"subscription.jsonic"
-@"user.jsonic"

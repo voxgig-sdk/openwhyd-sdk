@@ -61,7 +61,7 @@ func main() {
     fmt.Println(authentication)
 
     // Create a authentication.
-    created, err := client.Authentication(nil).Create(map[string]any{"error": "example", "ok": "example"}, nil)
+    created, err := client.Authentication(nil).Create(map[string]any{"error": "example_error", "ok": "example_ok"}, nil)
     if err != nil {
         panic(err)
     }
@@ -398,8 +398,8 @@ Create an instance: `authentication := client.Authentication(nil)`
 
 | Method | Description |
 | --- | --- |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 
 #### Fields
 
@@ -427,12 +427,16 @@ fmt.Println(authentication) // the loaded record
 ```go
 result, err := client.Authentication(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
 ### GetUserPost
 
-Create an instance: `get_user_post := client.GetUserPost(nil)`
+Create an instance: `getUserPost := client.GetUserPost(nil)`
 
 #### Operations
 
@@ -462,11 +466,11 @@ Create an instance: `get_user_post := client.GetUserPost(nil)`
 #### Example: List
 
 ```go
-get_user_posts, err := client.GetUserPost(nil).List(nil, nil)
+getUserPosts, err := client.GetUserPost(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(get_user_posts) // the array of records
+fmt.Println(getUserPosts) // the array of records
 ```
 
 
@@ -605,8 +609,8 @@ Create an instance: `user := client.User(nil)`
 
 | Method | Description |
 | --- | --- |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
 | `List(match, ctrl)` | List entities matching the criteria. |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 
 #### Fields
 
@@ -632,6 +636,10 @@ fmt.Println(users) // the array of records
 ```go
 result, err := client.User(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 

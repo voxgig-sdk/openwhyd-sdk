@@ -82,9 +82,9 @@ export interface Post {
 }
 
 export interface PostLoadMatch {
-  playlist_id: string
-  username: string
-  genre: string
+  playlist_id?: string
+  username?: string
+  genre?: string
 }
 
 export interface Search {
@@ -115,7 +115,7 @@ export interface User {
 }
 
 export interface UserListMatch {
-  username: string
+  username?: string
 }
 
 export interface UserCreateData {

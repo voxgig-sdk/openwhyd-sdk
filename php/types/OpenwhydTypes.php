@@ -107,9 +107,9 @@ class Post
 /** Request payload for Post#load. */
 class PostLoadMatch
 {
-    public string $playlist_id;
-    public string $username;
-    public string $genre;
+    public ?string $playlist_id = null;
+    public ?string $username = null;
+    public ?string $genre = null;
 }
 
 /** Search entity data model. */
@@ -152,7 +152,7 @@ class User
 /** Request payload for User#list. */
 class UserListMatch
 {
-    public string $username;
+    public ?string $username = null;
 }
 
 /** Request payload for User#create. */

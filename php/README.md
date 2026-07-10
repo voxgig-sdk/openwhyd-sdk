@@ -49,7 +49,7 @@ try {
 
 ```php
 // create() returns the bare created Authentication record.
-$created = $client->Authentication()->create(["error" => "example", "ok" => "example"]);
+$created = $client->Authentication()->create(["error" => "example_error", "ok" => "example_ok"]);
 
 ```
 

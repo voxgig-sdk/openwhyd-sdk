@@ -94,9 +94,9 @@ type Post struct {
 
 // PostLoadMatch is the typed request payload for Post.LoadTyped.
 type PostLoadMatch struct {
-	PlaylistId string `json:"playlist_id"`
-	Username string `json:"username"`
-	Genre string `json:"genre"`
+	PlaylistId *string `json:"playlist_id,omitempty"`
+	Username *string `json:"username,omitempty"`
+	Genre *string `json:"genre,omitempty"`
 }
 
 // Search is the typed data model for the search entity.
@@ -133,7 +133,7 @@ type User struct {
 
 // UserListMatch is the typed request payload for User.ListTyped.
 type UserListMatch struct {
-	Username string `json:"username"`
+	Username *string `json:"username,omitempty"`
 }
 
 // UserCreateData is the typed request payload for User.CreateTyped.
