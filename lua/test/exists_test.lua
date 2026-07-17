@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Openwhyd SDK exists test
 
 local sdk = require("openwhyd_sdk")
 
