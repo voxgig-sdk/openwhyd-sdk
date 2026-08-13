@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'Openwhyd',
   }
 
 
@@ -78,45 +78,164 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "error",
+          "name": "bio",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "ok",
+          "name": "cvrImg",
           "req": false,
           "type": "`$STRING`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "redirect",
+          "name": "email",
           "req": false,
           "type": "`$STRING`",
           "index$": 2
         },
         {
           "active": true,
-          "name": "u_id",
+          "name": "error",
           "req": false,
           "type": "`$STRING`",
           "index$": 3
         },
         {
           "active": true,
-          "name": "user",
+          "name": "handle",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$STRING`",
           "index$": 4
         },
         {
           "active": true,
-          "name": "wrong_password",
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "img",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "isSubscribing",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "index$": 7
+        },
+        {
+          "active": true,
+          "name": "lastArtists",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 8
+        },
+        {
+          "active": true,
+          "name": "lastFm",
+          "req": false,
+          "type": "`$OBJECT`",
+          "index$": 9
+        },
+        {
+          "active": true,
+          "name": "lnk",
+          "req": false,
+          "type": "`$OBJECT`",
+          "index$": 10
+        },
+        {
+          "active": true,
+          "name": "loc",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 11
+        },
+        {
+          "active": true,
+          "name": "name",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 12
+        },
+        {
+          "active": true,
+          "name": "nbLikes",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 5
+          "index$": 13
+        },
+        {
+          "active": true,
+          "name": "nbPosts",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 14
+        },
+        {
+          "active": true,
+          "name": "nbSubscribers",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 15
+        },
+        {
+          "active": true,
+          "name": "nbSubscriptions",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 16
+        },
+        {
+          "active": true,
+          "name": "pl",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 17
+        },
+        {
+          "active": true,
+          "name": "redirect",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 18
+        },
+        {
+          "active": true,
+          "name": "twId",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 19
+        },
+        {
+          "active": true,
+          "name": "twSec",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 20
+        },
+        {
+          "active": true,
+          "name": "twTok",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 21
+        },
+        {
+          "active": true,
+          "name": "uId",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 22
         }
       ],
       "name": "authentication",
@@ -128,6 +247,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/login",
               "parts": [
@@ -136,13 +256,14 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.user`"
               },
               "index$": 0
             },
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/register",
               "parts": [
@@ -208,6 +329,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/login",
               "parts": [
@@ -224,7 +346,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.user`"
               },
               "index$": 0
             },
@@ -242,6 +364,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/logout",
               "parts": [
@@ -277,7 +400,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "e_id",
+          "name": "eId",
           "req": false,
           "type": "`$STRING`",
           "index$": 1
@@ -312,14 +435,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "nb_p",
+          "name": "nbP",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 6
         },
         {
           "active": true,
-          "name": "nb_r",
+          "name": "nbR",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 7
@@ -347,14 +470,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "u_id",
+          "name": "uId",
           "req": false,
           "type": "`$STRING`",
           "index$": 11
         },
         {
           "active": true,
-          "name": "u_nm",
+          "name": "uNm",
           "req": false,
           "type": "`$STRING`",
           "index$": 12
@@ -423,6 +546,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{username}",
               "parts": [
@@ -474,7 +598,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "nb_track",
+          "name": "nbTracks",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 2
@@ -518,6 +642,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{username}/playlists",
               "parts": [
@@ -555,7 +680,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "e_id",
+          "name": "eId",
           "req": false,
           "type": "`$STRING`",
           "index$": 1
@@ -590,14 +715,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "nb_p",
+          "name": "nbP",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 6
         },
         {
           "active": true,
-          "name": "nb_r",
+          "name": "nbR",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 7
@@ -625,14 +750,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "u_id",
+          "name": "uId",
           "req": false,
           "type": "`$STRING`",
           "index$": 11
         },
         {
           "active": true,
-          "name": "u_nm",
+          "name": "uNm",
           "req": false,
           "type": "`$STRING`",
           "index$": 12
@@ -702,6 +827,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{username}/playlist/{playlistId}",
               "parts": [
@@ -763,6 +889,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/hot/{genre}",
               "parts": [
@@ -808,7 +935,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "result",
+          "name": "results",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 1
@@ -850,6 +977,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/search",
               "parts": [
@@ -864,7 +992,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.results`"
               },
               "index$": 0
             }
@@ -880,21 +1008,21 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "is_subscribing",
+          "name": "isSubscribing",
           "req": false,
           "type": "`$BOOLEAN`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "u_id",
+          "name": "uId",
           "req": false,
           "type": "`$STRING`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "u_nm",
+          "name": "uNm",
           "req": false,
           "type": "`$STRING`",
           "index$": 2
@@ -948,6 +1076,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/follow/fetchFollowers/{id}",
               "parts": [
@@ -1012,6 +1141,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/follow/fetchFollowing/{id}",
               "parts": [
@@ -1060,7 +1190,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "nb_track",
+          "name": "nbTracks",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 2
@@ -1082,6 +1212,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/api/user",
               "parts": [
@@ -1148,6 +1279,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/user",
               "parts": [
@@ -1184,6 +1316,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{username}/info",
               "parts": [

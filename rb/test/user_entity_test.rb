@@ -74,7 +74,7 @@ class UserEntityTest < Minitest::Test
     user_ref01_data["username"] = setup[:idmap]["username01"]
 
     user_ref01_data_result = user_ref01_ent.create(user_ref01_data, nil)
-    user_ref01_data = Helpers.to_map(user_ref01_data_result)
+    user_ref01_data = Helpers.to_map(user_ref01_data_result.respond_to?(:data_get) ? user_ref01_data_result.data_get : user_ref01_data_result)
     assert !user_ref01_data.nil?
     assert !user_ref01_data["id"].nil?
 

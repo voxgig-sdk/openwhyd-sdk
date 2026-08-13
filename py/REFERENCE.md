@@ -112,12 +112,29 @@ authentication = client.Authentication()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `bio` | `str` | No |  |
+| `cvrImg` | `str` | No |  |
+| `email` | `str` | No |  |
 | `error` | `str` | No |  |
-| `ok` | `str` | No |  |
+| `handle` | `str` | No |  |
+| `id` | `str` | No |  |
+| `img` | `str` | No |  |
+| `isSubscribing` | `bool` | No |  |
+| `lastArtists` | `list` | No |  |
+| `lastFm` | `dict` | No |  |
+| `lnk` | `dict` | No |  |
+| `loc` | `str` | No |  |
+| `name` | `str` | No |  |
+| `nbLikes` | `int` | No |  |
+| `nbPosts` | `int` | No |  |
+| `nbSubscribers` | `int` | No |  |
+| `nbSubscriptions` | `int` | No |  |
+| `pl` | `list` | No |  |
 | `redirect` | `str` | No |  |
-| `u_id` | `str` | No |  |
-| `user` | `dict` | No |  |
-| `wrong_password` | `int` | No |  |
+| `twId` | `str` | No |  |
+| `twSec` | `str` | No |  |
+| `twTok` | `str` | No |  |
+| `uId` | `str` | No |  |
 
 ### Operations
 
@@ -135,7 +152,7 @@ result = client.Authentication().create({
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Authentication().load()
+result = client.Authentication().load({"id": "authentication_id"})
 ```
 
 ### Common Methods
@@ -178,18 +195,18 @@ get_user_post = client.GetUserPost()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `ctx` | `str` | No |  |
-| `e_id` | `str` | No |  |
+| `eId` | `str` | No |  |
 | `id` | `str` | No |  |
 | `img` | `str` | No |  |
 | `lov` | `list` | No |  |
 | `name` | `str` | No |  |
-| `nb_p` | `int` | No |  |
-| `nb_r` | `int` | No |  |
+| `nbP` | `int` | No |  |
+| `nbR` | `int` | No |  |
 | `score` | `float` | No |  |
 | `src` | `dict` | No |  |
 | `text` | `str` | No |  |
-| `u_id` | `str` | No |  |
-| `u_nm` | `str` | No |  |
+| `uId` | `str` | No |  |
+| `uNm` | `str` | No |  |
 | `url` | `str` | No |  |
 
 ### Operations
@@ -199,7 +216,7 @@ get_user_post = client.GetUserPost()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.GetUserPost().list()
+results = client.GetUserPost().list({"id": "example"})
 for get_user_post in results:
     print(get_user_post)
 ```
@@ -245,7 +262,7 @@ playlist = client.Playlist()
 | --- | --- | --- | --- |
 | `id` | `int` | No |  |
 | `name` | `str` | No |  |
-| `nb_track` | `int` | No |  |
+| `nbTracks` | `int` | No |  |
 | `url` | `str` | No |  |
 
 ### Operations
@@ -255,7 +272,7 @@ playlist = client.Playlist()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Playlist().list()
+results = client.Playlist().list({"username": "example"})
 for playlist in results:
     print(playlist)
 ```
@@ -300,18 +317,18 @@ post = client.Post()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `ctx` | `str` | No |  |
-| `e_id` | `str` | No |  |
+| `eId` | `str` | No |  |
 | `id` | `str` | No |  |
 | `img` | `str` | No |  |
 | `lov` | `list` | No |  |
 | `name` | `str` | No |  |
-| `nb_p` | `int` | No |  |
-| `nb_r` | `int` | No |  |
+| `nbP` | `int` | No |  |
+| `nbR` | `int` | No |  |
 | `score` | `float` | No |  |
 | `src` | `dict` | No |  |
 | `text` | `str` | No |  |
-| `u_id` | `str` | No |  |
-| `u_nm` | `str` | No |  |
+| `uId` | `str` | No |  |
+| `uNm` | `str` | No |  |
 | `url` | `str` | No |  |
 
 ### Operations
@@ -364,7 +381,7 @@ search = client.Search()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `q` | `str` | No |  |
-| `result` | `list` | No |  |
+| `results` | `list` | No |  |
 
 ### Operations
 
@@ -417,9 +434,9 @@ subscription = client.Subscription()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `is_subscribing` | `bool` | No |  |
-| `u_id` | `str` | No |  |
-| `u_nm` | `str` | No |  |
+| `isSubscribing` | `bool` | No |  |
+| `uId` | `str` | No |  |
+| `uNm` | `str` | No |  |
 
 ### Operations
 
@@ -472,7 +489,7 @@ user = client.User()
 | --- | --- | --- | --- |
 | `id` | `int` | No |  |
 | `name` | `str` | No |  |
-| `nb_track` | `int` | No |  |
+| `nbTracks` | `int` | No |  |
 | `url` | `str` | No |  |
 
 ### Operations

@@ -2,21 +2,21 @@
   "existing": {
     "subscription": {
       "SUBSCRIPTION00": {
-        "is_subscribing": true,
-        "u_id": "U01",
-        "u_nm": "s20",
+        "isSubscribing": true,
+        "uId": "s1f",
+        "uNm": "s20",
         "id": "SUBSCRIPTION00"
       },
       "SUBSCRIPTION01": {
-        "is_subscribing": true,
-        "u_id": "U01",
-        "u_nm": "s3e",
+        "isSubscribing": true,
+        "uId": "s3d",
+        "uNm": "s3e",
         "id": "SUBSCRIPTION01"
       },
       "SUBSCRIPTION02": {
-        "is_subscribing": true,
-        "u_id": "U01",
-        "u_nm": "s5c",
+        "isSubscribing": true,
+        "uId": "s5b",
+        "uNm": "s5c",
         "id": "SUBSCRIPTION02"
       }
     }
@@ -24,9 +24,9 @@
   "new": {
     "subscription": {
       "subscription_ref01": {
-        "is_subscribing": true,
-        "u_id": "U01",
-        "u_nm": "s7a"
+        "isSubscribing": true,
+        "uId": "s79",
+        "uNm": "s7a"
       }
     }
   }

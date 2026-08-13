@@ -118,12 +118,29 @@ authentication = client.Authentication
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `bio` | `String` | No |  |
+| `cvrImg` | `String` | No |  |
+| `email` | `String` | No |  |
 | `error` | `String` | No |  |
-| `ok` | `String` | No |  |
+| `handle` | `String` | No |  |
+| `id` | `String` | No |  |
+| `img` | `String` | No |  |
+| `isSubscribing` | `Boolean` | No |  |
+| `lastArtists` | `Array` | No |  |
+| `lastFm` | `Hash` | No |  |
+| `lnk` | `Hash` | No |  |
+| `loc` | `String` | No |  |
+| `name` | `String` | No |  |
+| `nbLikes` | `Integer` | No |  |
+| `nbPosts` | `Integer` | No |  |
+| `nbSubscribers` | `Integer` | No |  |
+| `nbSubscriptions` | `Integer` | No |  |
+| `pl` | `Array` | No |  |
 | `redirect` | `String` | No |  |
-| `u_id` | `String` | No |  |
-| `user` | `Hash` | No |  |
-| `wrong_password` | `Integer` | No |  |
+| `twId` | `String` | No |  |
+| `twSec` | `String` | No |  |
+| `twTok` | `String` | No |  |
+| `uId` | `String` | No |  |
 
 ### Operations
 
@@ -141,7 +158,7 @@ result = client.Authentication.create({
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Authentication.load()
+result = client.Authentication.load({ "id" => "authentication_id" })
 ```
 
 ### Common Methods
@@ -185,18 +202,18 @@ get_user_post = client.GetUserPost
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `ctx` | `String` | No |  |
-| `e_id` | `String` | No |  |
+| `eId` | `String` | No |  |
 | `id` | `String` | No |  |
 | `img` | `String` | No |  |
 | `lov` | `Array` | No |  |
 | `name` | `String` | No |  |
-| `nb_p` | `Integer` | No |  |
-| `nb_r` | `Integer` | No |  |
+| `nbP` | `Integer` | No |  |
+| `nbR` | `Integer` | No |  |
 | `score` | `Float` | No |  |
 | `src` | `Hash` | No |  |
 | `text` | `String` | No |  |
-| `u_id` | `String` | No |  |
-| `u_nm` | `String` | No |  |
+| `uId` | `String` | No |  |
+| `uNm` | `String` | No |  |
 | `url` | `String` | No |  |
 
 ### Operations
@@ -251,7 +268,7 @@ playlist = client.Playlist
 | --- | --- | --- | --- |
 | `id` | `Integer` | No |  |
 | `name` | `String` | No |  |
-| `nb_track` | `Integer` | No |  |
+| `nbTracks` | `Integer` | No |  |
 | `url` | `String` | No |  |
 
 ### Operations
@@ -305,18 +322,18 @@ post = client.Post
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `ctx` | `String` | No |  |
-| `e_id` | `String` | No |  |
+| `eId` | `String` | No |  |
 | `id` | `String` | No |  |
 | `img` | `String` | No |  |
 | `lov` | `Array` | No |  |
 | `name` | `String` | No |  |
-| `nb_p` | `Integer` | No |  |
-| `nb_r` | `Integer` | No |  |
+| `nbP` | `Integer` | No |  |
+| `nbR` | `Integer` | No |  |
 | `score` | `Float` | No |  |
 | `src` | `Hash` | No |  |
 | `text` | `String` | No |  |
-| `u_id` | `String` | No |  |
-| `u_nm` | `String` | No |  |
+| `uId` | `String` | No |  |
+| `uNm` | `String` | No |  |
 | `url` | `String` | No |  |
 
 ### Operations
@@ -370,7 +387,7 @@ search = client.Search
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `q` | `String` | No |  |
-| `result` | `Array` | No |  |
+| `results` | `Array` | No |  |
 
 ### Operations
 
@@ -422,9 +439,9 @@ subscription = client.Subscription
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `is_subscribing` | `Boolean` | No |  |
-| `u_id` | `String` | No |  |
-| `u_nm` | `String` | No |  |
+| `isSubscribing` | `Boolean` | No |  |
+| `uId` | `String` | No |  |
+| `uNm` | `String` | No |  |
 
 ### Operations
 
@@ -478,7 +495,7 @@ user = client.User
 | --- | --- | --- | --- |
 | `id` | `Integer` | No |  |
 | `name` | `String` | No |  |
-| `nb_track` | `Integer` | No |  |
+| `nbTracks` | `Integer` | No |  |
 | `url` | `String` | No |  |
 
 ### Operations

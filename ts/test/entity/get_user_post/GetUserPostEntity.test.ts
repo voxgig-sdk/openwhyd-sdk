@@ -64,7 +64,7 @@ describe('GetUserPostEntity', async () => {
     const get_user_post_ref01_match: any = {}
     get_user_post_ref01_match['username'] = setup.idmap['username01']
 
-    const get_user_post_ref01_list = await get_user_post_ref01_ent.list(get_user_post_ref01_match)
+    const get_user_post_ref01_list = (await get_user_post_ref01_ent.list(get_user_post_ref01_match)).map((e: any) => e.data())
 
 
   })

@@ -54,14 +54,14 @@ func main() {
     })
 
     // Load a single authentication — the value is the loaded record.
-    authentication, err := client.Authentication(nil).Load(nil, nil)
+    authentication, err := client.Authentication(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(authentication)
 
     // Create a authentication.
-    created, err := client.Authentication(nil).Create(map[string]any{"error": "example_error", "ok": "example_ok"}, nil)
+    created, err := client.Authentication(nil).Create(map[string]any{"bio": "example_bio", "cvrImg": "example_cvrImg"}, nil)
     if err != nil {
         panic(err)
     }
@@ -76,12 +76,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-authentication, err := client.Authentication(nil).Load(nil, nil)
+playlists, err := client.Playlist(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = authentication
+_ = playlists
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -145,13 +145,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-authentication, err := client.Authentication(nil).Load(
+playlist, err := client.Playlist(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(authentication) // the returned mock data
+fmt.Println(playlist) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -266,7 +266,7 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    authentication, err := client.Authentication(nil).Load(nil, nil)
+    authentication, err := client.Authentication(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil { /* handle */ }
     // authentication is the returned record
 
@@ -279,12 +279,29 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
+| `"bio"` |  |
+| `"cvrImg"` |  |
+| `"email"` |  |
 | `"error"` |  |
-| `"ok"` |  |
+| `"handle"` |  |
+| `"id"` |  |
+| `"img"` |  |
+| `"isSubscribing"` |  |
+| `"lastArtists"` |  |
+| `"lastFm"` |  |
+| `"lnk"` |  |
+| `"loc"` |  |
+| `"name"` |  |
+| `"nbLikes"` |  |
+| `"nbPosts"` |  |
+| `"nbSubscribers"` |  |
+| `"nbSubscriptions"` |  |
+| `"pl"` |  |
 | `"redirect"` |  |
-| `"u_id"` |  |
-| `"user"` |  |
-| `"wrong_password"` |  |
+| `"twId"` |  |
+| `"twSec"` |  |
+| `"twTok"` |  |
+| `"uId"` |  |
 
 Operations: Create, Load.
 
@@ -295,18 +312,18 @@ API path: `/login`
 | Field | Description |
 | --- | --- |
 | `"ctx"` |  |
-| `"e_id"` |  |
+| `"eId"` |  |
 | `"id"` |  |
 | `"img"` |  |
 | `"lov"` |  |
 | `"name"` |  |
-| `"nb_p"` |  |
-| `"nb_r"` |  |
+| `"nbP"` |  |
+| `"nbR"` |  |
 | `"score"` |  |
 | `"src"` |  |
 | `"text"` |  |
-| `"u_id"` |  |
-| `"u_nm"` |  |
+| `"uId"` |  |
+| `"uNm"` |  |
 | `"url"` |  |
 
 Operations: List.
@@ -319,7 +336,7 @@ API path: `/{username}`
 | --- | --- |
 | `"id"` |  |
 | `"name"` |  |
-| `"nb_track"` |  |
+| `"nbTracks"` |  |
 | `"url"` |  |
 
 Operations: List.
@@ -331,18 +348,18 @@ API path: `/{username}/playlists`
 | Field | Description |
 | --- | --- |
 | `"ctx"` |  |
-| `"e_id"` |  |
+| `"eId"` |  |
 | `"id"` |  |
 | `"img"` |  |
 | `"lov"` |  |
 | `"name"` |  |
-| `"nb_p"` |  |
-| `"nb_r"` |  |
+| `"nbP"` |  |
+| `"nbR"` |  |
 | `"score"` |  |
 | `"src"` |  |
 | `"text"` |  |
-| `"u_id"` |  |
-| `"u_nm"` |  |
+| `"uId"` |  |
+| `"uNm"` |  |
 | `"url"` |  |
 
 Operations: Load.
@@ -354,7 +371,7 @@ API path: `/{username}/playlist/{playlistId}`
 | Field | Description |
 | --- | --- |
 | `"q"` |  |
-| `"result"` |  |
+| `"results"` |  |
 
 Operations: List.
 
@@ -364,9 +381,9 @@ API path: `/search`
 
 | Field | Description |
 | --- | --- |
-| `"is_subscribing"` |  |
-| `"u_id"` |  |
-| `"u_nm"` |  |
+| `"isSubscribing"` |  |
+| `"uId"` |  |
+| `"uNm"` |  |
 
 Operations: Load.
 
@@ -378,7 +395,7 @@ API path: `/api/follow/fetchFollowers/{id}`
 | --- | --- |
 | `"id"` |  |
 | `"name"` |  |
-| `"nb_track"` |  |
+| `"nbTracks"` |  |
 | `"url"` |  |
 
 Operations: Create, List.
@@ -405,17 +422,34 @@ Create an instance: `authentication := client.Authentication(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `bio` | `string` |  |
+| `cvrImg` | `string` |  |
+| `email` | `string` |  |
 | `error` | `string` |  |
-| `ok` | `string` |  |
+| `handle` | `string` |  |
+| `id` | `string` |  |
+| `img` | `string` |  |
+| `isSubscribing` | `bool` |  |
+| `lastArtists` | `[]any` |  |
+| `lastFm` | `map[string]any` |  |
+| `lnk` | `map[string]any` |  |
+| `loc` | `string` |  |
+| `name` | `string` |  |
+| `nbLikes` | `int` |  |
+| `nbPosts` | `int` |  |
+| `nbSubscribers` | `int` |  |
+| `nbSubscriptions` | `int` |  |
+| `pl` | `[]any` |  |
 | `redirect` | `string` |  |
-| `u_id` | `string` |  |
-| `user` | `map[string]any` |  |
-| `wrong_password` | `int` |  |
+| `twId` | `string` |  |
+| `twSec` | `string` |  |
+| `twTok` | `string` |  |
+| `uId` | `string` |  |
 
 #### Example: Load
 
 ```go
-authentication, err := client.Authentication(nil).Load(nil, nil)
+authentication, err := client.Authentication(nil).Load(map[string]any{"id": "authentication_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -449,18 +483,18 @@ Create an instance: `getUserPost := client.GetUserPost(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `ctx` | `string` |  |
-| `e_id` | `string` |  |
+| `eId` | `string` |  |
 | `id` | `string` |  |
 | `img` | `string` |  |
 | `lov` | `[]any` |  |
 | `name` | `string` |  |
-| `nb_p` | `int` |  |
-| `nb_r` | `int` |  |
+| `nbP` | `int` |  |
+| `nbR` | `int` |  |
 | `score` | `float64` |  |
 | `src` | `map[string]any` |  |
 | `text` | `string` |  |
-| `u_id` | `string` |  |
-| `u_nm` | `string` |  |
+| `uId` | `string` |  |
+| `uNm` | `string` |  |
 | `url` | `string` |  |
 
 #### Example: List
@@ -490,7 +524,7 @@ Create an instance: `playlist := client.Playlist(nil)`
 | --- | --- | --- |
 | `id` | `int` |  |
 | `name` | `string` |  |
-| `nb_track` | `int` |  |
+| `nbTracks` | `int` |  |
 | `url` | `string` |  |
 
 #### Example: List
@@ -519,18 +553,18 @@ Create an instance: `post := client.Post(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `ctx` | `string` |  |
-| `e_id` | `string` |  |
+| `eId` | `string` |  |
 | `id` | `string` |  |
 | `img` | `string` |  |
 | `lov` | `[]any` |  |
 | `name` | `string` |  |
-| `nb_p` | `int` |  |
-| `nb_r` | `int` |  |
+| `nbP` | `int` |  |
+| `nbR` | `int` |  |
 | `score` | `float64` |  |
 | `src` | `map[string]any` |  |
 | `text` | `string` |  |
-| `u_id` | `string` |  |
-| `u_nm` | `string` |  |
+| `uId` | `string` |  |
+| `uNm` | `string` |  |
 | `url` | `string` |  |
 
 #### Example: Load
@@ -559,7 +593,7 @@ Create an instance: `search := client.Search(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `q` | `string` |  |
-| `result` | `[]any` |  |
+| `results` | `[]any` |  |
 
 #### Example: List
 
@@ -586,9 +620,9 @@ Create an instance: `subscription := client.Subscription(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `is_subscribing` | `bool` |  |
-| `u_id` | `string` |  |
-| `u_nm` | `string` |  |
+| `isSubscribing` | `bool` |  |
+| `uId` | `string` |  |
+| `uNm` | `string` |  |
 
 #### Example: Load
 
@@ -618,7 +652,7 @@ Create an instance: `user := client.User(nil)`
 | --- | --- | --- |
 | `id` | `int` |  |
 | `name` | `string` |  |
-| `nb_track` | `int` |  |
+| `nbTracks` | `int` |  |
 | `url` | `string` |  |
 
 #### Example: List
@@ -712,15 +746,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-authentication := client.Authentication(nil)
-authentication.Load(nil, nil)
+playlist := client.Playlist(nil)
+playlist.List(nil, nil)
 
-// authentication.Data() now returns the authentication data from the last load
-// authentication.Match() returns the last match criteria
+// playlist.Data() now returns the playlist data from the last list
+// playlist.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

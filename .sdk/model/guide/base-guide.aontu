@@ -8,7 +8,9 @@ guide: {
   entity: authentication: {
     path: "/login": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.user`")|top
       op: load: method: *GET
+      op: load: transform: res: *("`body.user`")|top
     }
     path: "/logout": {
       op: load: method: *GET
@@ -44,6 +46,7 @@ guide: {
   entity: search: {
     path: "/search": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.results`")|top
     }
   }
 

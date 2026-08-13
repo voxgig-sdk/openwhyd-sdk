@@ -189,12 +189,29 @@ const authentication = client.Authentication()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `bio` | `string` | No |  |
+| `cvrImg` | `string` | No |  |
+| `email` | `string` | No |  |
 | `error` | `string` | No |  |
-| `ok` | `string` | No |  |
+| `handle` | `string` | No |  |
+| `id` | `string` | No |  |
+| `img` | `string` | No |  |
+| `isSubscribing` | `boolean` | No |  |
+| `lastArtists` | `any[]` | No |  |
+| `lastFm` | `Record<string, any>` | No |  |
+| `lnk` | `Record<string, any>` | No |  |
+| `loc` | `string` | No |  |
+| `name` | `string` | No |  |
+| `nbLikes` | `number` | No |  |
+| `nbPosts` | `number` | No |  |
+| `nbSubscribers` | `number` | No |  |
+| `nbSubscriptions` | `number` | No |  |
+| `pl` | `any[]` | No |  |
 | `redirect` | `string` | No |  |
-| `u_id` | `string` | No |  |
-| `user` | `Record<string, any>` | No |  |
-| `wrong_password` | `number` | No |  |
+| `twId` | `string` | No |  |
+| `twSec` | `string` | No |  |
+| `twTok` | `string` | No |  |
+| `uId` | `string` | No |  |
 
 ### Operations
 
@@ -212,7 +229,7 @@ const result = await client.Authentication().create({
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Authentication().load()
+const result = await client.Authentication().load({ id: 'authentication_id' })
 ```
 
 ### Common Methods
@@ -254,18 +271,18 @@ const get_user_post = client.GetUserPost()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `ctx` | `string` | No |  |
-| `e_id` | `string` | No |  |
+| `eId` | `string` | No |  |
 | `id` | `string` | No |  |
 | `img` | `string` | No |  |
 | `lov` | `any[]` | No |  |
 | `name` | `string` | No |  |
-| `nb_p` | `number` | No |  |
-| `nb_r` | `number` | No |  |
+| `nbP` | `number` | No |  |
+| `nbR` | `number` | No |  |
 | `score` | `number` | No |  |
 | `src` | `Record<string, any>` | No |  |
 | `text` | `string` | No |  |
-| `u_id` | `string` | No |  |
-| `u_nm` | `string` | No |  |
+| `uId` | `string` | No |  |
+| `uNm` | `string` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -275,7 +292,7 @@ const get_user_post = client.GetUserPost()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.GetUserPost().list()
+const results = await client.GetUserPost().list({ id: "example" })
 ```
 
 ### Common Methods
@@ -318,7 +335,7 @@ const playlist = client.Playlist()
 | --- | --- | --- | --- |
 | `id` | `number` | No |  |
 | `name` | `string` | No |  |
-| `nb_track` | `number` | No |  |
+| `nbTracks` | `number` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -328,7 +345,7 @@ const playlist = client.Playlist()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Playlist().list()
+const results = await client.Playlist().list({ username: "example" })
 ```
 
 ### Common Methods
@@ -370,18 +387,18 @@ const post = client.Post()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `ctx` | `string` | No |  |
-| `e_id` | `string` | No |  |
+| `eId` | `string` | No |  |
 | `id` | `string` | No |  |
 | `img` | `string` | No |  |
 | `lov` | `any[]` | No |  |
 | `name` | `string` | No |  |
-| `nb_p` | `number` | No |  |
-| `nb_r` | `number` | No |  |
+| `nbP` | `number` | No |  |
+| `nbR` | `number` | No |  |
 | `score` | `number` | No |  |
 | `src` | `Record<string, any>` | No |  |
 | `text` | `string` | No |  |
-| `u_id` | `string` | No |  |
-| `u_nm` | `string` | No |  |
+| `uId` | `string` | No |  |
+| `uNm` | `string` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -433,7 +450,7 @@ const search = client.Search()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `q` | `string` | No |  |
-| `result` | `any[]` | No |  |
+| `results` | `any[]` | No |  |
 
 ### Operations
 
@@ -483,9 +500,9 @@ const subscription = client.Subscription()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `is_subscribing` | `boolean` | No |  |
-| `u_id` | `string` | No |  |
-| `u_nm` | `string` | No |  |
+| `isSubscribing` | `boolean` | No |  |
+| `uId` | `string` | No |  |
+| `uNm` | `string` | No |  |
 
 ### Operations
 
@@ -537,7 +554,7 @@ const user = client.User()
 | --- | --- | --- | --- |
 | `id` | `number` | No |  |
 | `name` | `string` | No |  |
-| `nb_track` | `number` | No |  |
+| `nbTracks` | `number` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations

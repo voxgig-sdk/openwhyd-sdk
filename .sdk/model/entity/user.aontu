@@ -16,7 +16,7 @@ main: kit: entity: user: {
       type: "`$STRING`"
     }
     {
-      name: "nb_track"
+      name: "nbTracks"
       req: false
       type: "`$INTEGER`"
     }

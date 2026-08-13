@@ -36,8 +36,8 @@ client = OpenwhydSDK.new({
 
 ```ruby
 begin
-  # load returns the bare Authentication record (raises on error).
-  authentication = client.Authentication.load()
+  # load returns the ENTITY — call data_get for the Authentication record (raises on error).
+  authentication = client.Authentication.load({ "id" => "example_id" })
   puts authentication
 rescue => err
   warn "load failed: #{err}"
@@ -47,8 +47,8 @@ end
 ### 4. Create, update, and remove
 
 ```ruby
-# create returns the bare created Authentication record.
-created = client.Authentication.create({ "error" => "example_error", "ok" => "example_ok" })
+# create returns the ENTITY — call data_get for the created Authentication record.
+created = client.Authentication.create({ "bio" => "example_bio", "cvrImg" => "example_cvrImg" })
 
 ```
 
@@ -59,9 +59,9 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  authentication = client.Authentication.load()
+  playlists = client.Playlist.list()
 rescue => err
-  warn "load failed: #{err}"
+  warn "list failed: #{err}"
 end
 ```
 
@@ -127,9 +127,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = OpenwhydSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-authentication = client.Authentication.load()
-puts authentication
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+playlist = client.Playlist.list()
+puts playlist
 ```
 
 ### Use a custom fetch function
@@ -254,12 +255,29 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
+| `bio` |  |
+| `cvrImg` |  |
+| `email` |  |
 | `error` |  |
-| `ok` |  |
+| `handle` |  |
+| `id` |  |
+| `img` |  |
+| `isSubscribing` |  |
+| `lastArtists` |  |
+| `lastFm` |  |
+| `lnk` |  |
+| `loc` |  |
+| `name` |  |
+| `nbLikes` |  |
+| `nbPosts` |  |
+| `nbSubscribers` |  |
+| `nbSubscriptions` |  |
+| `pl` |  |
 | `redirect` |  |
-| `u_id` |  |
-| `user` |  |
-| `wrong_password` |  |
+| `twId` |  |
+| `twSec` |  |
+| `twTok` |  |
+| `uId` |  |
 
 Operations: Create, Load.
 
@@ -270,18 +288,18 @@ API path: `/login`
 | Field | Description |
 | --- | --- |
 | `ctx` |  |
-| `e_id` |  |
+| `eId` |  |
 | `id` |  |
 | `img` |  |
 | `lov` |  |
 | `name` |  |
-| `nb_p` |  |
-| `nb_r` |  |
+| `nbP` |  |
+| `nbR` |  |
 | `score` |  |
 | `src` |  |
 | `text` |  |
-| `u_id` |  |
-| `u_nm` |  |
+| `uId` |  |
+| `uNm` |  |
 | `url` |  |
 
 Operations: List.
@@ -294,7 +312,7 @@ API path: `/{username}`
 | --- | --- |
 | `id` |  |
 | `name` |  |
-| `nb_track` |  |
+| `nbTracks` |  |
 | `url` |  |
 
 Operations: List.
@@ -306,18 +324,18 @@ API path: `/{username}/playlists`
 | Field | Description |
 | --- | --- |
 | `ctx` |  |
-| `e_id` |  |
+| `eId` |  |
 | `id` |  |
 | `img` |  |
 | `lov` |  |
 | `name` |  |
-| `nb_p` |  |
-| `nb_r` |  |
+| `nbP` |  |
+| `nbR` |  |
 | `score` |  |
 | `src` |  |
 | `text` |  |
-| `u_id` |  |
-| `u_nm` |  |
+| `uId` |  |
+| `uNm` |  |
 | `url` |  |
 
 Operations: Load.
@@ -329,7 +347,7 @@ API path: `/{username}/playlist/{playlistId}`
 | Field | Description |
 | --- | --- |
 | `q` |  |
-| `result` |  |
+| `results` |  |
 
 Operations: List.
 
@@ -339,9 +357,9 @@ API path: `/search`
 
 | Field | Description |
 | --- | --- |
-| `is_subscribing` |  |
-| `u_id` |  |
-| `u_nm` |  |
+| `isSubscribing` |  |
+| `uId` |  |
+| `uNm` |  |
 
 Operations: Load.
 
@@ -353,7 +371,7 @@ API path: `/api/follow/fetchFollowers/{id}`
 | --- | --- |
 | `id` |  |
 | `name` |  |
-| `nb_track` |  |
+| `nbTracks` |  |
 | `url` |  |
 
 Operations: Create, List.
@@ -380,18 +398,35 @@ Create an instance: `authentication = client.Authentication`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `bio` | `String` |  |
+| `cvrImg` | `String` |  |
+| `email` | `String` |  |
 | `error` | `String` |  |
-| `ok` | `String` |  |
+| `handle` | `String` |  |
+| `id` | `String` |  |
+| `img` | `String` |  |
+| `isSubscribing` | `Boolean` |  |
+| `lastArtists` | `Array` |  |
+| `lastFm` | `Hash` |  |
+| `lnk` | `Hash` |  |
+| `loc` | `String` |  |
+| `name` | `String` |  |
+| `nbLikes` | `Integer` |  |
+| `nbPosts` | `Integer` |  |
+| `nbSubscribers` | `Integer` |  |
+| `nbSubscriptions` | `Integer` |  |
+| `pl` | `Array` |  |
 | `redirect` | `String` |  |
-| `u_id` | `String` |  |
-| `user` | `Hash` |  |
-| `wrong_password` | `Integer` |  |
+| `twId` | `String` |  |
+| `twSec` | `String` |  |
+| `twTok` | `String` |  |
+| `uId` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Authentication record (raises on error).
-authentication = client.Authentication.load()
+# load returns the ENTITY — call data_get for the Authentication record (raises on error).
+authentication = client.Authentication.load({ "id" => "authentication_id" })
 ```
 
 #### Example: Create
@@ -417,18 +452,18 @@ Create an instance: `get_user_post = client.GetUserPost`
 | Field | Type | Description |
 | --- | --- | --- |
 | `ctx` | `String` |  |
-| `e_id` | `String` |  |
+| `eId` | `String` |  |
 | `id` | `String` |  |
 | `img` | `String` |  |
 | `lov` | `Array` |  |
 | `name` | `String` |  |
-| `nb_p` | `Integer` |  |
-| `nb_r` | `Integer` |  |
+| `nbP` | `Integer` |  |
+| `nbR` | `Integer` |  |
 | `score` | `Float` |  |
 | `src` | `Hash` |  |
 | `text` | `String` |  |
-| `u_id` | `String` |  |
-| `u_nm` | `String` |  |
+| `uId` | `String` |  |
+| `uNm` | `String` |  |
 | `url` | `String` |  |
 
 #### Example: List
@@ -455,7 +490,7 @@ Create an instance: `playlist = client.Playlist`
 | --- | --- | --- |
 | `id` | `Integer` |  |
 | `name` | `String` |  |
-| `nb_track` | `Integer` |  |
+| `nbTracks` | `Integer` |  |
 | `url` | `String` |  |
 
 #### Example: List
@@ -481,24 +516,24 @@ Create an instance: `post = client.Post`
 | Field | Type | Description |
 | --- | --- | --- |
 | `ctx` | `String` |  |
-| `e_id` | `String` |  |
+| `eId` | `String` |  |
 | `id` | `String` |  |
 | `img` | `String` |  |
 | `lov` | `Array` |  |
 | `name` | `String` |  |
-| `nb_p` | `Integer` |  |
-| `nb_r` | `Integer` |  |
+| `nbP` | `Integer` |  |
+| `nbR` | `Integer` |  |
 | `score` | `Float` |  |
 | `src` | `Hash` |  |
 | `text` | `String` |  |
-| `u_id` | `String` |  |
-| `u_nm` | `String` |  |
+| `uId` | `String` |  |
+| `uNm` | `String` |  |
 | `url` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Post record (raises on error).
+# load returns the ENTITY — call data_get for the Post record (raises on error).
 post = client.Post.load()
 ```
 
@@ -518,7 +553,7 @@ Create an instance: `search = client.Search`
 | Field | Type | Description |
 | --- | --- | --- |
 | `q` | `String` |  |
-| `result` | `Array` |  |
+| `results` | `Array` |  |
 
 #### Example: List
 
@@ -542,14 +577,14 @@ Create an instance: `subscription = client.Subscription`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `is_subscribing` | `Boolean` |  |
-| `u_id` | `String` |  |
-| `u_nm` | `String` |  |
+| `isSubscribing` | `Boolean` |  |
+| `uId` | `String` |  |
+| `uNm` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Subscription record (raises on error).
+# load returns the ENTITY — call data_get for the Subscription record (raises on error).
 subscription = client.Subscription.load({ "id" => "subscription_id" })
 ```
 
@@ -571,7 +606,7 @@ Create an instance: `user = client.User`
 | --- | --- | --- |
 | `id` | `Integer` |  |
 | `name` | `String` |  |
-| `nb_track` | `Integer` |  |
+| `nbTracks` | `Integer` |  |
 | `url` | `String` |  |
 
 #### Example: List
@@ -661,15 +696,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-authentication = client.Authentication
-authentication.load()
+playlist = client.Playlist
+playlist.list()
 
-# authentication.data_get now returns the authentication data from the last load
-# authentication.match_get returns the last match criteria
+# playlist.data_get now returns the playlist data from the last list
+# playlist.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

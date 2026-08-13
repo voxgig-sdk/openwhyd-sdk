@@ -64,7 +64,7 @@ describe('PlaylistEntity', async () => {
     const playlist_ref01_match: any = {}
     playlist_ref01_match['username'] = setup.idmap['username01']
 
-    const playlist_ref01_list = await playlist_ref01_ent.list(playlist_ref01_match)
+    const playlist_ref01_list = (await playlist_ref01_ent.list(playlist_ref01_match)).map((e: any) => e.data())
 
 
   })

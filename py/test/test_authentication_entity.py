@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from openwhyd_sdk.utility.voxgig_struct import voxgig_struct as vs
 from openwhyd_sdk import OpenwhydSDK
-from core import helpers
+from openwhyd_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -44,13 +44,18 @@ class TestAuthenticationEntity:
         authentication_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.authentication"), "authentication_ref01"))
 
-        authentication_ref01_data = helpers.to_map(authentication_ref01_ent.create(authentication_ref01_data, None))
+        authentication_ref01_data = helpers.to_map(runner.entity_data(authentication_ref01_ent.create(authentication_ref01_data, None)))
         assert authentication_ref01_data is not None
+        assert authentication_ref01_data["id"] is not None
 
         # LOAD
-        authentication_ref01_match_dt0 = {}
+        authentication_ref01_match_dt0 = {
+            "id": authentication_ref01_data["id"],
+        }
         authentication_ref01_data_dt0_loaded = authentication_ref01_ent.load(authentication_ref01_match_dt0, None)
-        assert authentication_ref01_data_dt0_loaded is not None
+        authentication_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(authentication_ref01_data_dt0_loaded))
+        assert authentication_ref01_data_dt0_load_result is not None
+        assert authentication_ref01_data_dt0_load_result["id"] == authentication_ref01_data["id"]
 
 
 

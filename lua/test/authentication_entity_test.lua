@@ -41,14 +41,19 @@ describe("AuthenticationEntity", function()
 
     local authentication_ref01_data_result, err = authentication_ref01_ent:create(authentication_ref01_data, nil)
     assert.is_nil(err)
-    authentication_ref01_data = helpers.to_map(authentication_ref01_data_result)
+    authentication_ref01_data = helpers.to_map(type(authentication_ref01_data_result) == 'table' and authentication_ref01_data_result.data_get and authentication_ref01_data_result:data_get() or authentication_ref01_data_result)
     assert.is_not_nil(authentication_ref01_data)
+    assert.is_not_nil(authentication_ref01_data["id"])
 
     -- LOAD
-    local authentication_ref01_match_dt0 = {}
+    local authentication_ref01_match_dt0 = {
+      id = authentication_ref01_data["id"],
+    }
     local authentication_ref01_data_dt0_loaded, err = authentication_ref01_ent:load(authentication_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(authentication_ref01_data_dt0_loaded)
+    local authentication_ref01_data_dt0_load_result = helpers.to_map(type(authentication_ref01_data_dt0_loaded) == 'table' and authentication_ref01_data_dt0_loaded.data_get and authentication_ref01_data_dt0_loaded:data_get() or authentication_ref01_data_dt0_loaded)
+    assert.is_not_nil(authentication_ref01_data_dt0_load_result)
+    assert.are.equal(authentication_ref01_data_dt0_load_result["id"], authentication_ref01_data["id"])
 
   end)
 end)

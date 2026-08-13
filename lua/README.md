@@ -38,7 +38,7 @@ local client = sdk.new({
 ### 3. Load an authentication
 
 ```lua
-local authentication, err = client:Authentication():load()
+local authentication, err = client:Authentication():load({ id = "example_id" })
 if err then error(err) end
 print(authentication)
 ```
@@ -47,7 +47,7 @@ print(authentication)
 
 ```lua
 -- Create
-local created, err = client:Authentication():create({ error = "example_error", ok = "example_ok" })
+local created, err = client:Authentication():create({ bio = "example_bio", cvrImg = "example_cvrImg" })
 if err then error(err) end
 
 ```
@@ -59,7 +59,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local authentication, err = client:Authentication():load()
+local playlists, err = client:Playlist():list()
 if err then error(err) end
 ```
 
@@ -117,7 +117,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Authentication():load()
+local result, err = client:Playlist():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -234,7 +234,7 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local authentication, err = client:Authentication():load()
+    local authentication, err = client:Authentication():load({ id = "example_id" })
     if err then error(err) end
     -- authentication is the loaded record
 
@@ -247,12 +247,29 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
+| `bio` |  |
+| `cvrImg` |  |
+| `email` |  |
 | `error` |  |
-| `ok` |  |
+| `handle` |  |
+| `id` |  |
+| `img` |  |
+| `isSubscribing` |  |
+| `lastArtists` |  |
+| `lastFm` |  |
+| `lnk` |  |
+| `loc` |  |
+| `name` |  |
+| `nbLikes` |  |
+| `nbPosts` |  |
+| `nbSubscribers` |  |
+| `nbSubscriptions` |  |
+| `pl` |  |
 | `redirect` |  |
-| `u_id` |  |
-| `user` |  |
-| `wrong_password` |  |
+| `twId` |  |
+| `twSec` |  |
+| `twTok` |  |
+| `uId` |  |
 
 Operations: Create, Load.
 
@@ -263,18 +280,18 @@ API path: `/login`
 | Field | Description |
 | --- | --- |
 | `ctx` |  |
-| `e_id` |  |
+| `eId` |  |
 | `id` |  |
 | `img` |  |
 | `lov` |  |
 | `name` |  |
-| `nb_p` |  |
-| `nb_r` |  |
+| `nbP` |  |
+| `nbR` |  |
 | `score` |  |
 | `src` |  |
 | `text` |  |
-| `u_id` |  |
-| `u_nm` |  |
+| `uId` |  |
+| `uNm` |  |
 | `url` |  |
 
 Operations: List.
@@ -287,7 +304,7 @@ API path: `/{username}`
 | --- | --- |
 | `id` |  |
 | `name` |  |
-| `nb_track` |  |
+| `nbTracks` |  |
 | `url` |  |
 
 Operations: List.
@@ -299,18 +316,18 @@ API path: `/{username}/playlists`
 | Field | Description |
 | --- | --- |
 | `ctx` |  |
-| `e_id` |  |
+| `eId` |  |
 | `id` |  |
 | `img` |  |
 | `lov` |  |
 | `name` |  |
-| `nb_p` |  |
-| `nb_r` |  |
+| `nbP` |  |
+| `nbR` |  |
 | `score` |  |
 | `src` |  |
 | `text` |  |
-| `u_id` |  |
-| `u_nm` |  |
+| `uId` |  |
+| `uNm` |  |
 | `url` |  |
 
 Operations: Load.
@@ -322,7 +339,7 @@ API path: `/{username}/playlist/{playlistId}`
 | Field | Description |
 | --- | --- |
 | `q` |  |
-| `result` |  |
+| `results` |  |
 
 Operations: List.
 
@@ -332,9 +349,9 @@ API path: `/search`
 
 | Field | Description |
 | --- | --- |
-| `is_subscribing` |  |
-| `u_id` |  |
-| `u_nm` |  |
+| `isSubscribing` |  |
+| `uId` |  |
+| `uNm` |  |
 
 Operations: Load.
 
@@ -346,7 +363,7 @@ API path: `/api/follow/fetchFollowers/{id}`
 | --- | --- |
 | `id` |  |
 | `name` |  |
-| `nb_track` |  |
+| `nbTracks` |  |
 | `url` |  |
 
 Operations: Create, List.
@@ -373,17 +390,34 @@ Create an instance: `local authentication = client:Authentication(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `bio` | `string` |  |
+| `cvrImg` | `string` |  |
+| `email` | `string` |  |
 | `error` | `string` |  |
-| `ok` | `string` |  |
+| `handle` | `string` |  |
+| `id` | `string` |  |
+| `img` | `string` |  |
+| `isSubscribing` | `boolean` |  |
+| `lastArtists` | `table` |  |
+| `lastFm` | `table` |  |
+| `lnk` | `table` |  |
+| `loc` | `string` |  |
+| `name` | `string` |  |
+| `nbLikes` | `number` |  |
+| `nbPosts` | `number` |  |
+| `nbSubscribers` | `number` |  |
+| `nbSubscriptions` | `number` |  |
+| `pl` | `table` |  |
 | `redirect` | `string` |  |
-| `u_id` | `string` |  |
-| `user` | `table` |  |
-| `wrong_password` | `number` |  |
+| `twId` | `string` |  |
+| `twSec` | `string` |  |
+| `twTok` | `string` |  |
+| `uId` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local authentication, err = client:Authentication():load()
+local authentication, err = client:Authentication():load({ id = "authentication_id" })
 ```
 
 #### Example: Create
@@ -409,18 +443,18 @@ Create an instance: `local get_user_post = client:GetUserPost(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `ctx` | `string` |  |
-| `e_id` | `string` |  |
+| `eId` | `string` |  |
 | `id` | `string` |  |
 | `img` | `string` |  |
 | `lov` | `table` |  |
 | `name` | `string` |  |
-| `nb_p` | `number` |  |
-| `nb_r` | `number` |  |
+| `nbP` | `number` |  |
+| `nbR` | `number` |  |
 | `score` | `number` |  |
 | `src` | `table` |  |
 | `text` | `string` |  |
-| `u_id` | `string` |  |
-| `u_nm` | `string` |  |
+| `uId` | `string` |  |
+| `uNm` | `string` |  |
 | `url` | `string` |  |
 
 #### Example: List
@@ -446,7 +480,7 @@ Create an instance: `local playlist = client:Playlist(nil)`
 | --- | --- | --- |
 | `id` | `number` |  |
 | `name` | `string` |  |
-| `nb_track` | `number` |  |
+| `nbTracks` | `number` |  |
 | `url` | `string` |  |
 
 #### Example: List
@@ -471,18 +505,18 @@ Create an instance: `local post = client:Post(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `ctx` | `string` |  |
-| `e_id` | `string` |  |
+| `eId` | `string` |  |
 | `id` | `string` |  |
 | `img` | `string` |  |
 | `lov` | `table` |  |
 | `name` | `string` |  |
-| `nb_p` | `number` |  |
-| `nb_r` | `number` |  |
+| `nbP` | `number` |  |
+| `nbR` | `number` |  |
 | `score` | `number` |  |
 | `src` | `table` |  |
 | `text` | `string` |  |
-| `u_id` | `string` |  |
-| `u_nm` | `string` |  |
+| `uId` | `string` |  |
+| `uNm` | `string` |  |
 | `url` | `string` |  |
 
 #### Example: Load
@@ -507,7 +541,7 @@ Create an instance: `local search = client:Search(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `q` | `string` |  |
-| `result` | `table` |  |
+| `results` | `table` |  |
 
 #### Example: List
 
@@ -530,9 +564,9 @@ Create an instance: `local subscription = client:Subscription(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `is_subscribing` | `boolean` |  |
-| `u_id` | `string` |  |
-| `u_nm` | `string` |  |
+| `isSubscribing` | `boolean` |  |
+| `uId` | `string` |  |
+| `uNm` | `string` |  |
 
 #### Example: Load
 
@@ -558,7 +592,7 @@ Create an instance: `local user = client:User(nil)`
 | --- | --- | --- |
 | `id` | `number` |  |
 | `name` | `string` |  |
-| `nb_track` | `number` |  |
+| `nbTracks` | `number` |  |
 | `url` | `string` |  |
 
 #### Example: List
@@ -647,15 +681,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local authentication = client:Authentication()
-authentication:load()
+local playlist = client:Playlist()
+playlist:list()
 
--- authentication:data_get() now returns the authentication data from the last load
--- authentication:match_get() returns the last match criteria
+-- playlist:data_get() now returns the playlist data from the last list
+-- playlist:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

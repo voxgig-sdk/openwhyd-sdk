@@ -58,19 +58,28 @@ func TestAuthenticationEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("create failed: %v", err)
 		}
-		authenticationRef01Data = core.ToMapAny(authenticationRef01DataResult)
+		authenticationRef01Data = core.ToMapAny(entityData(authenticationRef01DataResult))
 		if authenticationRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}
+		if authenticationRef01Data["id"] == nil {
+			t.Fatal("expected created entity to have an id")
+		}
 
 		// LOAD
-		authenticationRef01MatchDt0 := map[string]any{}
+		authenticationRef01MatchDt0 := map[string]any{
+			"id": authenticationRef01Data["id"],
+		}
 		authenticationRef01DataDt0Loaded, err := authenticationRef01Ent.Load(authenticationRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if authenticationRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		authenticationRef01DataDt0LoadResult := core.ToMapAny(entityData(authenticationRef01DataDt0Loaded))
+		if authenticationRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if authenticationRef01DataDt0LoadResult["id"] != authenticationRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

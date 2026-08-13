@@ -41,7 +41,7 @@ const client = new OpenwhydSDK({
 
 ```ts
 try {
-  const authentication = await client.Authentication().load()
+  const authentication = await client.Authentication().load({ id: 'example_id' })
   console.log(authentication)
 } catch (err) {
   console.error('load failed:', err)
@@ -51,10 +51,10 @@ try {
 ### 4. Create, update, and remove
 
 ```ts
-// Create — returns the created Authentication
+// Create — returns the created Authentication ENTITY (.data() for the record)
 const created = await client.Authentication().create({
-  error: 'example_error',
-  ok: 'example_ok',
+  bio: 'example_bio',
+  cvrImg: 'example_cvrImg',
 })
 
 ```
@@ -66,10 +66,10 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const authentication = await client.Authentication().load()
-  console.log(authentication)
+  const playlists = await client.Playlist().list()
+  console.log(playlists)
 } catch (err) {
-  console.error('load failed:', err)
+  console.error('list failed:', err)
 }
 ```
 
@@ -133,9 +133,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = OpenwhydSDK.test()
 
-const authentication = await client.Authentication().load()
-// authentication is a bare entity populated with mock response data
-console.log(authentication)
+const playlist = await client.Playlist().list()
+// playlist is the entity, populated with mock response data
+// — call playlist.data() for the record itself
+console.log(playlist)
 ```
 
 You can also use the instance method:
@@ -150,14 +151,14 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Authentication()
+const entity = client.Playlist()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.list()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -311,12 +312,29 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
+| `bio` |  |
+| `cvrImg` |  |
+| `email` |  |
 | `error` |  |
-| `ok` |  |
+| `handle` |  |
+| `id` |  |
+| `img` |  |
+| `isSubscribing` |  |
+| `lastArtists` |  |
+| `lastFm` |  |
+| `lnk` |  |
+| `loc` |  |
+| `name` |  |
+| `nbLikes` |  |
+| `nbPosts` |  |
+| `nbSubscribers` |  |
+| `nbSubscriptions` |  |
+| `pl` |  |
 | `redirect` |  |
-| `u_id` |  |
-| `user` |  |
-| `wrong_password` |  |
+| `twId` |  |
+| `twSec` |  |
+| `twTok` |  |
+| `uId` |  |
 
 Operations: create, load.
 
@@ -327,18 +345,18 @@ API path: `/login`
 | Field | Description |
 | --- | --- |
 | `ctx` |  |
-| `e_id` |  |
+| `eId` |  |
 | `id` |  |
 | `img` |  |
 | `lov` |  |
 | `name` |  |
-| `nb_p` |  |
-| `nb_r` |  |
+| `nbP` |  |
+| `nbR` |  |
 | `score` |  |
 | `src` |  |
 | `text` |  |
-| `u_id` |  |
-| `u_nm` |  |
+| `uId` |  |
+| `uNm` |  |
 | `url` |  |
 
 Operations: list.
@@ -351,7 +369,7 @@ API path: `/{username}`
 | --- | --- |
 | `id` |  |
 | `name` |  |
-| `nb_track` |  |
+| `nbTracks` |  |
 | `url` |  |
 
 Operations: list.
@@ -363,18 +381,18 @@ API path: `/{username}/playlists`
 | Field | Description |
 | --- | --- |
 | `ctx` |  |
-| `e_id` |  |
+| `eId` |  |
 | `id` |  |
 | `img` |  |
 | `lov` |  |
 | `name` |  |
-| `nb_p` |  |
-| `nb_r` |  |
+| `nbP` |  |
+| `nbR` |  |
 | `score` |  |
 | `src` |  |
 | `text` |  |
-| `u_id` |  |
-| `u_nm` |  |
+| `uId` |  |
+| `uNm` |  |
 | `url` |  |
 
 Operations: load.
@@ -386,7 +404,7 @@ API path: `/{username}/playlist/{playlistId}`
 | Field | Description |
 | --- | --- |
 | `q` |  |
-| `result` |  |
+| `results` |  |
 
 Operations: list.
 
@@ -396,9 +414,9 @@ API path: `/search`
 
 | Field | Description |
 | --- | --- |
-| `is_subscribing` |  |
-| `u_id` |  |
-| `u_nm` |  |
+| `isSubscribing` |  |
+| `uId` |  |
+| `uNm` |  |
 
 Operations: load.
 
@@ -410,7 +428,7 @@ API path: `/api/follow/fetchFollowers/{id}`
 | --- | --- |
 | `id` |  |
 | `name` |  |
-| `nb_track` |  |
+| `nbTracks` |  |
 | `url` |  |
 
 Operations: create, list.
@@ -437,17 +455,34 @@ Create an instance: `const authentication = client.Authentication()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `bio` | `string` |  |
+| `cvrImg` | `string` |  |
+| `email` | `string` |  |
 | `error` | `string` |  |
-| `ok` | `string` |  |
+| `handle` | `string` |  |
+| `id` | `string` |  |
+| `img` | `string` |  |
+| `isSubscribing` | `boolean` |  |
+| `lastArtists` | `any[]` |  |
+| `lastFm` | `Record<string, any>` |  |
+| `lnk` | `Record<string, any>` |  |
+| `loc` | `string` |  |
+| `name` | `string` |  |
+| `nbLikes` | `number` |  |
+| `nbPosts` | `number` |  |
+| `nbSubscribers` | `number` |  |
+| `nbSubscriptions` | `number` |  |
+| `pl` | `any[]` |  |
 | `redirect` | `string` |  |
-| `u_id` | `string` |  |
-| `user` | `Record<string, any>` |  |
-| `wrong_password` | `number` |  |
+| `twId` | `string` |  |
+| `twSec` | `string` |  |
+| `twTok` | `string` |  |
+| `uId` | `string` |  |
 
 #### Example: Load
 
 ```ts
-const authentication = await client.Authentication().load()
+const authentication = await client.Authentication().load({ id: 'authentication_id' })
 ```
 
 #### Example: Create
@@ -473,24 +508,24 @@ Create an instance: `const get_user_post = client.GetUserPost()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `ctx` | `string` |  |
-| `e_id` | `string` |  |
+| `eId` | `string` |  |
 | `id` | `string` |  |
 | `img` | `string` |  |
 | `lov` | `any[]` |  |
 | `name` | `string` |  |
-| `nb_p` | `number` |  |
-| `nb_r` | `number` |  |
+| `nbP` | `number` |  |
+| `nbR` | `number` |  |
 | `score` | `number` |  |
 | `src` | `Record<string, any>` |  |
 | `text` | `string` |  |
-| `u_id` | `string` |  |
-| `u_nm` | `string` |  |
+| `uId` | `string` |  |
+| `uNm` | `string` |  |
 | `url` | `string` |  |
 
 #### Example: List
 
 ```ts
-const get_user_posts = await client.GetUserPost().list()
+const get_user_posts = await client.GetUserPost().list({ id: "example" })
 ```
 
 
@@ -510,13 +545,13 @@ Create an instance: `const playlist = client.Playlist()`
 | --- | --- | --- |
 | `id` | `number` |  |
 | `name` | `string` |  |
-| `nb_track` | `number` |  |
+| `nbTracks` | `number` |  |
 | `url` | `string` |  |
 
 #### Example: List
 
 ```ts
-const playlists = await client.Playlist().list()
+const playlists = await client.Playlist().list({ username: "example" })
 ```
 
 
@@ -535,18 +570,18 @@ Create an instance: `const post = client.Post()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `ctx` | `string` |  |
-| `e_id` | `string` |  |
+| `eId` | `string` |  |
 | `id` | `string` |  |
 | `img` | `string` |  |
 | `lov` | `any[]` |  |
 | `name` | `string` |  |
-| `nb_p` | `number` |  |
-| `nb_r` | `number` |  |
+| `nbP` | `number` |  |
+| `nbR` | `number` |  |
 | `score` | `number` |  |
 | `src` | `Record<string, any>` |  |
 | `text` | `string` |  |
-| `u_id` | `string` |  |
-| `u_nm` | `string` |  |
+| `uId` | `string` |  |
+| `uNm` | `string` |  |
 | `url` | `string` |  |
 
 #### Example: Load
@@ -571,7 +606,7 @@ Create an instance: `const search = client.Search()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `q` | `string` |  |
-| `result` | `any[]` |  |
+| `results` | `any[]` |  |
 
 #### Example: List
 
@@ -594,9 +629,9 @@ Create an instance: `const subscription = client.Subscription()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `is_subscribing` | `boolean` |  |
-| `u_id` | `string` |  |
-| `u_nm` | `string` |  |
+| `isSubscribing` | `boolean` |  |
+| `uId` | `string` |  |
+| `uNm` | `string` |  |
 
 #### Example: Load
 
@@ -622,7 +657,7 @@ Create an instance: `const user = client.User()`
 | --- | --- | --- |
 | `id` | `number` |  |
 | `name` | `string` |  |
-| `nb_track` | `number` |  |
+| `nbTracks` | `number` |  |
 | `url` | `string` |  |
 
 #### Example: List
@@ -703,16 +738,16 @@ import { OpenwhydSDK } from '@voxgig-sdk/openwhyd'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const authentication = client.Authentication()
-await authentication.load()
+const playlist = client.Playlist()
+await playlist.list()
 
-// authentication.data() now returns the authentication data from the last `load`
-// authentication.match() returns the last match criteria
+// playlist.data() now returns the playlist data from the last `list`
+// playlist.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

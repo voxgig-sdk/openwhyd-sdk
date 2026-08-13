@@ -41,11 +41,11 @@ client = OpenwhydSDK({
 
 ### 3. Load an authentication
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
-    authentication = client.Authentication().load()
+    authentication = client.Authentication().load({"id": "example_id"})
     print(authentication)
 except Exception as err:
     print(f"load failed: {err}")
@@ -54,8 +54,8 @@ except Exception as err:
 ### 4. Create, update, and remove
 
 ```python
-# Create — returns the bare created record (a dict)
-created = client.Authentication().create({"error": "example_error", "ok": "example_ok"})
+# Create — returns the ENTITY (call data_get() for the record)
+created = client.Authentication().create({"bio": "example_bio", "cvrImg": "example_cvrImg"})
 
 ```
 
@@ -66,10 +66,10 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    authentication = client.Authentication().load()
-    print(authentication)
+    playlists = client.Playlist().list()
+    print(playlists)
 except Exception as err:
-    print(f"load failed: {err}")
+    print(f"list failed: {err}")
 ```
 
 `direct()` does **not** raise — it returns the result envelope. Branch
@@ -133,9 +133,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = OpenwhydSDK.test()
 
-# Entity ops return the bare record and raise on error.
-authentication = client.Authentication().load()
-# authentication contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+playlist = client.Playlist().list()
+# playlist contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -239,7 +240,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -261,12 +262,29 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
+| `bio` |  |
+| `cvrImg` |  |
+| `email` |  |
 | `error` |  |
-| `ok` |  |
+| `handle` |  |
+| `id` |  |
+| `img` |  |
+| `isSubscribing` |  |
+| `lastArtists` |  |
+| `lastFm` |  |
+| `lnk` |  |
+| `loc` |  |
+| `name` |  |
+| `nbLikes` |  |
+| `nbPosts` |  |
+| `nbSubscribers` |  |
+| `nbSubscriptions` |  |
+| `pl` |  |
 | `redirect` |  |
-| `u_id` |  |
-| `user` |  |
-| `wrong_password` |  |
+| `twId` |  |
+| `twSec` |  |
+| `twTok` |  |
+| `uId` |  |
 
 Operations: Create, Load.
 
@@ -277,18 +295,18 @@ API path: `/login`
 | Field | Description |
 | --- | --- |
 | `ctx` |  |
-| `e_id` |  |
+| `eId` |  |
 | `id` |  |
 | `img` |  |
 | `lov` |  |
 | `name` |  |
-| `nb_p` |  |
-| `nb_r` |  |
+| `nbP` |  |
+| `nbR` |  |
 | `score` |  |
 | `src` |  |
 | `text` |  |
-| `u_id` |  |
-| `u_nm` |  |
+| `uId` |  |
+| `uNm` |  |
 | `url` |  |
 
 Operations: List.
@@ -301,7 +319,7 @@ API path: `/{username}`
 | --- | --- |
 | `id` |  |
 | `name` |  |
-| `nb_track` |  |
+| `nbTracks` |  |
 | `url` |  |
 
 Operations: List.
@@ -313,18 +331,18 @@ API path: `/{username}/playlists`
 | Field | Description |
 | --- | --- |
 | `ctx` |  |
-| `e_id` |  |
+| `eId` |  |
 | `id` |  |
 | `img` |  |
 | `lov` |  |
 | `name` |  |
-| `nb_p` |  |
-| `nb_r` |  |
+| `nbP` |  |
+| `nbR` |  |
 | `score` |  |
 | `src` |  |
 | `text` |  |
-| `u_id` |  |
-| `u_nm` |  |
+| `uId` |  |
+| `uNm` |  |
 | `url` |  |
 
 Operations: Load.
@@ -336,7 +354,7 @@ API path: `/{username}/playlist/{playlistId}`
 | Field | Description |
 | --- | --- |
 | `q` |  |
-| `result` |  |
+| `results` |  |
 
 Operations: List.
 
@@ -346,9 +364,9 @@ API path: `/search`
 
 | Field | Description |
 | --- | --- |
-| `is_subscribing` |  |
-| `u_id` |  |
-| `u_nm` |  |
+| `isSubscribing` |  |
+| `uId` |  |
+| `uNm` |  |
 
 Operations: Load.
 
@@ -360,7 +378,7 @@ API path: `/api/follow/fetchFollowers/{id}`
 | --- | --- |
 | `id` |  |
 | `name` |  |
-| `nb_track` |  |
+| `nbTracks` |  |
 | `url` |  |
 
 Operations: Create, List.
@@ -387,17 +405,34 @@ Create an instance: `authentication = client.Authentication()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `bio` | `str` |  |
+| `cvrImg` | `str` |  |
+| `email` | `str` |  |
 | `error` | `str` |  |
-| `ok` | `str` |  |
+| `handle` | `str` |  |
+| `id` | `str` |  |
+| `img` | `str` |  |
+| `isSubscribing` | `bool` |  |
+| `lastArtists` | `list` |  |
+| `lastFm` | `dict` |  |
+| `lnk` | `dict` |  |
+| `loc` | `str` |  |
+| `name` | `str` |  |
+| `nbLikes` | `int` |  |
+| `nbPosts` | `int` |  |
+| `nbSubscribers` | `int` |  |
+| `nbSubscriptions` | `int` |  |
+| `pl` | `list` |  |
 | `redirect` | `str` |  |
-| `u_id` | `str` |  |
-| `user` | `dict` |  |
-| `wrong_password` | `int` |  |
+| `twId` | `str` |  |
+| `twSec` | `str` |  |
+| `twTok` | `str` |  |
+| `uId` | `str` |  |
 
 #### Example: Load
 
 ```python
-authentication = client.Authentication().load()
+authentication = client.Authentication().load({"id": "authentication_id"})
 ```
 
 #### Example: Create
@@ -423,24 +458,24 @@ Create an instance: `get_user_post = client.GetUserPost()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `ctx` | `str` |  |
-| `e_id` | `str` |  |
+| `eId` | `str` |  |
 | `id` | `str` |  |
 | `img` | `str` |  |
 | `lov` | `list` |  |
 | `name` | `str` |  |
-| `nb_p` | `int` |  |
-| `nb_r` | `int` |  |
+| `nbP` | `int` |  |
+| `nbR` | `int` |  |
 | `score` | `float` |  |
 | `src` | `dict` |  |
 | `text` | `str` |  |
-| `u_id` | `str` |  |
-| `u_nm` | `str` |  |
+| `uId` | `str` |  |
+| `uNm` | `str` |  |
 | `url` | `str` |  |
 
 #### Example: List
 
 ```python
-get_user_posts = client.GetUserPost().list()
+get_user_posts = client.GetUserPost().list({"id": "example"})
 ```
 
 
@@ -460,13 +495,13 @@ Create an instance: `playlist = client.Playlist()`
 | --- | --- | --- |
 | `id` | `int` |  |
 | `name` | `str` |  |
-| `nb_track` | `int` |  |
+| `nbTracks` | `int` |  |
 | `url` | `str` |  |
 
 #### Example: List
 
 ```python
-playlists = client.Playlist().list()
+playlists = client.Playlist().list({"username": "example"})
 ```
 
 
@@ -485,18 +520,18 @@ Create an instance: `post = client.Post()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `ctx` | `str` |  |
-| `e_id` | `str` |  |
+| `eId` | `str` |  |
 | `id` | `str` |  |
 | `img` | `str` |  |
 | `lov` | `list` |  |
 | `name` | `str` |  |
-| `nb_p` | `int` |  |
-| `nb_r` | `int` |  |
+| `nbP` | `int` |  |
+| `nbR` | `int` |  |
 | `score` | `float` |  |
 | `src` | `dict` |  |
 | `text` | `str` |  |
-| `u_id` | `str` |  |
-| `u_nm` | `str` |  |
+| `uId` | `str` |  |
+| `uNm` | `str` |  |
 | `url` | `str` |  |
 
 #### Example: Load
@@ -521,7 +556,7 @@ Create an instance: `search = client.Search()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `q` | `str` |  |
-| `result` | `list` |  |
+| `results` | `list` |  |
 
 #### Example: List
 
@@ -544,9 +579,9 @@ Create an instance: `subscription = client.Subscription()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `is_subscribing` | `bool` |  |
-| `u_id` | `str` |  |
-| `u_nm` | `str` |  |
+| `isSubscribing` | `bool` |  |
+| `uId` | `str` |  |
+| `uNm` | `str` |  |
 
 #### Example: Load
 
@@ -572,7 +607,7 @@ Create an instance: `user = client.User()`
 | --- | --- | --- |
 | `id` | `int` |  |
 | `name` | `str` |  |
-| `nb_track` | `int` |  |
+| `nbTracks` | `int` |  |
 | `url` | `str` |  |
 
 #### Example: List
@@ -660,15 +695,15 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-authentication = client.Authentication()
-authentication.load()
+playlist = client.Playlist()
+playlist.list()
 
-# authentication.data_get() now returns the authentication data from the last load
-# authentication.match_get() returns the last match criteria
+# playlist.data_get() now returns the playlist data from the last list
+# playlist.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -37,7 +37,7 @@ class PlaylistEntity extends OpenwhydEntityBase<Playlist> {
 
 
 
-  async list(this: any, reqmatch?: PlaylistListMatch, ctrl?: Control): Promise<Playlist[]> {
+  async list(this: any, reqmatch?: PlaylistListMatch, ctrl?: Control): Promise<PlaylistEntity[]> {
 
     const utility = this._utility
 

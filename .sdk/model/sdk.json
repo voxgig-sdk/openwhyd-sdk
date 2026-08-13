@@ -5,6 +5,10 @@
       "desc": ""
     },
     "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
       "config": {
         "docs_order": [
           "ts",
@@ -18,6 +22,7 @@
           "content-type": "application/json"
         }
       },
+      "contributor": {},
       "entity": {
         "authentication": {
           "active": true,
@@ -27,15 +32,111 @@
           "fields": [
             {
               "active": true,
+              "name": "bio",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "cvrImg",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "email",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
               "name": "error",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "ok",
+              "name": "handle",
               "req": false,
               "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "img",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "isSubscribing",
+              "req": false,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "lastArtists",
+              "req": false,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "lastFm",
+              "req": false,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "lnk",
+              "req": false,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "loc",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "name",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "nbLikes",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "nbPosts",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "nbSubscribers",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "nbSubscriptions",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "pl",
+              "req": false,
+              "type": "`$ARRAY`"
             },
             {
               "active": true,
@@ -45,23 +146,33 @@
             },
             {
               "active": true,
-              "name": "u_id",
+              "name": "twId",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "user",
+              "name": "twSec",
               "req": false,
-              "type": "`$OBJECT`"
+              "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "wrong_password",
+              "name": "twTok",
               "req": false,
-              "type": "`$INTEGER`"
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "uId",
+              "req": false,
+              "type": "`$STRING`"
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "authentication",
           "op": {
             "create": {
@@ -71,6 +182,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/login",
                   "parts": [
@@ -79,12 +191,13 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.user`"
                   }
                 },
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/register",
                   "parts": [
@@ -148,6 +261,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/login",
                   "parts": [
@@ -164,7 +278,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.user`"
                   }
                 },
                 {
@@ -181,6 +295,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/logout",
                   "parts": [
@@ -217,7 +332,7 @@
             },
             {
               "active": true,
-              "name": "e_id",
+              "name": "eId",
               "req": false,
               "type": "`$STRING`"
             },
@@ -247,13 +362,13 @@
             },
             {
               "active": true,
-              "name": "nb_p",
+              "name": "nbP",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "nb_r",
+              "name": "nbR",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -277,13 +392,13 @@
             },
             {
               "active": true,
-              "name": "u_id",
+              "name": "uId",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "u_nm",
+              "name": "uNm",
               "req": false,
               "type": "`$STRING`"
             },
@@ -353,6 +468,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{username}",
                   "parts": [
@@ -404,7 +520,7 @@
             },
             {
               "active": true,
-              "name": "nb_track",
+              "name": "nbTracks",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -449,6 +565,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{username}/playlists",
                   "parts": [
@@ -487,7 +604,7 @@
             },
             {
               "active": true,
-              "name": "e_id",
+              "name": "eId",
               "req": false,
               "type": "`$STRING`"
             },
@@ -517,13 +634,13 @@
             },
             {
               "active": true,
-              "name": "nb_p",
+              "name": "nbP",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "nb_r",
+              "name": "nbR",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -547,13 +664,13 @@
             },
             {
               "active": true,
-              "name": "u_id",
+              "name": "uId",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "u_nm",
+              "name": "uNm",
               "req": false,
               "type": "`$STRING`"
             },
@@ -623,6 +740,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{username}/playlist/{playlistId}",
                   "parts": [
@@ -682,6 +800,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/hot/{genre}",
                   "parts": [
@@ -728,7 +847,7 @@
             },
             {
               "active": true,
-              "name": "result",
+              "name": "results",
               "req": false,
               "type": "`$ARRAY`"
             }
@@ -769,6 +888,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/search",
                   "parts": [
@@ -783,7 +903,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.results`"
                   }
                 }
               ]
@@ -801,19 +921,19 @@
           "fields": [
             {
               "active": true,
-              "name": "is_subscribing",
+              "name": "isSubscribing",
               "req": false,
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
-              "name": "u_id",
+              "name": "uId",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "u_nm",
+              "name": "uNm",
               "req": false,
               "type": "`$STRING`"
             }
@@ -865,6 +985,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/follow/fetchFollowers/{id}",
                   "parts": [
@@ -927,6 +1048,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/follow/fetchFollowing/{id}",
                   "parts": [
@@ -975,7 +1097,7 @@
             },
             {
               "active": true,
-              "name": "nb_track",
+              "name": "nbTracks",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -999,6 +1121,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/api/user",
                   "parts": [
@@ -1063,6 +1186,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/user",
                   "parts": [
@@ -1097,6 +1221,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{username}/info",
                   "parts": [
@@ -1470,18 +1595,41 @@
         "website": "https://openwhyd.org"
       },
       "option": {},
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
       "target": {
         "go": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
           "module": {
-            "name": "openwhyd"
+            "goversion": "",
+            "name": "openwhyd",
+            "package": "",
+            "path": ""
           },
           "name": "go",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1503,22 +1651,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Golang"
         },
         "go-cli": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "openwhyd"
+            "goversion": "",
+            "name": "openwhyd",
+            "package": "",
+            "path": ""
           },
           "name": "go-cli",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -1557,21 +1723,39 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go CLI"
         },
         "go-mcp": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "openwhyd"
+            "goversion": "",
+            "name": "openwhyd",
+            "package": "",
+            "path": ""
           },
           "name": "go-mcp",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -1610,12 +1794,17 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go MCP server"
         },
         "lua": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "--"
           },
@@ -1627,10 +1816,23 @@
             }
           },
           "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "openwhyd"
+            "goversion": "",
+            "name": "openwhyd",
+            "package": "",
+            "path": ""
           },
           "name": "lua",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1652,22 +1854,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Lua"
         },
         "php": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "openwhyd"
+            "goversion": "",
+            "name": "openwhyd",
+            "package": "",
+            "path": ""
           },
           "name": "php",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1689,13 +1909,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "PHP"
         },
         "py": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -1707,10 +1932,23 @@
             }
           },
           "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "openwhyd"
+            "goversion": "",
+            "name": "openwhyd",
+            "package": "",
+            "path": ""
           },
           "name": "py",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1732,13 +1970,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Python"
         },
         "rb": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -1755,10 +1998,23 @@
             }
           },
           "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "openwhyd"
+            "goversion": "",
+            "name": "openwhyd",
+            "package": "",
+            "path": ""
           },
           "name": "rb",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1780,13 +2036,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Ruby"
         },
         "ts": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
@@ -1809,10 +2070,23 @@
             }
           },
           "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "openwhyd"
+            "goversion": "",
+            "name": "openwhyd",
+            "package": "",
+            "path": ""
           },
           "name": "ts",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1834,9 +2108,17 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": false
         }
       }
     }

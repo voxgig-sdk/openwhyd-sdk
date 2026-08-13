@@ -6,53 +6,108 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/openwhyd-sdk/go/core"
+)
 
 // Authentication is the typed data model for the authentication entity.
 type Authentication struct {
+	Bio *string `json:"bio,omitempty"`
+	CvrImg *string `json:"cvrImg,omitempty"`
+	Email *string `json:"email,omitempty"`
 	Error *string `json:"error,omitempty"`
-	Ok *string `json:"ok,omitempty"`
+	Handle *string `json:"handle,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Img *string `json:"img,omitempty"`
+	IsSubscribing *bool `json:"isSubscribing,omitempty"`
+	LastArtists *[]any `json:"lastArtists,omitempty"`
+	LastFm *map[string]any `json:"lastFm,omitempty"`
+	Lnk *map[string]any `json:"lnk,omitempty"`
+	Loc *string `json:"loc,omitempty"`
+	Name *string `json:"name,omitempty"`
+	NbLikes *int `json:"nbLikes,omitempty"`
+	NbPosts *int `json:"nbPosts,omitempty"`
+	NbSubscribers *int `json:"nbSubscribers,omitempty"`
+	NbSubscriptions *int `json:"nbSubscriptions,omitempty"`
+	Pl *[]any `json:"pl,omitempty"`
 	Redirect *string `json:"redirect,omitempty"`
-	UId *string `json:"u_id,omitempty"`
-	User *map[string]any `json:"user,omitempty"`
-	WrongPassword *int `json:"wrong_password,omitempty"`
+	TwId *string `json:"twId,omitempty"`
+	TwSec *string `json:"twSec,omitempty"`
+	TwTok *string `json:"twTok,omitempty"`
+	UId *string `json:"uId,omitempty"`
 }
 
 // AuthenticationLoadMatch is the typed request payload for Authentication.LoadTyped.
 type AuthenticationLoadMatch struct {
+	Bio *string `json:"bio,omitempty"`
+	CvrImg *string `json:"cvrImg,omitempty"`
+	Email *string `json:"email,omitempty"`
 	Error *string `json:"error,omitempty"`
-	Ok *string `json:"ok,omitempty"`
+	Handle *string `json:"handle,omitempty"`
+	Id string `json:"id"`
+	Img *string `json:"img,omitempty"`
+	IsSubscribing *bool `json:"isSubscribing,omitempty"`
+	LastArtists *[]any `json:"lastArtists,omitempty"`
+	LastFm *map[string]any `json:"lastFm,omitempty"`
+	Lnk *map[string]any `json:"lnk,omitempty"`
+	Loc *string `json:"loc,omitempty"`
+	Name *string `json:"name,omitempty"`
+	NbLikes *int `json:"nbLikes,omitempty"`
+	NbPosts *int `json:"nbPosts,omitempty"`
+	NbSubscribers *int `json:"nbSubscribers,omitempty"`
+	NbSubscriptions *int `json:"nbSubscriptions,omitempty"`
+	Pl *[]any `json:"pl,omitempty"`
 	Redirect *string `json:"redirect,omitempty"`
-	UId *string `json:"u_id,omitempty"`
-	User *map[string]any `json:"user,omitempty"`
-	WrongPassword *int `json:"wrong_password,omitempty"`
+	TwId *string `json:"twId,omitempty"`
+	TwSec *string `json:"twSec,omitempty"`
+	TwTok *string `json:"twTok,omitempty"`
+	UId *string `json:"uId,omitempty"`
 }
 
 // AuthenticationCreateData is the typed request payload for Authentication.CreateTyped.
 type AuthenticationCreateData struct {
+	Bio *string `json:"bio,omitempty"`
+	CvrImg *string `json:"cvrImg,omitempty"`
+	Email *string `json:"email,omitempty"`
 	Error *string `json:"error,omitempty"`
-	Ok *string `json:"ok,omitempty"`
+	Handle *string `json:"handle,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Img *string `json:"img,omitempty"`
+	IsSubscribing *bool `json:"isSubscribing,omitempty"`
+	LastArtists *[]any `json:"lastArtists,omitempty"`
+	LastFm *map[string]any `json:"lastFm,omitempty"`
+	Lnk *map[string]any `json:"lnk,omitempty"`
+	Loc *string `json:"loc,omitempty"`
+	Name *string `json:"name,omitempty"`
+	NbLikes *int `json:"nbLikes,omitempty"`
+	NbPosts *int `json:"nbPosts,omitempty"`
+	NbSubscribers *int `json:"nbSubscribers,omitempty"`
+	NbSubscriptions *int `json:"nbSubscriptions,omitempty"`
+	Pl *[]any `json:"pl,omitempty"`
 	Redirect *string `json:"redirect,omitempty"`
-	UId *string `json:"u_id,omitempty"`
-	User *map[string]any `json:"user,omitempty"`
-	WrongPassword *int `json:"wrong_password,omitempty"`
+	TwId *string `json:"twId,omitempty"`
+	TwSec *string `json:"twSec,omitempty"`
+	TwTok *string `json:"twTok,omitempty"`
+	UId *string `json:"uId,omitempty"`
 }
 
 // GetUserPost is the typed data model for the get_user_post entity.
 type GetUserPost struct {
 	Ctx *string `json:"ctx,omitempty"`
-	EId *string `json:"e_id,omitempty"`
+	EId *string `json:"eId,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Img *string `json:"img,omitempty"`
 	Lov *[]any `json:"lov,omitempty"`
 	Name *string `json:"name,omitempty"`
-	NbP *int `json:"nb_p,omitempty"`
-	NbR *int `json:"nb_r,omitempty"`
+	NbP *int `json:"nbP,omitempty"`
+	NbR *int `json:"nbR,omitempty"`
 	Score *float64 `json:"score,omitempty"`
 	Src *map[string]any `json:"src,omitempty"`
 	Text *string `json:"text,omitempty"`
-	UId *string `json:"u_id,omitempty"`
-	UNm *string `json:"u_nm,omitempty"`
+	UId *string `json:"uId,omitempty"`
+	UNm *string `json:"uNm,omitempty"`
 	Url *string `json:"url,omitempty"`
 }
 
@@ -65,7 +120,7 @@ type GetUserPostListMatch struct {
 type Playlist struct {
 	Id *int `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
-	NbTrack *int `json:"nb_track,omitempty"`
+	NbTracks *int `json:"nbTracks,omitempty"`
 	Url *string `json:"url,omitempty"`
 }
 
@@ -77,18 +132,18 @@ type PlaylistListMatch struct {
 // Post is the typed data model for the post entity.
 type Post struct {
 	Ctx *string `json:"ctx,omitempty"`
-	EId *string `json:"e_id,omitempty"`
+	EId *string `json:"eId,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Img *string `json:"img,omitempty"`
 	Lov *[]any `json:"lov,omitempty"`
 	Name *string `json:"name,omitempty"`
-	NbP *int `json:"nb_p,omitempty"`
-	NbR *int `json:"nb_r,omitempty"`
+	NbP *int `json:"nbP,omitempty"`
+	NbR *int `json:"nbR,omitempty"`
 	Score *float64 `json:"score,omitempty"`
 	Src *map[string]any `json:"src,omitempty"`
 	Text *string `json:"text,omitempty"`
-	UId *string `json:"u_id,omitempty"`
-	UNm *string `json:"u_nm,omitempty"`
+	UId *string `json:"uId,omitempty"`
+	UNm *string `json:"uNm,omitempty"`
 	Url *string `json:"url,omitempty"`
 }
 
@@ -102,20 +157,20 @@ type PostLoadMatch struct {
 // Search is the typed data model for the search entity.
 type Search struct {
 	Q *string `json:"q,omitempty"`
-	Result *[]any `json:"result,omitempty"`
+	Results *[]any `json:"results,omitempty"`
 }
 
 // SearchListMatch is the typed request payload for Search.ListTyped.
 type SearchListMatch struct {
 	Q *string `json:"q,omitempty"`
-	Result *[]any `json:"result,omitempty"`
+	Results *[]any `json:"results,omitempty"`
 }
 
 // Subscription is the typed data model for the subscription entity.
 type Subscription struct {
-	IsSubscribing *bool `json:"is_subscribing,omitempty"`
-	UId *string `json:"u_id,omitempty"`
-	UNm *string `json:"u_nm,omitempty"`
+	IsSubscribing *bool `json:"isSubscribing,omitempty"`
+	UId *string `json:"uId,omitempty"`
+	UNm *string `json:"uNm,omitempty"`
 }
 
 // SubscriptionLoadMatch is the typed request payload for Subscription.LoadTyped.
@@ -127,7 +182,7 @@ type SubscriptionLoadMatch struct {
 type User struct {
 	Id *int `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
-	NbTrack *int `json:"nb_track,omitempty"`
+	NbTracks *int `json:"nbTracks,omitempty"`
 	Url *string `json:"url,omitempty"`
 }
 
@@ -140,7 +195,7 @@ type UserListMatch struct {
 type UserCreateData struct {
 	Id *int `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
-	NbTrack *int `json:"nb_track,omitempty"`
+	NbTracks *int `json:"nbTracks,omitempty"`
 	Url *string `json:"url,omitempty"`
 }
 
@@ -156,12 +211,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -173,12 +242,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

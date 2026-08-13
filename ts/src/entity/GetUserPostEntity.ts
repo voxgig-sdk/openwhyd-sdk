@@ -37,7 +37,7 @@ class GetUserPostEntity extends OpenwhydEntityBase<GetUserPost> {
 
 
 
-  async list(this: any, reqmatch?: GetUserPostListMatch, ctrl?: Control): Promise<GetUserPost[]> {
+  async list(this: any, reqmatch?: GetUserPostListMatch, ctrl?: Control): Promise<GetUserPostEntity[]> {
 
     const utility = this._utility
 

@@ -6,14 +6,94 @@ main: kit: entity: authentication: {
 
   fields: [
     {
+      name: "bio"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "cvrImg"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "email"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "error"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "ok"
+      name: "handle"
       req: false
       type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "img"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "isSubscribing"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "lastArtists"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "lastFm"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "lnk"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "loc"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "nbLikes"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "nbPosts"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "nbSubscribers"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "nbSubscriptions"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "pl"
+      req: false
+      type: "`$ARRAY`"
     }
     {
       name: "redirect"
@@ -21,21 +101,31 @@ main: kit: entity: authentication: {
       type: "`$STRING`"
     }
     {
-      name: "u_id"
+      name: "twId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "user"
+      name: "twSec"
       req: false
-      type: "`$OBJECT`"
+      type: "`$STRING`"
     }
     {
-      name: "wrong_password"
+      name: "twTok"
       req: false
-      type: "`$INTEGER`"
+      type: "`$STRING`"
+    }
+    {
+      name: "uId"
+      req: false
+      type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "authentication"
   op: {
@@ -50,7 +140,7 @@ main: kit: entity: authentication: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.user`"
           }
         }
         {
@@ -125,7 +215,7 @@ main: kit: entity: authentication: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.user`"
           }
         }
         {

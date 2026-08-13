@@ -115,12 +115,29 @@ local authentication = client:Authentication(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `bio` | `string` | No |  |
+| `cvrImg` | `string` | No |  |
+| `email` | `string` | No |  |
 | `error` | `string` | No |  |
-| `ok` | `string` | No |  |
+| `handle` | `string` | No |  |
+| `id` | `string` | No |  |
+| `img` | `string` | No |  |
+| `isSubscribing` | `boolean` | No |  |
+| `lastArtists` | `table` | No |  |
+| `lastFm` | `table` | No |  |
+| `lnk` | `table` | No |  |
+| `loc` | `string` | No |  |
+| `name` | `string` | No |  |
+| `nbLikes` | `number` | No |  |
+| `nbPosts` | `number` | No |  |
+| `nbSubscribers` | `number` | No |  |
+| `nbSubscriptions` | `number` | No |  |
+| `pl` | `table` | No |  |
 | `redirect` | `string` | No |  |
-| `u_id` | `string` | No |  |
-| `user` | `table` | No |  |
-| `wrong_password` | `number` | No |  |
+| `twId` | `string` | No |  |
+| `twSec` | `string` | No |  |
+| `twTok` | `string` | No |  |
+| `uId` | `string` | No |  |
 
 ### Operations
 
@@ -138,7 +155,7 @@ local result, err = client:Authentication():create({
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Authentication():load()
+local result, err = client:Authentication():load({ id = "authentication_id" })
 ```
 
 ### Common Methods
@@ -182,18 +199,18 @@ local get_user_post = client:GetUserPost(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `ctx` | `string` | No |  |
-| `e_id` | `string` | No |  |
+| `eId` | `string` | No |  |
 | `id` | `string` | No |  |
 | `img` | `string` | No |  |
 | `lov` | `table` | No |  |
 | `name` | `string` | No |  |
-| `nb_p` | `number` | No |  |
-| `nb_r` | `number` | No |  |
+| `nbP` | `number` | No |  |
+| `nbR` | `number` | No |  |
 | `score` | `number` | No |  |
 | `src` | `table` | No |  |
 | `text` | `string` | No |  |
-| `u_id` | `string` | No |  |
-| `u_nm` | `string` | No |  |
+| `uId` | `string` | No |  |
+| `uNm` | `string` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -248,7 +265,7 @@ local playlist = client:Playlist(nil)
 | --- | --- | --- | --- |
 | `id` | `number` | No |  |
 | `name` | `string` | No |  |
-| `nb_track` | `number` | No |  |
+| `nbTracks` | `number` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -302,18 +319,18 @@ local post = client:Post(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `ctx` | `string` | No |  |
-| `e_id` | `string` | No |  |
+| `eId` | `string` | No |  |
 | `id` | `string` | No |  |
 | `img` | `string` | No |  |
 | `lov` | `table` | No |  |
 | `name` | `string` | No |  |
-| `nb_p` | `number` | No |  |
-| `nb_r` | `number` | No |  |
+| `nbP` | `number` | No |  |
+| `nbR` | `number` | No |  |
 | `score` | `number` | No |  |
 | `src` | `table` | No |  |
 | `text` | `string` | No |  |
-| `u_id` | `string` | No |  |
-| `u_nm` | `string` | No |  |
+| `uId` | `string` | No |  |
+| `uNm` | `string` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -367,7 +384,7 @@ local search = client:Search(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `q` | `string` | No |  |
-| `result` | `table` | No |  |
+| `results` | `table` | No |  |
 
 ### Operations
 
@@ -419,9 +436,9 @@ local subscription = client:Subscription(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `is_subscribing` | `boolean` | No |  |
-| `u_id` | `string` | No |  |
-| `u_nm` | `string` | No |  |
+| `isSubscribing` | `boolean` | No |  |
+| `uId` | `string` | No |  |
+| `uNm` | `string` | No |  |
 
 ### Operations
 
@@ -475,7 +492,7 @@ local user = client:User(nil)
 | --- | --- | --- | --- |
 | `id` | `number` | No |  |
 | `name` | `string` | No |  |
-| `nb_track` | `number` | No |  |
+| `nbTracks` | `number` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations

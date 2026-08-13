@@ -23,7 +23,7 @@ support (`list`, `load`, `create`):
 
 ```ts
 const client = new OpenwhydSDK()
-const authentication = await client.Authentication().load()
+const authentication = await client.Authentication().load({ id: "example_id" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = OpenwhydSDK.test()
-const authentication = await client.Authentication().load()
-// authentication is a bare Authentication populated with mock data
-console.log(authentication)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = OpenwhydSDK.test({
+  entity: {
+    playlist: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const playlists = await client.Playlist().list()
+// playlists is an array of Playlist entities, populated with mock data
+// — call playlists[0].data() for the record itself
+console.log(playlists)
 ```
 
 ### Python
 
 ```python
 client = OpenwhydSDK.test()
-authentication = client.Authentication().load()
-print(authentication)
+playlists = client.Playlist().list()
+print(playlists)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(authentication)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = OpenwhydSDK::test([
-    "entity" => ["authentication" => ["test01" => []]],
+    "entity" => ["playlist" => ["test01" => []]],
 ]);
-$authentication = $client->Authentication()->load();
+$playlists = $client->Playlist()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Authentication(nil).Load(
+result, err := client.Playlist(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Authentication(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = OpenwhydSDK.test({
-  "entity" => { "authentication" => { "test01" => {} } },
+  "entity" => { "playlist" => { "test01" => {} } },
 })
-authentication = client.Authentication.load()
+playlists = client.Playlist.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Authentication():load()
+local results, err = client:Playlist():list()
 ```
 
 ## Packages
@@ -180,7 +189,7 @@ client = OpenwhydSDK({
 
 
 # Load a specific authentication (returns the record, raises on error)
-authentication = client.Authentication().load()
+authentication = client.Authentication().load({"id": "example_id"})
 print(authentication)
 ```
 
@@ -195,8 +204,8 @@ $client = new OpenwhydSDK([
 ]);
 
 
-// Load a specific authentication (returns the bare record; throws on error)
-$authentication = $client->Authentication()->load();
+// Load a specific authentication (returns the ENTITY; call data_get() for the record; throws on error)
+$authentication = $client->Authentication()->load(["id" => "example_id"]);
 print_r($authentication);
 ```
 
@@ -210,7 +219,7 @@ client := sdk.NewOpenwhydSDK(map[string]any{
 })
 
 // Load authentication data
-authentication, err := client.Authentication(nil).Load(nil, nil)
+authentication, err := client.Authentication(nil).Load(map[string]any{"id": "example_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -227,8 +236,8 @@ client = OpenwhydSDK.new({
 })
 
 
-# Load a specific authentication (returns the bare record; raises on error)
-authentication = client.Authentication.load()
+# Load a specific authentication (returns the ENTITY; call data_get for the record)
+authentication = client.Authentication.load({ "id" => "example_id" })
 puts authentication
 ```
 
@@ -243,7 +252,7 @@ local client = sdk.new({
 
 
 -- Load a specific authentication
-local authentication, err = client:Authentication():load()
+local authentication, err = client:Authentication():load({ id = "example_id" })
 print(authentication)
 ```
 
@@ -363,6 +372,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://openwhyd.github.io/openwhyd/API](https://openwhyd.github.io/openwhyd/API)
 

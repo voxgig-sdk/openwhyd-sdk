@@ -52,7 +52,7 @@ class PostEntityTest extends TestCase
             "id" => $post_ref01_data["id"],
         ];
         $post_ref01_data_dt0_loaded = $post_ref01_ent->load($post_ref01_match_dt0, null);
-        $post_ref01_data_dt0_load_result = Helpers::to_map($post_ref01_data_dt0_loaded);
+        $post_ref01_data_dt0_load_result = Helpers::to_map(is_object($post_ref01_data_dt0_loaded) && method_exists($post_ref01_data_dt0_loaded, 'data_get') ? $post_ref01_data_dt0_loaded->data_get() : $post_ref01_data_dt0_loaded);
         $this->assertNotNull($post_ref01_data_dt0_load_result);
         $this->assertEquals($post_ref01_data_dt0_load_result["id"], $post_ref01_data["id"]);
 

@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from openwhyd_sdk.utility.voxgig_struct import voxgig_struct as vs
 from openwhyd_sdk import OpenwhydSDK
-from core import helpers
+from openwhyd_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -42,7 +42,7 @@ class TestUserEntity:
         assert len(seen) == 3
 
         # Inbound: streaming active -> yields each item from the feature.
-        from config import make_config
+        from openwhyd_sdk.config import make_config
         cfg = make_config()
         if isinstance(cfg.get("feature"), dict) and "streaming" in cfg["feature"]:
             sdk = OpenwhydSDK.test(
@@ -79,7 +79,7 @@ class TestUserEntity:
             vs.getpath(setup["data"], "new.user"), "user_ref01"))
         user_ref01_data["username"] = setup["idmap"]["username01"]
 
-        user_ref01_data = helpers.to_map(user_ref01_ent.create(user_ref01_data, None))
+        user_ref01_data = helpers.to_map(runner.entity_data(user_ref01_ent.create(user_ref01_data, None)))
         assert user_ref01_data is not None
         assert user_ref01_data["id"] is not None
 

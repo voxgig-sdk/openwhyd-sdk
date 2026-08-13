@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Openwhyd SDK exists test
 
 import pytest
 from openwhyd_sdk import OpenwhydSDK

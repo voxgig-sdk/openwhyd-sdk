@@ -63,7 +63,7 @@ describe('UserEntity', async () => {
     let user_ref01_data = setup.data.new.user['user_ref01']
     user_ref01_data['username'] = setup.idmap['username01']
 
-    user_ref01_data = await user_ref01_ent.create(user_ref01_data)
+    user_ref01_data = (await user_ref01_ent.create(user_ref01_data)).data()
     assert(null != user_ref01_data.id)
 
 
@@ -71,7 +71,7 @@ describe('UserEntity', async () => {
     const user_ref01_match: any = {}
     user_ref01_match['username'] = setup.idmap['username01']
 
-    const user_ref01_list = await user_ref01_ent.list(user_ref01_match)
+    const user_ref01_list = (await user_ref01_ent.list(user_ref01_match)).map((e: any) => e.data())
 
     assert(!isempty(select(user_ref01_list, { id: user_ref01_data.id })))
 

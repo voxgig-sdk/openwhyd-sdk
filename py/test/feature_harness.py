@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import OpenwhydControl
-from core.error import OpenwhydError
-from core.result import OpenwhydResult
-from core.spec import OpenwhydSpec
+from openwhyd_sdk.config import make_config
+from openwhyd_sdk.features import _make_feature
+from openwhyd_sdk.core.control import OpenwhydControl
+from openwhyd_sdk.core.error import OpenwhydError
+from openwhyd_sdk.core.result import OpenwhydResult
+from openwhyd_sdk.core.spec import OpenwhydSpec
 
 
 # True when this SDK was generated with the named feature.

@@ -44,13 +44,18 @@ class AuthenticationEntityTest extends TestCase
             Vs::getpath($setup["data"], "new.authentication"), "authentication_ref01"));
 
         $authentication_ref01_data_result = $authentication_ref01_ent->create($authentication_ref01_data, null);
-        $authentication_ref01_data = Helpers::to_map($authentication_ref01_data_result);
+        $authentication_ref01_data = Helpers::to_map(is_object($authentication_ref01_data_result) && method_exists($authentication_ref01_data_result, 'data_get') ? $authentication_ref01_data_result->data_get() : $authentication_ref01_data_result);
         $this->assertNotNull($authentication_ref01_data);
+        $this->assertNotNull($authentication_ref01_data["id"]);
 
         // LOAD
-        $authentication_ref01_match_dt0 = [];
+        $authentication_ref01_match_dt0 = [
+            "id" => $authentication_ref01_data["id"],
+        ];
         $authentication_ref01_data_dt0_loaded = $authentication_ref01_ent->load($authentication_ref01_match_dt0, null);
-        $this->assertNotNull($authentication_ref01_data_dt0_loaded);
+        $authentication_ref01_data_dt0_load_result = Helpers::to_map(is_object($authentication_ref01_data_dt0_loaded) && method_exists($authentication_ref01_data_dt0_loaded, 'data_get') ? $authentication_ref01_data_dt0_loaded->data_get() : $authentication_ref01_data_dt0_loaded);
+        $this->assertNotNull($authentication_ref01_data_dt0_load_result);
+        $this->assertEquals($authentication_ref01_data_dt0_load_result["id"], $authentication_ref01_data["id"]);
 
     }
 }

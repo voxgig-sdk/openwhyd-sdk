@@ -7,43 +7,94 @@
 -- edit by hand.
 
 ---@class Authentication
+---@field bio? string
+---@field cvrImg? string
+---@field email? string
 ---@field error? string
----@field ok? string
+---@field handle? string
+---@field id? string
+---@field img? string
+---@field isSubscribing? boolean
+---@field lastArtists? table
+---@field lastFm? table
+---@field lnk? table
+---@field loc? string
+---@field name? string
+---@field nbLikes? number
+---@field nbPosts? number
+---@field nbSubscribers? number
+---@field nbSubscriptions? number
+---@field pl? table
 ---@field redirect? string
----@field u_id? string
----@field user? table
----@field wrong_password? number
+---@field twId? string
+---@field twSec? string
+---@field twTok? string
+---@field uId? string
 
 ---@class AuthenticationLoadMatch
+---@field bio? string
+---@field cvrImg? string
+---@field email? string
 ---@field error? string
----@field ok? string
+---@field handle? string
+---@field id string
+---@field img? string
+---@field isSubscribing? boolean
+---@field lastArtists? table
+---@field lastFm? table
+---@field lnk? table
+---@field loc? string
+---@field name? string
+---@field nbLikes? number
+---@field nbPosts? number
+---@field nbSubscribers? number
+---@field nbSubscriptions? number
+---@field pl? table
 ---@field redirect? string
----@field u_id? string
----@field user? table
----@field wrong_password? number
+---@field twId? string
+---@field twSec? string
+---@field twTok? string
+---@field uId? string
 
 ---@class AuthenticationCreateData
+---@field bio? string
+---@field cvrImg? string
+---@field email? string
 ---@field error? string
----@field ok? string
+---@field handle? string
+---@field id? string
+---@field img? string
+---@field isSubscribing? boolean
+---@field lastArtists? table
+---@field lastFm? table
+---@field lnk? table
+---@field loc? string
+---@field name? string
+---@field nbLikes? number
+---@field nbPosts? number
+---@field nbSubscribers? number
+---@field nbSubscriptions? number
+---@field pl? table
 ---@field redirect? string
----@field u_id? string
----@field user? table
----@field wrong_password? number
+---@field twId? string
+---@field twSec? string
+---@field twTok? string
+---@field uId? string
 
 ---@class GetUserPost
 ---@field ctx? string
----@field e_id? string
+---@field eId? string
 ---@field id? string
 ---@field img? string
 ---@field lov? table
 ---@field name? string
----@field nb_p? number
----@field nb_r? number
+---@field nbP? number
+---@field nbR? number
 ---@field score? number
 ---@field src? table
 ---@field text? string
----@field u_id? string
----@field u_nm? string
+---@field uId? string
+---@field uNm? string
 ---@field url? string
 
 ---@class GetUserPostListMatch
@@ -52,7 +103,7 @@
 ---@class Playlist
 ---@field id? number
 ---@field name? string
----@field nb_track? number
+---@field nbTracks? number
 ---@field url? string
 
 ---@class PlaylistListMatch
@@ -60,18 +111,18 @@
 
 ---@class Post
 ---@field ctx? string
----@field e_id? string
+---@field eId? string
 ---@field id? string
 ---@field img? string
 ---@field lov? table
 ---@field name? string
----@field nb_p? number
----@field nb_r? number
+---@field nbP? number
+---@field nbR? number
 ---@field score? number
 ---@field src? table
 ---@field text? string
----@field u_id? string
----@field u_nm? string
+---@field uId? string
+---@field uNm? string
 ---@field url? string
 
 ---@class PostLoadMatch
@@ -81,16 +132,16 @@
 
 ---@class Search
 ---@field q? string
----@field result? table
+---@field results? table
 
 ---@class SearchListMatch
 ---@field q? string
----@field result? table
+---@field results? table
 
 ---@class Subscription
----@field is_subscribing? boolean
----@field u_id? string
----@field u_nm? string
+---@field isSubscribing? boolean
+---@field uId? string
+---@field uNm? string
 
 ---@class SubscriptionLoadMatch
 ---@field id string
@@ -98,7 +149,7 @@
 ---@class User
 ---@field id? number
 ---@field name? string
----@field nb_track? number
+---@field nbTracks? number
 ---@field url? string
 
 ---@class UserListMatch
@@ -107,7 +158,7 @@
 ---@class UserCreateData
 ---@field id? number
 ---@field name? string
----@field nb_track? number
+---@field nbTracks? number
 ---@field url? string
 
 local M = {}

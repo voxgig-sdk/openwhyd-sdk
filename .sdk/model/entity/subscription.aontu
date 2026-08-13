@@ -6,17 +6,17 @@ main: kit: entity: subscription: {
 
   fields: [
     {
-      name: "is_subscribing"
+      name: "isSubscribing"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "u_id"
+      name: "uId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "u_nm"
+      name: "uNm"
       req: false
       type: "`$STRING`"
     }

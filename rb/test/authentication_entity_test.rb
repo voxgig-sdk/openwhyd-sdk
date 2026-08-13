@@ -37,13 +37,18 @@ class AuthenticationEntityTest < Minitest::Test
       Vs.getpath(setup[:data], "new.authentication"), "authentication_ref01"))
 
     authentication_ref01_data_result = authentication_ref01_ent.create(authentication_ref01_data, nil)
-    authentication_ref01_data = Helpers.to_map(authentication_ref01_data_result)
+    authentication_ref01_data = Helpers.to_map(authentication_ref01_data_result.respond_to?(:data_get) ? authentication_ref01_data_result.data_get : authentication_ref01_data_result)
     assert !authentication_ref01_data.nil?
+    assert !authentication_ref01_data["id"].nil?
 
     # LOAD
-    authentication_ref01_match_dt0 = {}
+    authentication_ref01_match_dt0 = {
+      "id" => authentication_ref01_data["id"],
+    }
     authentication_ref01_data_dt0_loaded = authentication_ref01_ent.load(authentication_ref01_match_dt0, nil)
-    assert !authentication_ref01_data_dt0_loaded.nil?
+    authentication_ref01_data_dt0_load_result = Helpers.to_map(authentication_ref01_data_dt0_loaded.respond_to?(:data_get) ? authentication_ref01_data_dt0_loaded.data_get : authentication_ref01_data_dt0_loaded)
+    assert !authentication_ref01_data_dt0_load_result.nil?
+    assert_equal authentication_ref01_data_dt0_load_result["id"], authentication_ref01_data["id"]
 
   end
 end

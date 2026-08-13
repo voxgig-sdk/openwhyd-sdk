@@ -3,15 +3,15 @@
     "search": {
       "SEARCH00": {
         "q": "s14",
-        "result": []
+        "results": []
       },
       "SEARCH01": {
         "q": "s28",
-        "result": []
+        "results": []
       },
       "SEARCH02": {
         "q": "s3c",
-        "result": []
+        "results": []
       }
     }
   },
@@ -19,7 +19,7 @@
     "search": {
       "search_ref01": {
         "q": "s50",
-        "result": []
+        "results": []
       }
     }
   }

@@ -123,12 +123,29 @@ fmt.Println(authentication.GetName()) // "authentication"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `bio` | `string` | No |  |
+| `cvrImg` | `string` | No |  |
+| `email` | `string` | No |  |
 | `error` | `string` | No |  |
-| `ok` | `string` | No |  |
+| `handle` | `string` | No |  |
+| `id` | `string` | No |  |
+| `img` | `string` | No |  |
+| `isSubscribing` | `bool` | No |  |
+| `lastArtists` | `[]any` | No |  |
+| `lastFm` | `map[string]any` | No |  |
+| `lnk` | `map[string]any` | No |  |
+| `loc` | `string` | No |  |
+| `name` | `string` | No |  |
+| `nbLikes` | `int` | No |  |
+| `nbPosts` | `int` | No |  |
+| `nbSubscribers` | `int` | No |  |
+| `nbSubscriptions` | `int` | No |  |
+| `pl` | `[]any` | No |  |
 | `redirect` | `string` | No |  |
-| `u_id` | `string` | No |  |
-| `user` | `map[string]any` | No |  |
-| `wrong_password` | `int` | No |  |
+| `twId` | `string` | No |  |
+| `twSec` | `string` | No |  |
+| `twTok` | `string` | No |  |
+| `uId` | `string` | No |  |
 
 ### Operations
 
@@ -137,7 +154,7 @@ fmt.Println(authentication.GetName()) // "authentication"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Authentication(nil).Load(nil, nil)
+result, err := client.Authentication(nil).Load(map[string]any{"id": "authentication_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -193,18 +210,18 @@ fmt.Println(getUserPost.GetName()) // "get_user_post"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `ctx` | `string` | No |  |
-| `e_id` | `string` | No |  |
+| `eId` | `string` | No |  |
 | `id` | `string` | No |  |
 | `img` | `string` | No |  |
 | `lov` | `[]any` | No |  |
 | `name` | `string` | No |  |
-| `nb_p` | `int` | No |  |
-| `nb_r` | `int` | No |  |
+| `nbP` | `int` | No |  |
+| `nbR` | `int` | No |  |
 | `score` | `float64` | No |  |
 | `src` | `map[string]any` | No |  |
 | `text` | `string` | No |  |
-| `u_id` | `string` | No |  |
-| `u_nm` | `string` | No |  |
+| `uId` | `string` | No |  |
+| `uNm` | `string` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -258,7 +275,7 @@ fmt.Println(playlist.GetName()) // "playlist"
 | --- | --- | --- | --- |
 | `id` | `int` | No |  |
 | `name` | `string` | No |  |
-| `nb_track` | `int` | No |  |
+| `nbTracks` | `int` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -311,18 +328,18 @@ fmt.Println(post.GetName()) // "post"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `ctx` | `string` | No |  |
-| `e_id` | `string` | No |  |
+| `eId` | `string` | No |  |
 | `id` | `string` | No |  |
 | `img` | `string` | No |  |
 | `lov` | `[]any` | No |  |
 | `name` | `string` | No |  |
-| `nb_p` | `int` | No |  |
-| `nb_r` | `int` | No |  |
+| `nbP` | `int` | No |  |
+| `nbR` | `int` | No |  |
 | `score` | `float64` | No |  |
 | `src` | `map[string]any` | No |  |
 | `text` | `string` | No |  |
-| `u_id` | `string` | No |  |
-| `u_nm` | `string` | No |  |
+| `uId` | `string` | No |  |
+| `uNm` | `string` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -375,7 +392,7 @@ fmt.Println(search.GetName()) // "search"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `q` | `string` | No |  |
-| `result` | `[]any` | No |  |
+| `results` | `[]any` | No |  |
 
 ### Operations
 
@@ -426,9 +443,9 @@ fmt.Println(subscription.GetName()) // "subscription"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `is_subscribing` | `bool` | No |  |
-| `u_id` | `string` | No |  |
-| `u_nm` | `string` | No |  |
+| `isSubscribing` | `bool` | No |  |
+| `uId` | `string` | No |  |
+| `uNm` | `string` | No |  |
 
 ### Operations
 
@@ -481,7 +498,7 @@ fmt.Println(user.GetName()) // "user"
 | --- | --- | --- | --- |
 | `id` | `int` | No |  |
 | `name` | `string` | No |  |
-| `nb_track` | `int` | No |  |
+| `nbTracks` | `int` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations

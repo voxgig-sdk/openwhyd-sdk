@@ -16,11 +16,11 @@
 import pytest
 
 from openwhyd_sdk import OpenwhydSDK
-from core.error import OpenwhydError
-from core.result import OpenwhydResult
-from core.response import OpenwhydResponse
-from core.spec import OpenwhydSpec
-from feature.base_feature import OpenwhydBaseFeature
+from openwhyd_sdk.core.error import OpenwhydError
+from openwhyd_sdk.core.result import OpenwhydResult
+from openwhyd_sdk.core.response import OpenwhydResponse
+from openwhyd_sdk.core.spec import OpenwhydSpec
+from openwhyd_sdk.feature.base_feature import OpenwhydBaseFeature
 
 
 def _client():

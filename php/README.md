@@ -37,8 +37,8 @@ $client = new OpenwhydSDK([
 
 ```php
 try {
-    // load() returns the bare Authentication record (throws on error).
-    $authentication = $client->Authentication()->load();
+    // load() returns the ENTITY — call data_get() for the Authentication record (throws on error).
+    $authentication = $client->Authentication()->load(["id" => "example_id"]);
     print_r($authentication);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -48,8 +48,8 @@ try {
 ### 4. Create, update, and remove
 
 ```php
-// create() returns the bare created Authentication record.
-$created = $client->Authentication()->create(["error" => "example_error", "ok" => "example_ok"]);
+// create() returns the ENTITY — call data_get() for the created Authentication record.
+$created = $client->Authentication()->create(["bio" => "example_bio", "cvrImg" => "example_cvrImg"]);
 
 ```
 
@@ -61,7 +61,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $authentication = $client->Authentication()->load();
+    $playlists = $client->Playlist()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -133,9 +133,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = OpenwhydSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$authentication = $client->Authentication()->load();
-print_r($authentication);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$playlist = $client->Playlist()->list();
+print_r($playlist);
 ```
 
 ### Use a custom fetch function
@@ -242,7 +243,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -264,12 +265,29 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
+| `bio` |  |
+| `cvrImg` |  |
+| `email` |  |
 | `error` |  |
-| `ok` |  |
+| `handle` |  |
+| `id` |  |
+| `img` |  |
+| `isSubscribing` |  |
+| `lastArtists` |  |
+| `lastFm` |  |
+| `lnk` |  |
+| `loc` |  |
+| `name` |  |
+| `nbLikes` |  |
+| `nbPosts` |  |
+| `nbSubscribers` |  |
+| `nbSubscriptions` |  |
+| `pl` |  |
 | `redirect` |  |
-| `u_id` |  |
-| `user` |  |
-| `wrong_password` |  |
+| `twId` |  |
+| `twSec` |  |
+| `twTok` |  |
+| `uId` |  |
 
 Operations: Create, Load.
 
@@ -280,18 +298,18 @@ API path: `/login`
 | Field | Description |
 | --- | --- |
 | `ctx` |  |
-| `e_id` |  |
+| `eId` |  |
 | `id` |  |
 | `img` |  |
 | `lov` |  |
 | `name` |  |
-| `nb_p` |  |
-| `nb_r` |  |
+| `nbP` |  |
+| `nbR` |  |
 | `score` |  |
 | `src` |  |
 | `text` |  |
-| `u_id` |  |
-| `u_nm` |  |
+| `uId` |  |
+| `uNm` |  |
 | `url` |  |
 
 Operations: List.
@@ -304,7 +322,7 @@ API path: `/{username}`
 | --- | --- |
 | `id` |  |
 | `name` |  |
-| `nb_track` |  |
+| `nbTracks` |  |
 | `url` |  |
 
 Operations: List.
@@ -316,18 +334,18 @@ API path: `/{username}/playlists`
 | Field | Description |
 | --- | --- |
 | `ctx` |  |
-| `e_id` |  |
+| `eId` |  |
 | `id` |  |
 | `img` |  |
 | `lov` |  |
 | `name` |  |
-| `nb_p` |  |
-| `nb_r` |  |
+| `nbP` |  |
+| `nbR` |  |
 | `score` |  |
 | `src` |  |
 | `text` |  |
-| `u_id` |  |
-| `u_nm` |  |
+| `uId` |  |
+| `uNm` |  |
 | `url` |  |
 
 Operations: Load.
@@ -339,7 +357,7 @@ API path: `/{username}/playlist/{playlistId}`
 | Field | Description |
 | --- | --- |
 | `q` |  |
-| `result` |  |
+| `results` |  |
 
 Operations: List.
 
@@ -349,9 +367,9 @@ API path: `/search`
 
 | Field | Description |
 | --- | --- |
-| `is_subscribing` |  |
-| `u_id` |  |
-| `u_nm` |  |
+| `isSubscribing` |  |
+| `uId` |  |
+| `uNm` |  |
 
 Operations: Load.
 
@@ -363,7 +381,7 @@ API path: `/api/follow/fetchFollowers/{id}`
 | --- | --- |
 | `id` |  |
 | `name` |  |
-| `nb_track` |  |
+| `nbTracks` |  |
 | `url` |  |
 
 Operations: Create, List.
@@ -390,18 +408,35 @@ Create an instance: `$authentication = $client->Authentication();`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `bio` | `string` |  |
+| `cvrImg` | `string` |  |
+| `email` | `string` |  |
 | `error` | `string` |  |
-| `ok` | `string` |  |
+| `handle` | `string` |  |
+| `id` | `string` |  |
+| `img` | `string` |  |
+| `isSubscribing` | `bool` |  |
+| `lastArtists` | `array` |  |
+| `lastFm` | `array` |  |
+| `lnk` | `array` |  |
+| `loc` | `string` |  |
+| `name` | `string` |  |
+| `nbLikes` | `int` |  |
+| `nbPosts` | `int` |  |
+| `nbSubscribers` | `int` |  |
+| `nbSubscriptions` | `int` |  |
+| `pl` | `array` |  |
 | `redirect` | `string` |  |
-| `u_id` | `string` |  |
-| `user` | `array` |  |
-| `wrong_password` | `int` |  |
+| `twId` | `string` |  |
+| `twSec` | `string` |  |
+| `twTok` | `string` |  |
+| `uId` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Authentication record (throws on error).
-$authentication = $client->Authentication()->load();
+// load() returns the ENTITY — call data_get() for the Authentication record (throws on error).
+$authentication = $client->Authentication()->load(["id" => "authentication_id"]);
 ```
 
 #### Example: Create
@@ -427,18 +462,18 @@ Create an instance: `$get_user_post = $client->GetUserPost();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `ctx` | `string` |  |
-| `e_id` | `string` |  |
+| `eId` | `string` |  |
 | `id` | `string` |  |
 | `img` | `string` |  |
 | `lov` | `array` |  |
 | `name` | `string` |  |
-| `nb_p` | `int` |  |
-| `nb_r` | `int` |  |
+| `nbP` | `int` |  |
+| `nbR` | `int` |  |
 | `score` | `float` |  |
 | `src` | `array` |  |
 | `text` | `string` |  |
-| `u_id` | `string` |  |
-| `u_nm` | `string` |  |
+| `uId` | `string` |  |
+| `uNm` | `string` |  |
 | `url` | `string` |  |
 
 #### Example: List
@@ -465,7 +500,7 @@ Create an instance: `$playlist = $client->Playlist();`
 | --- | --- | --- |
 | `id` | `int` |  |
 | `name` | `string` |  |
-| `nb_track` | `int` |  |
+| `nbTracks` | `int` |  |
 | `url` | `string` |  |
 
 #### Example: List
@@ -491,24 +526,24 @@ Create an instance: `$post = $client->Post();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `ctx` | `string` |  |
-| `e_id` | `string` |  |
+| `eId` | `string` |  |
 | `id` | `string` |  |
 | `img` | `string` |  |
 | `lov` | `array` |  |
 | `name` | `string` |  |
-| `nb_p` | `int` |  |
-| `nb_r` | `int` |  |
+| `nbP` | `int` |  |
+| `nbR` | `int` |  |
 | `score` | `float` |  |
 | `src` | `array` |  |
 | `text` | `string` |  |
-| `u_id` | `string` |  |
-| `u_nm` | `string` |  |
+| `uId` | `string` |  |
+| `uNm` | `string` |  |
 | `url` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Post record (throws on error).
+// load() returns the ENTITY — call data_get() for the Post record (throws on error).
 $post = $client->Post()->load();
 ```
 
@@ -528,7 +563,7 @@ Create an instance: `$search = $client->Search();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `q` | `string` |  |
-| `result` | `array` |  |
+| `results` | `array` |  |
 
 #### Example: List
 
@@ -552,14 +587,14 @@ Create an instance: `$subscription = $client->Subscription();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `is_subscribing` | `bool` |  |
-| `u_id` | `string` |  |
-| `u_nm` | `string` |  |
+| `isSubscribing` | `bool` |  |
+| `uId` | `string` |  |
+| `uNm` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Subscription record (throws on error).
+// load() returns the ENTITY — call data_get() for the Subscription record (throws on error).
 $subscription = $client->Subscription()->load(["id" => "subscription_id"]);
 ```
 
@@ -581,7 +616,7 @@ Create an instance: `$user = $client->User();`
 | --- | --- | --- |
 | `id` | `int` |  |
 | `name` | `string` |  |
-| `nb_track` | `int` |  |
+| `nbTracks` | `int` |  |
 | `url` | `string` |  |
 
 #### Example: List
@@ -671,15 +706,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$authentication = $client->Authentication();
-$authentication->load();
+$playlist = $client->Playlist();
+$playlist->list();
 
-// $authentication->data_get() now returns the authentication data from the last load
-// $authentication->match_get() returns the last match criteria
+// $playlist->data_get() now returns the playlist data from the last list
+// $playlist->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

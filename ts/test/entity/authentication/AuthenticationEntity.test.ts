@@ -62,14 +62,15 @@ describe('AuthenticationEntity', async () => {
     const authentication_ref01_ent = client.Authentication()
     let authentication_ref01_data = setup.data.new.authentication['authentication_ref01']
 
-    authentication_ref01_data = await authentication_ref01_ent.create(authentication_ref01_data)
-    assert(null != authentication_ref01_data)
+    authentication_ref01_data = (await authentication_ref01_ent.create(authentication_ref01_data)).data()
+    assert(null != authentication_ref01_data.id)
 
 
     // LOAD
     const authentication_ref01_match_dt0: any = {}
-    const authentication_ref01_data_dt0 = await authentication_ref01_ent.load(authentication_ref01_match_dt0)
-    assert(null != authentication_ref01_data_dt0)
+    authentication_ref01_match_dt0.id = authentication_ref01_data.id
+    const authentication_ref01_data_dt0 = (await authentication_ref01_ent.load(authentication_ref01_match_dt0)).data()
+    assert(authentication_ref01_data_dt0.id === authentication_ref01_data.id)
 
 
   })

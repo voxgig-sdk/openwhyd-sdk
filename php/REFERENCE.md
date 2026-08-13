@@ -117,12 +117,29 @@ $authentication = $client->Authentication();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `bio` | `string` | No |  |
+| `cvrImg` | `string` | No |  |
+| `email` | `string` | No |  |
 | `error` | `string` | No |  |
-| `ok` | `string` | No |  |
+| `handle` | `string` | No |  |
+| `id` | `string` | No |  |
+| `img` | `string` | No |  |
+| `isSubscribing` | `bool` | No |  |
+| `lastArtists` | `array` | No |  |
+| `lastFm` | `array` | No |  |
+| `lnk` | `array` | No |  |
+| `loc` | `string` | No |  |
+| `name` | `string` | No |  |
+| `nbLikes` | `int` | No |  |
+| `nbPosts` | `int` | No |  |
+| `nbSubscribers` | `int` | No |  |
+| `nbSubscriptions` | `int` | No |  |
+| `pl` | `array` | No |  |
 | `redirect` | `string` | No |  |
-| `u_id` | `string` | No |  |
-| `user` | `array` | No |  |
-| `wrong_password` | `int` | No |  |
+| `twId` | `string` | No |  |
+| `twSec` | `string` | No |  |
+| `twTok` | `string` | No |  |
+| `uId` | `string` | No |  |
 
 ### Operations
 
@@ -140,7 +157,7 @@ $result = $client->Authentication()->create([
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Authentication()->load();
+$result = $client->Authentication()->load(["id" => "authentication_id"]);
 ```
 
 ### Common Methods
@@ -184,18 +201,18 @@ $get_user_post = $client->GetUserPost();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `ctx` | `string` | No |  |
-| `e_id` | `string` | No |  |
+| `eId` | `string` | No |  |
 | `id` | `string` | No |  |
 | `img` | `string` | No |  |
 | `lov` | `array` | No |  |
 | `name` | `string` | No |  |
-| `nb_p` | `int` | No |  |
-| `nb_r` | `int` | No |  |
+| `nbP` | `int` | No |  |
+| `nbR` | `int` | No |  |
 | `score` | `float` | No |  |
 | `src` | `array` | No |  |
 | `text` | `string` | No |  |
-| `u_id` | `string` | No |  |
-| `u_nm` | `string` | No |  |
+| `uId` | `string` | No |  |
+| `uNm` | `string` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -250,7 +267,7 @@ $playlist = $client->Playlist();
 | --- | --- | --- | --- |
 | `id` | `int` | No |  |
 | `name` | `string` | No |  |
-| `nb_track` | `int` | No |  |
+| `nbTracks` | `int` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -304,18 +321,18 @@ $post = $client->Post();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `ctx` | `string` | No |  |
-| `e_id` | `string` | No |  |
+| `eId` | `string` | No |  |
 | `id` | `string` | No |  |
 | `img` | `string` | No |  |
 | `lov` | `array` | No |  |
 | `name` | `string` | No |  |
-| `nb_p` | `int` | No |  |
-| `nb_r` | `int` | No |  |
+| `nbP` | `int` | No |  |
+| `nbR` | `int` | No |  |
 | `score` | `float` | No |  |
 | `src` | `array` | No |  |
 | `text` | `string` | No |  |
-| `u_id` | `string` | No |  |
-| `u_nm` | `string` | No |  |
+| `uId` | `string` | No |  |
+| `uNm` | `string` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -369,7 +386,7 @@ $search = $client->Search();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `q` | `string` | No |  |
-| `result` | `array` | No |  |
+| `results` | `array` | No |  |
 
 ### Operations
 
@@ -421,9 +438,9 @@ $subscription = $client->Subscription();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `is_subscribing` | `bool` | No |  |
-| `u_id` | `string` | No |  |
-| `u_nm` | `string` | No |  |
+| `isSubscribing` | `bool` | No |  |
+| `uId` | `string` | No |  |
+| `uNm` | `string` | No |  |
 
 ### Operations
 
@@ -477,7 +494,7 @@ $user = $client->User();
 | --- | --- | --- | --- |
 | `id` | `int` | No |  |
 | `name` | `string` | No |  |
-| `nb_track` | `int` | No |  |
+| `nbTracks` | `int` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations

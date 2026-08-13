@@ -15,52 +15,103 @@ declare(strict_types=1);
 /** Authentication entity data model. */
 class Authentication
 {
+    public ?string $bio = null;
+    public ?string $cvrImg = null;
+    public ?string $email = null;
     public ?string $error = null;
-    public ?string $ok = null;
+    public ?string $handle = null;
+    public ?string $id = null;
+    public ?string $img = null;
+    public ?bool $isSubscribing = null;
+    public ?array $lastArtists = null;
+    public ?array $lastFm = null;
+    public ?array $lnk = null;
+    public ?string $loc = null;
+    public ?string $name = null;
+    public ?int $nbLikes = null;
+    public ?int $nbPosts = null;
+    public ?int $nbSubscribers = null;
+    public ?int $nbSubscriptions = null;
+    public ?array $pl = null;
     public ?string $redirect = null;
-    public ?string $u_id = null;
-    public ?array $user = null;
-    public ?int $wrong_password = null;
+    public ?string $twId = null;
+    public ?string $twSec = null;
+    public ?string $twTok = null;
+    public ?string $uId = null;
 }
 
 /** Request payload for Authentication#load. */
 class AuthenticationLoadMatch
 {
+    public ?string $bio = null;
+    public ?string $cvrImg = null;
+    public ?string $email = null;
     public ?string $error = null;
-    public ?string $ok = null;
+    public ?string $handle = null;
+    public string $id;
+    public ?string $img = null;
+    public ?bool $isSubscribing = null;
+    public ?array $lastArtists = null;
+    public ?array $lastFm = null;
+    public ?array $lnk = null;
+    public ?string $loc = null;
+    public ?string $name = null;
+    public ?int $nbLikes = null;
+    public ?int $nbPosts = null;
+    public ?int $nbSubscribers = null;
+    public ?int $nbSubscriptions = null;
+    public ?array $pl = null;
     public ?string $redirect = null;
-    public ?string $u_id = null;
-    public ?array $user = null;
-    public ?int $wrong_password = null;
+    public ?string $twId = null;
+    public ?string $twSec = null;
+    public ?string $twTok = null;
+    public ?string $uId = null;
 }
 
 /** Request payload for Authentication#create. */
 class AuthenticationCreateData
 {
+    public ?string $bio = null;
+    public ?string $cvrImg = null;
+    public ?string $email = null;
     public ?string $error = null;
-    public ?string $ok = null;
+    public ?string $handle = null;
+    public ?string $id = null;
+    public ?string $img = null;
+    public ?bool $isSubscribing = null;
+    public ?array $lastArtists = null;
+    public ?array $lastFm = null;
+    public ?array $lnk = null;
+    public ?string $loc = null;
+    public ?string $name = null;
+    public ?int $nbLikes = null;
+    public ?int $nbPosts = null;
+    public ?int $nbSubscribers = null;
+    public ?int $nbSubscriptions = null;
+    public ?array $pl = null;
     public ?string $redirect = null;
-    public ?string $u_id = null;
-    public ?array $user = null;
-    public ?int $wrong_password = null;
+    public ?string $twId = null;
+    public ?string $twSec = null;
+    public ?string $twTok = null;
+    public ?string $uId = null;
 }
 
 /** GetUserPost entity data model. */
 class GetUserPost
 {
     public ?string $ctx = null;
-    public ?string $e_id = null;
+    public ?string $eId = null;
     public ?string $id = null;
     public ?string $img = null;
     public ?array $lov = null;
     public ?string $name = null;
-    public ?int $nb_p = null;
-    public ?int $nb_r = null;
+    public ?int $nbP = null;
+    public ?int $nbR = null;
     public ?float $score = null;
     public ?array $src = null;
     public ?string $text = null;
-    public ?string $u_id = null;
-    public ?string $u_nm = null;
+    public ?string $uId = null;
+    public ?string $uNm = null;
     public ?string $url = null;
 }
 
@@ -75,7 +126,7 @@ class Playlist
 {
     public ?int $id = null;
     public ?string $name = null;
-    public ?int $nb_track = null;
+    public ?int $nbTracks = null;
     public ?string $url = null;
 }
 
@@ -89,18 +140,18 @@ class PlaylistListMatch
 class Post
 {
     public ?string $ctx = null;
-    public ?string $e_id = null;
+    public ?string $eId = null;
     public ?string $id = null;
     public ?string $img = null;
     public ?array $lov = null;
     public ?string $name = null;
-    public ?int $nb_p = null;
-    public ?int $nb_r = null;
+    public ?int $nbP = null;
+    public ?int $nbR = null;
     public ?float $score = null;
     public ?array $src = null;
     public ?string $text = null;
-    public ?string $u_id = null;
-    public ?string $u_nm = null;
+    public ?string $uId = null;
+    public ?string $uNm = null;
     public ?string $url = null;
 }
 
@@ -116,22 +167,22 @@ class PostLoadMatch
 class Search
 {
     public ?string $q = null;
-    public ?array $result = null;
+    public ?array $results = null;
 }
 
 /** Request payload for Search#list. */
 class SearchListMatch
 {
     public ?string $q = null;
-    public ?array $result = null;
+    public ?array $results = null;
 }
 
 /** Subscription entity data model. */
 class Subscription
 {
-    public ?bool $is_subscribing = null;
-    public ?string $u_id = null;
-    public ?string $u_nm = null;
+    public ?bool $isSubscribing = null;
+    public ?string $uId = null;
+    public ?string $uNm = null;
 }
 
 /** Request payload for Subscription#load. */
@@ -145,7 +196,7 @@ class User
 {
     public ?int $id = null;
     public ?string $name = null;
-    public ?int $nb_track = null;
+    public ?int $nbTracks = null;
     public ?string $url = null;
 }
 
@@ -160,7 +211,7 @@ class UserCreateData
 {
     public ?int $id = null;
     public ?string $name = null;
-    public ?int $nb_track = null;
+    public ?int $nbTracks = null;
     public ?string $url = null;
 }
 

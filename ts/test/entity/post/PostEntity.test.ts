@@ -63,7 +63,7 @@ describe('PostEntity', async () => {
     const post_ref01_ent = client.Post()
     const post_ref01_match_dt0: any = {}
     post_ref01_match_dt0.id = post_ref01_data.id
-    const post_ref01_data_dt0 = await post_ref01_ent.load(post_ref01_match_dt0)
+    const post_ref01_data_dt0 = (await post_ref01_ent.load(post_ref01_match_dt0)).data()
     assert(post_ref01_data_dt0.id === post_ref01_data.id)
 
 
