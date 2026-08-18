@@ -121,9 +121,12 @@ const client = new OpenwhydSDK({
   apikey: process.env.OPENWHYD_APIKEY,
 })
 
-// Load authentication data (returns a Authentication)
-const authentication = await client.Authentication().load()
-console.log(authentication)
+
+// Load a specific post (returns a Post)
+const post = await client.Post().load({
+  genre: 'example_genre',
+})
+console.log(post)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -218,12 +221,15 @@ client := sdk.NewOpenwhydSDK(map[string]any{
     "apikey": os.Getenv("OPENWHYD_APIKEY"),
 })
 
-// Load authentication data
-authentication, err := client.Authentication(nil).Load(map[string]any{"id": "example_id"}, nil)
+
+// Load a specific post
+post, err := client.Post(nil).Load(
+    map[string]any{"genre": "example_genre"}, nil,
+)
 if err != nil {
     panic(err)
 }
-fmt.Println(authentication)
+fmt.Println(post)
 ```
 
 ### Ruby

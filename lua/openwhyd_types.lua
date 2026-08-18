@@ -126,9 +126,7 @@
 ---@field url? string
 
 ---@class PostLoadMatch
----@field playlist_id? string
----@field username? string
----@field genre? string
+---@field genre string
 
 ---@class Search
 ---@field q? string
@@ -153,7 +151,10 @@
 ---@field url? string
 
 ---@class UserListMatch
----@field username? string
+---@field id? number
+---@field name? string
+---@field nbTracks? number
+---@field url? string
 
 ---@class UserCreateData
 ---@field id? number

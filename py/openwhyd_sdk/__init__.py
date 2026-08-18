@@ -23,8 +23,8 @@ class OpenwhydSDK:
         utility = OpenwhydUtility()
         self._utility = utility
 
-        from openwhyd_sdk.config import make_config
-        config = make_config()
+        from openwhyd_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,

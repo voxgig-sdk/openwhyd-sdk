@@ -28,7 +28,7 @@ class OpenwhydSDK
     utility = OpenwhydUtility.new
     @_utility = utility
 
-    config = OpenwhydConfig.make_config
+    config = OpenwhydConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

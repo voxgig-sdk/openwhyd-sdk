@@ -338,7 +338,7 @@ post = client.Post()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Post().load()
+result = client.Post().load({"genre": "genre"})
 ```
 
 ### Common Methods

@@ -408,7 +408,7 @@ const post = client.Post()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Post().load()
+const result = await client.Post().load({ genre: 'genre' })
 ```
 
 ### Common Methods

@@ -146,9 +146,7 @@ class Post(TypedDict, total=False):
     url: str
 
 
-class PostLoadMatch(TypedDict, total=False):
-    playlist_id: str
-    username: str
+class PostLoadMatch(TypedDict):
     genre: str
 
 
@@ -180,7 +178,10 @@ class User(TypedDict, total=False):
 
 
 class UserListMatch(TypedDict, total=False):
-    username: str
+    id: int
+    name: str
+    nbTracks: int
+    url: str
 
 
 class UserCreateData(TypedDict, total=False):

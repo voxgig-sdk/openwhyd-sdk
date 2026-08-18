@@ -15,7 +15,7 @@ require_relative "../Openwhyd_sdk"
 module OpenwhydFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = OpenwhydConfig.make_config["feature"]
+    f = OpenwhydConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

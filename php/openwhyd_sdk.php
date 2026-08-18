@@ -40,7 +40,7 @@ class OpenwhydSDK
         $utility = new OpenwhydUtility();
         $this->_utility = $utility;
 
-        $config = OpenwhydConfig::make_config();
+        $config = OpenwhydConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

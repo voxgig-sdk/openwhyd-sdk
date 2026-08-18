@@ -462,17 +462,9 @@ Post = Struct.new(
 
 # Request payload for Post#load.
 #
-# @!attribute [rw] playlist_id
-#   @return [String, nil]
-#
-# @!attribute [rw] username
-#   @return [String, nil]
-#
 # @!attribute [rw] genre
-#   @return [String, nil]
+#   @return [String]
 PostLoadMatch = Struct.new(
-  :playlist_id,
-  :username,
   :genre,
   keyword_init: true
 )
@@ -552,10 +544,22 @@ User = Struct.new(
 
 # Request payload for User#list.
 #
-# @!attribute [rw] username
+# @!attribute [rw] id
+#   @return [Integer, nil]
+#
+# @!attribute [rw] name
+#   @return [String, nil]
+#
+# @!attribute [rw] nbTracks
+#   @return [Integer, nil]
+#
+# @!attribute [rw] url
 #   @return [String, nil]
 UserListMatch = Struct.new(
-  :username,
+  :id,
+  :name,
+  :nbTracks,
+  :url,
   keyword_init: true
 )
 

@@ -343,7 +343,7 @@ post = client.Post
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Post.load()
+result = client.Post.load({ "genre" => "genre" })
 ```
 
 ### Common Methods

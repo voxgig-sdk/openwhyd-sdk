@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from openwhyd_sdk.config import make_config
+from openwhyd_sdk.config import shared_config
 from openwhyd_sdk.features import _make_feature
 from openwhyd_sdk.core.control import OpenwhydControl
 from openwhyd_sdk.core.error import OpenwhydError
@@ -24,7 +24,7 @@ from openwhyd_sdk.core.spec import OpenwhydSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

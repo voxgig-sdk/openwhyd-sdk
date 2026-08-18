@@ -35,14 +35,17 @@ const client = new OpenwhydSDK({
 })
 ```
 
-### 3. Load an authentication
+### 3. Load a post
 
+Post is nested under genre, so provide the `genre`.
 `load()` returns the entity directly and throws on failure:
 
 ```ts
 try {
-  const authentication = await client.Authentication().load({ id: 'example_id' })
-  console.log(authentication)
+  const post = await client.Post().load({
+    genre: 'example_genre',
+  })
+  console.log(post)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -587,7 +590,7 @@ Create an instance: `const post = client.Post()`
 #### Example: Load
 
 ```ts
-const post = await client.Post().load()
+const post = await client.Post().load({ genre: 'genre' })
 ```
 
 
@@ -673,6 +676,24 @@ const user = await client.User().create({
 })
 ```
 
+
+## Open types
+
+1 field is carried as open values rather than typed structures.
+This follows from the API definition, not from a gap in this SDK: the
+definition describes it with untagged unions —
+`oneOf`/`anyOf` branches with no `discriminator` — so it never states which
+variant a given value is. Nothing can select a branch reliably, so the SDK
+passes the value through unchanged rather than assert a shape the API does not
+guarantee.
+
+| Entity | Field | Variants | Nesting |
+| --- | --- | --- | --- |
+| `search` | `results` | 3 | 1 level |
+
+These values round-trip unchanged — read them, modify them, send them back. If
+the API adds a `discriminator` to the definition, regenerating will type them.
+Every other field is typed normally.
 
 ## Advanced
 

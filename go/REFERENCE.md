@@ -349,7 +349,7 @@ fmt.Println(post.GetName()) // "post"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Post(nil).Load(nil, nil)
+result, err := client.Post(nil).Load(map[string]any{"genre": "genre"}, nil)
 if err != nil {
     panic(err)
 }

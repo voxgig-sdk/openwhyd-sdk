@@ -340,7 +340,7 @@ local post = client:Post(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Post():load()
+local result, err = client:Post():load({ genre = "genre" })
 ```
 
 ### Common Methods

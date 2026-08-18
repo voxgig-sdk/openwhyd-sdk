@@ -570,7 +570,7 @@ Create an instance: `post := client.Post(nil)`
 #### Example: Load
 
 ```go
-post, err := client.Post(nil).Load(nil, nil)
+post, err := client.Post(nil).Load(map[string]any{"genre": "genre"}, nil)
 if err != nil {
     panic(err)
 }
@@ -676,6 +676,24 @@ if err != nil {
 fmt.Println(result)
 ```
 
+
+## Open types
+
+1 field is carried as open values rather than typed structures.
+This follows from the API definition, not from a gap in this SDK: the
+definition describes it with untagged unions —
+`oneOf`/`anyOf` branches with no `discriminator` — so it never states which
+variant a given value is. Nothing can select a branch reliably, so the SDK
+passes the value through unchanged rather than assert a shape the API does not
+guarantee.
+
+| Entity | Field | Variants | Nesting |
+| --- | --- | --- | --- |
+| `search` | `results` | 3 | 1 level |
+
+These values round-trip unchanged — read them, modify them, send them back. If
+the API adds a `discriminator` to the definition, regenerating will type them.
+Every other field is typed normally.
 
 ## Advanced
 

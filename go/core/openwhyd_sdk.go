@@ -23,7 +23,7 @@ func NewOpenwhydSDK(options map[string]any) *OpenwhydSDK {
 
 	sdk.utility = NewUtility()
 
-	config := MakeConfig()
+	config := SharedConfig()
 
 	sdk.rootctx = sdk.utility.MakeContext(map[string]any{
 		"client":  sdk,

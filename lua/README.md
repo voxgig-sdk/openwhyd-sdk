@@ -35,12 +35,14 @@ local client = sdk.new({
 })
 ```
 
-### 3. Load an authentication
+### 3. Load a post
+
+Post is nested under genre, so provide the `genre`.
 
 ```lua
-local authentication, err = client:Authentication():load({ id = "example_id" })
+local post, err = client:Post():load({ genre = "example_genre" })
 if err then error(err) end
-print(authentication)
+print(post)
 ```
 
 ### 4. Create, update, and remove
@@ -522,7 +524,7 @@ Create an instance: `local post = client:Post(nil)`
 #### Example: Load
 
 ```lua
-local post, err = client:Post():load()
+local post, err = client:Post():load({ genre = "genre" })
 ```
 
 
@@ -608,6 +610,24 @@ local user, err = client:User():create({
 })
 ```
 
+
+## Open types
+
+1 field is carried as open values rather than typed structures.
+This follows from the API definition, not from a gap in this SDK: the
+definition describes it with untagged unions —
+`oneOf`/`anyOf` branches with no `discriminator` — so it never states which
+variant a given value is. Nothing can select a branch reliably, so the SDK
+passes the value through unchanged rather than assert a shape the API does not
+guarantee.
+
+| Entity | Field | Variants | Nesting |
+| --- | --- | --- | --- |
+| `search` | `results` | 3 | 1 level |
+
+These values round-trip unchanged — read them, modify them, send them back. If
+the API adds a `discriminator` to the definition, regenerating will type them.
+Every other field is typed normally.
 
 ## Advanced
 
