@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Openwhyd",
+			"slug": "openwhyd",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -42,38 +45,47 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "bio",
+						"short": "User biography",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "cvrImg",
+						"short": "Cover image URL",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "email",
+						"short": "Email address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "error",
+						"short": "Error message if any",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "handle",
+						"short": "Username/handle",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "User ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "img",
+						"short": "Avatar URL",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "isSubscribing",
+						"short": "Whether logged in user subscribes to this user",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "lastArtists",
+						"short": "Recently posted artists",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
@@ -86,50 +98,62 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "loc",
+						"short": "User location",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Full name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "nbLikes",
+						"short": "Number of likes",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "nbPosts",
+						"short": "Number of posts",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "nbSubscribers",
+						"short": "Number of subscribers",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "nbSubscriptions",
+						"short": "Number of subscriptions",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "pl",
+						"short": "User playlists",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "redirect",
+						"short": "URL to redirect to",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "twId",
+						"short": "Twitter handle",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "twSec",
+						"short": "Twitter session secret",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "twTok",
+						"short": "Twitter session token",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "uId",
+						"short": "ID of new user if successful",
 						"type": "`$STRING`",
 					},
 				},
@@ -267,38 +291,47 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ctx",
+						"short": "Context",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "eId",
+						"short": "External ID (platform identifier)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Post ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "img",
+						"short": "Track image URL",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "lov",
+						"short": "User IDs who liked this post",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Track name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "nbP",
+						"short": "Number of plays",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "nbR",
+						"short": "Number of reposts",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "score",
+						"short": "Search relevance score",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
@@ -307,18 +340,22 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "text",
+						"short": "Post text/comment",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "uId",
+						"short": "User ID of poster",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "uNm",
+						"short": "User name of poster",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "url",
+						"short": "Direct URL to track",
 						"type": "`$STRING`",
 					},
 				},
@@ -403,18 +440,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"short": "Playlist number",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Playlist name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "nbTracks",
+						"short": "Number of tracks in playlist",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "url",
+						"short": "Playlist URL",
 						"type": "`$STRING`",
 					},
 				},
@@ -473,38 +514,47 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ctx",
+						"short": "Context",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "eId",
+						"short": "External ID (platform identifier)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Post ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "img",
+						"short": "Track image URL",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "lov",
+						"short": "User IDs who liked this post",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Track name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "nbP",
+						"short": "Number of plays",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "nbR",
+						"short": "Number of reposts",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "score",
+						"short": "Search relevance score",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
@@ -513,18 +563,22 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "text",
+						"short": "Post text/comment",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "uId",
+						"short": "User ID of poster",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "uNm",
+						"short": "User name of poster",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "url",
+						"short": "Direct URL to track",
 						"type": "`$STRING`",
 					},
 				},
@@ -665,6 +719,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "q",
+						"short": "Search query",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -736,14 +791,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "isSubscribing",
+						"short": "Whether logged in user follows this user",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "uId",
+						"short": "User ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "uNm",
+						"short": "User name",
 						"type": "`$STRING`",
 					},
 				},
@@ -874,18 +932,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"short": "Playlist number",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Playlist name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "nbTracks",
+						"short": "Number of tracks in playlist",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "url",
+						"short": "Playlist URL",
 						"type": "`$STRING`",
 					},
 				},

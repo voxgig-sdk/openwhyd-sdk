@@ -123,29 +123,29 @@ fmt.Println(authentication.GetName()) // "authentication"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bio` | `string` | No |  |
-| `cvrImg` | `string` | No |  |
-| `email` | `string` | No |  |
-| `error` | `string` | No |  |
-| `handle` | `string` | No |  |
-| `id` | `string` | No |  |
-| `img` | `string` | No |  |
-| `isSubscribing` | `bool` | No |  |
-| `lastArtists` | `[]any` | No |  |
+| `bio` | `string` | No | User biography |
+| `cvrImg` | `string` | No | Cover image URL |
+| `email` | `string` | No | Email address |
+| `error` | `string` | No | Error message if any |
+| `handle` | `string` | No | Username/handle |
+| `id` | `string` | No | User ID |
+| `img` | `string` | No | Avatar URL |
+| `isSubscribing` | `bool` | No | Whether logged in user subscribes to this user |
+| `lastArtists` | `[]any` | No | Recently posted artists |
 | `lastFm` | `map[string]any` | No |  |
 | `lnk` | `map[string]any` | No |  |
-| `loc` | `string` | No |  |
-| `name` | `string` | No |  |
-| `nbLikes` | `int` | No |  |
-| `nbPosts` | `int` | No |  |
-| `nbSubscribers` | `int` | No |  |
-| `nbSubscriptions` | `int` | No |  |
-| `pl` | `[]any` | No |  |
-| `redirect` | `string` | No |  |
-| `twId` | `string` | No |  |
-| `twSec` | `string` | No |  |
-| `twTok` | `string` | No |  |
-| `uId` | `string` | No |  |
+| `loc` | `string` | No | User location |
+| `name` | `string` | No | Full name |
+| `nbLikes` | `int` | No | Number of likes |
+| `nbPosts` | `int` | No | Number of posts |
+| `nbSubscribers` | `int` | No | Number of subscribers |
+| `nbSubscriptions` | `int` | No | Number of subscriptions |
+| `pl` | `[]any` | No | User playlists |
+| `redirect` | `string` | No | URL to redirect to |
+| `twId` | `string` | No | Twitter handle |
+| `twSec` | `string` | No | Twitter session secret |
+| `twTok` | `string` | No | Twitter session token |
+| `uId` | `string` | No | ID of new user if successful |
 
 ### Operations
 
@@ -209,20 +209,20 @@ fmt.Println(getUserPost.GetName()) // "get_user_post"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ctx` | `string` | No |  |
-| `eId` | `string` | No |  |
-| `id` | `string` | No |  |
-| `img` | `string` | No |  |
-| `lov` | `[]any` | No |  |
-| `name` | `string` | No |  |
-| `nbP` | `int` | No |  |
-| `nbR` | `int` | No |  |
-| `score` | `float64` | No |  |
+| `ctx` | `string` | No | Context |
+| `eId` | `string` | No | External ID (platform identifier) |
+| `id` | `string` | No | Post ID |
+| `img` | `string` | No | Track image URL |
+| `lov` | `[]any` | No | User IDs who liked this post |
+| `name` | `string` | No | Track name |
+| `nbP` | `int` | No | Number of plays |
+| `nbR` | `int` | No | Number of reposts |
+| `score` | `float64` | No | Search relevance score |
 | `src` | `map[string]any` | No |  |
-| `text` | `string` | No |  |
-| `uId` | `string` | No |  |
-| `uNm` | `string` | No |  |
-| `url` | `string` | No |  |
+| `text` | `string` | No | Post text/comment |
+| `uId` | `string` | No | User ID of poster |
+| `uNm` | `string` | No | User name of poster |
+| `url` | `string` | No | Direct URL to track |
 
 ### Operations
 
@@ -273,10 +273,10 @@ fmt.Println(playlist.GetName()) // "playlist"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `int` | No |  |
-| `name` | `string` | No |  |
-| `nbTracks` | `int` | No |  |
-| `url` | `string` | No |  |
+| `id` | `int` | No | Playlist number |
+| `name` | `string` | No | Playlist name |
+| `nbTracks` | `int` | No | Number of tracks in playlist |
+| `url` | `string` | No | Playlist URL |
 
 ### Operations
 
@@ -327,20 +327,20 @@ fmt.Println(post.GetName()) // "post"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ctx` | `string` | No |  |
-| `eId` | `string` | No |  |
-| `id` | `string` | No |  |
-| `img` | `string` | No |  |
-| `lov` | `[]any` | No |  |
-| `name` | `string` | No |  |
-| `nbP` | `int` | No |  |
-| `nbR` | `int` | No |  |
-| `score` | `float64` | No |  |
+| `ctx` | `string` | No | Context |
+| `eId` | `string` | No | External ID (platform identifier) |
+| `id` | `string` | No | Post ID |
+| `img` | `string` | No | Track image URL |
+| `lov` | `[]any` | No | User IDs who liked this post |
+| `name` | `string` | No | Track name |
+| `nbP` | `int` | No | Number of plays |
+| `nbR` | `int` | No | Number of reposts |
+| `score` | `float64` | No | Search relevance score |
 | `src` | `map[string]any` | No |  |
-| `text` | `string` | No |  |
-| `uId` | `string` | No |  |
-| `uNm` | `string` | No |  |
-| `url` | `string` | No |  |
+| `text` | `string` | No | Post text/comment |
+| `uId` | `string` | No | User ID of poster |
+| `uNm` | `string` | No | User name of poster |
+| `url` | `string` | No | Direct URL to track |
 
 ### Operations
 
@@ -391,7 +391,7 @@ fmt.Println(search.GetName()) // "search"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `q` | `string` | No |  |
+| `q` | `string` | No | Search query |
 | `results` | `[]any` | No |  |
 
 ### Operations
@@ -443,9 +443,9 @@ fmt.Println(subscription.GetName()) // "subscription"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `isSubscribing` | `bool` | No |  |
-| `uId` | `string` | No |  |
-| `uNm` | `string` | No |  |
+| `isSubscribing` | `bool` | No | Whether logged in user follows this user |
+| `uId` | `string` | No | User ID |
+| `uNm` | `string` | No | User name |
 
 ### Operations
 
@@ -496,10 +496,10 @@ fmt.Println(user.GetName()) // "user"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `int` | No |  |
-| `name` | `string` | No |  |
-| `nbTracks` | `int` | No |  |
-| `url` | `string` | No |  |
+| `id` | `int` | No | Playlist number |
+| `name` | `string` | No | Playlist name |
+| `nbTracks` | `int` | No | Number of tracks in playlist |
+| `url` | `string` | No | Playlist URL |
 
 ### Operations
 

@@ -6,7 +6,7 @@ The Golang SDK for the Openwhyd API — an entity-oriented client using standard
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Authentication(nil)` — each with the same small set of operations (`List`, `Load`, `Create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -279,29 +279,29 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"bio"` |  |
-| `"cvrImg"` |  |
-| `"email"` |  |
-| `"error"` |  |
-| `"handle"` |  |
-| `"id"` |  |
-| `"img"` |  |
-| `"isSubscribing"` |  |
-| `"lastArtists"` |  |
+| `"bio"` | User biography |
+| `"cvrImg"` | Cover image URL |
+| `"email"` | Email address |
+| `"error"` | Error message if any |
+| `"handle"` | Username/handle |
+| `"id"` | User ID |
+| `"img"` | Avatar URL |
+| `"isSubscribing"` | Whether logged in user subscribes to this user |
+| `"lastArtists"` | Recently posted artists |
 | `"lastFm"` |  |
 | `"lnk"` |  |
-| `"loc"` |  |
-| `"name"` |  |
-| `"nbLikes"` |  |
-| `"nbPosts"` |  |
-| `"nbSubscribers"` |  |
-| `"nbSubscriptions"` |  |
-| `"pl"` |  |
-| `"redirect"` |  |
-| `"twId"` |  |
-| `"twSec"` |  |
-| `"twTok"` |  |
-| `"uId"` |  |
+| `"loc"` | User location |
+| `"name"` | Full name |
+| `"nbLikes"` | Number of likes |
+| `"nbPosts"` | Number of posts |
+| `"nbSubscribers"` | Number of subscribers |
+| `"nbSubscriptions"` | Number of subscriptions |
+| `"pl"` | User playlists |
+| `"redirect"` | URL to redirect to |
+| `"twId"` | Twitter handle |
+| `"twSec"` | Twitter session secret |
+| `"twTok"` | Twitter session token |
+| `"uId"` | ID of new user if successful |
 
 Operations: Create, Load.
 
@@ -311,20 +311,20 @@ API path: `/login`
 
 | Field | Description |
 | --- | --- |
-| `"ctx"` |  |
-| `"eId"` |  |
-| `"id"` |  |
-| `"img"` |  |
-| `"lov"` |  |
-| `"name"` |  |
-| `"nbP"` |  |
-| `"nbR"` |  |
-| `"score"` |  |
+| `"ctx"` | Context |
+| `"eId"` | External ID (platform identifier) |
+| `"id"` | Post ID |
+| `"img"` | Track image URL |
+| `"lov"` | User IDs who liked this post |
+| `"name"` | Track name |
+| `"nbP"` | Number of plays |
+| `"nbR"` | Number of reposts |
+| `"score"` | Search relevance score |
 | `"src"` |  |
-| `"text"` |  |
-| `"uId"` |  |
-| `"uNm"` |  |
-| `"url"` |  |
+| `"text"` | Post text/comment |
+| `"uId"` | User ID of poster |
+| `"uNm"` | User name of poster |
+| `"url"` | Direct URL to track |
 
 Operations: List.
 
@@ -334,10 +334,10 @@ API path: `/{username}`
 
 | Field | Description |
 | --- | --- |
-| `"id"` |  |
-| `"name"` |  |
-| `"nbTracks"` |  |
-| `"url"` |  |
+| `"id"` | Playlist number |
+| `"name"` | Playlist name |
+| `"nbTracks"` | Number of tracks in playlist |
+| `"url"` | Playlist URL |
 
 Operations: List.
 
@@ -347,20 +347,20 @@ API path: `/{username}/playlists`
 
 | Field | Description |
 | --- | --- |
-| `"ctx"` |  |
-| `"eId"` |  |
-| `"id"` |  |
-| `"img"` |  |
-| `"lov"` |  |
-| `"name"` |  |
-| `"nbP"` |  |
-| `"nbR"` |  |
-| `"score"` |  |
+| `"ctx"` | Context |
+| `"eId"` | External ID (platform identifier) |
+| `"id"` | Post ID |
+| `"img"` | Track image URL |
+| `"lov"` | User IDs who liked this post |
+| `"name"` | Track name |
+| `"nbP"` | Number of plays |
+| `"nbR"` | Number of reposts |
+| `"score"` | Search relevance score |
 | `"src"` |  |
-| `"text"` |  |
-| `"uId"` |  |
-| `"uNm"` |  |
-| `"url"` |  |
+| `"text"` | Post text/comment |
+| `"uId"` | User ID of poster |
+| `"uNm"` | User name of poster |
+| `"url"` | Direct URL to track |
 
 Operations: Load.
 
@@ -370,7 +370,7 @@ API path: `/{username}/playlist/{playlistId}`
 
 | Field | Description |
 | --- | --- |
-| `"q"` |  |
+| `"q"` | Search query |
 | `"results"` |  |
 
 Operations: List.
@@ -381,9 +381,9 @@ API path: `/search`
 
 | Field | Description |
 | --- | --- |
-| `"isSubscribing"` |  |
-| `"uId"` |  |
-| `"uNm"` |  |
+| `"isSubscribing"` | Whether logged in user follows this user |
+| `"uId"` | User ID |
+| `"uNm"` | User name |
 
 Operations: Load.
 
@@ -393,10 +393,10 @@ API path: `/api/follow/fetchFollowers/{id}`
 
 | Field | Description |
 | --- | --- |
-| `"id"` |  |
-| `"name"` |  |
-| `"nbTracks"` |  |
-| `"url"` |  |
+| `"id"` | Playlist number |
+| `"name"` | Playlist name |
+| `"nbTracks"` | Number of tracks in playlist |
+| `"url"` | Playlist URL |
 
 Operations: Create, List.
 
@@ -422,29 +422,29 @@ Create an instance: `authentication := client.Authentication(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bio` | `string` |  |
-| `cvrImg` | `string` |  |
-| `email` | `string` |  |
-| `error` | `string` |  |
-| `handle` | `string` |  |
-| `id` | `string` |  |
-| `img` | `string` |  |
-| `isSubscribing` | `bool` |  |
-| `lastArtists` | `[]any` |  |
+| `bio` | `string` | User biography |
+| `cvrImg` | `string` | Cover image URL |
+| `email` | `string` | Email address |
+| `error` | `string` | Error message if any |
+| `handle` | `string` | Username/handle |
+| `id` | `string` | User ID |
+| `img` | `string` | Avatar URL |
+| `isSubscribing` | `bool` | Whether logged in user subscribes to this user |
+| `lastArtists` | `[]any` | Recently posted artists |
 | `lastFm` | `map[string]any` |  |
 | `lnk` | `map[string]any` |  |
-| `loc` | `string` |  |
-| `name` | `string` |  |
-| `nbLikes` | `int` |  |
-| `nbPosts` | `int` |  |
-| `nbSubscribers` | `int` |  |
-| `nbSubscriptions` | `int` |  |
-| `pl` | `[]any` |  |
-| `redirect` | `string` |  |
-| `twId` | `string` |  |
-| `twSec` | `string` |  |
-| `twTok` | `string` |  |
-| `uId` | `string` |  |
+| `loc` | `string` | User location |
+| `name` | `string` | Full name |
+| `nbLikes` | `int` | Number of likes |
+| `nbPosts` | `int` | Number of posts |
+| `nbSubscribers` | `int` | Number of subscribers |
+| `nbSubscriptions` | `int` | Number of subscriptions |
+| `pl` | `[]any` | User playlists |
+| `redirect` | `string` | URL to redirect to |
+| `twId` | `string` | Twitter handle |
+| `twSec` | `string` | Twitter session secret |
+| `twTok` | `string` | Twitter session token |
+| `uId` | `string` | ID of new user if successful |
 
 #### Example: Load
 
@@ -482,20 +482,20 @@ Create an instance: `getUserPost := client.GetUserPost(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ctx` | `string` |  |
-| `eId` | `string` |  |
-| `id` | `string` |  |
-| `img` | `string` |  |
-| `lov` | `[]any` |  |
-| `name` | `string` |  |
-| `nbP` | `int` |  |
-| `nbR` | `int` |  |
-| `score` | `float64` |  |
+| `ctx` | `string` | Context |
+| `eId` | `string` | External ID (platform identifier) |
+| `id` | `string` | Post ID |
+| `img` | `string` | Track image URL |
+| `lov` | `[]any` | User IDs who liked this post |
+| `name` | `string` | Track name |
+| `nbP` | `int` | Number of plays |
+| `nbR` | `int` | Number of reposts |
+| `score` | `float64` | Search relevance score |
 | `src` | `map[string]any` |  |
-| `text` | `string` |  |
-| `uId` | `string` |  |
-| `uNm` | `string` |  |
-| `url` | `string` |  |
+| `text` | `string` | Post text/comment |
+| `uId` | `string` | User ID of poster |
+| `uNm` | `string` | User name of poster |
+| `url` | `string` | Direct URL to track |
 
 #### Example: List
 
@@ -522,10 +522,10 @@ Create an instance: `playlist := client.Playlist(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `int` |  |
-| `name` | `string` |  |
-| `nbTracks` | `int` |  |
-| `url` | `string` |  |
+| `id` | `int` | Playlist number |
+| `name` | `string` | Playlist name |
+| `nbTracks` | `int` | Number of tracks in playlist |
+| `url` | `string` | Playlist URL |
 
 #### Example: List
 
@@ -552,20 +552,20 @@ Create an instance: `post := client.Post(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ctx` | `string` |  |
-| `eId` | `string` |  |
-| `id` | `string` |  |
-| `img` | `string` |  |
-| `lov` | `[]any` |  |
-| `name` | `string` |  |
-| `nbP` | `int` |  |
-| `nbR` | `int` |  |
-| `score` | `float64` |  |
+| `ctx` | `string` | Context |
+| `eId` | `string` | External ID (platform identifier) |
+| `id` | `string` | Post ID |
+| `img` | `string` | Track image URL |
+| `lov` | `[]any` | User IDs who liked this post |
+| `name` | `string` | Track name |
+| `nbP` | `int` | Number of plays |
+| `nbR` | `int` | Number of reposts |
+| `score` | `float64` | Search relevance score |
 | `src` | `map[string]any` |  |
-| `text` | `string` |  |
-| `uId` | `string` |  |
-| `uNm` | `string` |  |
-| `url` | `string` |  |
+| `text` | `string` | Post text/comment |
+| `uId` | `string` | User ID of poster |
+| `uNm` | `string` | User name of poster |
+| `url` | `string` | Direct URL to track |
 
 #### Example: Load
 
@@ -592,7 +592,7 @@ Create an instance: `search := client.Search(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `q` | `string` |  |
+| `q` | `string` | Search query |
 | `results` | `[]any` |  |
 
 #### Example: List
@@ -620,9 +620,9 @@ Create an instance: `subscription := client.Subscription(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `isSubscribing` | `bool` |  |
-| `uId` | `string` |  |
-| `uNm` | `string` |  |
+| `isSubscribing` | `bool` | Whether logged in user follows this user |
+| `uId` | `string` | User ID |
+| `uNm` | `string` | User name |
 
 #### Example: Load
 
@@ -650,10 +650,10 @@ Create an instance: `user := client.User(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `int` |  |
-| `name` | `string` |  |
-| `nbTracks` | `int` |  |
-| `url` | `string` |  |
+| `id` | `int` | Playlist number |
+| `name` | `string` | Playlist name |
+| `nbTracks` | `int` | Number of tracks in playlist |
+| `url` | `string` | Playlist URL |
 
 #### Example: List
 

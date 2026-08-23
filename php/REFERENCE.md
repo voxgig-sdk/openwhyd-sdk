@@ -117,29 +117,29 @@ $authentication = $client->Authentication();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bio` | `string` | No |  |
-| `cvrImg` | `string` | No |  |
-| `email` | `string` | No |  |
-| `error` | `string` | No |  |
-| `handle` | `string` | No |  |
-| `id` | `string` | No |  |
-| `img` | `string` | No |  |
-| `isSubscribing` | `bool` | No |  |
-| `lastArtists` | `array` | No |  |
+| `bio` | `string` | No | User biography |
+| `cvrImg` | `string` | No | Cover image URL |
+| `email` | `string` | No | Email address |
+| `error` | `string` | No | Error message if any |
+| `handle` | `string` | No | Username/handle |
+| `id` | `string` | No | User ID |
+| `img` | `string` | No | Avatar URL |
+| `isSubscribing` | `bool` | No | Whether logged in user subscribes to this user |
+| `lastArtists` | `array` | No | Recently posted artists |
 | `lastFm` | `array` | No |  |
 | `lnk` | `array` | No |  |
-| `loc` | `string` | No |  |
-| `name` | `string` | No |  |
-| `nbLikes` | `int` | No |  |
-| `nbPosts` | `int` | No |  |
-| `nbSubscribers` | `int` | No |  |
-| `nbSubscriptions` | `int` | No |  |
-| `pl` | `array` | No |  |
-| `redirect` | `string` | No |  |
-| `twId` | `string` | No |  |
-| `twSec` | `string` | No |  |
-| `twTok` | `string` | No |  |
-| `uId` | `string` | No |  |
+| `loc` | `string` | No | User location |
+| `name` | `string` | No | Full name |
+| `nbLikes` | `int` | No | Number of likes |
+| `nbPosts` | `int` | No | Number of posts |
+| `nbSubscribers` | `int` | No | Number of subscribers |
+| `nbSubscriptions` | `int` | No | Number of subscriptions |
+| `pl` | `array` | No | User playlists |
+| `redirect` | `string` | No | URL to redirect to |
+| `twId` | `string` | No | Twitter handle |
+| `twSec` | `string` | No | Twitter session secret |
+| `twTok` | `string` | No | Twitter session token |
+| `uId` | `string` | No | ID of new user if successful |
 
 ### Operations
 
@@ -200,20 +200,20 @@ $get_user_post = $client->GetUserPost();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ctx` | `string` | No |  |
-| `eId` | `string` | No |  |
-| `id` | `string` | No |  |
-| `img` | `string` | No |  |
-| `lov` | `array` | No |  |
-| `name` | `string` | No |  |
-| `nbP` | `int` | No |  |
-| `nbR` | `int` | No |  |
-| `score` | `float` | No |  |
+| `ctx` | `string` | No | Context |
+| `eId` | `string` | No | External ID (platform identifier) |
+| `id` | `string` | No | Post ID |
+| `img` | `string` | No | Track image URL |
+| `lov` | `array` | No | User IDs who liked this post |
+| `name` | `string` | No | Track name |
+| `nbP` | `int` | No | Number of plays |
+| `nbR` | `int` | No | Number of reposts |
+| `score` | `float` | No | Search relevance score |
 | `src` | `array` | No |  |
-| `text` | `string` | No |  |
-| `uId` | `string` | No |  |
-| `uNm` | `string` | No |  |
-| `url` | `string` | No |  |
+| `text` | `string` | No | Post text/comment |
+| `uId` | `string` | No | User ID of poster |
+| `uNm` | `string` | No | User name of poster |
+| `url` | `string` | No | Direct URL to track |
 
 ### Operations
 
@@ -265,10 +265,10 @@ $playlist = $client->Playlist();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `int` | No |  |
-| `name` | `string` | No |  |
-| `nbTracks` | `int` | No |  |
-| `url` | `string` | No |  |
+| `id` | `int` | No | Playlist number |
+| `name` | `string` | No | Playlist name |
+| `nbTracks` | `int` | No | Number of tracks in playlist |
+| `url` | `string` | No | Playlist URL |
 
 ### Operations
 
@@ -320,20 +320,20 @@ $post = $client->Post();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ctx` | `string` | No |  |
-| `eId` | `string` | No |  |
-| `id` | `string` | No |  |
-| `img` | `string` | No |  |
-| `lov` | `array` | No |  |
-| `name` | `string` | No |  |
-| `nbP` | `int` | No |  |
-| `nbR` | `int` | No |  |
-| `score` | `float` | No |  |
+| `ctx` | `string` | No | Context |
+| `eId` | `string` | No | External ID (platform identifier) |
+| `id` | `string` | No | Post ID |
+| `img` | `string` | No | Track image URL |
+| `lov` | `array` | No | User IDs who liked this post |
+| `name` | `string` | No | Track name |
+| `nbP` | `int` | No | Number of plays |
+| `nbR` | `int` | No | Number of reposts |
+| `score` | `float` | No | Search relevance score |
 | `src` | `array` | No |  |
-| `text` | `string` | No |  |
-| `uId` | `string` | No |  |
-| `uNm` | `string` | No |  |
-| `url` | `string` | No |  |
+| `text` | `string` | No | Post text/comment |
+| `uId` | `string` | No | User ID of poster |
+| `uNm` | `string` | No | User name of poster |
+| `url` | `string` | No | Direct URL to track |
 
 ### Operations
 
@@ -385,7 +385,7 @@ $search = $client->Search();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `q` | `string` | No |  |
+| `q` | `string` | No | Search query |
 | `results` | `array` | No |  |
 
 ### Operations
@@ -438,9 +438,9 @@ $subscription = $client->Subscription();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `isSubscribing` | `bool` | No |  |
-| `uId` | `string` | No |  |
-| `uNm` | `string` | No |  |
+| `isSubscribing` | `bool` | No | Whether logged in user follows this user |
+| `uId` | `string` | No | User ID |
+| `uNm` | `string` | No | User name |
 
 ### Operations
 
@@ -492,10 +492,10 @@ $user = $client->User();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `int` | No |  |
-| `name` | `string` | No |  |
-| `nbTracks` | `int` | No |  |
-| `url` | `string` | No |  |
+| `id` | `int` | No | Playlist number |
+| `name` | `string` | No | Playlist name |
+| `nbTracks` | `int` | No | Number of tracks in playlist |
+| `url` | `string` | No | Playlist URL |
 
 ### Operations
 

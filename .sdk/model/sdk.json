@@ -36,54 +36,63 @@
               "active": true,
               "name": "bio",
               "req": false,
+              "short": "User biography",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "cvrImg",
               "req": false,
+              "short": "Cover image URL",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "email",
               "req": false,
+              "short": "Email address",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "error",
               "req": false,
+              "short": "Error message if any",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "handle",
               "req": false,
+              "short": "Username/handle",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "User ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "img",
               "req": false,
+              "short": "Avatar URL",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "isSubscribing",
               "req": false,
+              "short": "Whether logged in user subscribes to this user",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "lastArtists",
               "req": false,
+              "short": "Recently posted artists",
               "type": "`$ARRAY`"
             },
             {
@@ -102,72 +111,84 @@
               "active": true,
               "name": "loc",
               "req": false,
+              "short": "User location",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Full name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "nbLikes",
               "req": false,
+              "short": "Number of likes",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "nbPosts",
               "req": false,
+              "short": "Number of posts",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "nbSubscribers",
               "req": false,
+              "short": "Number of subscribers",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "nbSubscriptions",
               "req": false,
+              "short": "Number of subscriptions",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "pl",
               "req": false,
+              "short": "User playlists",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "redirect",
               "req": false,
+              "short": "URL to redirect to",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "twId",
               "req": false,
+              "short": "Twitter handle",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "twSec",
               "req": false,
+              "short": "Twitter session secret",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "twTok",
               "req": false,
+              "short": "Twitter session token",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "uId",
               "req": false,
+              "short": "ID of new user if successful",
               "type": "`$STRING`"
             }
           ],
@@ -330,54 +351,63 @@
               "active": true,
               "name": "ctx",
               "req": false,
+              "short": "Context",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "eId",
               "req": false,
+              "short": "External ID (platform identifier)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Post ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "img",
               "req": false,
+              "short": "Track image URL",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "lov",
               "req": false,
+              "short": "User IDs who liked this post",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Track name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "nbP",
               "req": false,
+              "short": "Number of plays",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "nbR",
               "req": false,
+              "short": "Number of reposts",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "score",
               "req": false,
+              "short": "Search relevance score",
               "type": "`$NUMBER`"
             },
             {
@@ -390,24 +420,28 @@
               "active": true,
               "name": "text",
               "req": false,
+              "short": "Post text/comment",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "uId",
               "req": false,
+              "short": "User ID of poster",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "uNm",
               "req": false,
+              "short": "User name of poster",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "url",
               "req": false,
+              "short": "Direct URL to track",
               "type": "`$STRING`"
             }
           ],
@@ -512,24 +546,28 @@
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Playlist number",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Playlist name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "nbTracks",
               "req": false,
+              "short": "Number of tracks in playlist",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "url",
               "req": false,
+              "short": "Playlist URL",
               "type": "`$STRING`"
             }
           ],
@@ -602,54 +640,63 @@
               "active": true,
               "name": "ctx",
               "req": false,
+              "short": "Context",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "eId",
               "req": false,
+              "short": "External ID (platform identifier)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Post ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "img",
               "req": false,
+              "short": "Track image URL",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "lov",
               "req": false,
+              "short": "User IDs who liked this post",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Track name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "nbP",
               "req": false,
+              "short": "Number of plays",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "nbR",
               "req": false,
+              "short": "Number of reposts",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "score",
               "req": false,
+              "short": "Search relevance score",
               "type": "`$NUMBER`"
             },
             {
@@ -662,24 +709,28 @@
               "active": true,
               "name": "text",
               "req": false,
+              "short": "Post text/comment",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "uId",
               "req": false,
+              "short": "User ID of poster",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "uNm",
               "req": false,
+              "short": "User name of poster",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "url",
               "req": false,
+              "short": "Direct URL to track",
               "type": "`$STRING`"
             }
           ],
@@ -845,6 +896,7 @@
               "active": true,
               "name": "q",
               "req": false,
+              "short": "Search query",
               "type": "`$STRING`"
             },
             {
@@ -930,18 +982,21 @@
               "active": true,
               "name": "isSubscribing",
               "req": false,
+              "short": "Whether logged in user follows this user",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "uId",
               "req": false,
+              "short": "User ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "uNm",
               "req": false,
+              "short": "User name",
               "type": "`$STRING`"
             }
           ],
@@ -1094,24 +1149,28 @@
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Playlist number",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Playlist name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "nbTracks",
               "req": false,
+              "short": "Number of tracks in playlist",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "url",
               "req": false,
+              "short": "Playlist URL",
               "type": "`$STRING`"
             }
           ],

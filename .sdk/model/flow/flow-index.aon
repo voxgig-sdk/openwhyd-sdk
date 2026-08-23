@@ -1,0 +1,9 @@
+# Flows
+
+@"BasicAuthenticationFlow.aon"
+@"BasicGetUserPostFlow.aon"
+@"BasicPlaylistFlow.aon"
+@"BasicPostFlow.aon"
+@"BasicSearchFlow.aon"
+@"BasicSubscriptionFlow.aon"
+@"BasicUserFlow.aon"

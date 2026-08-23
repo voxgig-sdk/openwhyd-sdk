@@ -189,29 +189,29 @@ const authentication = client.Authentication()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bio` | `string` | No |  |
-| `cvrImg` | `string` | No |  |
-| `email` | `string` | No |  |
-| `error` | `string` | No |  |
-| `handle` | `string` | No |  |
-| `id` | `string` | No |  |
-| `img` | `string` | No |  |
-| `isSubscribing` | `boolean` | No |  |
-| `lastArtists` | `any[]` | No |  |
+| `bio` | `string` | No | User biography |
+| `cvrImg` | `string` | No | Cover image URL |
+| `email` | `string` | No | Email address |
+| `error` | `string` | No | Error message if any |
+| `handle` | `string` | No | Username/handle |
+| `id` | `string` | No | User ID |
+| `img` | `string` | No | Avatar URL |
+| `isSubscribing` | `boolean` | No | Whether logged in user subscribes to this user |
+| `lastArtists` | `any[]` | No | Recently posted artists |
 | `lastFm` | `Record<string, any>` | No |  |
 | `lnk` | `Record<string, any>` | No |  |
-| `loc` | `string` | No |  |
-| `name` | `string` | No |  |
-| `nbLikes` | `number` | No |  |
-| `nbPosts` | `number` | No |  |
-| `nbSubscribers` | `number` | No |  |
-| `nbSubscriptions` | `number` | No |  |
-| `pl` | `any[]` | No |  |
-| `redirect` | `string` | No |  |
-| `twId` | `string` | No |  |
-| `twSec` | `string` | No |  |
-| `twTok` | `string` | No |  |
-| `uId` | `string` | No |  |
+| `loc` | `string` | No | User location |
+| `name` | `string` | No | Full name |
+| `nbLikes` | `number` | No | Number of likes |
+| `nbPosts` | `number` | No | Number of posts |
+| `nbSubscribers` | `number` | No | Number of subscribers |
+| `nbSubscriptions` | `number` | No | Number of subscriptions |
+| `pl` | `any[]` | No | User playlists |
+| `redirect` | `string` | No | URL to redirect to |
+| `twId` | `string` | No | Twitter handle |
+| `twSec` | `string` | No | Twitter session secret |
+| `twTok` | `string` | No | Twitter session token |
+| `uId` | `string` | No | ID of new user if successful |
 
 ### Operations
 
@@ -270,20 +270,20 @@ const get_user_post = client.GetUserPost()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ctx` | `string` | No |  |
-| `eId` | `string` | No |  |
-| `id` | `string` | No |  |
-| `img` | `string` | No |  |
-| `lov` | `any[]` | No |  |
-| `name` | `string` | No |  |
-| `nbP` | `number` | No |  |
-| `nbR` | `number` | No |  |
-| `score` | `number` | No |  |
+| `ctx` | `string` | No | Context |
+| `eId` | `string` | No | External ID (platform identifier) |
+| `id` | `string` | No | Post ID |
+| `img` | `string` | No | Track image URL |
+| `lov` | `any[]` | No | User IDs who liked this post |
+| `name` | `string` | No | Track name |
+| `nbP` | `number` | No | Number of plays |
+| `nbR` | `number` | No | Number of reposts |
+| `score` | `number` | No | Search relevance score |
 | `src` | `Record<string, any>` | No |  |
-| `text` | `string` | No |  |
-| `uId` | `string` | No |  |
-| `uNm` | `string` | No |  |
-| `url` | `string` | No |  |
+| `text` | `string` | No | Post text/comment |
+| `uId` | `string` | No | User ID of poster |
+| `uNm` | `string` | No | User name of poster |
+| `url` | `string` | No | Direct URL to track |
 
 ### Operations
 
@@ -333,10 +333,10 @@ const playlist = client.Playlist()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `number` | No |  |
-| `name` | `string` | No |  |
-| `nbTracks` | `number` | No |  |
-| `url` | `string` | No |  |
+| `id` | `number` | No | Playlist number |
+| `name` | `string` | No | Playlist name |
+| `nbTracks` | `number` | No | Number of tracks in playlist |
+| `url` | `string` | No | Playlist URL |
 
 ### Operations
 
@@ -386,20 +386,20 @@ const post = client.Post()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ctx` | `string` | No |  |
-| `eId` | `string` | No |  |
-| `id` | `string` | No |  |
-| `img` | `string` | No |  |
-| `lov` | `any[]` | No |  |
-| `name` | `string` | No |  |
-| `nbP` | `number` | No |  |
-| `nbR` | `number` | No |  |
-| `score` | `number` | No |  |
+| `ctx` | `string` | No | Context |
+| `eId` | `string` | No | External ID (platform identifier) |
+| `id` | `string` | No | Post ID |
+| `img` | `string` | No | Track image URL |
+| `lov` | `any[]` | No | User IDs who liked this post |
+| `name` | `string` | No | Track name |
+| `nbP` | `number` | No | Number of plays |
+| `nbR` | `number` | No | Number of reposts |
+| `score` | `number` | No | Search relevance score |
 | `src` | `Record<string, any>` | No |  |
-| `text` | `string` | No |  |
-| `uId` | `string` | No |  |
-| `uNm` | `string` | No |  |
-| `url` | `string` | No |  |
+| `text` | `string` | No | Post text/comment |
+| `uId` | `string` | No | User ID of poster |
+| `uNm` | `string` | No | User name of poster |
+| `url` | `string` | No | Direct URL to track |
 
 ### Operations
 
@@ -449,7 +449,7 @@ const search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `q` | `string` | No |  |
+| `q` | `string` | No | Search query |
 | `results` | `any[]` | No |  |
 
 ### Operations
@@ -500,9 +500,9 @@ const subscription = client.Subscription()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `isSubscribing` | `boolean` | No |  |
-| `uId` | `string` | No |  |
-| `uNm` | `string` | No |  |
+| `isSubscribing` | `boolean` | No | Whether logged in user follows this user |
+| `uId` | `string` | No | User ID |
+| `uNm` | `string` | No | User name |
 
 ### Operations
 
@@ -552,10 +552,10 @@ const user = client.User()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `number` | No |  |
-| `name` | `string` | No |  |
-| `nbTracks` | `number` | No |  |
-| `url` | `string` | No |  |
+| `id` | `number` | No | Playlist number |
+| `name` | `string` | No | Playlist name |
+| `nbTracks` | `number` | No | Number of tracks in playlist |
+| `url` | `string` | No | Playlist URL |
 
 ### Operations
 

@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -315,29 +315,29 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `bio` |  |
-| `cvrImg` |  |
-| `email` |  |
-| `error` |  |
-| `handle` |  |
-| `id` |  |
-| `img` |  |
-| `isSubscribing` |  |
-| `lastArtists` |  |
+| `bio` | User biography |
+| `cvrImg` | Cover image URL |
+| `email` | Email address |
+| `error` | Error message if any |
+| `handle` | Username/handle |
+| `id` | User ID |
+| `img` | Avatar URL |
+| `isSubscribing` | Whether logged in user subscribes to this user |
+| `lastArtists` | Recently posted artists |
 | `lastFm` |  |
 | `lnk` |  |
-| `loc` |  |
-| `name` |  |
-| `nbLikes` |  |
-| `nbPosts` |  |
-| `nbSubscribers` |  |
-| `nbSubscriptions` |  |
-| `pl` |  |
-| `redirect` |  |
-| `twId` |  |
-| `twSec` |  |
-| `twTok` |  |
-| `uId` |  |
+| `loc` | User location |
+| `name` | Full name |
+| `nbLikes` | Number of likes |
+| `nbPosts` | Number of posts |
+| `nbSubscribers` | Number of subscribers |
+| `nbSubscriptions` | Number of subscriptions |
+| `pl` | User playlists |
+| `redirect` | URL to redirect to |
+| `twId` | Twitter handle |
+| `twSec` | Twitter session secret |
+| `twTok` | Twitter session token |
+| `uId` | ID of new user if successful |
 
 Operations: create, load.
 
@@ -347,20 +347,20 @@ API path: `/login`
 
 | Field | Description |
 | --- | --- |
-| `ctx` |  |
-| `eId` |  |
-| `id` |  |
-| `img` |  |
-| `lov` |  |
-| `name` |  |
-| `nbP` |  |
-| `nbR` |  |
-| `score` |  |
+| `ctx` | Context |
+| `eId` | External ID (platform identifier) |
+| `id` | Post ID |
+| `img` | Track image URL |
+| `lov` | User IDs who liked this post |
+| `name` | Track name |
+| `nbP` | Number of plays |
+| `nbR` | Number of reposts |
+| `score` | Search relevance score |
 | `src` |  |
-| `text` |  |
-| `uId` |  |
-| `uNm` |  |
-| `url` |  |
+| `text` | Post text/comment |
+| `uId` | User ID of poster |
+| `uNm` | User name of poster |
+| `url` | Direct URL to track |
 
 Operations: list.
 
@@ -370,10 +370,10 @@ API path: `/{username}`
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
-| `name` |  |
-| `nbTracks` |  |
-| `url` |  |
+| `id` | Playlist number |
+| `name` | Playlist name |
+| `nbTracks` | Number of tracks in playlist |
+| `url` | Playlist URL |
 
 Operations: list.
 
@@ -383,20 +383,20 @@ API path: `/{username}/playlists`
 
 | Field | Description |
 | --- | --- |
-| `ctx` |  |
-| `eId` |  |
-| `id` |  |
-| `img` |  |
-| `lov` |  |
-| `name` |  |
-| `nbP` |  |
-| `nbR` |  |
-| `score` |  |
+| `ctx` | Context |
+| `eId` | External ID (platform identifier) |
+| `id` | Post ID |
+| `img` | Track image URL |
+| `lov` | User IDs who liked this post |
+| `name` | Track name |
+| `nbP` | Number of plays |
+| `nbR` | Number of reposts |
+| `score` | Search relevance score |
 | `src` |  |
-| `text` |  |
-| `uId` |  |
-| `uNm` |  |
-| `url` |  |
+| `text` | Post text/comment |
+| `uId` | User ID of poster |
+| `uNm` | User name of poster |
+| `url` | Direct URL to track |
 
 Operations: load.
 
@@ -406,7 +406,7 @@ API path: `/{username}/playlist/{playlistId}`
 
 | Field | Description |
 | --- | --- |
-| `q` |  |
+| `q` | Search query |
 | `results` |  |
 
 Operations: list.
@@ -417,9 +417,9 @@ API path: `/search`
 
 | Field | Description |
 | --- | --- |
-| `isSubscribing` |  |
-| `uId` |  |
-| `uNm` |  |
+| `isSubscribing` | Whether logged in user follows this user |
+| `uId` | User ID |
+| `uNm` | User name |
 
 Operations: load.
 
@@ -429,10 +429,10 @@ API path: `/api/follow/fetchFollowers/{id}`
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
-| `name` |  |
-| `nbTracks` |  |
-| `url` |  |
+| `id` | Playlist number |
+| `name` | Playlist name |
+| `nbTracks` | Number of tracks in playlist |
+| `url` | Playlist URL |
 
 Operations: create, list.
 
@@ -458,29 +458,29 @@ Create an instance: `const authentication = client.Authentication()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bio` | `string` |  |
-| `cvrImg` | `string` |  |
-| `email` | `string` |  |
-| `error` | `string` |  |
-| `handle` | `string` |  |
-| `id` | `string` |  |
-| `img` | `string` |  |
-| `isSubscribing` | `boolean` |  |
-| `lastArtists` | `any[]` |  |
+| `bio` | `string` | User biography |
+| `cvrImg` | `string` | Cover image URL |
+| `email` | `string` | Email address |
+| `error` | `string` | Error message if any |
+| `handle` | `string` | Username/handle |
+| `id` | `string` | User ID |
+| `img` | `string` | Avatar URL |
+| `isSubscribing` | `boolean` | Whether logged in user subscribes to this user |
+| `lastArtists` | `any[]` | Recently posted artists |
 | `lastFm` | `Record<string, any>` |  |
 | `lnk` | `Record<string, any>` |  |
-| `loc` | `string` |  |
-| `name` | `string` |  |
-| `nbLikes` | `number` |  |
-| `nbPosts` | `number` |  |
-| `nbSubscribers` | `number` |  |
-| `nbSubscriptions` | `number` |  |
-| `pl` | `any[]` |  |
-| `redirect` | `string` |  |
-| `twId` | `string` |  |
-| `twSec` | `string` |  |
-| `twTok` | `string` |  |
-| `uId` | `string` |  |
+| `loc` | `string` | User location |
+| `name` | `string` | Full name |
+| `nbLikes` | `number` | Number of likes |
+| `nbPosts` | `number` | Number of posts |
+| `nbSubscribers` | `number` | Number of subscribers |
+| `nbSubscriptions` | `number` | Number of subscriptions |
+| `pl` | `any[]` | User playlists |
+| `redirect` | `string` | URL to redirect to |
+| `twId` | `string` | Twitter handle |
+| `twSec` | `string` | Twitter session secret |
+| `twTok` | `string` | Twitter session token |
+| `uId` | `string` | ID of new user if successful |
 
 #### Example: Load
 
@@ -510,20 +510,20 @@ Create an instance: `const get_user_post = client.GetUserPost()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ctx` | `string` |  |
-| `eId` | `string` |  |
-| `id` | `string` |  |
-| `img` | `string` |  |
-| `lov` | `any[]` |  |
-| `name` | `string` |  |
-| `nbP` | `number` |  |
-| `nbR` | `number` |  |
-| `score` | `number` |  |
+| `ctx` | `string` | Context |
+| `eId` | `string` | External ID (platform identifier) |
+| `id` | `string` | Post ID |
+| `img` | `string` | Track image URL |
+| `lov` | `any[]` | User IDs who liked this post |
+| `name` | `string` | Track name |
+| `nbP` | `number` | Number of plays |
+| `nbR` | `number` | Number of reposts |
+| `score` | `number` | Search relevance score |
 | `src` | `Record<string, any>` |  |
-| `text` | `string` |  |
-| `uId` | `string` |  |
-| `uNm` | `string` |  |
-| `url` | `string` |  |
+| `text` | `string` | Post text/comment |
+| `uId` | `string` | User ID of poster |
+| `uNm` | `string` | User name of poster |
+| `url` | `string` | Direct URL to track |
 
 #### Example: List
 
@@ -546,10 +546,10 @@ Create an instance: `const playlist = client.Playlist()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `number` |  |
-| `name` | `string` |  |
-| `nbTracks` | `number` |  |
-| `url` | `string` |  |
+| `id` | `number` | Playlist number |
+| `name` | `string` | Playlist name |
+| `nbTracks` | `number` | Number of tracks in playlist |
+| `url` | `string` | Playlist URL |
 
 #### Example: List
 
@@ -572,20 +572,20 @@ Create an instance: `const post = client.Post()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ctx` | `string` |  |
-| `eId` | `string` |  |
-| `id` | `string` |  |
-| `img` | `string` |  |
-| `lov` | `any[]` |  |
-| `name` | `string` |  |
-| `nbP` | `number` |  |
-| `nbR` | `number` |  |
-| `score` | `number` |  |
+| `ctx` | `string` | Context |
+| `eId` | `string` | External ID (platform identifier) |
+| `id` | `string` | Post ID |
+| `img` | `string` | Track image URL |
+| `lov` | `any[]` | User IDs who liked this post |
+| `name` | `string` | Track name |
+| `nbP` | `number` | Number of plays |
+| `nbR` | `number` | Number of reposts |
+| `score` | `number` | Search relevance score |
 | `src` | `Record<string, any>` |  |
-| `text` | `string` |  |
-| `uId` | `string` |  |
-| `uNm` | `string` |  |
-| `url` | `string` |  |
+| `text` | `string` | Post text/comment |
+| `uId` | `string` | User ID of poster |
+| `uNm` | `string` | User name of poster |
+| `url` | `string` | Direct URL to track |
 
 #### Example: Load
 
@@ -608,7 +608,7 @@ Create an instance: `const search = client.Search()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `q` | `string` |  |
+| `q` | `string` | Search query |
 | `results` | `any[]` |  |
 
 #### Example: List
@@ -632,9 +632,9 @@ Create an instance: `const subscription = client.Subscription()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `isSubscribing` | `boolean` |  |
-| `uId` | `string` |  |
-| `uNm` | `string` |  |
+| `isSubscribing` | `boolean` | Whether logged in user follows this user |
+| `uId` | `string` | User ID |
+| `uNm` | `string` | User name |
 
 #### Example: Load
 
@@ -658,10 +658,10 @@ Create an instance: `const user = client.User()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `number` |  |
-| `name` | `string` |  |
-| `nbTracks` | `number` |  |
-| `url` | `string` |  |
+| `id` | `number` | Playlist number |
+| `name` | `string` | Playlist name |
+| `nbTracks` | `number` | Number of tracks in playlist |
+| `url` | `string` | Playlist URL |
 
 #### Example: List
 

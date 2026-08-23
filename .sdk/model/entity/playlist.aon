@@ -1,0 +1,88 @@
+# Entity: playlist
+
+main: kit: entity: playlist: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "id"
+      req: false
+      short: "Playlist number"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Playlist name"
+      type: "`$STRING`"
+    }
+    {
+      name: "nbTracks"
+      req: false
+      short: "Number of tracks in playlist"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "url"
+      req: false
+      short: "Playlist URL"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "playlist"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "username"
+                orig: "username"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{username}/playlists"
+          parts: [
+            "{username}"
+            "playlists"
+          ]
+          select: {
+            exist: [
+              "format"
+              "username"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

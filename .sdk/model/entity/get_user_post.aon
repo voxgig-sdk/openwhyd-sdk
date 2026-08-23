@@ -1,0 +1,176 @@
+# Entity: get_user_post
+
+main: kit: entity: get_user_post: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "ctx"
+      req: false
+      short: "Context"
+      type: "`$STRING`"
+    }
+    {
+      name: "eId"
+      req: false
+      short: "External ID (platform identifier)"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Post ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "img"
+      req: false
+      short: "Track image URL"
+      type: "`$STRING`"
+    }
+    {
+      name: "lov"
+      req: false
+      short: "User IDs who liked this post"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Track name"
+      type: "`$STRING`"
+    }
+    {
+      name: "nbP"
+      req: false
+      short: "Number of plays"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "nbR"
+      req: false
+      short: "Number of reposts"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "score"
+      req: false
+      short: "Search relevance score"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "src"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "text"
+      req: false
+      short: "Post text/comment"
+      type: "`$STRING`"
+    }
+    {
+      name: "uId"
+      req: false
+      short: "User ID of poster"
+      type: "`$STRING`"
+    }
+    {
+      name: "uNm"
+      req: false
+      short: "User name of poster"
+      type: "`$STRING`"
+    }
+    {
+      name: "url"
+      req: false
+      short: "Direct URL to track"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "get_user_post"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "username"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "after"
+                orig: "after"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "callback"
+                orig: "callback"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 20
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{username}"
+          parts: [
+            "{id}"
+          ]
+          rename: {
+            param: {
+              username: "id"
+            }
+          }
+          select: {
+            exist: [
+              "after"
+              "callback"
+              "format"
+              "id"
+              "limit"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

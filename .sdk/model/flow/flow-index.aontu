@@ -1,9 +1,0 @@
-# Flows
-
-@"BasicAuthenticationFlow.aontu"
-@"BasicGetUserPostFlow.aontu"
-@"BasicPlaylistFlow.aontu"
-@"BasicPostFlow.aontu"
-@"BasicSearchFlow.aontu"
-@"BasicSubscriptionFlow.aontu"
-@"BasicUserFlow.aontu"

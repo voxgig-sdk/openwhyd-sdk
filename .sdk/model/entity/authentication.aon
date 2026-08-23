@@ -1,0 +1,275 @@
+# Entity: authentication
+
+main: kit: entity: authentication: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "bio"
+      req: false
+      short: "User biography"
+      type: "`$STRING`"
+    }
+    {
+      name: "cvrImg"
+      req: false
+      short: "Cover image URL"
+      type: "`$STRING`"
+    }
+    {
+      name: "email"
+      req: false
+      short: "Email address"
+      type: "`$STRING`"
+    }
+    {
+      name: "error"
+      req: false
+      short: "Error message if any"
+      type: "`$STRING`"
+    }
+    {
+      name: "handle"
+      req: false
+      short: "Username/handle"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "User ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "img"
+      req: false
+      short: "Avatar URL"
+      type: "`$STRING`"
+    }
+    {
+      name: "isSubscribing"
+      req: false
+      short: "Whether logged in user subscribes to this user"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "lastArtists"
+      req: false
+      short: "Recently posted artists"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "lastFm"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "lnk"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "loc"
+      req: false
+      short: "User location"
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Full name"
+      type: "`$STRING`"
+    }
+    {
+      name: "nbLikes"
+      req: false
+      short: "Number of likes"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "nbPosts"
+      req: false
+      short: "Number of posts"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "nbSubscribers"
+      req: false
+      short: "Number of subscribers"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "nbSubscriptions"
+      req: false
+      short: "Number of subscriptions"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "pl"
+      req: false
+      short: "User playlists"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "redirect"
+      req: false
+      short: "URL to redirect to"
+      type: "`$STRING`"
+    }
+    {
+      name: "twId"
+      req: false
+      short: "Twitter handle"
+      type: "`$STRING`"
+    }
+    {
+      name: "twSec"
+      req: false
+      short: "Twitter session secret"
+      type: "`$STRING`"
+    }
+    {
+      name: "twTok"
+      req: false
+      short: "Twitter session token"
+      type: "`$STRING`"
+    }
+    {
+      name: "uId"
+      req: false
+      short: "ID of new user if successful"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "authentication"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/login"
+          parts: [
+            "login"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body.user`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/register"
+          parts: [
+            "register"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "action"
+                orig: "action"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "ajax"
+                orig: "ajax"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "email"
+                orig: "email"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "include_user"
+                orig: "include_user"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "md5"
+                orig: "md5"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/login"
+          parts: [
+            "login"
+          ]
+          select: {
+            exist: [
+              "action"
+              "ajax"
+              "email"
+              "include_user"
+              "md5"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.user`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "ajax"
+                orig: "ajax"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/logout"
+          parts: [
+            "logout"
+          ]
+          select: {
+            exist: [
+              "ajax"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

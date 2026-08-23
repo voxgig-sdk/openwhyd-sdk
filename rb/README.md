@@ -257,29 +257,29 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `bio` |  |
-| `cvrImg` |  |
-| `email` |  |
-| `error` |  |
-| `handle` |  |
-| `id` |  |
-| `img` |  |
-| `isSubscribing` |  |
-| `lastArtists` |  |
+| `bio` | User biography |
+| `cvrImg` | Cover image URL |
+| `email` | Email address |
+| `error` | Error message if any |
+| `handle` | Username/handle |
+| `id` | User ID |
+| `img` | Avatar URL |
+| `isSubscribing` | Whether logged in user subscribes to this user |
+| `lastArtists` | Recently posted artists |
 | `lastFm` |  |
 | `lnk` |  |
-| `loc` |  |
-| `name` |  |
-| `nbLikes` |  |
-| `nbPosts` |  |
-| `nbSubscribers` |  |
-| `nbSubscriptions` |  |
-| `pl` |  |
-| `redirect` |  |
-| `twId` |  |
-| `twSec` |  |
-| `twTok` |  |
-| `uId` |  |
+| `loc` | User location |
+| `name` | Full name |
+| `nbLikes` | Number of likes |
+| `nbPosts` | Number of posts |
+| `nbSubscribers` | Number of subscribers |
+| `nbSubscriptions` | Number of subscriptions |
+| `pl` | User playlists |
+| `redirect` | URL to redirect to |
+| `twId` | Twitter handle |
+| `twSec` | Twitter session secret |
+| `twTok` | Twitter session token |
+| `uId` | ID of new user if successful |
 
 Operations: Create, Load.
 
@@ -289,20 +289,20 @@ API path: `/login`
 
 | Field | Description |
 | --- | --- |
-| `ctx` |  |
-| `eId` |  |
-| `id` |  |
-| `img` |  |
-| `lov` |  |
-| `name` |  |
-| `nbP` |  |
-| `nbR` |  |
-| `score` |  |
+| `ctx` | Context |
+| `eId` | External ID (platform identifier) |
+| `id` | Post ID |
+| `img` | Track image URL |
+| `lov` | User IDs who liked this post |
+| `name` | Track name |
+| `nbP` | Number of plays |
+| `nbR` | Number of reposts |
+| `score` | Search relevance score |
 | `src` |  |
-| `text` |  |
-| `uId` |  |
-| `uNm` |  |
-| `url` |  |
+| `text` | Post text/comment |
+| `uId` | User ID of poster |
+| `uNm` | User name of poster |
+| `url` | Direct URL to track |
 
 Operations: List.
 
@@ -312,10 +312,10 @@ API path: `/{username}`
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
-| `name` |  |
-| `nbTracks` |  |
-| `url` |  |
+| `id` | Playlist number |
+| `name` | Playlist name |
+| `nbTracks` | Number of tracks in playlist |
+| `url` | Playlist URL |
 
 Operations: List.
 
@@ -325,20 +325,20 @@ API path: `/{username}/playlists`
 
 | Field | Description |
 | --- | --- |
-| `ctx` |  |
-| `eId` |  |
-| `id` |  |
-| `img` |  |
-| `lov` |  |
-| `name` |  |
-| `nbP` |  |
-| `nbR` |  |
-| `score` |  |
+| `ctx` | Context |
+| `eId` | External ID (platform identifier) |
+| `id` | Post ID |
+| `img` | Track image URL |
+| `lov` | User IDs who liked this post |
+| `name` | Track name |
+| `nbP` | Number of plays |
+| `nbR` | Number of reposts |
+| `score` | Search relevance score |
 | `src` |  |
-| `text` |  |
-| `uId` |  |
-| `uNm` |  |
-| `url` |  |
+| `text` | Post text/comment |
+| `uId` | User ID of poster |
+| `uNm` | User name of poster |
+| `url` | Direct URL to track |
 
 Operations: Load.
 
@@ -348,7 +348,7 @@ API path: `/{username}/playlist/{playlistId}`
 
 | Field | Description |
 | --- | --- |
-| `q` |  |
+| `q` | Search query |
 | `results` |  |
 
 Operations: List.
@@ -359,9 +359,9 @@ API path: `/search`
 
 | Field | Description |
 | --- | --- |
-| `isSubscribing` |  |
-| `uId` |  |
-| `uNm` |  |
+| `isSubscribing` | Whether logged in user follows this user |
+| `uId` | User ID |
+| `uNm` | User name |
 
 Operations: Load.
 
@@ -371,10 +371,10 @@ API path: `/api/follow/fetchFollowers/{id}`
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
-| `name` |  |
-| `nbTracks` |  |
-| `url` |  |
+| `id` | Playlist number |
+| `name` | Playlist name |
+| `nbTracks` | Number of tracks in playlist |
+| `url` | Playlist URL |
 
 Operations: Create, List.
 
@@ -400,29 +400,29 @@ Create an instance: `authentication = client.Authentication`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bio` | `String` |  |
-| `cvrImg` | `String` |  |
-| `email` | `String` |  |
-| `error` | `String` |  |
-| `handle` | `String` |  |
-| `id` | `String` |  |
-| `img` | `String` |  |
-| `isSubscribing` | `Boolean` |  |
-| `lastArtists` | `Array` |  |
+| `bio` | `String` | User biography |
+| `cvrImg` | `String` | Cover image URL |
+| `email` | `String` | Email address |
+| `error` | `String` | Error message if any |
+| `handle` | `String` | Username/handle |
+| `id` | `String` | User ID |
+| `img` | `String` | Avatar URL |
+| `isSubscribing` | `Boolean` | Whether logged in user subscribes to this user |
+| `lastArtists` | `Array` | Recently posted artists |
 | `lastFm` | `Hash` |  |
 | `lnk` | `Hash` |  |
-| `loc` | `String` |  |
-| `name` | `String` |  |
-| `nbLikes` | `Integer` |  |
-| `nbPosts` | `Integer` |  |
-| `nbSubscribers` | `Integer` |  |
-| `nbSubscriptions` | `Integer` |  |
-| `pl` | `Array` |  |
-| `redirect` | `String` |  |
-| `twId` | `String` |  |
-| `twSec` | `String` |  |
-| `twTok` | `String` |  |
-| `uId` | `String` |  |
+| `loc` | `String` | User location |
+| `name` | `String` | Full name |
+| `nbLikes` | `Integer` | Number of likes |
+| `nbPosts` | `Integer` | Number of posts |
+| `nbSubscribers` | `Integer` | Number of subscribers |
+| `nbSubscriptions` | `Integer` | Number of subscriptions |
+| `pl` | `Array` | User playlists |
+| `redirect` | `String` | URL to redirect to |
+| `twId` | `String` | Twitter handle |
+| `twSec` | `String` | Twitter session secret |
+| `twTok` | `String` | Twitter session token |
+| `uId` | `String` | ID of new user if successful |
 
 #### Example: Load
 
@@ -453,20 +453,20 @@ Create an instance: `get_user_post = client.GetUserPost`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ctx` | `String` |  |
-| `eId` | `String` |  |
-| `id` | `String` |  |
-| `img` | `String` |  |
-| `lov` | `Array` |  |
-| `name` | `String` |  |
-| `nbP` | `Integer` |  |
-| `nbR` | `Integer` |  |
-| `score` | `Float` |  |
+| `ctx` | `String` | Context |
+| `eId` | `String` | External ID (platform identifier) |
+| `id` | `String` | Post ID |
+| `img` | `String` | Track image URL |
+| `lov` | `Array` | User IDs who liked this post |
+| `name` | `String` | Track name |
+| `nbP` | `Integer` | Number of plays |
+| `nbR` | `Integer` | Number of reposts |
+| `score` | `Float` | Search relevance score |
 | `src` | `Hash` |  |
-| `text` | `String` |  |
-| `uId` | `String` |  |
-| `uNm` | `String` |  |
-| `url` | `String` |  |
+| `text` | `String` | Post text/comment |
+| `uId` | `String` | User ID of poster |
+| `uNm` | `String` | User name of poster |
+| `url` | `String` | Direct URL to track |
 
 #### Example: List
 
@@ -490,10 +490,10 @@ Create an instance: `playlist = client.Playlist`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `Integer` |  |
-| `name` | `String` |  |
-| `nbTracks` | `Integer` |  |
-| `url` | `String` |  |
+| `id` | `Integer` | Playlist number |
+| `name` | `String` | Playlist name |
+| `nbTracks` | `Integer` | Number of tracks in playlist |
+| `url` | `String` | Playlist URL |
 
 #### Example: List
 
@@ -517,20 +517,20 @@ Create an instance: `post = client.Post`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ctx` | `String` |  |
-| `eId` | `String` |  |
-| `id` | `String` |  |
-| `img` | `String` |  |
-| `lov` | `Array` |  |
-| `name` | `String` |  |
-| `nbP` | `Integer` |  |
-| `nbR` | `Integer` |  |
-| `score` | `Float` |  |
+| `ctx` | `String` | Context |
+| `eId` | `String` | External ID (platform identifier) |
+| `id` | `String` | Post ID |
+| `img` | `String` | Track image URL |
+| `lov` | `Array` | User IDs who liked this post |
+| `name` | `String` | Track name |
+| `nbP` | `Integer` | Number of plays |
+| `nbR` | `Integer` | Number of reposts |
+| `score` | `Float` | Search relevance score |
 | `src` | `Hash` |  |
-| `text` | `String` |  |
-| `uId` | `String` |  |
-| `uNm` | `String` |  |
-| `url` | `String` |  |
+| `text` | `String` | Post text/comment |
+| `uId` | `String` | User ID of poster |
+| `uNm` | `String` | User name of poster |
+| `url` | `String` | Direct URL to track |
 
 #### Example: Load
 
@@ -554,7 +554,7 @@ Create an instance: `search = client.Search`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `q` | `String` |  |
+| `q` | `String` | Search query |
 | `results` | `Array` |  |
 
 #### Example: List
@@ -579,9 +579,9 @@ Create an instance: `subscription = client.Subscription`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `isSubscribing` | `Boolean` |  |
-| `uId` | `String` |  |
-| `uNm` | `String` |  |
+| `isSubscribing` | `Boolean` | Whether logged in user follows this user |
+| `uId` | `String` | User ID |
+| `uNm` | `String` | User name |
 
 #### Example: Load
 
@@ -606,10 +606,10 @@ Create an instance: `user = client.User`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `Integer` |  |
-| `name` | `String` |  |
-| `nbTracks` | `Integer` |  |
-| `url` | `String` |  |
+| `id` | `Integer` | Playlist number |
+| `name` | `String` | Playlist name |
+| `nbTracks` | `Integer` | Number of tracks in playlist |
+| `url` | `String` | Playlist URL |
 
 #### Example: List
 

@@ -19,6 +19,9 @@ module OpenwhydConfig
     {
       "main" => {
         "name" => "Openwhyd",
+        "slug" => "openwhyd",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -50,38 +53,47 @@ module OpenwhydConfig
           "fields" => [
             {
               "name" => "bio",
+              "short" => "User biography",
               "type" => "`$STRING`",
             },
             {
               "name" => "cvrImg",
+              "short" => "Cover image URL",
               "type" => "`$STRING`",
             },
             {
               "name" => "email",
+              "short" => "Email address",
               "type" => "`$STRING`",
             },
             {
               "name" => "error",
+              "short" => "Error message if any",
               "type" => "`$STRING`",
             },
             {
               "name" => "handle",
+              "short" => "Username/handle",
               "type" => "`$STRING`",
             },
             {
               "name" => "id",
+              "short" => "User ID",
               "type" => "`$STRING`",
             },
             {
               "name" => "img",
+              "short" => "Avatar URL",
               "type" => "`$STRING`",
             },
             {
               "name" => "isSubscribing",
+              "short" => "Whether logged in user subscribes to this user",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "lastArtists",
+              "short" => "Recently posted artists",
               "type" => "`$ARRAY`",
             },
             {
@@ -94,50 +106,62 @@ module OpenwhydConfig
             },
             {
               "name" => "loc",
+              "short" => "User location",
               "type" => "`$STRING`",
             },
             {
               "name" => "name",
+              "short" => "Full name",
               "type" => "`$STRING`",
             },
             {
               "name" => "nbLikes",
+              "short" => "Number of likes",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "nbPosts",
+              "short" => "Number of posts",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "nbSubscribers",
+              "short" => "Number of subscribers",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "nbSubscriptions",
+              "short" => "Number of subscriptions",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "pl",
+              "short" => "User playlists",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "redirect",
+              "short" => "URL to redirect to",
               "type" => "`$STRING`",
             },
             {
               "name" => "twId",
+              "short" => "Twitter handle",
               "type" => "`$STRING`",
             },
             {
               "name" => "twSec",
+              "short" => "Twitter session secret",
               "type" => "`$STRING`",
             },
             {
               "name" => "twTok",
+              "short" => "Twitter session token",
               "type" => "`$STRING`",
             },
             {
               "name" => "uId",
+              "short" => "ID of new user if successful",
               "type" => "`$STRING`",
             },
           ],
@@ -275,38 +299,47 @@ module OpenwhydConfig
           "fields" => [
             {
               "name" => "ctx",
+              "short" => "Context",
               "type" => "`$STRING`",
             },
             {
               "name" => "eId",
+              "short" => "External ID (platform identifier)",
               "type" => "`$STRING`",
             },
             {
               "name" => "id",
+              "short" => "Post ID",
               "type" => "`$STRING`",
             },
             {
               "name" => "img",
+              "short" => "Track image URL",
               "type" => "`$STRING`",
             },
             {
               "name" => "lov",
+              "short" => "User IDs who liked this post",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "name",
+              "short" => "Track name",
               "type" => "`$STRING`",
             },
             {
               "name" => "nbP",
+              "short" => "Number of plays",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "nbR",
+              "short" => "Number of reposts",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "score",
+              "short" => "Search relevance score",
               "type" => "`$NUMBER`",
             },
             {
@@ -315,18 +348,22 @@ module OpenwhydConfig
             },
             {
               "name" => "text",
+              "short" => "Post text/comment",
               "type" => "`$STRING`",
             },
             {
               "name" => "uId",
+              "short" => "User ID of poster",
               "type" => "`$STRING`",
             },
             {
               "name" => "uNm",
+              "short" => "User name of poster",
               "type" => "`$STRING`",
             },
             {
               "name" => "url",
+              "short" => "Direct URL to track",
               "type" => "`$STRING`",
             },
           ],
@@ -411,18 +448,22 @@ module OpenwhydConfig
           "fields" => [
             {
               "name" => "id",
+              "short" => "Playlist number",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "name",
+              "short" => "Playlist name",
               "type" => "`$STRING`",
             },
             {
               "name" => "nbTracks",
+              "short" => "Number of tracks in playlist",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "url",
+              "short" => "Playlist URL",
               "type" => "`$STRING`",
             },
           ],
@@ -481,38 +522,47 @@ module OpenwhydConfig
           "fields" => [
             {
               "name" => "ctx",
+              "short" => "Context",
               "type" => "`$STRING`",
             },
             {
               "name" => "eId",
+              "short" => "External ID (platform identifier)",
               "type" => "`$STRING`",
             },
             {
               "name" => "id",
+              "short" => "Post ID",
               "type" => "`$STRING`",
             },
             {
               "name" => "img",
+              "short" => "Track image URL",
               "type" => "`$STRING`",
             },
             {
               "name" => "lov",
+              "short" => "User IDs who liked this post",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "name",
+              "short" => "Track name",
               "type" => "`$STRING`",
             },
             {
               "name" => "nbP",
+              "short" => "Number of plays",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "nbR",
+              "short" => "Number of reposts",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "score",
+              "short" => "Search relevance score",
               "type" => "`$NUMBER`",
             },
             {
@@ -521,18 +571,22 @@ module OpenwhydConfig
             },
             {
               "name" => "text",
+              "short" => "Post text/comment",
               "type" => "`$STRING`",
             },
             {
               "name" => "uId",
+              "short" => "User ID of poster",
               "type" => "`$STRING`",
             },
             {
               "name" => "uNm",
+              "short" => "User name of poster",
               "type" => "`$STRING`",
             },
             {
               "name" => "url",
+              "short" => "Direct URL to track",
               "type" => "`$STRING`",
             },
           ],
@@ -673,6 +727,7 @@ module OpenwhydConfig
           "fields" => [
             {
               "name" => "q",
+              "short" => "Search query",
               "type" => "`$STRING`",
             },
             {
@@ -744,14 +799,17 @@ module OpenwhydConfig
           "fields" => [
             {
               "name" => "isSubscribing",
+              "short" => "Whether logged in user follows this user",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "uId",
+              "short" => "User ID",
               "type" => "`$STRING`",
             },
             {
               "name" => "uNm",
+              "short" => "User name",
               "type" => "`$STRING`",
             },
           ],
@@ -882,18 +940,22 @@ module OpenwhydConfig
           "fields" => [
             {
               "name" => "id",
+              "short" => "Playlist number",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "name",
+              "short" => "Playlist name",
               "type" => "`$STRING`",
             },
             {
               "name" => "nbTracks",
+              "short" => "Number of tracks in playlist",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "url",
+              "short" => "Playlist URL",
               "type" => "`$STRING`",
             },
           ],
