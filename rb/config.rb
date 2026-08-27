@@ -28,6 +28,7 @@ module OpenwhydConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -797,6 +798,10 @@ module OpenwhydConfig
         },
         "subscription" => {
           "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
             {
               "name" => "isSubscribing",
               "short" => "Whether logged in user follows this user",

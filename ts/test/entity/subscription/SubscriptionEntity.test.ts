@@ -59,9 +59,12 @@ describe('SubscriptionEntity', async () => {
 
     let subscription_ref01_data = Object.values(setup.data.existing.subscription)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const subscription_ref01_ent = client.Subscription()
+    const subscription_ref01_match_dt0: any = {}
+    subscription_ref01_match_dt0.id = subscription_ref01_data.id
+    const subscription_ref01_data_dt0 = (await subscription_ref01_ent.load(subscription_ref01_match_dt0)).data()
+    assert(subscription_ref01_data_dt0.id === subscription_ref01_data.id)
 
 
   })

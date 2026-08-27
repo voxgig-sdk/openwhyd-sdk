@@ -166,6 +166,7 @@ type SearchListMatch struct {
 
 // Subscription is the typed data model for the subscription entity.
 type Subscription struct {
+	Id *string `json:"id,omitempty"`
 	IsSubscribing *bool `json:"isSubscribing,omitempty"`
 	UId *string `json:"uId,omitempty"`
 	UNm *string `json:"uNm,omitempty"`

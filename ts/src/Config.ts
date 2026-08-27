@@ -40,7 +40,8 @@ class Config {
      test:     {
       "options": {
         "active": false
-      }
+      },
+      "transport": "base"
     },
 
   }
@@ -833,6 +834,10 @@ class Config {
     },
     "subscription": {
       "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        },
         {
           "name": "isSubscribing",
           "short": "Whether logged in user follows this user",

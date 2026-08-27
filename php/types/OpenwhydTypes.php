@@ -178,6 +178,7 @@ class SearchListMatch
 /** Subscription entity data model. */
 class Subscription
 {
+    public ?string $id = null;
     public ?bool $isSubscribing = null;
     public ?string $uId = null;
     public ?string $uNm = null;

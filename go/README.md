@@ -381,6 +381,7 @@ API path: `/search`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 | `"isSubscribing"` | Whether logged in user follows this user |
 | `"uId"` | User ID |
 | `"uNm"` | User name |
@@ -620,6 +621,7 @@ Create an instance: `subscription := client.Subscription(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `isSubscribing` | `bool` | Whether logged in user follows this user |
 | `uId` | `string` | User ID |
 | `uNm` | `string` | User name |

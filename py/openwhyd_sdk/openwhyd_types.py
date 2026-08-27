@@ -161,6 +161,7 @@ class SearchListMatch(TypedDict, total=False):
 
 
 class Subscription(TypedDict, total=False):
+    id: str
     isSubscribing: bool
     uId: str
     uNm: str

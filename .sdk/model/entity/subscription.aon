@@ -6,6 +6,11 @@ main: kit: entity: subscription: {
 
   fields: [
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "isSubscribing"
       req: false
       short: "Whether logged in user follows this user"
@@ -24,6 +29,11 @@ main: kit: entity: subscription: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "subscription"
   op: {

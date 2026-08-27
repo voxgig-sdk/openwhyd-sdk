@@ -439,6 +439,7 @@ subscription = client.Subscription
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `String` | No |  |
 | `isSubscribing` | `Boolean` | No | Whether logged in user follows this user |
 | `uId` | `String` | No | User ID |
 | `uNm` | `String` | No | User name |

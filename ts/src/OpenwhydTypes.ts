@@ -147,6 +147,7 @@ export interface SearchListMatch {
 }
 
 export interface Subscription {
+  id?: string
   isSubscribing?: boolean
   uId?: string
   uNm?: string

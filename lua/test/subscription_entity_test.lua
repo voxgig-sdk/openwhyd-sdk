@@ -44,10 +44,14 @@ describe("SubscriptionEntity", function()
 
     -- LOAD
     local subscription_ref01_ent = client:Subscription(nil)
-    local subscription_ref01_match_dt0 = {}
+    local subscription_ref01_match_dt0 = {
+      id = subscription_ref01_data["id"],
+    }
     local subscription_ref01_data_dt0_loaded, err = subscription_ref01_ent:load(subscription_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(subscription_ref01_data_dt0_loaded)
+    local subscription_ref01_data_dt0_load_result = helpers.to_map(type(subscription_ref01_data_dt0_loaded) == 'table' and subscription_ref01_data_dt0_loaded.data_get and subscription_ref01_data_dt0_loaded:data_get() or subscription_ref01_data_dt0_loaded)
+    assert.is_not_nil(subscription_ref01_data_dt0_load_result)
+    assert.are.equal(subscription_ref01_data_dt0_load_result["id"], subscription_ref01_data["id"])
 
   end)
 end)

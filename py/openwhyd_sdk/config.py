@@ -37,6 +37,7 @@ def make_config():
         "options": {
           "active": False,
         },
+        "transport": "base",
       },
         },
         "options": {
@@ -806,6 +807,10 @@ def make_config():
       },
       "subscription": {
         "fields": [
+          {
+            "name": "id",
+            "type": "`$STRING`",
+          },
           {
             "name": "isSubscribing",
             "short": "Whether logged in user follows this user",

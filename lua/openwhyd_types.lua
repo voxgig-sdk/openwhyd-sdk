@@ -137,6 +137,7 @@
 ---@field results? table
 
 ---@class Subscription
+---@field id? string
 ---@field isSubscribing? boolean
 ---@field uId? string
 ---@field uNm? string

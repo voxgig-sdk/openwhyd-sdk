@@ -436,6 +436,7 @@ local subscription = client:Subscription(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `isSubscribing` | `boolean` | No | Whether logged in user follows this user |
 | `uId` | `string` | No | User ID |
 | `uNm` | `string` | No | User name |

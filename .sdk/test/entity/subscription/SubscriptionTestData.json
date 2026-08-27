@@ -2,31 +2,31 @@
   "existing": {
     "subscription": {
       "SUBSCRIPTION00": {
-        "isSubscribing": true,
-        "uId": "s1f",
-        "uNm": "s20",
-        "id": "SUBSCRIPTION00"
+        "id": "SUBSCRIPTION00",
+        "isSubscribing": false,
+        "uId": "s2a",
+        "uNm": "s2b"
       },
       "SUBSCRIPTION01": {
-        "isSubscribing": true,
-        "uId": "s3d",
-        "uNm": "s3e",
-        "id": "SUBSCRIPTION01"
+        "id": "SUBSCRIPTION01",
+        "isSubscribing": false,
+        "uId": "s52",
+        "uNm": "s53"
       },
       "SUBSCRIPTION02": {
-        "isSubscribing": true,
-        "uId": "s5b",
-        "uNm": "s5c",
-        "id": "SUBSCRIPTION02"
+        "id": "SUBSCRIPTION02",
+        "isSubscribing": false,
+        "uId": "s7a",
+        "uNm": "s7b"
       }
     }
   },
   "new": {
     "subscription": {
       "subscription_ref01": {
-        "isSubscribing": true,
-        "uId": "s79",
-        "uNm": "s7a"
+        "isSubscribing": false,
+        "uId": "sa2",
+        "uNm": "sa3"
       }
     }
   }

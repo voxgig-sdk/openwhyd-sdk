@@ -365,6 +365,7 @@ API path: `/search`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `isSubscribing` | Whether logged in user follows this user |
 | `uId` | User ID |
 | `uNm` | User name |
@@ -580,6 +581,7 @@ Create an instance: `subscription = client.Subscription()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `str` |  |
 | `isSubscribing` | `bool` | Whether logged in user follows this user |
 | `uId` | `str` | User ID |
 | `uNm` | `str` | User name |

@@ -497,6 +497,9 @@ SearchListMatch = Struct.new(
 
 # Subscription entity data model.
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] isSubscribing
 #   @return [Boolean, nil]
 #
@@ -506,6 +509,7 @@ SearchListMatch = Struct.new(
 # @!attribute [rw] uNm
 #   @return [String, nil]
 Subscription = Struct.new(
+  :id,
   :isSubscribing,
   :uId,
   :uNm,

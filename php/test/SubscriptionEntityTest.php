@@ -48,9 +48,13 @@ class SubscriptionEntityTest extends TestCase
 
         // LOAD
         $subscription_ref01_ent = $client->Subscription(null);
-        $subscription_ref01_match_dt0 = [];
+        $subscription_ref01_match_dt0 = [
+            "id" => $subscription_ref01_data["id"],
+        ];
         $subscription_ref01_data_dt0_loaded = $subscription_ref01_ent->load($subscription_ref01_match_dt0, null);
-        $this->assertNotNull($subscription_ref01_data_dt0_loaded);
+        $subscription_ref01_data_dt0_load_result = Helpers::to_map(is_object($subscription_ref01_data_dt0_loaded) && method_exists($subscription_ref01_data_dt0_loaded, 'data_get') ? $subscription_ref01_data_dt0_loaded->data_get() : $subscription_ref01_data_dt0_loaded);
+        $this->assertNotNull($subscription_ref01_data_dt0_load_result);
+        $this->assertEquals($subscription_ref01_data_dt0_load_result["id"], $subscription_ref01_data["id"]);
 
     }
 }

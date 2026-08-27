@@ -61,13 +61,19 @@ func TestSubscriptionEntity(t *testing.T) {
 
 		// LOAD
 		subscriptionRef01Ent := client.Subscription(nil)
-		subscriptionRef01MatchDt0 := map[string]any{}
+		subscriptionRef01MatchDt0 := map[string]any{
+			"id": subscriptionRef01Data["id"],
+		}
 		subscriptionRef01DataDt0Loaded, err := subscriptionRef01Ent.Load(subscriptionRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if subscriptionRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		subscriptionRef01DataDt0LoadResult := core.ToMapAny(entityData(subscriptionRef01DataDt0Loaded))
+		if subscriptionRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if subscriptionRef01DataDt0LoadResult["id"] != subscriptionRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})
