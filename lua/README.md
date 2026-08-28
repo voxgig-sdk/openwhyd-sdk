@@ -236,7 +236,7 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local authentication, err = client:Authentication():load({ id = "example_id" })
+    local authentication, err = client:Authentication():load()
     if err then error(err) end
     -- authentication is the loaded record
 
@@ -420,7 +420,7 @@ Create an instance: `local authentication = client:Authentication(nil)`
 #### Example: Load
 
 ```lua
-local authentication, err = client:Authentication():load({ id = "authentication_id" })
+local authentication, err = client:Authentication():load({ action = "action" })
 ```
 
 #### Example: Create
@@ -611,6 +611,29 @@ local users, err = client:User():list()
 local user, err = client:User():create({
 })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Open types

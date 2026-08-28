@@ -54,7 +54,7 @@ func main() {
     })
 
     // Load a single authentication — the value is the loaded record.
-    authentication, err := client.Authentication(nil).Load(map[string]any{"id": "example_id"}, nil)
+    authentication, err := client.Authentication(nil).Load(map[string]any{"action": "example_action"}, nil)
     if err != nil {
         panic(err)
     }
@@ -266,7 +266,7 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    authentication, err := client.Authentication(nil).Load(map[string]any{"id": "example_id"}, nil)
+    authentication, err := client.Authentication(nil).Load(nil, nil)
     if err != nil { /* handle */ }
     // authentication is the returned record
 
@@ -450,7 +450,7 @@ Create an instance: `authentication := client.Authentication(nil)`
 #### Example: Load
 
 ```go
-authentication, err := client.Authentication(nil).Load(map[string]any{"id": "authentication_id"}, nil)
+authentication, err := client.Authentication(nil).Load(map[string]any{"action": "action"}, nil)
 if err != nil {
     panic(err)
 }
@@ -677,6 +677,29 @@ if err != nil {
 }
 fmt.Println(result)
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Open types

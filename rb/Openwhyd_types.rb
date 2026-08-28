@@ -107,98 +107,26 @@ Authentication = Struct.new(
 
 # Request payload for Authentication#load.
 #
-# @!attribute [rw] bio
-#   @return [String, nil]
+# @!attribute [rw] action
+#   @return [String]
 #
-# @!attribute [rw] cvrImg
-#   @return [String, nil]
+# @!attribute [rw] ajax
+#   @return [Boolean, nil]
 #
 # @!attribute [rw] email
 #   @return [String, nil]
 #
-# @!attribute [rw] error
-#   @return [String, nil]
-#
-# @!attribute [rw] handle
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String]
-#
-# @!attribute [rw] img
-#   @return [String, nil]
-#
-# @!attribute [rw] isSubscribing
+# @!attribute [rw] include_user
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] lastArtists
-#   @return [Array, nil]
-#
-# @!attribute [rw] lastFm
-#   @return [Hash, nil]
-#
-# @!attribute [rw] lnk
-#   @return [Hash, nil]
-#
-# @!attribute [rw] loc
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] nbLikes
-#   @return [Integer, nil]
-#
-# @!attribute [rw] nbPosts
-#   @return [Integer, nil]
-#
-# @!attribute [rw] nbSubscribers
-#   @return [Integer, nil]
-#
-# @!attribute [rw] nbSubscriptions
-#   @return [Integer, nil]
-#
-# @!attribute [rw] pl
-#   @return [Array, nil]
-#
-# @!attribute [rw] redirect
-#   @return [String, nil]
-#
-# @!attribute [rw] twId
-#   @return [String, nil]
-#
-# @!attribute [rw] twSec
-#   @return [String, nil]
-#
-# @!attribute [rw] twTok
-#   @return [String, nil]
-#
-# @!attribute [rw] uId
+# @!attribute [rw] md5
 #   @return [String, nil]
 AuthenticationLoadMatch = Struct.new(
-  :bio,
-  :cvrImg,
+  :action,
+  :ajax,
   :email,
-  :error,
-  :handle,
-  :id,
-  :img,
-  :isSubscribing,
-  :lastArtists,
-  :lastFm,
-  :lnk,
-  :loc,
-  :name,
-  :nbLikes,
-  :nbPosts,
-  :nbSubscribers,
-  :nbSubscriptions,
-  :pl,
-  :redirect,
-  :twId,
-  :twSec,
-  :twTok,
-  :uId,
+  :include_user,
+  :md5,
   keyword_init: true
 )
 
@@ -364,8 +292,24 @@ GetUserPost = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] after
+#   @return [String, nil]
+#
+# @!attribute [rw] callback
+#   @return [String, nil]
+#
+# @!attribute [rw] format
+#   @return [String, nil]
+#
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 GetUserPostListMatch = Struct.new(
   :id,
+  :after,
+  :callback,
+  :format,
+  :limit,
   keyword_init: true
 )
 
@@ -394,8 +338,12 @@ Playlist = Struct.new(
 #
 # @!attribute [rw] username
 #   @return [String]
+#
+# @!attribute [rw] format
+#   @return [String, nil]
 PlaylistListMatch = Struct.new(
   :username,
+  :format,
   keyword_init: true
 )
 
@@ -464,8 +412,16 @@ Post = Struct.new(
 #
 # @!attribute [rw] genre
 #   @return [String]
+#
+# @!attribute [rw] format
+#   @return [String, nil]
+#
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 PostLoadMatch = Struct.new(
   :genre,
+  :format,
+  :limit,
   keyword_init: true
 )
 
@@ -484,14 +440,18 @@ Search = Struct.new(
 
 # Request payload for Search#list.
 #
-# @!attribute [rw] q
+# @!attribute [rw] context
 #   @return [String, nil]
 #
-# @!attribute [rw] results
-#   @return [Array, nil]
+# @!attribute [rw] format
+#   @return [String, nil]
+#
+# @!attribute [rw] q
+#   @return [String]
 SearchListMatch = Struct.new(
+  :context,
+  :format,
   :q,
-  :results,
   keyword_init: true
 )
 
@@ -520,8 +480,20 @@ Subscription = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] is_subscr
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] limit
+#   @return [Integer, nil]
+#
+# @!attribute [rw] skip
+#   @return [Integer, nil]
 SubscriptionLoadMatch = Struct.new(
   :id,
+  :is_subscr,
+  :limit,
+  :skip,
   keyword_init: true
 )
 
@@ -548,22 +520,26 @@ User = Struct.new(
 
 # Request payload for User#list.
 #
+# @!attribute [rw] count_like
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] count_post
+#   @return [Boolean, nil]
+#
 # @!attribute [rw] id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] nbTracks
-#   @return [Integer, nil]
+# @!attribute [rw] include_subscr
+#   @return [Boolean, nil]
 #
-# @!attribute [rw] url
-#   @return [String, nil]
+# @!attribute [rw] is_subscr
+#   @return [Boolean, nil]
 UserListMatch = Struct.new(
+  :count_like,
+  :count_post,
   :id,
-  :name,
-  :nbTracks,
-  :url,
+  :include_subscr,
+  :is_subscr,
   keyword_init: true
 )
 

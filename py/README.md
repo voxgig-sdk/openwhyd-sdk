@@ -434,7 +434,7 @@ Create an instance: `authentication = client.Authentication()`
 #### Example: Load
 
 ```python
-authentication = client.Authentication().load({"id": "authentication_id"})
+authentication = client.Authentication().load({"action": "action"})
 ```
 
 #### Example: Create
@@ -563,7 +563,7 @@ Create an instance: `search = client.Search()`
 #### Example: List
 
 ```python
-searchs = client.Search().list()
+searchs = client.Search().list({"q": "example"})
 ```
 
 
@@ -625,6 +625,29 @@ users = client.User().list()
 user = client.User().create({
 })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Open types

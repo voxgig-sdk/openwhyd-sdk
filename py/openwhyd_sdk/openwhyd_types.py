@@ -43,32 +43,14 @@ class Authentication(TypedDict, total=False):
 
 
 class AuthenticationLoadMatchRequired(TypedDict):
-    id: str
+    action: str
 
 
 class AuthenticationLoadMatch(AuthenticationLoadMatchRequired, total=False):
-    bio: str
-    cvrImg: str
+    ajax: bool
     email: str
-    error: str
-    handle: str
-    img: str
-    isSubscribing: bool
-    lastArtists: list
-    lastFm: dict
-    lnk: dict
-    loc: str
-    name: str
-    nbLikes: int
-    nbPosts: int
-    nbSubscribers: int
-    nbSubscriptions: int
-    pl: list
-    redirect: str
-    twId: str
-    twSec: str
-    twTok: str
-    uId: str
+    include_user: bool
+    md5: str
 
 
 class AuthenticationCreateData(TypedDict, total=False):
@@ -114,8 +96,15 @@ class GetUserPost(TypedDict, total=False):
     url: str
 
 
-class GetUserPostListMatch(TypedDict):
+class GetUserPostListMatchRequired(TypedDict):
     id: str
+
+
+class GetUserPostListMatch(GetUserPostListMatchRequired, total=False):
+    after: str
+    callback: str
+    format: str
+    limit: int
 
 
 class Playlist(TypedDict, total=False):
@@ -125,8 +114,12 @@ class Playlist(TypedDict, total=False):
     url: str
 
 
-class PlaylistListMatch(TypedDict):
+class PlaylistListMatchRequired(TypedDict):
     username: str
+
+
+class PlaylistListMatch(PlaylistListMatchRequired, total=False):
+    format: str
 
 
 class Post(TypedDict, total=False):
@@ -146,8 +139,13 @@ class Post(TypedDict, total=False):
     url: str
 
 
-class PostLoadMatch(TypedDict):
+class PostLoadMatchRequired(TypedDict):
     genre: str
+
+
+class PostLoadMatch(PostLoadMatchRequired, total=False):
+    format: str
+    limit: int
 
 
 class Search(TypedDict, total=False):
@@ -155,9 +153,13 @@ class Search(TypedDict, total=False):
     results: list
 
 
-class SearchListMatch(TypedDict, total=False):
+class SearchListMatchRequired(TypedDict):
     q: str
-    results: list
+
+
+class SearchListMatch(SearchListMatchRequired, total=False):
+    context: str
+    format: str
 
 
 class Subscription(TypedDict, total=False):
@@ -167,8 +169,14 @@ class Subscription(TypedDict, total=False):
     uNm: str
 
 
-class SubscriptionLoadMatch(TypedDict):
+class SubscriptionLoadMatchRequired(TypedDict):
     id: str
+
+
+class SubscriptionLoadMatch(SubscriptionLoadMatchRequired, total=False):
+    is_subscr: bool
+    limit: int
+    skip: int
 
 
 class User(TypedDict, total=False):
@@ -179,10 +187,11 @@ class User(TypedDict, total=False):
 
 
 class UserListMatch(TypedDict, total=False):
-    id: int
-    name: str
-    nbTracks: int
-    url: str
+    count_like: bool
+    count_post: bool
+    id: str
+    include_subscr: bool
+    is_subscr: bool
 
 
 class UserCreateData(TypedDict, total=False):

@@ -32,29 +32,11 @@
 ---@field uId? string
 
 ---@class AuthenticationLoadMatch
----@field bio? string
----@field cvrImg? string
+---@field action string
+---@field ajax? boolean
 ---@field email? string
----@field error? string
----@field handle? string
----@field id string
----@field img? string
----@field isSubscribing? boolean
----@field lastArtists? table
----@field lastFm? table
----@field lnk? table
----@field loc? string
----@field name? string
----@field nbLikes? number
----@field nbPosts? number
----@field nbSubscribers? number
----@field nbSubscriptions? number
----@field pl? table
----@field redirect? string
----@field twId? string
----@field twSec? string
----@field twTok? string
----@field uId? string
+---@field include_user? boolean
+---@field md5? string
 
 ---@class AuthenticationCreateData
 ---@field bio? string
@@ -99,6 +81,10 @@
 
 ---@class GetUserPostListMatch
 ---@field id string
+---@field after? string
+---@field callback? string
+---@field format? string
+---@field limit? number
 
 ---@class Playlist
 ---@field id? number
@@ -108,6 +94,7 @@
 
 ---@class PlaylistListMatch
 ---@field username string
+---@field format? string
 
 ---@class Post
 ---@field ctx? string
@@ -127,14 +114,17 @@
 
 ---@class PostLoadMatch
 ---@field genre string
+---@field format? string
+---@field limit? number
 
 ---@class Search
 ---@field q? string
 ---@field results? table
 
 ---@class SearchListMatch
----@field q? string
----@field results? table
+---@field context? string
+---@field format? string
+---@field q string
 
 ---@class Subscription
 ---@field id? string
@@ -144,6 +134,9 @@
 
 ---@class SubscriptionLoadMatch
 ---@field id string
+---@field is_subscr? boolean
+---@field limit? number
+---@field skip? number
 
 ---@class User
 ---@field id? number
@@ -152,10 +145,11 @@
 ---@field url? string
 
 ---@class UserListMatch
----@field id? number
----@field name? string
----@field nbTracks? number
----@field url? string
+---@field count_like? boolean
+---@field count_post? boolean
+---@field id? string
+---@field include_subscr? boolean
+---@field is_subscr? boolean
 
 ---@class UserCreateData
 ---@field id? number
