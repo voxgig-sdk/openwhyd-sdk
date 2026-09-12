@@ -145,14 +145,16 @@ main: kit: entity: get_user_post: {
           }
           method: "GET"
           orig: "/{username}"
-          parts: [
-            "{id}"
-          ]
           rename: {
             param: {
               username: "id"
             }
           }
+          segments: [
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "after"

@@ -50,7 +50,7 @@ func TestPostEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		postRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.post", setup.data)))
+		postRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.post")))
 		var postRef01Data map[string]any
 		if len(postRef01DataRaw) > 0 {
 			postRef01Data = core.ToMapAny(postRef01DataRaw[0][1])
@@ -103,7 +103,7 @@ func postBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"post01", "post02", "post03", "hot01", "hot02", "hot03", "playlist01", "playlist02", "playlist03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -123,7 +123,7 @@ func postBasicSetup(extra map[string]any) *entityTestSetup {
 		"OPENWHYD_TEST_POST_ENTID": idmap,
 		"OPENWHYD_TEST_LIVE":      "FALSE",
 		"OPENWHYD_TEST_EXPLAIN":   "FALSE",
-		"OPENWHYD_APIKEY":         "NONE",
+		"OPENWHYD_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["OPENWHYD_TEST_POST_ENTID"])
@@ -132,11 +132,23 @@ func postBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["OPENWHYD_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["OPENWHYD_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewOpenwhydSDK(core.ToMapAny(mergedOpts))
 	}

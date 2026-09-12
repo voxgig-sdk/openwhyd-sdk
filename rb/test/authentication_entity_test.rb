@@ -86,7 +86,7 @@ def authentication_basic_setup(extra)
     "OPENWHYD_TEST_AUTHENTICATION_ENTID" => idmap,
     "OPENWHYD_TEST_LIVE" => "FALSE",
     "OPENWHYD_TEST_EXPLAIN" => "FALSE",
-    "OPENWHYD_APIKEY" => "NONE",
+    "OPENWHYD_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -97,6 +97,9 @@ def authentication_basic_setup(extra)
 
   if env["OPENWHYD_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["OPENWHYD_APIKEY"],
       },

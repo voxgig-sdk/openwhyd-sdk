@@ -156,8 +156,10 @@ main: kit: entity: authentication: {
         {
           method: "POST"
           orig: "/login"
-          parts: [
-            "login"
+          segments: [
+            {
+              lit: "login"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -167,8 +169,10 @@ main: kit: entity: authentication: {
         {
           method: "POST"
           orig: "/register"
-          parts: [
-            "register"
+          segments: [
+            {
+              lit: "register"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -222,8 +226,10 @@ main: kit: entity: authentication: {
           }
           method: "GET"
           orig: "/login"
-          parts: [
-            "login"
+          segments: [
+            {
+              lit: "login"
+            }
           ]
           select: {
             exist: [
@@ -253,8 +259,10 @@ main: kit: entity: authentication: {
           }
           method: "GET"
           orig: "/logout"
-          parts: [
-            "logout"
+          segments: [
+            {
+              lit: "logout"
+            }
           ]
           select: {
             exist: [

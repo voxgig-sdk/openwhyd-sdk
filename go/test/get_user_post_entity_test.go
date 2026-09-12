@@ -98,7 +98,7 @@ func TestGetUserPostEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		getUserPostRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.get_user_post", setup.data)))
+		getUserPostRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.get_user_post")))
 		var getUserPostRef01Data map[string]any
 		if len(getUserPostRef01DataRaw) > 0 {
 			getUserPostRef01Data = core.ToMapAny(getUserPostRef01DataRaw[0][1])
@@ -149,7 +149,7 @@ func get_user_postBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"get_user_post01", "get_user_post02", "get_user_post03", "username01"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -169,7 +169,7 @@ func get_user_postBasicSetup(extra map[string]any) *entityTestSetup {
 		"OPENWHYD_TEST_GET_USER_POST_ENTID": idmap,
 		"OPENWHYD_TEST_LIVE":      "FALSE",
 		"OPENWHYD_TEST_EXPLAIN":   "FALSE",
-		"OPENWHYD_APIKEY":         "NONE",
+		"OPENWHYD_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["OPENWHYD_TEST_GET_USER_POST_ENTID"])
@@ -178,11 +178,23 @@ func get_user_postBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["OPENWHYD_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["OPENWHYD_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewOpenwhydSDK(core.ToMapAny(mergedOpts))
 	}

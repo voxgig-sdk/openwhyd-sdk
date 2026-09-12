@@ -78,11 +78,19 @@ main: kit: entity: subscription: {
           }
           method: "GET"
           orig: "/api/follow/fetchFollowers/{id}"
-          parts: [
-            "api"
-            "follow"
-            "fetchFollowers"
-            "{id}"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "follow"
+            }
+            {
+              lit: "fetchFollowers"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -135,11 +143,19 @@ main: kit: entity: subscription: {
           }
           method: "GET"
           orig: "/api/follow/fetchFollowing/{id}"
-          parts: [
-            "api"
-            "follow"
-            "fetchFollowing"
-            "{id}"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "follow"
+            }
+            {
+              lit: "fetchFollowing"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

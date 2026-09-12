@@ -44,9 +44,13 @@ main: kit: entity: user: {
         {
           method: "POST"
           orig: "/api/user"
-          parts: [
-            "api"
-            "user"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "user"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -100,9 +104,13 @@ main: kit: entity: user: {
           }
           method: "GET"
           orig: "/api/user"
-          parts: [
-            "api"
-            "user"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "user"
+            }
           ]
           select: {
             exist: [
@@ -132,9 +140,13 @@ main: kit: entity: user: {
           }
           method: "GET"
           orig: "/{username}/info"
-          parts: [
-            "{username}"
-            "info"
+          segments: [
+            {
+              var: "username"
+            }
+            {
+              lit: "info"
+            }
           ]
           select: {
             exist: [

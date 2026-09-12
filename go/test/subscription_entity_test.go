@@ -50,7 +50,7 @@ func TestSubscriptionEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		subscriptionRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.subscription", setup.data)))
+		subscriptionRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.subscription")))
 		var subscriptionRef01Data map[string]any
 		if len(subscriptionRef01DataRaw) > 0 {
 			subscriptionRef01Data = core.ToMapAny(subscriptionRef01DataRaw[0][1])
@@ -103,7 +103,7 @@ func subscriptionBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"subscription01", "subscription02", "subscription03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -123,7 +123,7 @@ func subscriptionBasicSetup(extra map[string]any) *entityTestSetup {
 		"OPENWHYD_TEST_SUBSCRIPTION_ENTID": idmap,
 		"OPENWHYD_TEST_LIVE":      "FALSE",
 		"OPENWHYD_TEST_EXPLAIN":   "FALSE",
-		"OPENWHYD_APIKEY":         "NONE",
+		"OPENWHYD_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["OPENWHYD_TEST_SUBSCRIPTION_ENTID"])
@@ -132,11 +132,23 @@ func subscriptionBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["OPENWHYD_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["OPENWHYD_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewOpenwhydSDK(core.ToMapAny(mergedOpts))
 	}

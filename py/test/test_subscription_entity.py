@@ -94,7 +94,7 @@ def _subscription_basic_setup(extra):
         "OPENWHYD_TEST_SUBSCRIPTION_ENTID": idmap,
         "OPENWHYD_TEST_LIVE": "FALSE",
         "OPENWHYD_TEST_EXPLAIN": "FALSE",
-        "OPENWHYD_APIKEY": "NONE",
+        "OPENWHYD_APIKEY": "",
     })
 
     idmap_resolved = helpers.to_map(
@@ -104,6 +104,10 @@ def _subscription_basic_setup(extra):
 
     if env.get("OPENWHYD_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
+            # FIRST, so the generated fields below win: sdk-test-control.json's
+            # test.client.options adds to the live client, it does not
+            # redirect it.
+            runner.live_client_options(),
             {
                 "apikey": env.get("OPENWHYD_APIKEY"),
             },

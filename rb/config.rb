@@ -166,6 +166,10 @@ module OpenwhydConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "authentication",
           "op" => {
             "create" => {
@@ -177,28 +181,38 @@ module OpenwhydConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/login",
-                  "parts" => [
-                    "login",
+                  "segments" => [
+                    {
+                      "lit" => "login",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.user`",
                   },
+                  "parts" => [
+                    "login",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/register",
-                  "parts" => [
-                    "register",
+                  "segments" => [
+                    {
+                      "lit" => "register",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "register",
+                  ],
                 },
               ],
             },
@@ -245,8 +259,10 @@ module OpenwhydConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/login",
-                  "parts" => [
-                    "login",
+                  "segments" => [
+                    {
+                      "lit" => "login",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -261,6 +277,9 @@ module OpenwhydConfig
                     "req" => "`reqdata`",
                     "res" => "`body.user`",
                   },
+                  "parts" => [
+                    "login",
+                  ],
                 },
                 {
                   "args" => {
@@ -276,8 +295,10 @@ module OpenwhydConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/logout",
-                  "parts" => [
-                    "logout",
+                  "segments" => [
+                    {
+                      "lit" => "logout",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -288,6 +309,9 @@ module OpenwhydConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "logout",
+                  ],
                 },
               ],
             },
@@ -368,6 +392,10 @@ module OpenwhydConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "get_user_post",
           "op" => {
             "list" => {
@@ -416,14 +444,16 @@ module OpenwhydConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{username}",
-                  "parts" => [
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "username" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "after",
@@ -437,6 +467,9 @@ module OpenwhydConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -468,6 +501,10 @@ module OpenwhydConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "playlist",
           "op" => {
             "list" => {
@@ -497,9 +534,13 @@ module OpenwhydConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{username}/playlists",
-                  "parts" => [
-                    "{username}",
-                    "playlists",
+                  "segments" => [
+                    {
+                      "var" => "username",
+                    },
+                    {
+                      "lit" => "playlists",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -511,6 +552,10 @@ module OpenwhydConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "{username}",
+                    "playlists",
+                  ],
                 },
               ],
             },
@@ -591,6 +636,10 @@ module OpenwhydConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "post",
           "op" => {
             "load" => {
@@ -640,16 +689,22 @@ module OpenwhydConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{username}/playlist/{playlistId}",
-                  "parts" => [
-                    "{username}",
-                    "playlist",
-                    "{playlist_id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "playlistId" => "playlist_id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "var" => "username",
+                    },
+                    {
+                      "lit" => "playlist",
+                    },
+                    {
+                      "var" => "playlist_id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "after",
@@ -663,6 +718,11 @@ module OpenwhydConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "{username}",
+                    "playlist",
+                    "{playlist_id}",
+                  ],
                 },
                 {
                   "args" => {
@@ -694,9 +754,13 @@ module OpenwhydConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/hot/{genre}",
-                  "parts" => [
-                    "hot",
-                    "{genre}",
+                  "segments" => [
+                    {
+                      "lit" => "hot",
+                    },
+                    {
+                      "var" => "genre",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -709,6 +773,10 @@ module OpenwhydConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "hot",
+                    "{genre}",
+                  ],
                 },
               ],
             },
@@ -774,8 +842,10 @@ module OpenwhydConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/search",
-                  "parts" => [
-                    "search",
+                  "segments" => [
+                    {
+                      "lit" => "search",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -788,6 +858,9 @@ module OpenwhydConfig
                     "req" => "`reqdata`",
                     "res" => "`body.results`",
                   },
+                  "parts" => [
+                    "search",
+                  ],
                 },
               ],
             },
@@ -818,6 +891,10 @@ module OpenwhydConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "subscription",
           "op" => {
             "load" => {
@@ -860,11 +937,19 @@ module OpenwhydConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/follow/fetchFollowers/{id}",
-                  "parts" => [
-                    "api",
-                    "follow",
-                    "fetchFollowers",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "follow",
+                    },
+                    {
+                      "lit" => "fetchFollowers",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -878,6 +963,12 @@ module OpenwhydConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "follow",
+                    "fetchFollowers",
+                    "{id}",
+                  ],
                 },
                 {
                   "args" => {
@@ -915,11 +1006,19 @@ module OpenwhydConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/follow/fetchFollowing/{id}",
-                  "parts" => [
-                    "api",
-                    "follow",
-                    "fetchFollowing",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "follow",
+                    },
+                    {
+                      "lit" => "fetchFollowing",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -933,6 +1032,12 @@ module OpenwhydConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "follow",
+                    "fetchFollowing",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -964,6 +1069,10 @@ module OpenwhydConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "user",
           "op" => {
             "create" => {
@@ -975,15 +1084,23 @@ module OpenwhydConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/user",
-                  "parts" => [
-                    "api",
-                    "user",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "user",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "user",
+                  ],
                 },
               ],
             },
@@ -1029,9 +1146,13 @@ module OpenwhydConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/user",
-                  "parts" => [
-                    "api",
-                    "user",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "user",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1046,6 +1167,10 @@ module OpenwhydConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "user",
+                  ],
                 },
                 {
                   "args" => {
@@ -1062,9 +1187,13 @@ module OpenwhydConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{username}/info",
-                  "parts" => [
-                    "{username}",
-                    "info",
+                  "segments" => [
+                    {
+                      "var" => "username",
+                    },
+                    {
+                      "lit" => "info",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1075,6 +1204,10 @@ module OpenwhydConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "{username}",
+                    "info",
+                  ],
                 },
               ],
             },

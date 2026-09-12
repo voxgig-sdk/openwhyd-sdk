@@ -64,9 +64,13 @@ main: kit: entity: playlist: {
           }
           method: "GET"
           orig: "/{username}/playlists"
-          parts: [
-            "{username}"
-            "playlists"
+          segments: [
+            {
+              var: "username"
+            }
+            {
+              lit: "playlists"
+            }
           ]
           select: {
             exist: [

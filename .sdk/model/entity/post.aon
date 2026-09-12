@@ -145,16 +145,22 @@ main: kit: entity: post: {
           }
           method: "GET"
           orig: "/{username}/playlist/{playlistId}"
-          parts: [
-            "{username}"
-            "playlist"
-            "{playlist_id}"
-          ]
           rename: {
             param: {
               playlistId: "playlist_id"
             }
           }
+          segments: [
+            {
+              var: "username"
+            }
+            {
+              lit: "playlist"
+            }
+            {
+              var: "playlist_id"
+            }
+          ]
           select: {
             exist: [
               "after"
@@ -200,9 +206,13 @@ main: kit: entity: post: {
           }
           method: "GET"
           orig: "/hot/{genre}"
-          parts: [
-            "hot"
-            "{genre}"
+          segments: [
+            {
+              lit: "hot"
+            }
+            {
+              var: "genre"
+            }
           ]
           select: {
             exist: [
