@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { OpenwhydSDK } from '@voxgig-sdk/openwhyd'
+import { OpenwhydSDK } from '@voxgig-sdk/openwhyd-sdk'
 
 const client = new OpenwhydSDK({
   apikey: process.env.OPENWHYD_APIKEY,
@@ -779,7 +779,7 @@ openwhyd/
 Import the SDK from the package root:
 
 ```ts
-import { OpenwhydSDK } from '@voxgig-sdk/openwhyd'
+import { OpenwhydSDK } from '@voxgig-sdk/openwhyd-sdk'
 ```
 
 ### Entity state

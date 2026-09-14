@@ -105,7 +105,7 @@ local results, err = client:Playlist():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/openwhyd` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openwhyd-sdk/releases) |
+| TypeScript | `@voxgig-sdk/openwhyd-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openwhyd-sdk/releases) |
 | Python | `voxgig-sdk-openwhyd` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openwhyd-sdk/releases) |
 | PHP | `voxgig-sdk/openwhyd` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openwhyd-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/openwhyd-sdk/go` | `go get github.com/voxgig-sdk/openwhyd-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Playlist():list()
 ### TypeScript
 
 ```ts
-import { OpenwhydSDK } from '@voxgig-sdk/openwhyd'
+import { OpenwhydSDK } from '@voxgig-sdk/openwhyd-sdk'
 
 const client = new OpenwhydSDK({
   apikey: process.env.OPENWHYD_APIKEY,
