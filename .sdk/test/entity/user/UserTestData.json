@@ -4,21 +4,21 @@
       "USER00": {
         "id": "USER00",
         "name": "s29",
-        "nbTracks": "s2a",
+        "nbTracks": 42,
         "url": "s2b",
         "username": "USERNAME01"
       },
       "USER01": {
         "id": "USER01",
         "name": "s51",
-        "nbTracks": "s52",
+        "nbTracks": 82,
         "url": "s53",
         "username": "USERNAME01"
       },
       "USER02": {
         "id": "USER02",
         "name": "s79",
-        "nbTracks": "s7a",
+        "nbTracks": 122,
         "url": "s7b",
         "username": "USERNAME01"
       }
@@ -28,8 +28,674 @@
     "user": {
       "user_ref01": {
         "name": "sa1",
-        "nbTracks": "sa2",
+        "nbTracks": 162,
         "url": "sa3"
+      }
+    }
+  },
+  "requests": {
+    "POST /api/user": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateUser",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "properties": {
+                  "bio": {
+                    "description": "User biography",
+                    "type": "string"
+                  },
+                  "cvrImg": {
+                    "description": "Cover image URL",
+                    "type": "string"
+                  },
+                  "email": {
+                    "description": "Email address",
+                    "type": "string"
+                  },
+                  "handle": {
+                    "description": "Username/handle",
+                    "type": "string"
+                  },
+                  "img": {
+                    "description": "Avatar URL",
+                    "type": "string"
+                  },
+                  "lnk_fb": {
+                    "description": "Facebook profile URL",
+                    "type": "string"
+                  },
+                  "lnk_home": {
+                    "description": "Homepage URL",
+                    "type": "string"
+                  },
+                  "lnk_igrm": {
+                    "description": "Instagram profile URL",
+                    "type": "string"
+                  },
+                  "lnk_sc": {
+                    "description": "SoundCloud profile URL",
+                    "type": "string"
+                  },
+                  "lnk_tw": {
+                    "description": "Twitter profile URL",
+                    "type": "string"
+                  },
+                  "lnk_yt": {
+                    "description": "YouTube profile URL",
+                    "type": "string"
+                  },
+                  "loc": {
+                    "description": "User location",
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "Full user name",
+                    "type": "string"
+                  },
+                  "oldPwd": {
+                    "description": "Old password (required for password change)",
+                    "type": "string"
+                  },
+                  "pwd": {
+                    "description": "New password (requires oldPwd)",
+                    "type": "string"
+                  },
+                  "twId": {
+                    "description": "Twitter handle",
+                    "type": "string"
+                  },
+                  "twSec": {
+                    "description": "Twitter session secret",
+                    "type": "string"
+                  },
+                  "twTok": {
+                    "description": "Twitter session token",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "_id": {
+                          "description": "User ID",
+                          "type": "string"
+                        },
+                        "bio": {
+                          "description": "User biography",
+                          "type": "string"
+                        },
+                        "cvrImg": {
+                          "description": "Cover image URL",
+                          "type": "string"
+                        },
+                        "email": {
+                          "description": "Email address",
+                          "type": "string"
+                        },
+                        "handle": {
+                          "description": "Username/handle",
+                          "type": "string"
+                        },
+                        "img": {
+                          "description": "Avatar URL",
+                          "type": "string"
+                        },
+                        "isSubscribing": {
+                          "description": "Whether logged in user subscribes to this user",
+                          "type": "boolean"
+                        },
+                        "lastArtists": {
+                          "description": "Recently posted artists",
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "lastFm": {
+                          "properties": {
+                            "name": {
+                              "description": "Last.fm username",
+                              "type": "string"
+                            },
+                            "sk": {
+                              "description": "Last.fm session key",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "lnk": {
+                          "properties": {
+                            "fb": {
+                              "description": "Facebook URL",
+                              "type": "string"
+                            },
+                            "home": {
+                              "description": "Home page URL",
+                              "type": "string"
+                            },
+                            "igrm": {
+                              "description": "Instagram handle",
+                              "type": "string"
+                            },
+                            "sc": {
+                              "description": "SoundCloud handle",
+                              "type": "string"
+                            },
+                            "tw": {
+                              "description": "Twitter handle",
+                              "type": "string"
+                            },
+                            "yt": {
+                              "description": "YouTube handle",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "loc": {
+                          "description": "User location",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Full name",
+                          "type": "string"
+                        },
+                        "nbLikes": {
+                          "description": "Number of likes",
+                          "type": "integer"
+                        },
+                        "nbPosts": {
+                          "description": "Number of posts",
+                          "type": "integer"
+                        },
+                        "nbSubscribers": {
+                          "description": "Number of subscribers",
+                          "type": "integer"
+                        },
+                        "nbSubscriptions": {
+                          "description": "Number of subscriptions",
+                          "type": "integer"
+                        },
+                        "pl": {
+                          "description": "User playlists",
+                          "items": {
+                            "properties": {
+                              "id": {
+                                "description": "Playlist number",
+                                "type": "integer"
+                              },
+                              "name": {
+                                "description": "Playlist name",
+                                "type": "string"
+                              },
+                              "nbTracks": {
+                                "description": "Number of tracks in playlist",
+                                "type": "integer"
+                              },
+                              "url": {
+                                "description": "Playlist URL",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "twId": {
+                          "description": "Twitter handle",
+                          "type": "string"
+                        },
+                        "twSec": {
+                          "description": "Twitter session secret",
+                          "type": "string"
+                        },
+                        "twTok": {
+                          "description": "Twitter session token",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Successful update"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "cookieAuth": {
+            "description": "Session cookie obtained after successful login",
+            "in": "cookie",
+            "name": "whydSid",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /api/user": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getUser",
+        "parameters": [
+          {
+            "description": "User ID (logged in user if not provided)",
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Include subscription status",
+            "in": "query",
+            "name": "isSubscr",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Include post count",
+            "in": "query",
+            "name": "countPosts",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Include likes count",
+            "in": "query",
+            "name": "countLikes",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Include subscriber and subscription counts",
+            "in": "query",
+            "name": "includeSubscr",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "_id": {
+                      "description": "User ID",
+                      "type": "string"
+                    },
+                    "bio": {
+                      "description": "User biography",
+                      "type": "string"
+                    },
+                    "cvrImg": {
+                      "description": "Cover image URL",
+                      "type": "string"
+                    },
+                    "email": {
+                      "description": "Email address",
+                      "type": "string"
+                    },
+                    "handle": {
+                      "description": "Username/handle",
+                      "type": "string"
+                    },
+                    "img": {
+                      "description": "Avatar URL",
+                      "type": "string"
+                    },
+                    "isSubscribing": {
+                      "description": "Whether logged in user subscribes to this user",
+                      "type": "boolean"
+                    },
+                    "lastArtists": {
+                      "description": "Recently posted artists",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "lastFm": {
+                      "properties": {
+                        "name": {
+                          "description": "Last.fm username",
+                          "type": "string"
+                        },
+                        "sk": {
+                          "description": "Last.fm session key",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "lnk": {
+                      "properties": {
+                        "fb": {
+                          "description": "Facebook URL",
+                          "type": "string"
+                        },
+                        "home": {
+                          "description": "Home page URL",
+                          "type": "string"
+                        },
+                        "igrm": {
+                          "description": "Instagram handle",
+                          "type": "string"
+                        },
+                        "sc": {
+                          "description": "SoundCloud handle",
+                          "type": "string"
+                        },
+                        "tw": {
+                          "description": "Twitter handle",
+                          "type": "string"
+                        },
+                        "yt": {
+                          "description": "YouTube handle",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "loc": {
+                      "description": "User location",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Full name",
+                      "type": "string"
+                    },
+                    "nbLikes": {
+                      "description": "Number of likes",
+                      "type": "integer"
+                    },
+                    "nbPosts": {
+                      "description": "Number of posts",
+                      "type": "integer"
+                    },
+                    "nbSubscribers": {
+                      "description": "Number of subscribers",
+                      "type": "integer"
+                    },
+                    "nbSubscriptions": {
+                      "description": "Number of subscriptions",
+                      "type": "integer"
+                    },
+                    "pl": {
+                      "description": "User playlists",
+                      "items": {
+                        "properties": {
+                          "id": {
+                            "description": "Playlist number",
+                            "type": "integer"
+                          },
+                          "name": {
+                            "description": "Playlist name",
+                            "type": "string"
+                          },
+                          "nbTracks": {
+                            "description": "Number of tracks in playlist",
+                            "type": "integer"
+                          },
+                          "url": {
+                            "description": "Playlist URL",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "twId": {
+                      "description": "Twitter handle",
+                      "type": "string"
+                    },
+                    "twSec": {
+                      "description": "Twitter session secret",
+                      "type": "string"
+                    },
+                    "twTok": {
+                      "description": "Twitter session token",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "cookieAuth": {
+            "description": "Session cookie obtained after successful login",
+            "in": "cookie",
+            "name": "whydSid",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /{username}/info": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getUserInfo",
+        "parameters": [
+          {
+            "description": "Username of the user",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "_id": {
+                      "description": "User ID",
+                      "type": "string"
+                    },
+                    "bio": {
+                      "description": "User biography",
+                      "type": "string"
+                    },
+                    "cvrImg": {
+                      "description": "Cover image URL",
+                      "type": "string"
+                    },
+                    "email": {
+                      "description": "Email address",
+                      "type": "string"
+                    },
+                    "handle": {
+                      "description": "Username/handle",
+                      "type": "string"
+                    },
+                    "img": {
+                      "description": "Avatar URL",
+                      "type": "string"
+                    },
+                    "isSubscribing": {
+                      "description": "Whether logged in user subscribes to this user",
+                      "type": "boolean"
+                    },
+                    "lastArtists": {
+                      "description": "Recently posted artists",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "lastFm": {
+                      "properties": {
+                        "name": {
+                          "description": "Last.fm username",
+                          "type": "string"
+                        },
+                        "sk": {
+                          "description": "Last.fm session key",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "lnk": {
+                      "properties": {
+                        "fb": {
+                          "description": "Facebook URL",
+                          "type": "string"
+                        },
+                        "home": {
+                          "description": "Home page URL",
+                          "type": "string"
+                        },
+                        "igrm": {
+                          "description": "Instagram handle",
+                          "type": "string"
+                        },
+                        "sc": {
+                          "description": "SoundCloud handle",
+                          "type": "string"
+                        },
+                        "tw": {
+                          "description": "Twitter handle",
+                          "type": "string"
+                        },
+                        "yt": {
+                          "description": "YouTube handle",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "loc": {
+                      "description": "User location",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Full name",
+                      "type": "string"
+                    },
+                    "nbLikes": {
+                      "description": "Number of likes",
+                      "type": "integer"
+                    },
+                    "nbPosts": {
+                      "description": "Number of posts",
+                      "type": "integer"
+                    },
+                    "nbSubscribers": {
+                      "description": "Number of subscribers",
+                      "type": "integer"
+                    },
+                    "nbSubscriptions": {
+                      "description": "Number of subscriptions",
+                      "type": "integer"
+                    },
+                    "pl": {
+                      "description": "User playlists",
+                      "items": {
+                        "properties": {
+                          "id": {
+                            "description": "Playlist number",
+                            "type": "integer"
+                          },
+                          "name": {
+                            "description": "Playlist name",
+                            "type": "string"
+                          },
+                          "nbTracks": {
+                            "description": "Number of tracks in playlist",
+                            "type": "integer"
+                          },
+                          "url": {
+                            "description": "Playlist URL",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "twId": {
+                      "description": "Twitter handle",
+                      "type": "string"
+                    },
+                    "twSec": {
+                      "description": "Twitter session secret",
+                      "type": "string"
+                    },
+                    "twTok": {
+                      "description": "Twitter session token",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySchemes": {
+          "cookieAuth": {
+            "description": "Session cookie obtained after successful login",
+            "in": "cookie",
+            "name": "whydSid",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

@@ -8,8 +8,8 @@
         "img": "s8f",
         "lov": [],
         "name": "s91",
-        "nbP": "s92",
-        "nbR": "s93",
+        "nbP": 146,
+        "nbR": 147,
         "score": 148,
         "src": {},
         "text": "s96",
@@ -24,8 +24,8 @@
         "img": "s11b",
         "lov": [],
         "name": "s11d",
-        "nbP": "s11e",
-        "nbR": "s11f",
+        "nbP": 286,
+        "nbR": 287,
         "score": 288,
         "src": {},
         "text": "s122",
@@ -40,8 +40,8 @@
         "img": "s1a7",
         "lov": [],
         "name": "s1a9",
-        "nbP": "s1aa",
-        "nbR": "s1ab",
+        "nbP": 426,
+        "nbR": 427,
         "score": 428,
         "src": {},
         "text": "s1ae",
@@ -59,14 +59,171 @@
         "img": "s233",
         "lov": [],
         "name": "s235",
-        "nbP": "s236",
-        "nbR": "s237",
+        "nbP": 566,
+        "nbR": 567,
         "score": 568,
         "src": {},
         "text": "s23a",
         "uId": "s23b",
         "uNm": "s23c",
         "url": "s23d"
+      }
+    }
+  },
+  "requests": {
+    "GET /{username}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getUserPosts",
+        "parameters": [
+          {
+            "description": "Username of the user",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Response format: json or links",
+            "in": "query",
+            "name": "format",
+            "schema": {
+              "enum": [
+                "json",
+                "links"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of posts to return",
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "default": 20,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Identifier of the post from which entries must be returned (for pagination)",
+            "in": "query",
+            "name": "after",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "JavaScript function name for JSONP access",
+            "in": "query",
+            "name": "callback",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "_id": {
+                        "description": "Post ID",
+                        "type": "string"
+                      },
+                      "ctx": {
+                        "description": "Context",
+                        "type": "string"
+                      },
+                      "eId": {
+                        "description": "External ID (platform identifier)",
+                        "type": "string"
+                      },
+                      "img": {
+                        "description": "Track image URL",
+                        "type": "string"
+                      },
+                      "lov": {
+                        "description": "User IDs who liked this post",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "name": {
+                        "description": "Track name",
+                        "type": "string"
+                      },
+                      "nbP": {
+                        "description": "Number of plays",
+                        "type": "integer"
+                      },
+                      "nbR": {
+                        "description": "Number of reposts",
+                        "type": "integer"
+                      },
+                      "score": {
+                        "description": "Search relevance score",
+                        "type": "number"
+                      },
+                      "src": {
+                        "properties": {
+                          "id": {
+                            "description": "Source URL",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "Source name",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "text": {
+                        "description": "Post text/comment",
+                        "type": "string"
+                      },
+                      "uId": {
+                        "description": "User ID of poster",
+                        "type": "string"
+                      },
+                      "uNm": {
+                        "description": "User name of poster",
+                        "type": "string"
+                      },
+                      "url": {
+                        "description": "Direct URL to track",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "description": "List of URLs, one per line",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySchemes": {
+          "cookieAuth": {
+            "description": "Session cookie obtained after successful login",
+            "in": "cookie",
+            "name": "whydSid",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

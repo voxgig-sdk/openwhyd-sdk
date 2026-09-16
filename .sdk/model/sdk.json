@@ -24,7 +24,71 @@
         "repr": "auto"
       },
       "contributor": {},
-      "docs": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "authentication": {
           "active": true,
@@ -205,6 +269,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /login",
+                    "json": "{\"operationId\":\"loginPost\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/x-www-form-urlencoded\":{\"schema\":{\"properties\":{\"action\":{\"enum\":[\"login\",\"forgot\"],\"type\":\"string\"},\"ajax\":{\"type\":\"boolean\"},\"email\":{\"type\":\"string\"},\"includeUser\":{\"type\":\"boolean\"},\"md5\":{\"type\":\"string\"}},\"required\":[\"action\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"type\":\"string\"},\"redirect\":{\"type\":\"string\"},\"user\":{\"properties\":{\"_id\":{\"description\":\"User ID\",\"type\":\"string\"},\"bio\":{\"description\":\"User biography\",\"type\":\"string\"},\"cvrImg\":{\"description\":\"Cover image URL\",\"type\":\"string\"},\"email\":{\"description\":\"Email address\",\"type\":\"string\"},\"handle\":{\"description\":\"Username/handle\",\"type\":\"string\"},\"img\":{\"description\":\"Avatar URL\",\"type\":\"string\"},\"isSubscribing\":{\"description\":\"Whether logged in user subscribes to this user\",\"type\":\"boolean\"},\"lastArtists\":{\"description\":\"Recently posted artists\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lastFm\":{\"properties\":{\"name\":{\"description\":\"Last.fm username\",\"type\":\"string\"},\"sk\":{\"description\":\"Last.fm session key\",\"type\":\"string\"}},\"type\":\"object\"},\"lnk\":{\"properties\":{\"fb\":{\"description\":\"Facebook URL\",\"type\":\"string\"},\"home\":{\"description\":\"Home page URL\",\"type\":\"string\"},\"igrm\":{\"description\":\"Instagram handle\",\"type\":\"string\"},\"sc\":{\"description\":\"SoundCloud handle\",\"type\":\"string\"},\"tw\":{\"description\":\"Twitter handle\",\"type\":\"string\"},\"yt\":{\"description\":\"YouTube handle\",\"type\":\"string\"}},\"type\":\"object\"},\"loc\":{\"description\":\"User location\",\"type\":\"string\"},\"name\":{\"description\":\"Full name\",\"type\":\"string\"},\"nbLikes\":{\"description\":\"Number of likes\",\"type\":\"integer\"},\"nbPosts\":{\"description\":\"Number of posts\",\"type\":\"integer\"},\"nbSubscribers\":{\"description\":\"Number of subscribers\",\"type\":\"integer\"},\"nbSubscriptions\":{\"description\":\"Number of subscriptions\",\"type\":\"integer\"},\"pl\":{\"description\":\"User playlists\",\"items\":{\"properties\":{\"id\":{\"description\":\"Playlist number\",\"type\":\"integer\"},\"name\":{\"description\":\"Playlist name\",\"type\":\"string\"},\"nbTracks\":{\"description\":\"Number of tracks in playlist\",\"type\":\"integer\"},\"url\":{\"description\":\"Playlist URL\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"twId\":{\"description\":\"Twitter handle\",\"type\":\"string\"},\"twSec\":{\"description\":\"Twitter session secret\",\"type\":\"string\"},\"twTok\":{\"description\":\"Twitter session token\",\"type\":\"string\"}},\"type\":\"object\"},\"wrongPassword\":{\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Session cookie obtained after successful login\",\"in\":\"cookie\",\"name\":\"whydSid\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/login",
@@ -222,6 +292,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /register",
+                    "json": "{\"operationId\":\"register\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/x-www-form-urlencoded\":{\"schema\":{\"properties\":{\"ajax\":{\"description\":\"Set to 'true' for JSON response\",\"type\":\"string\"},\"email\":{\"description\":\"Email address\",\"type\":\"string\"},\"iBy\":{\"description\":\"ID of user who invited this user\",\"type\":\"string\"},\"iPg\":{\"description\":\"URL of sign up page\",\"type\":\"string\"},\"iPo\":{\"description\":\"Post ID from invitation (deprecated)\",\"type\":\"string\"},\"iRf\":{\"description\":\"Referrer of sign up page\",\"type\":\"string\"},\"inviteCode\":{\"description\":\"Invite code (deprecated)\",\"type\":\"string\"},\"name\":{\"description\":\"Full name of the user\",\"type\":\"string\"},\"password\":{\"description\":\"Password\",\"type\":\"string\"},\"redirect\":{\"description\":\"URL to redirect to after successful signup\",\"type\":\"string\"}},\"required\":[\"name\",\"email\",\"password\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message if any\",\"type\":\"string\"},\"redirect\":{\"description\":\"URL to redirect to\",\"type\":\"string\"},\"uId\":{\"description\":\"ID of new user if successful\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful registration\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Session cookie obtained after successful login\",\"in\":\"cookie\",\"name\":\"whydSid\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/register",
@@ -288,6 +364,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /login",
+                    "json": "{\"operationId\":\"login\",\"parameters\":[{\"description\":\"Action to perform: login or forgot password\",\"in\":\"query\",\"name\":\"action\",\"required\":true,\"schema\":{\"enum\":[\"login\",\"forgot\"],\"type\":\"string\"}},{\"description\":\"Email address or username\",\"in\":\"query\",\"name\":\"email\",\"schema\":{\"type\":\"string\"}},{\"description\":\"MD5-hashed password (for login action)\",\"in\":\"query\",\"name\":\"md5\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Return JSON response instead of HTML\",\"in\":\"query\",\"name\":\"ajax\",\"schema\":{\"type\":\"boolean\"}},{\"description\":\"Include user object in response (for login action)\",\"in\":\"query\",\"name\":\"includeUser\",\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message if any\",\"type\":\"string\"},\"ok\":{\"description\":\"Success message for forgot password\",\"type\":\"string\"},\"redirect\":{\"description\":\"URL to redirect to after successful login\",\"type\":\"string\"},\"user\":{\"properties\":{\"_id\":{\"description\":\"User ID\",\"type\":\"string\"},\"bio\":{\"description\":\"User biography\",\"type\":\"string\"},\"cvrImg\":{\"description\":\"Cover image URL\",\"type\":\"string\"},\"email\":{\"description\":\"Email address\",\"type\":\"string\"},\"handle\":{\"description\":\"Username/handle\",\"type\":\"string\"},\"img\":{\"description\":\"Avatar URL\",\"type\":\"string\"},\"isSubscribing\":{\"description\":\"Whether logged in user subscribes to this user\",\"type\":\"boolean\"},\"lastArtists\":{\"description\":\"Recently posted artists\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lastFm\":{\"properties\":{\"name\":{\"description\":\"Last.fm username\",\"type\":\"string\"},\"sk\":{\"description\":\"Last.fm session key\",\"type\":\"string\"}},\"type\":\"object\"},\"lnk\":{\"properties\":{\"fb\":{\"description\":\"Facebook URL\",\"type\":\"string\"},\"home\":{\"description\":\"Home page URL\",\"type\":\"string\"},\"igrm\":{\"description\":\"Instagram handle\",\"type\":\"string\"},\"sc\":{\"description\":\"SoundCloud handle\",\"type\":\"string\"},\"tw\":{\"description\":\"Twitter handle\",\"type\":\"string\"},\"yt\":{\"description\":\"YouTube handle\",\"type\":\"string\"}},\"type\":\"object\"},\"loc\":{\"description\":\"User location\",\"type\":\"string\"},\"name\":{\"description\":\"Full name\",\"type\":\"string\"},\"nbLikes\":{\"description\":\"Number of likes\",\"type\":\"integer\"},\"nbPosts\":{\"description\":\"Number of posts\",\"type\":\"integer\"},\"nbSubscribers\":{\"description\":\"Number of subscribers\",\"type\":\"integer\"},\"nbSubscriptions\":{\"description\":\"Number of subscriptions\",\"type\":\"integer\"},\"pl\":{\"description\":\"User playlists\",\"items\":{\"properties\":{\"id\":{\"description\":\"Playlist number\",\"type\":\"integer\"},\"name\":{\"description\":\"Playlist name\",\"type\":\"string\"},\"nbTracks\":{\"description\":\"Number of tracks in playlist\",\"type\":\"integer\"},\"url\":{\"description\":\"Playlist URL\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"twId\":{\"description\":\"Twitter handle\",\"type\":\"string\"},\"twSec\":{\"description\":\"Twitter session secret\",\"type\":\"string\"},\"twTok\":{\"description\":\"Twitter session token\",\"type\":\"string\"}},\"type\":\"object\"},\"wrongPassword\":{\"description\":\"Set to 1 if password is incorrect\",\"type\":\"integer\"}},\"type\":\"object\"}},\"text/html\":{\"schema\":{\"type\":\"string\"}}},\"description\":\"Successful response\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Session cookie obtained after successful login\",\"in\":\"cookie\",\"name\":\"whydSid\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/login",
@@ -323,6 +405,12 @@
                         "type": "`$BOOLEAN`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /logout",
+                    "json": "{\"operationId\":\"logout\",\"parameters\":[{\"description\":\"Return JSON response instead of HTML\",\"in\":\"query\",\"name\":\"ajax\",\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"type\":\"object\"}},\"text/html\":{\"schema\":{\"type\":\"string\"}}},\"description\":\"Successful logout\"}},\"security\":[{\"cookieAuth\":[]}],\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Session cookie obtained after successful login\",\"in\":\"cookie\",\"name\":\"whydSid\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -512,6 +600,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /{username}",
+                    "json": "{\"operationId\":\"getUserPosts\",\"parameters\":[{\"description\":\"Username of the user\",\"in\":\"path\",\"name\":\"username\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Response format: json or links\",\"in\":\"query\",\"name\":\"format\",\"schema\":{\"enum\":[\"json\",\"links\"],\"type\":\"string\"}},{\"description\":\"Number of posts to return\",\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"default\":20,\"type\":\"integer\"}},{\"description\":\"Identifier of the post from which entries must be returned (for pagination)\",\"in\":\"query\",\"name\":\"after\",\"schema\":{\"type\":\"string\"}},{\"description\":\"JavaScript function name for JSONP access\",\"in\":\"query\",\"name\":\"callback\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"_id\":{\"description\":\"Post ID\",\"type\":\"string\"},\"ctx\":{\"description\":\"Context\",\"type\":\"string\"},\"eId\":{\"description\":\"External ID (platform identifier)\",\"type\":\"string\"},\"img\":{\"description\":\"Track image URL\",\"type\":\"string\"},\"lov\":{\"description\":\"User IDs who liked this post\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"description\":\"Track name\",\"type\":\"string\"},\"nbP\":{\"description\":\"Number of plays\",\"type\":\"integer\"},\"nbR\":{\"description\":\"Number of reposts\",\"type\":\"integer\"},\"score\":{\"description\":\"Search relevance score\",\"type\":\"number\"},\"src\":{\"properties\":{\"id\":{\"description\":\"Source URL\",\"type\":\"string\"},\"name\":{\"description\":\"Source name\",\"type\":\"string\"}},\"type\":\"object\"},\"text\":{\"description\":\"Post text/comment\",\"type\":\"string\"},\"uId\":{\"description\":\"User ID of poster\",\"type\":\"string\"},\"uNm\":{\"description\":\"User name of poster\",\"type\":\"string\"},\"url\":{\"description\":\"Direct URL to track\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"text/plain\":{\"schema\":{\"description\":\"List of URLs, one per line\",\"type\":\"string\"}}},\"description\":\"Successful response\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Session cookie obtained after successful login\",\"in\":\"cookie\",\"name\":\"whydSid\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/{username}",
@@ -614,6 +708,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /{username}/playlists",
+                    "json": "{\"operationId\":\"getUserPlaylists\",\"parameters\":[{\"description\":\"Username of the user\",\"in\":\"path\",\"name\":\"username\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Response format: json or links\",\"in\":\"query\",\"name\":\"format\",\"schema\":{\"enum\":[\"json\",\"links\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"id\":{\"description\":\"Playlist number\",\"type\":\"integer\"},\"name\":{\"description\":\"Playlist name\",\"type\":\"string\"},\"nbTracks\":{\"description\":\"Number of tracks in playlist\",\"type\":\"integer\"},\"url\":{\"description\":\"Playlist URL\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Session cookie obtained after successful login\",\"in\":\"cookie\",\"name\":\"whydSid\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -807,6 +907,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /{username}/playlist/{playlistId}",
+                    "json": "{\"operationId\":\"getPlaylistTracks\",\"parameters\":[{\"description\":\"Username of the user\",\"in\":\"path\",\"name\":\"username\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"ID of the playlist\",\"in\":\"path\",\"name\":\"playlistId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Response format: json or links\",\"in\":\"query\",\"name\":\"format\",\"schema\":{\"enum\":[\"json\",\"links\"],\"type\":\"string\"}},{\"description\":\"Number of posts to return\",\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"default\":20,\"type\":\"integer\"}},{\"description\":\"Identifier of the post from which entries must be returned (for pagination)\",\"in\":\"query\",\"name\":\"after\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"_id\":{\"description\":\"Post ID\",\"type\":\"string\"},\"ctx\":{\"description\":\"Context\",\"type\":\"string\"},\"eId\":{\"description\":\"External ID (platform identifier)\",\"type\":\"string\"},\"img\":{\"description\":\"Track image URL\",\"type\":\"string\"},\"lov\":{\"description\":\"User IDs who liked this post\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"description\":\"Track name\",\"type\":\"string\"},\"nbP\":{\"description\":\"Number of plays\",\"type\":\"integer\"},\"nbR\":{\"description\":\"Number of reposts\",\"type\":\"integer\"},\"score\":{\"description\":\"Search relevance score\",\"type\":\"number\"},\"src\":{\"properties\":{\"id\":{\"description\":\"Source URL\",\"type\":\"string\"},\"name\":{\"description\":\"Source name\",\"type\":\"string\"}},\"type\":\"object\"},\"text\":{\"description\":\"Post text/comment\",\"type\":\"string\"},\"uId\":{\"description\":\"User ID of poster\",\"type\":\"string\"},\"uNm\":{\"description\":\"User name of poster\",\"type\":\"string\"},\"url\":{\"description\":\"Direct URL to track\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"text/plain\":{\"schema\":{\"description\":\"List of URLs, one per line\",\"type\":\"string\"}}},\"description\":\"Successful response\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Session cookie obtained after successful login\",\"in\":\"cookie\",\"name\":\"whydSid\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/{username}/playlist/{playlistId}",
@@ -872,6 +978,12 @@
                         "type": "`$INTEGER`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /hot/{genre}",
+                    "json": "{\"operationId\":\"getHotTracks\",\"parameters\":[{\"description\":\"Genre name (e.g., 'electro')\",\"in\":\"path\",\"name\":\"genre\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Response format: json or links\",\"in\":\"query\",\"name\":\"format\",\"schema\":{\"enum\":[\"json\",\"links\"],\"type\":\"string\"}},{\"description\":\"Number of posts to return\",\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"default\":20,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"_id\":{\"description\":\"Post ID\",\"type\":\"string\"},\"ctx\":{\"description\":\"Context\",\"type\":\"string\"},\"eId\":{\"description\":\"External ID (platform identifier)\",\"type\":\"string\"},\"img\":{\"description\":\"Track image URL\",\"type\":\"string\"},\"lov\":{\"description\":\"User IDs who liked this post\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"description\":\"Track name\",\"type\":\"string\"},\"nbP\":{\"description\":\"Number of plays\",\"type\":\"integer\"},\"nbR\":{\"description\":\"Number of reposts\",\"type\":\"integer\"},\"score\":{\"description\":\"Search relevance score\",\"type\":\"number\"},\"src\":{\"properties\":{\"id\":{\"description\":\"Source URL\",\"type\":\"string\"},\"name\":{\"description\":\"Source name\",\"type\":\"string\"}},\"type\":\"object\"},\"text\":{\"description\":\"Post text/comment\",\"type\":\"string\"},\"uId\":{\"description\":\"User ID of poster\",\"type\":\"string\"},\"uNm\":{\"description\":\"User name of poster\",\"type\":\"string\"},\"url\":{\"description\":\"Direct URL to track\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Session cookie obtained after successful login\",\"in\":\"cookie\",\"name\":\"whydSid\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -970,6 +1082,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /search",
+                    "json": "{\"operationId\":\"search\",\"parameters\":[{\"description\":\"Search query\",\"in\":\"query\",\"name\":\"q\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Search context: addTrack (search others), quick (search own + others)\",\"in\":\"query\",\"name\":\"context\",\"schema\":{\"enum\":[\"addTrack\",\"quick\"],\"type\":\"string\"}},{\"description\":\"Response format\",\"in\":\"query\",\"name\":\"format\",\"schema\":{\"enum\":[\"json\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"q\":{\"description\":\"Search query\",\"type\":\"string\"},\"results\":{\"items\":{\"oneOf\":[{\"properties\":{\"_id\":{\"description\":\"Post ID\",\"type\":\"string\"},\"ctx\":{\"description\":\"Context\",\"type\":\"string\"},\"eId\":{\"description\":\"External ID (platform identifier)\",\"type\":\"string\"},\"img\":{\"description\":\"Track image URL\",\"type\":\"string\"},\"lov\":{\"description\":\"User IDs who liked this post\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"description\":\"Track name\",\"type\":\"string\"},\"nbP\":{\"description\":\"Number of plays\",\"type\":\"integer\"},\"nbR\":{\"description\":\"Number of reposts\",\"type\":\"integer\"},\"score\":{\"description\":\"Search relevance score\",\"type\":\"number\"},\"src\":{\"properties\":{\"id\":{\"description\":\"Source URL\",\"type\":\"string\"},\"name\":{\"description\":\"Source name\",\"type\":\"string\"}},\"type\":\"object\"},\"text\":{\"description\":\"Post text/comment\",\"type\":\"string\"},\"uId\":{\"description\":\"User ID of poster\",\"type\":\"string\"},\"uNm\":{\"description\":\"User name of poster\",\"type\":\"string\"},\"url\":{\"description\":\"Direct URL to track\",\"type\":\"string\"}},\"type\":\"object\"},{\"properties\":{\"_id\":{\"description\":\"User ID\",\"type\":\"string\"},\"bio\":{\"description\":\"User biography\",\"type\":\"string\"},\"cvrImg\":{\"description\":\"Cover image URL\",\"type\":\"string\"},\"email\":{\"description\":\"Email address\",\"type\":\"string\"},\"handle\":{\"description\":\"Username/handle\",\"type\":\"string\"},\"img\":{\"description\":\"Avatar URL\",\"type\":\"string\"},\"isSubscribing\":{\"description\":\"Whether logged in user subscribes to this user\",\"type\":\"boolean\"},\"lastArtists\":{\"description\":\"Recently posted artists\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lastFm\":{\"properties\":{\"name\":{\"description\":\"Last.fm username\",\"type\":\"string\"},\"sk\":{\"description\":\"Last.fm session key\",\"type\":\"string\"}},\"type\":\"object\"},\"lnk\":{\"properties\":{\"fb\":{\"description\":\"Facebook URL\",\"type\":\"string\"},\"home\":{\"description\":\"Home page URL\",\"type\":\"string\"},\"igrm\":{\"description\":\"Instagram handle\",\"type\":\"string\"},\"sc\":{\"description\":\"SoundCloud handle\",\"type\":\"string\"},\"tw\":{\"description\":\"Twitter handle\",\"type\":\"string\"},\"yt\":{\"description\":\"YouTube handle\",\"type\":\"string\"}},\"type\":\"object\"},\"loc\":{\"description\":\"User location\",\"type\":\"string\"},\"name\":{\"description\":\"Full name\",\"type\":\"string\"},\"nbLikes\":{\"description\":\"Number of likes\",\"type\":\"integer\"},\"nbPosts\":{\"description\":\"Number of posts\",\"type\":\"integer\"},\"nbSubscribers\":{\"description\":\"Number of subscribers\",\"type\":\"integer\"},\"nbSubscriptions\":{\"description\":\"Number of subscriptions\",\"type\":\"integer\"},\"pl\":{\"description\":\"User playlists\",\"items\":{\"properties\":{\"id\":{\"description\":\"Playlist number\",\"type\":\"integer\"},\"name\":{\"description\":\"Playlist name\",\"type\":\"string\"},\"nbTracks\":{\"description\":\"Number of tracks in playlist\",\"type\":\"integer\"},\"url\":{\"description\":\"Playlist URL\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"twId\":{\"description\":\"Twitter handle\",\"type\":\"string\"},\"twSec\":{\"description\":\"Twitter session secret\",\"type\":\"string\"},\"twTok\":{\"description\":\"Twitter session token\",\"type\":\"string\"}},\"type\":\"object\"},{\"properties\":{\"id\":{\"description\":\"Playlist number\",\"type\":\"integer\"},\"name\":{\"description\":\"Playlist name\",\"type\":\"string\"},\"nbTracks\":{\"description\":\"Number of tracks in playlist\",\"type\":\"integer\"},\"url\":{\"description\":\"Playlist URL\",\"type\":\"string\"}},\"type\":\"object\"}]},\"type\":\"array\"}},\"type\":\"object\"}},\"text/html\":{\"schema\":{\"type\":\"string\"}}},\"description\":\"Successful search\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Session cookie obtained after successful login\",\"in\":\"cookie\",\"name\":\"whydSid\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -1083,6 +1201,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /api/follow/fetchFollowers/{id}",
+                    "json": "{\"operationId\":\"getFollowers\",\"parameters\":[{\"description\":\"User ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of subscribers to skip (pagination)\",\"in\":\"query\",\"name\":\"skip\",\"schema\":{\"type\":\"integer\"}},{\"description\":\"Number of subscribers to return\",\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"default\":50,\"type\":\"integer\"}},{\"description\":\"Include subscription status for logged in user\",\"in\":\"query\",\"name\":\"isSubscr\",\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"isSubscribing\":{\"description\":\"Whether logged in user follows this user\",\"type\":\"boolean\"},\"uId\":{\"description\":\"User ID\",\"type\":\"string\"},\"uNm\":{\"description\":\"User name\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"security\":[{\"cookieAuth\":[]}],\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Session cookie obtained after successful login\",\"in\":\"cookie\",\"name\":\"whydSid\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/follow/fetchFollowers/{id}",
@@ -1153,6 +1277,12 @@
                         "type": "`$INTEGER`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /api/follow/fetchFollowing/{id}",
+                    "json": "{\"operationId\":\"getFollowing\",\"parameters\":[{\"description\":\"User ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of subscriptions to skip (pagination)\",\"in\":\"query\",\"name\":\"skip\",\"schema\":{\"type\":\"integer\"}},{\"description\":\"Number of subscriptions to return\",\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"default\":50,\"type\":\"integer\"}},{\"description\":\"Include subscription status for logged in user\",\"in\":\"query\",\"name\":\"isSubscr\",\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"isSubscribing\":{\"description\":\"Whether logged in user follows this user\",\"type\":\"boolean\"},\"uId\":{\"description\":\"User ID\",\"type\":\"string\"},\"uNm\":{\"description\":\"User name\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"security\":[{\"cookieAuth\":[]}],\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Session cookie obtained after successful login\",\"in\":\"cookie\",\"name\":\"whydSid\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -1239,6 +1369,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /api/user",
+                    "json": "{\"operationId\":\"updateUser\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/x-www-form-urlencoded\":{\"schema\":{\"properties\":{\"bio\":{\"description\":\"User biography\",\"type\":\"string\"},\"cvrImg\":{\"description\":\"Cover image URL\",\"type\":\"string\"},\"email\":{\"description\":\"Email address\",\"type\":\"string\"},\"handle\":{\"description\":\"Username/handle\",\"type\":\"string\"},\"img\":{\"description\":\"Avatar URL\",\"type\":\"string\"},\"lnk_fb\":{\"description\":\"Facebook profile URL\",\"type\":\"string\"},\"lnk_home\":{\"description\":\"Homepage URL\",\"type\":\"string\"},\"lnk_igrm\":{\"description\":\"Instagram profile URL\",\"type\":\"string\"},\"lnk_sc\":{\"description\":\"SoundCloud profile URL\",\"type\":\"string\"},\"lnk_tw\":{\"description\":\"Twitter profile URL\",\"type\":\"string\"},\"lnk_yt\":{\"description\":\"YouTube profile URL\",\"type\":\"string\"},\"loc\":{\"description\":\"User location\",\"type\":\"string\"},\"name\":{\"description\":\"Full user name\",\"type\":\"string\"},\"oldPwd\":{\"description\":\"Old password (required for password change)\",\"type\":\"string\"},\"pwd\":{\"description\":\"New password (requires oldPwd)\",\"type\":\"string\"},\"twId\":{\"description\":\"Twitter handle\",\"type\":\"string\"},\"twSec\":{\"description\":\"Twitter session secret\",\"type\":\"string\"},\"twTok\":{\"description\":\"Twitter session token\",\"type\":\"string\"}},\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"properties\":{\"_id\":{\"description\":\"User ID\",\"type\":\"string\"},\"bio\":{\"description\":\"User biography\",\"type\":\"string\"},\"cvrImg\":{\"description\":\"Cover image URL\",\"type\":\"string\"},\"email\":{\"description\":\"Email address\",\"type\":\"string\"},\"handle\":{\"description\":\"Username/handle\",\"type\":\"string\"},\"img\":{\"description\":\"Avatar URL\",\"type\":\"string\"},\"isSubscribing\":{\"description\":\"Whether logged in user subscribes to this user\",\"type\":\"boolean\"},\"lastArtists\":{\"description\":\"Recently posted artists\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lastFm\":{\"properties\":{\"name\":{\"description\":\"Last.fm username\",\"type\":\"string\"},\"sk\":{\"description\":\"Last.fm session key\",\"type\":\"string\"}},\"type\":\"object\"},\"lnk\":{\"properties\":{\"fb\":{\"description\":\"Facebook URL\",\"type\":\"string\"},\"home\":{\"description\":\"Home page URL\",\"type\":\"string\"},\"igrm\":{\"description\":\"Instagram handle\",\"type\":\"string\"},\"sc\":{\"description\":\"SoundCloud handle\",\"type\":\"string\"},\"tw\":{\"description\":\"Twitter handle\",\"type\":\"string\"},\"yt\":{\"description\":\"YouTube handle\",\"type\":\"string\"}},\"type\":\"object\"},\"loc\":{\"description\":\"User location\",\"type\":\"string\"},\"name\":{\"description\":\"Full name\",\"type\":\"string\"},\"nbLikes\":{\"description\":\"Number of likes\",\"type\":\"integer\"},\"nbPosts\":{\"description\":\"Number of posts\",\"type\":\"integer\"},\"nbSubscribers\":{\"description\":\"Number of subscribers\",\"type\":\"integer\"},\"nbSubscriptions\":{\"description\":\"Number of subscriptions\",\"type\":\"integer\"},\"pl\":{\"description\":\"User playlists\",\"items\":{\"properties\":{\"id\":{\"description\":\"Playlist number\",\"type\":\"integer\"},\"name\":{\"description\":\"Playlist name\",\"type\":\"string\"},\"nbTracks\":{\"description\":\"Number of tracks in playlist\",\"type\":\"integer\"},\"url\":{\"description\":\"Playlist URL\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"twId\":{\"description\":\"Twitter handle\",\"type\":\"string\"},\"twSec\":{\"description\":\"Twitter session secret\",\"type\":\"string\"},\"twTok\":{\"description\":\"Twitter session token\",\"type\":\"string\"}},\"type\":\"object\"},{\"properties\":{\"error\":{\"type\":\"string\"}},\"type\":\"object\"}]}}},\"description\":\"Successful update\"}},\"security\":[{\"cookieAuth\":[]}],\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Session cookie obtained after successful login\",\"in\":\"cookie\",\"name\":\"whydSid\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/user",
@@ -1308,6 +1444,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /api/user",
+                    "json": "{\"operationId\":\"getUser\",\"parameters\":[{\"description\":\"User ID (logged in user if not provided)\",\"in\":\"query\",\"name\":\"id\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Include subscription status\",\"in\":\"query\",\"name\":\"isSubscr\",\"schema\":{\"type\":\"boolean\"}},{\"description\":\"Include post count\",\"in\":\"query\",\"name\":\"countPosts\",\"schema\":{\"type\":\"boolean\"}},{\"description\":\"Include likes count\",\"in\":\"query\",\"name\":\"countLikes\",\"schema\":{\"type\":\"boolean\"}},{\"description\":\"Include subscriber and subscription counts\",\"in\":\"query\",\"name\":\"includeSubscr\",\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"_id\":{\"description\":\"User ID\",\"type\":\"string\"},\"bio\":{\"description\":\"User biography\",\"type\":\"string\"},\"cvrImg\":{\"description\":\"Cover image URL\",\"type\":\"string\"},\"email\":{\"description\":\"Email address\",\"type\":\"string\"},\"handle\":{\"description\":\"Username/handle\",\"type\":\"string\"},\"img\":{\"description\":\"Avatar URL\",\"type\":\"string\"},\"isSubscribing\":{\"description\":\"Whether logged in user subscribes to this user\",\"type\":\"boolean\"},\"lastArtists\":{\"description\":\"Recently posted artists\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lastFm\":{\"properties\":{\"name\":{\"description\":\"Last.fm username\",\"type\":\"string\"},\"sk\":{\"description\":\"Last.fm session key\",\"type\":\"string\"}},\"type\":\"object\"},\"lnk\":{\"properties\":{\"fb\":{\"description\":\"Facebook URL\",\"type\":\"string\"},\"home\":{\"description\":\"Home page URL\",\"type\":\"string\"},\"igrm\":{\"description\":\"Instagram handle\",\"type\":\"string\"},\"sc\":{\"description\":\"SoundCloud handle\",\"type\":\"string\"},\"tw\":{\"description\":\"Twitter handle\",\"type\":\"string\"},\"yt\":{\"description\":\"YouTube handle\",\"type\":\"string\"}},\"type\":\"object\"},\"loc\":{\"description\":\"User location\",\"type\":\"string\"},\"name\":{\"description\":\"Full name\",\"type\":\"string\"},\"nbLikes\":{\"description\":\"Number of likes\",\"type\":\"integer\"},\"nbPosts\":{\"description\":\"Number of posts\",\"type\":\"integer\"},\"nbSubscribers\":{\"description\":\"Number of subscribers\",\"type\":\"integer\"},\"nbSubscriptions\":{\"description\":\"Number of subscriptions\",\"type\":\"integer\"},\"pl\":{\"description\":\"User playlists\",\"items\":{\"properties\":{\"id\":{\"description\":\"Playlist number\",\"type\":\"integer\"},\"name\":{\"description\":\"Playlist name\",\"type\":\"string\"},\"nbTracks\":{\"description\":\"Number of tracks in playlist\",\"type\":\"integer\"},\"url\":{\"description\":\"Playlist URL\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"twId\":{\"description\":\"Twitter handle\",\"type\":\"string\"},\"twSec\":{\"description\":\"Twitter session secret\",\"type\":\"string\"},\"twTok\":{\"description\":\"Twitter session token\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"security\":[{\"cookieAuth\":[]}],\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Session cookie obtained after successful login\",\"in\":\"cookie\",\"name\":\"whydSid\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/user",
@@ -1347,6 +1489,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /{username}/info",
+                    "json": "{\"operationId\":\"getUserInfo\",\"parameters\":[{\"description\":\"Username of the user\",\"in\":\"path\",\"name\":\"username\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"_id\":{\"description\":\"User ID\",\"type\":\"string\"},\"bio\":{\"description\":\"User biography\",\"type\":\"string\"},\"cvrImg\":{\"description\":\"Cover image URL\",\"type\":\"string\"},\"email\":{\"description\":\"Email address\",\"type\":\"string\"},\"handle\":{\"description\":\"Username/handle\",\"type\":\"string\"},\"img\":{\"description\":\"Avatar URL\",\"type\":\"string\"},\"isSubscribing\":{\"description\":\"Whether logged in user subscribes to this user\",\"type\":\"boolean\"},\"lastArtists\":{\"description\":\"Recently posted artists\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lastFm\":{\"properties\":{\"name\":{\"description\":\"Last.fm username\",\"type\":\"string\"},\"sk\":{\"description\":\"Last.fm session key\",\"type\":\"string\"}},\"type\":\"object\"},\"lnk\":{\"properties\":{\"fb\":{\"description\":\"Facebook URL\",\"type\":\"string\"},\"home\":{\"description\":\"Home page URL\",\"type\":\"string\"},\"igrm\":{\"description\":\"Instagram handle\",\"type\":\"string\"},\"sc\":{\"description\":\"SoundCloud handle\",\"type\":\"string\"},\"tw\":{\"description\":\"Twitter handle\",\"type\":\"string\"},\"yt\":{\"description\":\"YouTube handle\",\"type\":\"string\"}},\"type\":\"object\"},\"loc\":{\"description\":\"User location\",\"type\":\"string\"},\"name\":{\"description\":\"Full name\",\"type\":\"string\"},\"nbLikes\":{\"description\":\"Number of likes\",\"type\":\"integer\"},\"nbPosts\":{\"description\":\"Number of posts\",\"type\":\"integer\"},\"nbSubscribers\":{\"description\":\"Number of subscribers\",\"type\":\"integer\"},\"nbSubscriptions\":{\"description\":\"Number of subscriptions\",\"type\":\"integer\"},\"pl\":{\"description\":\"User playlists\",\"items\":{\"properties\":{\"id\":{\"description\":\"Playlist number\",\"type\":\"integer\"},\"name\":{\"description\":\"Playlist name\",\"type\":\"string\"},\"nbTracks\":{\"description\":\"Number of tracks in playlist\",\"type\":\"integer\"},\"url\":{\"description\":\"Playlist URL\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"twId\":{\"description\":\"Twitter handle\",\"type\":\"string\"},\"twSec\":{\"description\":\"Twitter session secret\",\"type\":\"string\"},\"twTok\":{\"description\":\"Twitter session token\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Session cookie obtained after successful login\",\"in\":\"cookie\",\"name\":\"whydSid\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/{username}/info",
@@ -1377,13 +1525,223 @@
         }
       },
       "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Client-side rate limiting via a token bucket",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Automatic retry of transient failures with exponential backoff",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
         "test": {
           "active": true,
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
-            }
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
           },
           "hook": {
             "GetData": {
@@ -1473,6 +1831,102 @@
           },
           "title": "In-memory mock transport for testing without a live server",
           "transport": "base",
+          "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Per-request timeout with transport abort",
+          "transport": "wrap",
           "version": "0.0.1"
         }
       },
@@ -1732,6 +2186,48 @@
         "website": "https://openwhyd.org"
       },
       "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
       "repo": {
         "host": "github.com",
         "path": ""
@@ -2286,6 +2782,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -2327,7 +2824,7 @@
         "live": {
           "app": false,
           "base": "",
-          "strict": false
+          "strict": true
         }
       }
     }

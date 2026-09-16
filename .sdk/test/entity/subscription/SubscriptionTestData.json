@@ -29,5 +29,179 @@
         "uNm": "sa3"
       }
     }
+  },
+  "requests": {
+    "GET /api/follow/fetchFollowers/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getFollowers",
+        "parameters": [
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of subscribers to skip (pagination)",
+            "in": "query",
+            "name": "skip",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Number of subscribers to return",
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "default": 50,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Include subscription status for logged in user",
+            "in": "query",
+            "name": "isSubscr",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "isSubscribing": {
+                        "description": "Whether logged in user follows this user",
+                        "type": "boolean"
+                      },
+                      "uId": {
+                        "description": "User ID",
+                        "type": "string"
+                      },
+                      "uNm": {
+                        "description": "User name",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "cookieAuth": {
+            "description": "Session cookie obtained after successful login",
+            "in": "cookie",
+            "name": "whydSid",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /api/follow/fetchFollowing/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getFollowing",
+        "parameters": [
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of subscriptions to skip (pagination)",
+            "in": "query",
+            "name": "skip",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Number of subscriptions to return",
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "default": 50,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Include subscription status for logged in user",
+            "in": "query",
+            "name": "isSubscr",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "isSubscribing": {
+                        "description": "Whether logged in user follows this user",
+                        "type": "boolean"
+                      },
+                      "uId": {
+                        "description": "User ID",
+                        "type": "string"
+                      },
+                      "uNm": {
+                        "description": "User name",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "cookieAuth": {
+            "description": "Session cookie obtained after successful login",
+            "in": "cookie",
+            "name": "whydSid",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
   }
 }
