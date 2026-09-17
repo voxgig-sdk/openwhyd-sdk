@@ -81,6 +81,8 @@ func MakeConfig() map[string]any {
 			"base": "https://openwhyd.org",
 			"auth": map[string]any{
 				"prefix": "",
+				"in": "cookie",
+				"name": "whydSid",
 			},
 			"headers": map[string]any{
 				"content-type": "application/json",

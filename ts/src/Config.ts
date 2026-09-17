@@ -123,6 +123,8 @@ class Config {
 
     auth: {
       prefix: '',
+      in: 'cookie',
+      name: 'whydSid',
     },
 
     headers: {
@@ -131,27 +133,27 @@ class Config {
 
     entity: {
       
-      authentication: {
-      },
-
-      get_user_post: {
-      },
-
-      playlist: {
-      },
-
-      post: {
-      },
-
-      search: {
-      },
-
-      subscription: {
-      },
-
-      user: {
-      },
-
+        authentication: {
+        },
+  
+        get_user_post: {
+        },
+  
+        playlist: {
+        },
+  
+        post: {
+        },
+  
+        search: {
+        },
+  
+        subscription: {
+        },
+  
+        user: {
+        },
+  
     }
   }
 

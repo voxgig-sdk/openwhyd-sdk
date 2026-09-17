@@ -1,9 +1,9 @@
 # Entity Models
 
-@"authentication.aon"
-@"get_user_post.aon"
-@"playlist.aon"
-@"post.aon"
-@"search.aon"
-@"subscription.aon"
-@"user.aon"
+@"./authentication.aon"
+@"./get_user_post.aon"
+@"./playlist.aon"
+@"./post.aon"
+@"./search.aon"
+@"./subscription.aon"
+@"./user.aon"

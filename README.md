@@ -105,12 +105,12 @@ local results, err = client:Playlist():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/openwhyd-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openwhyd-sdk/releases) |
-| Python | `voxgig-sdk-openwhyd` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openwhyd-sdk/releases) |
-| PHP | `voxgig-sdk/openwhyd` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openwhyd-sdk/releases) |
+| TypeScript | `@voxgig-sdk/openwhyd-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openwhyd-sdk/tags) |
+| Python | `voxgig-sdk-openwhyd` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openwhyd-sdk/tags) |
+| PHP | `voxgig-sdk/openwhyd` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openwhyd-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/openwhyd-sdk/go` | `go get github.com/voxgig-sdk/openwhyd-sdk/go@latest` |
-| Ruby | `voxgig-sdk-openwhyd` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openwhyd-sdk/releases) |
-| Lua | `voxgig-sdk-openwhyd` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openwhyd-sdk/releases) |
+| Ruby | `voxgig-sdk-openwhyd` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openwhyd-sdk/tags) |
+| Lua | `voxgig-sdk-openwhyd` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openwhyd-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/openwhyd-sdk/go-cli` | `go install github.com/voxgig-sdk/openwhyd-sdk/go-cli/cmd/openwhyd@latest` |
 | Go MCP server | `github.com/voxgig-sdk/openwhyd-sdk/go-mcp` | `go get github.com/voxgig-sdk/openwhyd-sdk/go-mcp@latest` |
 

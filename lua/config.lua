@@ -77,6 +77,8 @@ local function make_config()
       base = "https://openwhyd.org",
       auth = {
         prefix = "",
+        ["in"] = "cookie",
+        name = "whydSid",
       },
       headers = {
         ["content-type"] = "application/json",
