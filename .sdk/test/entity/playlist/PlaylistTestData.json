@@ -2,24 +2,57 @@
   "existing": {
     "playlist": {
       "PLAYLIST00": {
+        "ctx": "s96",
+        "eId": "s97",
         "id": "PLAYLIST00",
-        "name": "s29",
-        "nbTracks": 42,
-        "url": "s2b",
+        "img": "s99",
+        "lov": [],
+        "name": "s9b",
+        "nbP": 156,
+        "nbR": 157,
+        "nbTracks": 158,
+        "score": 159,
+        "src": {},
+        "text": "sa1",
+        "uId": "sa2",
+        "uNm": "sa3",
+        "url": "sa4",
         "username": "USERNAME01"
       },
       "PLAYLIST01": {
+        "ctx": "s12c",
+        "eId": "s12d",
         "id": "PLAYLIST01",
-        "name": "s51",
-        "nbTracks": 82,
-        "url": "s53",
+        "img": "s12f",
+        "lov": [],
+        "name": "s131",
+        "nbP": 306,
+        "nbR": 307,
+        "nbTracks": 308,
+        "score": 309,
+        "src": {},
+        "text": "s137",
+        "uId": "s138",
+        "uNm": "s139",
+        "url": "s13a",
         "username": "USERNAME01"
       },
       "PLAYLIST02": {
+        "ctx": "s1c2",
+        "eId": "s1c3",
         "id": "PLAYLIST02",
-        "name": "s79",
-        "nbTracks": 122,
-        "url": "s7b",
+        "img": "s1c5",
+        "lov": [],
+        "name": "s1c7",
+        "nbP": 456,
+        "nbR": 457,
+        "nbTracks": 458,
+        "score": 459,
+        "src": {},
+        "text": "s1cd",
+        "uId": "s1ce",
+        "uNm": "s1cf",
+        "url": "s1d0",
         "username": "USERNAME01"
       }
     }
@@ -27,84 +60,33 @@
   "new": {
     "playlist": {
       "playlist_ref01": {
-        "name": "sa1",
-        "nbTracks": 162,
-        "url": "sa3"
+        "ctx": "s258",
+        "eId": "s259",
+        "img": "s25b",
+        "lov": [],
+        "name": "s25d",
+        "nbP": 606,
+        "nbR": 607,
+        "nbTracks": 608,
+        "score": 609,
+        "src": {},
+        "text": "s263",
+        "uId": "s264",
+        "uNm": "s265",
+        "url": "s266"
       }
     }
   },
   "requests": {
     "GET /{username}/playlists": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "getUserPlaylists",
-        "parameters": [
-          {
-            "description": "Username of the user",
-            "in": "path",
-            "name": "username",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Response format: json or links",
-            "in": "query",
-            "name": "format",
-            "schema": {
-              "enum": [
-                "json",
-                "links"
-              ],
-              "type": "string"
-            }
-          }
-        ],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "properties": {
-                      "id": {
-                        "description": "Playlist number",
-                        "type": "integer"
-                      },
-                      "name": {
-                        "description": "Playlist name",
-                        "type": "string"
-                      },
-                      "nbTracks": {
-                        "description": "Number of tracks in playlist",
-                        "type": "integer"
-                      },
-                      "url": {
-                        "description": "Playlist URL",
-                        "type": "string"
-                      }
-                    },
-                    "type": "object"
-                  },
-                  "type": "array"
-                }
-              }
-            },
-            "description": "Successful response"
-          }
-        },
-        "securitySchemes": {
-          "cookieAuth": {
-            "description": "Session cookie obtained after successful login",
-            "in": "cookie",
-            "name": "whydSid",
-            "type": "apiKey"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /{username}/playlist/{playlistId}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
     }
   }
 }

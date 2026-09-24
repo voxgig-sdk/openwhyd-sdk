@@ -319,16 +319,16 @@ class OpenwhydSDK:
         return GetUserPostEntity(self, data)
 
 
+    def Hot(self, data=None) -> "HotEntity":
+        """Entity factory: client.Hot().list() / client.Hot().load({"id": ...})."""
+        from openwhyd_sdk.entity.hot_entity import HotEntity
+        return HotEntity(self, data)
+
+
     def Playlist(self, data=None) -> "PlaylistEntity":
         """Entity factory: client.Playlist().list() / client.Playlist().load({"id": ...})."""
         from openwhyd_sdk.entity.playlist_entity import PlaylistEntity
         return PlaylistEntity(self, data)
-
-
-    def Post(self, data=None) -> "PostEntity":
-        """Entity factory: client.Post().list() / client.Post().load({"id": ...})."""
-        from openwhyd_sdk.entity.post_entity import PostEntity
-        return PostEntity(self, data)
 
 
     def Search(self, data=None) -> "SearchEntity":
@@ -378,8 +378,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from openwhyd_sdk.entity.authentication_entity import AuthenticationEntity
     from openwhyd_sdk.entity.get_user_post_entity import GetUserPostEntity
+    from openwhyd_sdk.entity.hot_entity import HotEntity
     from openwhyd_sdk.entity.playlist_entity import PlaylistEntity
-    from openwhyd_sdk.entity.post_entity import PostEntity
     from openwhyd_sdk.entity.search_entity import SearchEntity
     from openwhyd_sdk.entity.subscription_entity import SubscriptionEntity
     from openwhyd_sdk.entity.user_entity import UserEntity

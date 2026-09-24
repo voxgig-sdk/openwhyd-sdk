@@ -49,13 +49,13 @@ Create a new `Authentication` entity instance. Pass `nil` for no initial data.
 
 Create a new `GetUserPost` entity instance. Pass `nil` for no initial data.
 
+#### `Hot(data)`
+
+Create a new `Hot` entity instance. Pass `nil` for no initial data.
+
 #### `Playlist(data)`
 
 Create a new `Playlist` entity instance. Pass `nil` for no initial data.
-
-#### `Post(data)`
-
-Create a new `Post` entity instance. Pass `nil` for no initial data.
 
 #### `Search(data)`
 
@@ -253,65 +253,10 @@ Return the entity name.
 
 ---
 
-## PlaylistEntity
+## HotEntity
 
 ```lua
-local playlist = client:Playlist(nil)
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `id` | `number` | No | Playlist number |
-| `name` | `string` | No | Playlist name |
-| `nbTracks` | `number` | No | Number of tracks in playlist |
-| `url` | `string` | No | Playlist URL |
-
-### Operations
-
-#### `list(reqmatch, ctrl) -> any, err`
-
-List entities matching the given criteria. Returns an array.
-
-```lua
-local results, err = client:Playlist():list()
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `PlaylistEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## PostEntity
-
-```lua
-local post = client:Post(nil)
+local hot = client:Hot(nil)
 ```
 
 ### Fields
@@ -340,7 +285,7 @@ local post = client:Post(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Post():load({ genre = "genre" })
+local result, err = client:Hot():load({ id = "hot_id" })
 ```
 
 ### Common Methods
@@ -363,7 +308,81 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `PostEntity` instance with the same client and
+Create a new `HotEntity` instance with the same client and
+options.
+
+#### `get_name() -> string`
+
+Return the entity name.
+
+
+---
+
+## PlaylistEntity
+
+```lua
+local playlist = client:Playlist(nil)
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `ctx` | `string` | No | Context |
+| `eId` | `string` | No | External ID (platform identifier) |
+| `id` | `string` | No | Post ID |
+| `img` | `string` | No | Track image URL |
+| `lov` | `table` | No | User IDs who liked this post |
+| `name` | `string` | No | Track name |
+| `nbP` | `number` | No | Number of plays |
+| `nbR` | `number` | No | Number of reposts |
+| `nbTracks` | `number` | No | Number of tracks in playlist |
+| `score` | `number` | No | Search relevance score |
+| `src` | `table` | No |  |
+| `text` | `string` | No | Post text/comment |
+| `uId` | `string` | No | User ID of poster |
+| `uNm` | `string` | No | User name of poster |
+| `url` | `string` | No | Direct URL to track |
+
+### Operations
+
+#### `list(reqmatch, ctrl) -> any, err`
+
+List entities matching the given criteria. Returns an array.
+
+```lua
+local results, err = client:Playlist():list()
+```
+
+#### `load(reqmatch, ctrl) -> any, err`
+
+Load a single entity matching the given criteria.
+
+```lua
+local result, err = client:Playlist():load({ id = "playlist_id", username = "username" })
+```
+
+### Common Methods
+
+#### `data_get() -> table`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> table`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `PlaylistEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`

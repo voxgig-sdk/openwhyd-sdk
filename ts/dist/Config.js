@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -113,8 +106,8 @@ class Config {
         entity: {
             authentication: {},
             get_user_post: {},
+            hot: {},
             playlist: {},
-            post: {},
             search: {},
             subscription: {},
             user: {},
@@ -125,116 +118,139 @@ class Config {
             "fields": [
                 {
                     "name": "bio",
-                    "short": "User biography",
-                    "type": "`$STRING`"
+                    "title": "Bio",
+                    "type": "`$STRING`",
+                    "short": "User biography"
                 },
                 {
                     "name": "cvrImg",
-                    "short": "Cover image URL",
-                    "type": "`$STRING`"
+                    "title": "Cvr Img",
+                    "type": "`$STRING`",
+                    "short": "Cover image URL"
                 },
                 {
                     "name": "email",
-                    "short": "Email address",
-                    "type": "`$STRING`"
+                    "title": "Email",
+                    "type": "`$STRING`",
+                    "short": "Email address"
                 },
                 {
                     "name": "error",
-                    "short": "Error message if any",
-                    "type": "`$STRING`"
+                    "title": "Error",
+                    "type": "`$STRING`",
+                    "short": "Error message if any"
                 },
                 {
                     "name": "handle",
-                    "short": "Username/handle",
-                    "type": "`$STRING`"
+                    "title": "Handle",
+                    "type": "`$STRING`",
+                    "short": "Username/handle"
                 },
                 {
                     "name": "id",
-                    "short": "User ID",
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "short": "User ID"
                 },
                 {
                     "name": "img",
-                    "short": "Avatar URL",
-                    "type": "`$STRING`"
+                    "title": "Img",
+                    "type": "`$STRING`",
+                    "short": "Avatar URL"
                 },
                 {
                     "name": "isSubscribing",
-                    "short": "Whether logged in user subscribes to this user",
-                    "type": "`$BOOLEAN`"
+                    "title": "Is Subscribing",
+                    "type": "`$BOOLEAN`",
+                    "short": "Whether logged in user subscribes to this user"
                 },
                 {
                     "name": "lastArtists",
-                    "short": "Recently posted artists",
-                    "type": "`$ARRAY`"
+                    "title": "Last Artists",
+                    "type": "`$ARRAY`",
+                    "short": "Recently posted artists"
                 },
                 {
                     "name": "lastFm",
+                    "title": "Last Fm",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "lnk",
+                    "title": "Lnk",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "loc",
-                    "short": "User location",
-                    "type": "`$STRING`"
+                    "title": "Loc",
+                    "type": "`$STRING`",
+                    "short": "User location"
                 },
                 {
                     "name": "name",
-                    "short": "Full name",
-                    "type": "`$STRING`"
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "short": "Full name"
                 },
                 {
                     "name": "nbLikes",
-                    "short": "Number of likes",
-                    "type": "`$INTEGER`"
+                    "title": "Nb Likes",
+                    "type": "`$INTEGER`",
+                    "short": "Number of likes"
                 },
                 {
                     "name": "nbPosts",
-                    "short": "Number of posts",
-                    "type": "`$INTEGER`"
+                    "title": "Nb Posts",
+                    "type": "`$INTEGER`",
+                    "short": "Number of posts"
                 },
                 {
                     "name": "nbSubscribers",
-                    "short": "Number of subscribers",
-                    "type": "`$INTEGER`"
+                    "title": "Nb Subscribers",
+                    "type": "`$INTEGER`",
+                    "short": "Number of subscribers"
                 },
                 {
                     "name": "nbSubscriptions",
-                    "short": "Number of subscriptions",
-                    "type": "`$INTEGER`"
+                    "title": "Nb Subscriptions",
+                    "type": "`$INTEGER`",
+                    "short": "Number of subscriptions"
                 },
                 {
                     "name": "pl",
-                    "short": "User playlists",
-                    "type": "`$ARRAY`"
+                    "title": "Pl",
+                    "type": "`$ARRAY`",
+                    "short": "User playlists"
                 },
                 {
                     "name": "redirect",
-                    "short": "URL to redirect to",
-                    "type": "`$STRING`"
+                    "title": "Redirect",
+                    "type": "`$STRING`",
+                    "short": "URL to redirect to"
                 },
                 {
                     "name": "twId",
-                    "short": "Twitter handle",
-                    "type": "`$STRING`"
+                    "title": "Tw Id",
+                    "type": "`$STRING`",
+                    "short": "Twitter handle"
                 },
                 {
                     "name": "twSec",
-                    "short": "Twitter session secret",
-                    "type": "`$STRING`"
+                    "title": "Tw Sec",
+                    "type": "`$STRING`",
+                    "short": "Twitter session secret"
                 },
                 {
                     "name": "twTok",
-                    "short": "Twitter session token",
-                    "type": "`$STRING`"
+                    "title": "Tw Tok",
+                    "type": "`$STRING`",
+                    "short": "Twitter session token"
                 },
                 {
                     "name": "uId",
-                    "short": "ID of new user if successful",
-                    "type": "`$STRING`"
+                    "title": "U Id",
+                    "type": "`$STRING`",
+                    "short": "ID of new user if successful"
                 }
             ],
             "id": {
@@ -248,7 +264,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/login",
@@ -257,17 +272,18 @@ class Config {
                                     "lit": "login"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "login"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body.user`"
                             },
-                            "parts": [
-                                "login"
-                            ]
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/register",
@@ -276,14 +292,16 @@ class Config {
                                     "lit": "register"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "register"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "register"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -292,41 +310,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "action",
-                                        "orig": "action",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "ajax",
-                                        "orig": "ajax",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "email",
-                                        "orig": "email",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "include_user",
-                                        "orig": "include_user",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "md5",
-                                        "orig": "md5",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/login",
@@ -335,6 +318,49 @@ class Config {
                                     "lit": "login"
                                 }
                             ],
+                            "parts": [
+                                "login"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.user`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "action",
+                                        "orig": "action",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "ajax",
+                                        "orig": "ajax",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "email",
+                                        "orig": "email",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "include_user",
+                                        "orig": "include_user",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "md5",
+                                        "orig": "md5",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "action",
@@ -343,26 +369,9 @@ class Config {
                                     "include_user",
                                     "md5"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.user`"
-                            },
-                            "parts": [
-                                "login"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "ajax",
-                                        "orig": "ajax",
-                                        "type": "`$BOOLEAN`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/logout",
@@ -371,18 +380,29 @@ class Config {
                                     "lit": "logout"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "ajax"
-                                ]
-                            },
+                            "parts": [
+                                "logout"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "logout"
-                            ]
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "ajax",
+                                        "orig": "ajax",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "ajax"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -395,72 +415,86 @@ class Config {
             "fields": [
                 {
                     "name": "ctx",
-                    "short": "Context",
-                    "type": "`$STRING`"
+                    "title": "Ctx",
+                    "type": "`$STRING`",
+                    "short": "Context"
                 },
                 {
                     "name": "eId",
-                    "short": "External ID (platform identifier)",
-                    "type": "`$STRING`"
+                    "title": "E Id",
+                    "type": "`$STRING`",
+                    "short": "External ID (platform identifier)"
                 },
                 {
                     "name": "id",
-                    "short": "Post ID",
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "short": "Post ID"
                 },
                 {
                     "name": "img",
-                    "short": "Track image URL",
-                    "type": "`$STRING`"
+                    "title": "Img",
+                    "type": "`$STRING`",
+                    "short": "Track image URL"
                 },
                 {
                     "name": "lov",
-                    "short": "User IDs who liked this post",
-                    "type": "`$ARRAY`"
+                    "title": "Lov",
+                    "type": "`$ARRAY`",
+                    "short": "User IDs who liked this post"
                 },
                 {
                     "name": "name",
-                    "short": "Track name",
-                    "type": "`$STRING`"
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "short": "Track name"
                 },
                 {
                     "name": "nbP",
-                    "short": "Number of plays",
-                    "type": "`$INTEGER`"
+                    "title": "Nb P",
+                    "type": "`$INTEGER`",
+                    "short": "Number of plays"
                 },
                 {
                     "name": "nbR",
-                    "short": "Number of reposts",
-                    "type": "`$INTEGER`"
+                    "title": "Nb R",
+                    "type": "`$INTEGER`",
+                    "short": "Number of reposts"
                 },
                 {
                     "name": "score",
-                    "short": "Search relevance score",
-                    "type": "`$NUMBER`"
+                    "title": "Score",
+                    "type": "`$NUMBER`",
+                    "short": "Search relevance score"
                 },
                 {
                     "name": "src",
+                    "title": "Src",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "text",
-                    "short": "Post text/comment",
-                    "type": "`$STRING`"
+                    "title": "Text",
+                    "type": "`$STRING`",
+                    "short": "Post text/comment"
                 },
                 {
                     "name": "uId",
-                    "short": "User ID of poster",
-                    "type": "`$STRING`"
+                    "title": "U Id",
+                    "type": "`$STRING`",
+                    "short": "User ID of poster"
                 },
                 {
                     "name": "uNm",
-                    "short": "User name of poster",
-                    "type": "`$STRING`"
+                    "title": "U Nm",
+                    "type": "`$STRING`",
+                    "short": "User name of poster"
                 },
                 {
                     "name": "url",
-                    "short": "Direct URL to track",
-                    "type": "`$STRING`"
+                    "title": "Url",
+                    "type": "`$STRING`",
+                    "short": "Direct URL to track"
                 }
             ],
             "id": {
@@ -474,57 +508,64 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "username",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "after",
-                                        "orig": "after",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "callback",
-                                        "orig": "callback",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "format",
-                                        "orig": "format",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 20,
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/{username}",
-                            "rename": {
-                                "param": {
-                                    "username": "id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "var": "id"
                                 }
                             ],
+                            "parts": [
+                                "{id}"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "username": "id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "username",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "after",
+                                        "orig": "after",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "callback",
+                                        "orig": "callback",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "format",
+                                        "orig": "format",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 20
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "after",
@@ -533,14 +574,169 @@ class Config {
                                     "id",
                                     "limit"
                                 ]
+                            }
+                        }
+                    ]
+                }
+            },
+            "relations": {
+                "ancestors": []
+            }
+        },
+        "hot": {
+            "fields": [
+                {
+                    "name": "ctx",
+                    "title": "Ctx",
+                    "type": "`$STRING`",
+                    "short": "Context"
+                },
+                {
+                    "name": "eId",
+                    "title": "E Id",
+                    "type": "`$STRING`",
+                    "short": "External ID (platform identifier)"
+                },
+                {
+                    "name": "id",
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "short": "Post ID"
+                },
+                {
+                    "name": "img",
+                    "title": "Img",
+                    "type": "`$STRING`",
+                    "short": "Track image URL"
+                },
+                {
+                    "name": "lov",
+                    "title": "Lov",
+                    "type": "`$ARRAY`",
+                    "short": "User IDs who liked this post"
+                },
+                {
+                    "name": "name",
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "short": "Track name"
+                },
+                {
+                    "name": "nbP",
+                    "title": "Nb P",
+                    "type": "`$INTEGER`",
+                    "short": "Number of plays"
+                },
+                {
+                    "name": "nbR",
+                    "title": "Nb R",
+                    "type": "`$INTEGER`",
+                    "short": "Number of reposts"
+                },
+                {
+                    "name": "score",
+                    "title": "Score",
+                    "type": "`$NUMBER`",
+                    "short": "Search relevance score"
+                },
+                {
+                    "name": "src",
+                    "title": "Src",
+                    "type": "`$OBJECT`"
+                },
+                {
+                    "name": "text",
+                    "title": "Text",
+                    "type": "`$STRING`",
+                    "short": "Post text/comment"
+                },
+                {
+                    "name": "uId",
+                    "title": "U Id",
+                    "type": "`$STRING`",
+                    "short": "User ID of poster"
+                },
+                {
+                    "name": "uNm",
+                    "title": "U Nm",
+                    "type": "`$STRING`",
+                    "short": "User name of poster"
+                },
+                {
+                    "name": "url",
+                    "title": "Url",
+                    "type": "`$STRING`",
+                    "short": "Direct URL to track"
+                }
+            ],
+            "id": {
+                "field": "id",
+                "name": "id"
+            },
+            "name": "hot",
+            "op": {
+                "load": {
+                    "input": "data",
+                    "name": "load",
+                    "points": [
+                        {
+                            "kind": "http",
+                            "method": "GET",
+                            "orig": "/hot/{genre}",
+                            "segments": [
+                                {
+                                    "lit": "hot"
+                                },
+                                {
+                                    "var": "id"
+                                }
+                            ],
+                            "parts": [
+                                "hot",
+                                "{id}"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "genre": "id"
+                                }
                             },
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "genre",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "format",
+                                        "orig": "format",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 20
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "format",
+                                    "id",
+                                    "limit"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -552,24 +748,93 @@ class Config {
         "playlist": {
             "fields": [
                 {
+                    "name": "ctx",
+                    "title": "Ctx",
+                    "type": "`$STRING`",
+                    "short": "Context"
+                },
+                {
+                    "name": "eId",
+                    "title": "E Id",
+                    "type": "`$STRING`",
+                    "short": "External ID (platform identifier)"
+                },
+                {
                     "name": "id",
-                    "short": "Playlist number",
-                    "type": "`$INTEGER`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "short": "Post ID"
+                },
+                {
+                    "name": "img",
+                    "title": "Img",
+                    "type": "`$STRING`",
+                    "short": "Track image URL"
+                },
+                {
+                    "name": "lov",
+                    "title": "Lov",
+                    "type": "`$ARRAY`",
+                    "short": "User IDs who liked this post"
                 },
                 {
                     "name": "name",
-                    "short": "Playlist name",
-                    "type": "`$STRING`"
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "short": "Track name"
+                },
+                {
+                    "name": "nbP",
+                    "title": "Nb P",
+                    "type": "`$INTEGER`",
+                    "short": "Number of plays"
+                },
+                {
+                    "name": "nbR",
+                    "title": "Nb R",
+                    "type": "`$INTEGER`",
+                    "short": "Number of reposts"
                 },
                 {
                     "name": "nbTracks",
-                    "short": "Number of tracks in playlist",
-                    "type": "`$INTEGER`"
+                    "title": "Nb Tracks",
+                    "type": "`$INTEGER`",
+                    "short": "Number of tracks in playlist"
+                },
+                {
+                    "name": "score",
+                    "title": "Score",
+                    "type": "`$NUMBER`",
+                    "short": "Search relevance score"
+                },
+                {
+                    "name": "src",
+                    "title": "Src",
+                    "type": "`$OBJECT`"
+                },
+                {
+                    "name": "text",
+                    "title": "Text",
+                    "type": "`$STRING`",
+                    "short": "Post text/comment"
+                },
+                {
+                    "name": "uId",
+                    "title": "U Id",
+                    "type": "`$STRING`",
+                    "short": "User ID of poster"
+                },
+                {
+                    "name": "uNm",
+                    "title": "U Nm",
+                    "type": "`$STRING`",
+                    "short": "User name of poster"
                 },
                 {
                     "name": "url",
-                    "short": "Playlist URL",
-                    "type": "`$STRING`"
+                    "title": "Url",
+                    "type": "`$STRING`",
+                    "short": "Direct URL to track"
                 }
             ],
             "id": {
@@ -583,25 +848,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "username",
-                                        "orig": "username",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "format",
-                                        "orig": "format",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/{username}/playlists",
@@ -613,158 +859,51 @@ class Config {
                                     "lit": "playlists"
                                 }
                             ],
+                            "parts": [
+                                "{username}",
+                                "playlists"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "username",
+                                        "orig": "username",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "format",
+                                        "orig": "format",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "format",
                                     "username"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "{username}",
-                                "playlists"
-                            ]
+                            }
                         }
                     ]
-                }
-            },
-            "relations": {
-                "ancestors": []
-            }
-        },
-        "post": {
-            "fields": [
-                {
-                    "name": "ctx",
-                    "short": "Context",
-                    "type": "`$STRING`"
                 },
-                {
-                    "name": "eId",
-                    "short": "External ID (platform identifier)",
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "id",
-                    "short": "Post ID",
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "img",
-                    "short": "Track image URL",
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "lov",
-                    "short": "User IDs who liked this post",
-                    "type": "`$ARRAY`"
-                },
-                {
-                    "name": "name",
-                    "short": "Track name",
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "nbP",
-                    "short": "Number of plays",
-                    "type": "`$INTEGER`"
-                },
-                {
-                    "name": "nbR",
-                    "short": "Number of reposts",
-                    "type": "`$INTEGER`"
-                },
-                {
-                    "name": "score",
-                    "short": "Search relevance score",
-                    "type": "`$NUMBER`"
-                },
-                {
-                    "name": "src",
-                    "type": "`$OBJECT`"
-                },
-                {
-                    "name": "text",
-                    "short": "Post text/comment",
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "uId",
-                    "short": "User ID of poster",
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "uNm",
-                    "short": "User name of poster",
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "url",
-                    "short": "Direct URL to track",
-                    "type": "`$STRING`"
-                }
-            ],
-            "id": {
-                "field": "id",
-                "name": "id"
-            },
-            "name": "post",
-            "op": {
                 "load": {
                     "input": "data",
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "playlist_id",
-                                        "orig": "playlist_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "param",
-                                        "name": "username",
-                                        "orig": "username",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "after",
-                                        "orig": "after",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "format",
-                                        "orig": "format",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 20,
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/{username}/playlist/{playlistId}",
-                            "rename": {
-                                "param": {
-                                    "playlistId": "playlist_id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "var": "username"
@@ -773,111 +912,91 @@ class Config {
                                     "lit": "playlist"
                                 },
                                 {
-                                    "var": "playlist_id"
+                                    "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "after",
-                                    "format",
-                                    "limit",
-                                    "playlist_id",
-                                    "username"
-                                ]
+                            "parts": [
+                                "{username}",
+                                "playlist",
+                                "{id}"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "playlistId": "id"
+                                }
                             },
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "{username}",
-                                "playlist",
-                                "{playlist_id}"
-                            ]
-                        },
-                        {
                             "args": {
                                 "params": [
                                     {
+                                        "name": "id",
+                                        "orig": "playlist_id",
+                                        "type": "`$STRING`",
                                         "kind": "param",
-                                        "name": "genre",
-                                        "orig": "genre",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "username",
+                                        "orig": "username",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
                                     }
                                 ],
                                 "query": [
                                     {
-                                        "kind": "query",
-                                        "name": "format",
-                                        "orig": "format",
-                                        "type": "`$STRING`"
+                                        "name": "after",
+                                        "orig": "after",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
                                     },
                                     {
-                                        "example": 20,
-                                        "kind": "query",
+                                        "name": "format",
+                                        "orig": "format",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
                                         "name": "limit",
                                         "orig": "limit",
-                                        "type": "`$INTEGER`"
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 20
                                     }
                                 ]
                             },
-                            "kind": "http",
-                            "method": "GET",
-                            "orig": "/hot/{genre}",
-                            "segments": [
-                                {
-                                    "lit": "hot"
-                                },
-                                {
-                                    "var": "genre"
-                                }
-                            ],
                             "select": {
                                 "exist": [
+                                    "after",
                                     "format",
-                                    "genre",
-                                    "limit"
+                                    "id",
+                                    "limit",
+                                    "username"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "hot",
-                                "{genre}"
-                            ]
+                            }
                         }
                     ]
                 }
             },
             "relations": {
-                "ancestors": [
-                    [
-                        "hot"
-                    ],
-                    [
-                        "playlist"
-                    ]
-                ]
+                "ancestors": []
             }
         },
         "search": {
             "fields": [
                 {
                     "name": "q",
-                    "short": "Search query",
-                    "type": "`$STRING`"
+                    "title": "Q",
+                    "type": "`$STRING`",
+                    "short": "Search query"
                 },
                 {
                     "name": "results",
-                    "type": "`$ARRAY`",
-                    "union": {
-                        "branches": 3,
-                        "count": 1,
-                        "depth": 1
-                    }
+                    "title": "Results",
+                    "type": "`$ARRAY`"
                 }
             ],
             "name": "search",
@@ -887,29 +1006,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "context",
-                                        "orig": "context",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "format",
-                                        "orig": "format",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "q",
-                                        "orig": "q",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/search",
@@ -918,20 +1014,44 @@ class Config {
                                     "lit": "search"
                                 }
                             ],
+                            "parts": [
+                                "search"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.results`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "context",
+                                        "orig": "context",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "format",
+                                        "orig": "format",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "q",
+                                        "orig": "q",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "context",
                                     "format",
                                     "q"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.results`"
-                            },
-                            "parts": [
-                                "search"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -944,22 +1064,26 @@ class Config {
             "fields": [
                 {
                     "name": "id",
+                    "title": "Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "isSubscribing",
-                    "short": "Whether logged in user follows this user",
-                    "type": "`$BOOLEAN`"
+                    "title": "Is Subscribing",
+                    "type": "`$BOOLEAN`",
+                    "short": "Whether logged in user follows this user"
                 },
                 {
                     "name": "uId",
-                    "short": "User ID",
-                    "type": "`$STRING`"
+                    "title": "U Id",
+                    "type": "`$STRING`",
+                    "short": "User ID"
                 },
                 {
                     "name": "uNm",
-                    "short": "User name",
-                    "type": "`$STRING`"
+                    "title": "U Nm",
+                    "type": "`$STRING`",
+                    "short": "User name"
                 }
             ],
             "id": {
@@ -973,38 +1097,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "is_subscr",
-                                        "orig": "is_subscr",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "example": 50,
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "skip",
-                                        "orig": "skip",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/follow/fetchFollowers/{id}",
@@ -1022,6 +1114,49 @@ class Config {
                                     "var": "id"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "follow",
+                                "fetchFollowers",
+                                "{id}"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "is_subscr",
+                                        "orig": "is_subscr",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 50
+                                    },
+                                    {
+                                        "name": "skip",
+                                        "orig": "skip",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "id",
@@ -1029,51 +1164,9 @@ class Config {
                                     "limit",
                                     "skip"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "follow",
-                                "fetchFollowers",
-                                "{id}"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "is_subscr",
-                                        "orig": "is_subscr",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "example": 50,
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "skip",
-                                        "orig": "skip",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/follow/fetchFollowing/{id}",
@@ -1091,6 +1184,49 @@ class Config {
                                     "var": "id"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "follow",
+                                "fetchFollowing",
+                                "{id}"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "is_subscr",
+                                        "orig": "is_subscr",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 50
+                                    },
+                                    {
+                                        "name": "skip",
+                                        "orig": "skip",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "id",
@@ -1098,17 +1234,7 @@ class Config {
                                     "limit",
                                     "skip"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "follow",
-                                "fetchFollowing",
-                                "{id}"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -1121,23 +1247,27 @@ class Config {
             "fields": [
                 {
                     "name": "id",
-                    "short": "Playlist number",
-                    "type": "`$INTEGER`"
+                    "title": "Id",
+                    "type": "`$INTEGER`",
+                    "short": "Playlist number"
                 },
                 {
                     "name": "name",
-                    "short": "Playlist name",
-                    "type": "`$STRING`"
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "short": "Playlist name"
                 },
                 {
                     "name": "nbTracks",
-                    "short": "Number of tracks in playlist",
-                    "type": "`$INTEGER`"
+                    "title": "Nb Tracks",
+                    "type": "`$INTEGER`",
+                    "short": "Number of tracks in playlist"
                 },
                 {
                     "name": "url",
-                    "short": "Playlist URL",
-                    "type": "`$STRING`"
+                    "title": "Url",
+                    "type": "`$STRING`",
+                    "short": "Playlist URL"
                 }
             ],
             "id": {
@@ -1151,7 +1281,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/user",
@@ -1163,15 +1292,17 @@ class Config {
                                     "lit": "user"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "api",
+                                "user"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "api",
-                                "user"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -1180,40 +1311,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "count_like",
-                                        "orig": "count_like",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "count_post",
-                                        "orig": "count_post",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "id",
-                                        "orig": "id",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "include_subscr",
-                                        "orig": "include_subscr",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "is_subscr",
-                                        "orig": "is_subscr",
-                                        "type": "`$BOOLEAN`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/user",
@@ -1225,6 +1322,49 @@ class Config {
                                     "lit": "user"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "user"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "count_like",
+                                        "orig": "count_like",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "count_post",
+                                        "orig": "count_post",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "id",
+                                        "orig": "id",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "include_subscr",
+                                        "orig": "include_subscr",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "is_subscr",
+                                        "orig": "is_subscr",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "count_like",
@@ -1233,28 +1373,9 @@ class Config {
                                     "include_subscr",
                                     "is_subscr"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "user"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "username",
-                                        "orig": "username",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/{username}/info",
@@ -1266,19 +1387,31 @@ class Config {
                                     "lit": "info"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "username"
-                                ]
-                            },
+                            "parts": [
+                                "{username}",
+                                "info"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "{username}",
-                                "info"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "username",
+                                        "orig": "username",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "username"
+                                ]
+                            }
                         }
                     ]
                 }

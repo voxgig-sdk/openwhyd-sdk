@@ -56,13 +56,13 @@ Create a new `Authentication` entity instance. Pass `nil` for no initial data.
 
 Create a new `GetUserPost` entity instance. Pass `nil` for no initial data.
 
+#### `Hot(data map[string]any) OpenwhydEntity`
+
+Create a new `Hot` entity instance. Pass `nil` for no initial data.
+
 #### `Playlist(data map[string]any) OpenwhydEntity`
 
 Create a new `Playlist` entity instance. Pass `nil` for no initial data.
-
-#### `Post(data map[string]any) OpenwhydEntity`
-
-Create a new `Post` entity instance. Pass `nil` for no initial data.
 
 #### `Search(data map[string]any) OpenwhydEntity`
 
@@ -262,65 +262,11 @@ Return the entity name.
 
 ---
 
-## PlaylistEntity
+## HotEntity
 
 ```go
-playlist := client.Playlist(nil)
-fmt.Println(playlist.GetName()) // "playlist"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `id` | `int` | No | Playlist number |
-| `name` | `string` | No | Playlist name |
-| `nbTracks` | `int` | No | Number of tracks in playlist |
-| `url` | `string` | No | Playlist URL |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns an array.
-
-```go
-results, err := client.Playlist(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(results)
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `PlaylistEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## PostEntity
-
-```go
-post := client.Post(nil)
-fmt.Println(post.GetName()) // "post"
+hot := client.Hot(nil)
+fmt.Println(hot.GetName()) // "hot"
 ```
 
 ### Fields
@@ -349,7 +295,7 @@ fmt.Println(post.GetName()) // "post"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Post(nil).Load(map[string]any{"genre": "genre"}, nil)
+result, err := client.Hot(nil).Load(map[string]any{"id": "hot_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -370,7 +316,84 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `PostEntity` instance with the same client and
+Create a new `HotEntity` instance with the same client and
+options.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
+## PlaylistEntity
+
+```go
+playlist := client.Playlist(nil)
+fmt.Println(playlist.GetName()) // "playlist"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `ctx` | `string` | No | Context |
+| `eId` | `string` | No | External ID (platform identifier) |
+| `id` | `string` | No | Post ID |
+| `img` | `string` | No | Track image URL |
+| `lov` | `[]any` | No | User IDs who liked this post |
+| `name` | `string` | No | Track name |
+| `nbP` | `int` | No | Number of plays |
+| `nbR` | `int` | No | Number of reposts |
+| `nbTracks` | `int` | No | Number of tracks in playlist |
+| `score` | `float64` | No | Search relevance score |
+| `src` | `map[string]any` | No |  |
+| `text` | `string` | No | Post text/comment |
+| `uId` | `string` | No | User ID of poster |
+| `uNm` | `string` | No | User name of poster |
+| `url` | `string` | No | Direct URL to track |
+
+### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns an array.
+
+```go
+results, err := client.Playlist(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
+```
+
+#### `Load(reqmatch, ctrl map[string]any) (any, error)`
+
+Load a single entity matching the given criteria.
+
+```go
+result, err := client.Playlist(nil).Load(map[string]any{"id": "playlist_id", "username": "username"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `PlaylistEntity` instance with the same client and
 options.
 
 #### `GetName() string`

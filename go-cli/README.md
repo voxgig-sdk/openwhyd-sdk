@@ -163,7 +163,7 @@ Meta-commands use the `/` prefix (everything else on a line is evaluated as boru
 
 The 7 entities this SDK exposes (any is valid as `<entity>`):
 
-authentication get_user_post playlist post search subscription user
+authentication get_user_post hot playlist search subscription user
 
 ## Explanation
 

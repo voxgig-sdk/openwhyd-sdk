@@ -1,7 +1,7 @@
 // Typed models for the Openwhyd SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,29 +14,6 @@ import (
 
 // Authentication is the typed data model for the authentication entity.
 type Authentication struct {
-	Bio *string `json:"bio,omitempty"`
-	CvrImg *string `json:"cvrImg,omitempty"`
-	Email *string `json:"email,omitempty"`
-	Error *string `json:"error,omitempty"`
-	Handle *string `json:"handle,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Img *string `json:"img,omitempty"`
-	IsSubscribing *bool `json:"isSubscribing,omitempty"`
-	LastArtists *[]any `json:"lastArtists,omitempty"`
-	LastFm *map[string]any `json:"lastFm,omitempty"`
-	Lnk *map[string]any `json:"lnk,omitempty"`
-	Loc *string `json:"loc,omitempty"`
-	Name *string `json:"name,omitempty"`
-	NbLikes *int `json:"nbLikes,omitempty"`
-	NbPosts *int `json:"nbPosts,omitempty"`
-	NbSubscribers *int `json:"nbSubscribers,omitempty"`
-	NbSubscriptions *int `json:"nbSubscriptions,omitempty"`
-	Pl *[]any `json:"pl,omitempty"`
-	Redirect *string `json:"redirect,omitempty"`
-	TwId *string `json:"twId,omitempty"`
-	TwSec *string `json:"twSec,omitempty"`
-	TwTok *string `json:"twTok,omitempty"`
-	UId *string `json:"uId,omitempty"`
 }
 
 // AuthenticationLoadMatch is the typed request payload for Authentication.LoadTyped.
@@ -77,20 +54,6 @@ type AuthenticationCreateData struct {
 
 // GetUserPost is the typed data model for the get_user_post entity.
 type GetUserPost struct {
-	Ctx *string `json:"ctx,omitempty"`
-	EId *string `json:"eId,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Img *string `json:"img,omitempty"`
-	Lov *[]any `json:"lov,omitempty"`
-	Name *string `json:"name,omitempty"`
-	NbP *int `json:"nbP,omitempty"`
-	NbR *int `json:"nbR,omitempty"`
-	Score *float64 `json:"score,omitempty"`
-	Src *map[string]any `json:"src,omitempty"`
-	Text *string `json:"text,omitempty"`
-	UId *string `json:"uId,omitempty"`
-	UNm *string `json:"uNm,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // GetUserPostListMatch is the typed request payload for GetUserPost.ListTyped.
@@ -102,12 +65,28 @@ type GetUserPostListMatch struct {
 	Limit *int `json:"limit,omitempty"`
 }
 
+// Hot is the typed data model for the hot entity.
+type Hot struct {
+}
+
+// HotLoadMatch is the typed request payload for Hot.LoadTyped.
+type HotLoadMatch struct {
+	Id string `json:"id"`
+	Format *string `json:"format,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+}
+
 // Playlist is the typed data model for the playlist entity.
 type Playlist struct {
-	Id *int `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	NbTracks *int `json:"nbTracks,omitempty"`
-	Url *string `json:"url,omitempty"`
+}
+
+// PlaylistLoadMatch is the typed request payload for Playlist.LoadTyped.
+type PlaylistLoadMatch struct {
+	Id string `json:"id"`
+	Username string `json:"username"`
+	After *string `json:"after,omitempty"`
+	Format *string `json:"format,omitempty"`
+	Limit *int `json:"limit,omitempty"`
 }
 
 // PlaylistListMatch is the typed request payload for Playlist.ListTyped.
@@ -116,35 +95,8 @@ type PlaylistListMatch struct {
 	Format *string `json:"format,omitempty"`
 }
 
-// Post is the typed data model for the post entity.
-type Post struct {
-	Ctx *string `json:"ctx,omitempty"`
-	EId *string `json:"eId,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Img *string `json:"img,omitempty"`
-	Lov *[]any `json:"lov,omitempty"`
-	Name *string `json:"name,omitempty"`
-	NbP *int `json:"nbP,omitempty"`
-	NbR *int `json:"nbR,omitempty"`
-	Score *float64 `json:"score,omitempty"`
-	Src *map[string]any `json:"src,omitempty"`
-	Text *string `json:"text,omitempty"`
-	UId *string `json:"uId,omitempty"`
-	UNm *string `json:"uNm,omitempty"`
-	Url *string `json:"url,omitempty"`
-}
-
-// PostLoadMatch is the typed request payload for Post.LoadTyped.
-type PostLoadMatch struct {
-	Genre string `json:"genre"`
-	Format *string `json:"format,omitempty"`
-	Limit *int `json:"limit,omitempty"`
-}
-
 // Search is the typed data model for the search entity.
 type Search struct {
-	Q *string `json:"q,omitempty"`
-	Results *[]any `json:"results,omitempty"`
 }
 
 // SearchListMatch is the typed request payload for Search.ListTyped.
@@ -156,10 +108,6 @@ type SearchListMatch struct {
 
 // Subscription is the typed data model for the subscription entity.
 type Subscription struct {
-	Id *string `json:"id,omitempty"`
-	IsSubscribing *bool `json:"isSubscribing,omitempty"`
-	UId *string `json:"uId,omitempty"`
-	UNm *string `json:"uNm,omitempty"`
 }
 
 // SubscriptionLoadMatch is the typed request payload for Subscription.LoadTyped.
@@ -172,10 +120,6 @@ type SubscriptionLoadMatch struct {
 
 // User is the typed data model for the user entity.
 type User struct {
-	Id *int `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	NbTracks *int `json:"nbTracks,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // UserListMatch is the typed request payload for User.ListTyped.

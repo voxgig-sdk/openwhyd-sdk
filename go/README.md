@@ -232,8 +232,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
 | `Authentication` | `(data map[string]any) OpenwhydEntity` | Create an Authentication entity instance. |
 | `GetUserPost` | `(data map[string]any) OpenwhydEntity` | Create a GetUserPost entity instance. |
+| `Hot` | `(data map[string]any) OpenwhydEntity` | Create a Hot entity instance. |
 | `Playlist` | `(data map[string]any) OpenwhydEntity` | Create a Playlist entity instance. |
-| `Post` | `(data map[string]any) OpenwhydEntity` | Create a Post entity instance. |
 | `Search` | `(data map[string]any) OpenwhydEntity` | Create a Search entity instance. |
 | `Subscription` | `(data map[string]any) OpenwhydEntity` | Create a Subscription entity instance. |
 | `User` | `(data map[string]any) OpenwhydEntity` | Create an User entity instance. |
@@ -330,20 +330,7 @@ Operations: List.
 
 API path: `/{username}`
 
-#### Playlist
-
-| Field | Description |
-| --- | --- |
-| `"id"` | Playlist number |
-| `"name"` | Playlist name |
-| `"nbTracks"` | Number of tracks in playlist |
-| `"url"` | Playlist URL |
-
-Operations: List.
-
-API path: `/{username}/playlists`
-
-#### Post
+#### Hot
 
 | Field | Description |
 | --- | --- |
@@ -364,7 +351,31 @@ API path: `/{username}/playlists`
 
 Operations: Load.
 
-API path: `/{username}/playlist/{playlistId}`
+API path: `/hot/{genre}`
+
+#### Playlist
+
+| Field | Description |
+| --- | --- |
+| `"ctx"` | Context |
+| `"eId"` | External ID (platform identifier) |
+| `"id"` | Post ID |
+| `"img"` | Track image URL |
+| `"lov"` | User IDs who liked this post |
+| `"name"` | Track name |
+| `"nbP"` | Number of plays |
+| `"nbR"` | Number of reposts |
+| `"nbTracks"` | Number of tracks in playlist |
+| `"score"` | Search relevance score |
+| `"src"` |  |
+| `"text"` | Post text/comment |
+| `"uId"` | User ID of poster |
+| `"uNm"` | User name of poster |
+| `"url"` | Direct URL to track |
+
+Operations: List, Load.
+
+API path: `/{username}/playlists`
 
 #### Search
 
@@ -509,39 +520,9 @@ fmt.Println(getUserPosts) // the array of records
 ```
 
 
-### Playlist
+### Hot
 
-Create an instance: `playlist := client.Playlist(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `int` | Playlist number |
-| `name` | `string` | Playlist name |
-| `nbTracks` | `int` | Number of tracks in playlist |
-| `url` | `string` | Playlist URL |
-
-#### Example: List
-
-```go
-playlists, err := client.Playlist(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(playlists) // the array of records
-```
-
-
-### Post
-
-Create an instance: `post := client.Post(nil)`
+Create an instance: `hot := client.Hot(nil)`
 
 #### Operations
 
@@ -571,11 +552,63 @@ Create an instance: `post := client.Post(nil)`
 #### Example: Load
 
 ```go
-post, err := client.Post(nil).Load(map[string]any{"genre": "genre"}, nil)
+hot, err := client.Hot(nil).Load(map[string]any{"id": "hot_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(post) // the loaded record
+fmt.Println(hot) // the loaded record
+```
+
+
+### Playlist
+
+Create an instance: `playlist := client.Playlist(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `List(match, ctrl)` | List entities matching the criteria. |
+| `Load(match, ctrl)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `ctx` | `string` | Context |
+| `eId` | `string` | External ID (platform identifier) |
+| `id` | `string` | Post ID |
+| `img` | `string` | Track image URL |
+| `lov` | `[]any` | User IDs who liked this post |
+| `name` | `string` | Track name |
+| `nbP` | `int` | Number of plays |
+| `nbR` | `int` | Number of reposts |
+| `nbTracks` | `int` | Number of tracks in playlist |
+| `score` | `float64` | Search relevance score |
+| `src` | `map[string]any` |  |
+| `text` | `string` | Post text/comment |
+| `uId` | `string` | User ID of poster |
+| `uNm` | `string` | User name of poster |
+| `url` | `string` | Direct URL to track |
+
+#### Example: Load
+
+```go
+playlist, err := client.Playlist(nil).Load(map[string]any{"id": "playlist_id", "username": "username"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(playlist) // the loaded record
+```
+
+#### Example: List
+
+```go
+playlists, err := client.Playlist(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(playlists) // the array of records
 ```
 
 

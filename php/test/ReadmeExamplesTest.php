@@ -42,8 +42,8 @@ class ReadmeExamplesTest extends TestCase
     private const ENTITIES = [
         "Authentication" => "authentication",
         "GetUserPost" => "get_user_post",
+        "Hot" => "hot",
         "Playlist" => "playlist",
-        "Post" => "post",
         "Search" => "search",
         "Subscription" => "subscription",
         "User" => "user",

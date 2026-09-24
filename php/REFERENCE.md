@@ -50,13 +50,13 @@ Create a new `AuthenticationEntity` instance. Pass `null` for no initial data.
 
 Create a new `GetUserPostEntity` instance. Pass `null` for no initial data.
 
+#### `Hot($data = null)`
+
+Create a new `HotEntity` instance. Pass `null` for no initial data.
+
 #### `Playlist($data = null)`
 
 Create a new `PlaylistEntity` instance. Pass `null` for no initial data.
-
-#### `Post($data = null)`
-
-Create a new `PostEntity` instance. Pass `null` for no initial data.
 
 #### `Search($data = null)`
 
@@ -255,65 +255,10 @@ Return the entity name.
 
 ---
 
-## PlaylistEntity
+## HotEntity
 
 ```php
-$playlist = $client->Playlist();
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `id` | `int` | No | Playlist number |
-| `name` | `string` | No | Playlist name |
-| `nbTracks` | `int` | No | Number of tracks in playlist |
-| `url` | `string` | No | Playlist URL |
-
-### Operations
-
-#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
-
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
-
-```php
-$results = $client->Playlist()->list();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): PlaylistEntity`
-
-Create a new `PlaylistEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## PostEntity
-
-```php
-$post = $client->Post();
+$hot = $client->Hot();
 ```
 
 ### Fields
@@ -342,7 +287,7 @@ $post = $client->Post();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Post()->load(["genre" => "genre"]);
+$result = $client->Hot()->load(["id" => "hot_id"]);
 ```
 
 ### Common Methods
@@ -363,9 +308,83 @@ Get the entity match criteria.
 
 Set the entity match criteria.
 
-#### `make(): PostEntity`
+#### `make(): HotEntity`
 
-Create a new `PostEntity` instance with the same client and
+Create a new `HotEntity` instance with the same client and
+options.
+
+#### `get_name(): string`
+
+Return the entity name.
+
+
+---
+
+## PlaylistEntity
+
+```php
+$playlist = $client->Playlist();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `ctx` | `string` | No | Context |
+| `eId` | `string` | No | External ID (platform identifier) |
+| `id` | `string` | No | Post ID |
+| `img` | `string` | No | Track image URL |
+| `lov` | `array` | No | User IDs who liked this post |
+| `name` | `string` | No | Track name |
+| `nbP` | `int` | No | Number of plays |
+| `nbR` | `int` | No | Number of reposts |
+| `nbTracks` | `int` | No | Number of tracks in playlist |
+| `score` | `float` | No | Search relevance score |
+| `src` | `array` | No |  |
+| `text` | `string` | No | Post text/comment |
+| `uId` | `string` | No | User ID of poster |
+| `uNm` | `string` | No | User name of poster |
+| `url` | `string` | No | Direct URL to track |
+
+### Operations
+
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+
+```php
+$results = $client->Playlist()->list();
+```
+
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
+
+Load a single entity matching the given criteria. Throws on error.
+
+```php
+$result = $client->Playlist()->load(["id" => "playlist_id", "username" => "username"]);
+```
+
+### Common Methods
+
+#### `data_get(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set($data): void`
+
+Set the entity data.
+
+#### `match_get(): array`
+
+Get the entity match criteria.
+
+#### `match_set($match): void`
+
+Set the entity match criteria.
+
+#### `make(): PlaylistEntity`
+
+Create a new `PlaylistEntity` instance with the same client and
 options.
 
 #### `get_name(): string`

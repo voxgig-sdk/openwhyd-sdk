@@ -90,8 +90,8 @@ func MakeConfig() map[string]any {
 			"entity": map[string]any{
 				"authentication": map[string]any{},
 				"get_user_post": map[string]any{},
+				"hot": map[string]any{},
 				"playlist": map[string]any{},
-				"post": map[string]any{},
 				"search": map[string]any{},
 				"subscription": map[string]any{},
 				"user": map[string]any{},
@@ -102,116 +102,139 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "bio",
-						"short": "User biography",
+						"title": "Bio",
 						"type": "`$STRING`",
+						"short": "User biography",
 					},
 					map[string]any{
 						"name": "cvrImg",
-						"short": "Cover image URL",
+						"title": "Cvr Img",
 						"type": "`$STRING`",
+						"short": "Cover image URL",
 					},
 					map[string]any{
 						"name": "email",
-						"short": "Email address",
+						"title": "Email",
 						"type": "`$STRING`",
+						"short": "Email address",
 					},
 					map[string]any{
 						"name": "error",
-						"short": "Error message if any",
+						"title": "Error",
 						"type": "`$STRING`",
+						"short": "Error message if any",
 					},
 					map[string]any{
 						"name": "handle",
-						"short": "Username/handle",
+						"title": "Handle",
 						"type": "`$STRING`",
+						"short": "Username/handle",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "User ID",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "User ID",
 					},
 					map[string]any{
 						"name": "img",
-						"short": "Avatar URL",
+						"title": "Img",
 						"type": "`$STRING`",
+						"short": "Avatar URL",
 					},
 					map[string]any{
 						"name": "isSubscribing",
-						"short": "Whether logged in user subscribes to this user",
+						"title": "Is Subscribing",
 						"type": "`$BOOLEAN`",
+						"short": "Whether logged in user subscribes to this user",
 					},
 					map[string]any{
 						"name": "lastArtists",
-						"short": "Recently posted artists",
+						"title": "Last Artists",
 						"type": "`$ARRAY`",
+						"short": "Recently posted artists",
 					},
 					map[string]any{
 						"name": "lastFm",
+						"title": "Last Fm",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "lnk",
+						"title": "Lnk",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "loc",
-						"short": "User location",
+						"title": "Loc",
 						"type": "`$STRING`",
+						"short": "User location",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Full name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Full name",
 					},
 					map[string]any{
 						"name": "nbLikes",
-						"short": "Number of likes",
+						"title": "Nb Likes",
 						"type": "`$INTEGER`",
+						"short": "Number of likes",
 					},
 					map[string]any{
 						"name": "nbPosts",
-						"short": "Number of posts",
+						"title": "Nb Posts",
 						"type": "`$INTEGER`",
+						"short": "Number of posts",
 					},
 					map[string]any{
 						"name": "nbSubscribers",
-						"short": "Number of subscribers",
+						"title": "Nb Subscribers",
 						"type": "`$INTEGER`",
+						"short": "Number of subscribers",
 					},
 					map[string]any{
 						"name": "nbSubscriptions",
-						"short": "Number of subscriptions",
+						"title": "Nb Subscriptions",
 						"type": "`$INTEGER`",
+						"short": "Number of subscriptions",
 					},
 					map[string]any{
 						"name": "pl",
-						"short": "User playlists",
+						"title": "Pl",
 						"type": "`$ARRAY`",
+						"short": "User playlists",
 					},
 					map[string]any{
 						"name": "redirect",
-						"short": "URL to redirect to",
+						"title": "Redirect",
 						"type": "`$STRING`",
+						"short": "URL to redirect to",
 					},
 					map[string]any{
 						"name": "twId",
-						"short": "Twitter handle",
+						"title": "Tw Id",
 						"type": "`$STRING`",
+						"short": "Twitter handle",
 					},
 					map[string]any{
 						"name": "twSec",
-						"short": "Twitter session secret",
+						"title": "Tw Sec",
 						"type": "`$STRING`",
+						"short": "Twitter session secret",
 					},
 					map[string]any{
 						"name": "twTok",
-						"short": "Twitter session token",
+						"title": "Tw Tok",
 						"type": "`$STRING`",
+						"short": "Twitter session token",
 					},
 					map[string]any{
 						"name": "uId",
-						"short": "ID of new user if successful",
+						"title": "U Id",
 						"type": "`$STRING`",
+						"short": "ID of new user if successful",
 					},
 				},
 				"id": map[string]any{
@@ -225,7 +248,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/login",
@@ -234,17 +256,18 @@ func MakeConfig() map[string]any {
 										"lit": "login",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"login",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.user`",
 								},
-								"parts": []any{
-									"login",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/register",
@@ -253,14 +276,16 @@ func MakeConfig() map[string]any {
 										"lit": "register",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"register",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"register",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -269,47 +294,55 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "action",
-											"orig": "action",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "ajax",
-											"orig": "ajax",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "email",
-											"orig": "email",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "include_user",
-											"orig": "include_user",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "md5",
-											"orig": "md5",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/login",
 								"segments": []any{
 									map[string]any{
 										"lit": "login",
+									},
+								},
+								"parts": []any{
+									"login",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.user`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "action",
+											"orig": "action",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "ajax",
+											"orig": "ajax",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "email",
+											"orig": "email",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "include_user",
+											"orig": "include_user",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "md5",
+											"orig": "md5",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -321,25 +354,8 @@ func MakeConfig() map[string]any {
 										"md5",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.user`",
-								},
-								"parts": []any{
-									"login",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "ajax",
-											"orig": "ajax",
-											"type": "`$BOOLEAN`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/logout",
@@ -348,17 +364,28 @@ func MakeConfig() map[string]any {
 										"lit": "logout",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"ajax",
-									},
+								"parts": []any{
+									"logout",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"logout",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "ajax",
+											"orig": "ajax",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"ajax",
+									},
 								},
 							},
 						},
@@ -372,72 +399,86 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ctx",
-						"short": "Context",
+						"title": "Ctx",
 						"type": "`$STRING`",
+						"short": "Context",
 					},
 					map[string]any{
 						"name": "eId",
-						"short": "External ID (platform identifier)",
+						"title": "E Id",
 						"type": "`$STRING`",
+						"short": "External ID (platform identifier)",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Post ID",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Post ID",
 					},
 					map[string]any{
 						"name": "img",
-						"short": "Track image URL",
+						"title": "Img",
 						"type": "`$STRING`",
+						"short": "Track image URL",
 					},
 					map[string]any{
 						"name": "lov",
-						"short": "User IDs who liked this post",
+						"title": "Lov",
 						"type": "`$ARRAY`",
+						"short": "User IDs who liked this post",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Track name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Track name",
 					},
 					map[string]any{
 						"name": "nbP",
-						"short": "Number of plays",
+						"title": "Nb P",
 						"type": "`$INTEGER`",
+						"short": "Number of plays",
 					},
 					map[string]any{
 						"name": "nbR",
-						"short": "Number of reposts",
+						"title": "Nb R",
 						"type": "`$INTEGER`",
+						"short": "Number of reposts",
 					},
 					map[string]any{
 						"name": "score",
-						"short": "Search relevance score",
+						"title": "Score",
 						"type": "`$NUMBER`",
+						"short": "Search relevance score",
 					},
 					map[string]any{
 						"name": "src",
+						"title": "Src",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "text",
-						"short": "Post text/comment",
+						"title": "Text",
 						"type": "`$STRING`",
+						"short": "Post text/comment",
 					},
 					map[string]any{
 						"name": "uId",
-						"short": "User ID of poster",
+						"title": "U Id",
 						"type": "`$STRING`",
+						"short": "User ID of poster",
 					},
 					map[string]any{
 						"name": "uNm",
-						"short": "User name of poster",
+						"title": "U Nm",
 						"type": "`$STRING`",
+						"short": "User name of poster",
 					},
 					map[string]any{
 						"name": "url",
-						"short": "Direct URL to track",
+						"title": "Url",
 						"type": "`$STRING`",
+						"short": "Direct URL to track",
 					},
 				},
 				"id": map[string]any{
@@ -451,55 +492,62 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "username",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "after",
-											"orig": "after",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "callback",
-											"orig": "callback",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 20,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/{username}",
+								"segments": []any{
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"{id}",
+								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"username": "id",
 									},
 								},
-								"segments": []any{
-									map[string]any{
-										"var": "id",
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "username",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "after",
+											"orig": "after",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "callback",
+											"orig": "callback",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 20,
+										},
 									},
 								},
 								"select": map[string]any{
@@ -511,12 +559,167 @@ func MakeConfig() map[string]any {
 										"limit",
 									},
 								},
+							},
+						},
+					},
+				},
+				"relations": map[string]any{
+					"ancestors": []any{},
+				},
+			},
+			"hot": map[string]any{
+				"fields": []any{
+					map[string]any{
+						"name": "ctx",
+						"title": "Ctx",
+						"type": "`$STRING`",
+						"short": "Context",
+					},
+					map[string]any{
+						"name": "eId",
+						"title": "E Id",
+						"type": "`$STRING`",
+						"short": "External ID (platform identifier)",
+					},
+					map[string]any{
+						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
+						"short": "Post ID",
+					},
+					map[string]any{
+						"name": "img",
+						"title": "Img",
+						"type": "`$STRING`",
+						"short": "Track image URL",
+					},
+					map[string]any{
+						"name": "lov",
+						"title": "Lov",
+						"type": "`$ARRAY`",
+						"short": "User IDs who liked this post",
+					},
+					map[string]any{
+						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
+						"short": "Track name",
+					},
+					map[string]any{
+						"name": "nbP",
+						"title": "Nb P",
+						"type": "`$INTEGER`",
+						"short": "Number of plays",
+					},
+					map[string]any{
+						"name": "nbR",
+						"title": "Nb R",
+						"type": "`$INTEGER`",
+						"short": "Number of reposts",
+					},
+					map[string]any{
+						"name": "score",
+						"title": "Score",
+						"type": "`$NUMBER`",
+						"short": "Search relevance score",
+					},
+					map[string]any{
+						"name": "src",
+						"title": "Src",
+						"type": "`$OBJECT`",
+					},
+					map[string]any{
+						"name": "text",
+						"title": "Text",
+						"type": "`$STRING`",
+						"short": "Post text/comment",
+					},
+					map[string]any{
+						"name": "uId",
+						"title": "U Id",
+						"type": "`$STRING`",
+						"short": "User ID of poster",
+					},
+					map[string]any{
+						"name": "uNm",
+						"title": "U Nm",
+						"type": "`$STRING`",
+						"short": "User name of poster",
+					},
+					map[string]any{
+						"name": "url",
+						"title": "Url",
+						"type": "`$STRING`",
+						"short": "Direct URL to track",
+					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
+				"name": "hot",
+				"op": map[string]any{
+					"load": map[string]any{
+						"input": "data",
+						"name": "load",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/hot/{genre}",
+								"segments": []any{
+									map[string]any{
+										"lit": "hot",
+									},
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"hot",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"genre": "id",
+									},
+								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "genre",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 20,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"format",
+										"id",
+										"limit",
+									},
 								},
 							},
 						},
@@ -529,24 +732,93 @@ func MakeConfig() map[string]any {
 			"playlist": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"name": "ctx",
+						"title": "Ctx",
+						"type": "`$STRING`",
+						"short": "Context",
+					},
+					map[string]any{
+						"name": "eId",
+						"title": "E Id",
+						"type": "`$STRING`",
+						"short": "External ID (platform identifier)",
+					},
+					map[string]any{
 						"name": "id",
-						"short": "Playlist number",
-						"type": "`$INTEGER`",
+						"title": "Id",
+						"type": "`$STRING`",
+						"short": "Post ID",
+					},
+					map[string]any{
+						"name": "img",
+						"title": "Img",
+						"type": "`$STRING`",
+						"short": "Track image URL",
+					},
+					map[string]any{
+						"name": "lov",
+						"title": "Lov",
+						"type": "`$ARRAY`",
+						"short": "User IDs who liked this post",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Playlist name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Track name",
+					},
+					map[string]any{
+						"name": "nbP",
+						"title": "Nb P",
+						"type": "`$INTEGER`",
+						"short": "Number of plays",
+					},
+					map[string]any{
+						"name": "nbR",
+						"title": "Nb R",
+						"type": "`$INTEGER`",
+						"short": "Number of reposts",
 					},
 					map[string]any{
 						"name": "nbTracks",
-						"short": "Number of tracks in playlist",
+						"title": "Nb Tracks",
 						"type": "`$INTEGER`",
+						"short": "Number of tracks in playlist",
+					},
+					map[string]any{
+						"name": "score",
+						"title": "Score",
+						"type": "`$NUMBER`",
+						"short": "Search relevance score",
+					},
+					map[string]any{
+						"name": "src",
+						"title": "Src",
+						"type": "`$OBJECT`",
+					},
+					map[string]any{
+						"name": "text",
+						"title": "Text",
+						"type": "`$STRING`",
+						"short": "Post text/comment",
+					},
+					map[string]any{
+						"name": "uId",
+						"title": "U Id",
+						"type": "`$STRING`",
+						"short": "User ID of poster",
+					},
+					map[string]any{
+						"name": "uNm",
+						"title": "U Nm",
+						"type": "`$STRING`",
+						"short": "User name of poster",
 					},
 					map[string]any{
 						"name": "url",
-						"short": "Playlist URL",
+						"title": "Url",
 						"type": "`$STRING`",
+						"short": "Direct URL to track",
 					},
 				},
 				"id": map[string]any{
@@ -560,25 +832,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "username",
-											"orig": "username",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/{username}/playlists",
@@ -590,19 +843,123 @@ func MakeConfig() map[string]any {
 										"lit": "playlists",
 									},
 								},
+								"parts": []any{
+									"{username}",
+									"playlists",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "username",
+											"orig": "username",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"format",
 										"username",
 									},
 								},
+							},
+						},
+					},
+					"load": map[string]any{
+						"input": "data",
+						"name": "load",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/{username}/playlist/{playlistId}",
+								"segments": []any{
+									map[string]any{
+										"var": "username",
+									},
+									map[string]any{
+										"lit": "playlist",
+									},
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"{username}",
+									"playlist",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"playlistId": "id",
+									},
+								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"{username}",
-									"playlists",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "playlist_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "username",
+											"orig": "username",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "after",
+											"orig": "after",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 20,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"after",
+										"format",
+										"id",
+										"limit",
+										"username",
+									},
 								},
 							},
 						},
@@ -612,249 +969,18 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
-			"post": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "ctx",
-						"short": "Context",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "eId",
-						"short": "External ID (platform identifier)",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "id",
-						"short": "Post ID",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "img",
-						"short": "Track image URL",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "lov",
-						"short": "User IDs who liked this post",
-						"type": "`$ARRAY`",
-					},
-					map[string]any{
-						"name": "name",
-						"short": "Track name",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "nbP",
-						"short": "Number of plays",
-						"type": "`$INTEGER`",
-					},
-					map[string]any{
-						"name": "nbR",
-						"short": "Number of reposts",
-						"type": "`$INTEGER`",
-					},
-					map[string]any{
-						"name": "score",
-						"short": "Search relevance score",
-						"type": "`$NUMBER`",
-					},
-					map[string]any{
-						"name": "src",
-						"type": "`$OBJECT`",
-					},
-					map[string]any{
-						"name": "text",
-						"short": "Post text/comment",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "uId",
-						"short": "User ID of poster",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "uNm",
-						"short": "User name of poster",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "url",
-						"short": "Direct URL to track",
-						"type": "`$STRING`",
-					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
-				},
-				"name": "post",
-				"op": map[string]any{
-					"load": map[string]any{
-						"input": "data",
-						"name": "load",
-						"points": []any{
-							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "playlist_id",
-											"orig": "playlist_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "param",
-											"name": "username",
-											"orig": "username",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "after",
-											"orig": "after",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 20,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/{username}/playlist/{playlistId}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"playlistId": "playlist_id",
-									},
-								},
-								"segments": []any{
-									map[string]any{
-										"var": "username",
-									},
-									map[string]any{
-										"lit": "playlist",
-									},
-									map[string]any{
-										"var": "playlist_id",
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"after",
-										"format",
-										"limit",
-										"playlist_id",
-										"username",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"{username}",
-									"playlist",
-									"{playlist_id}",
-								},
-							},
-							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "genre",
-											"orig": "genre",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 20,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/hot/{genre}",
-								"segments": []any{
-									map[string]any{
-										"lit": "hot",
-									},
-									map[string]any{
-										"var": "genre",
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"format",
-										"genre",
-										"limit",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"hot",
-									"{genre}",
-								},
-							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"hot",
-						},
-						[]any{
-							"playlist",
-						},
-					},
-				},
-			},
 			"search": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "q",
-						"short": "Search query",
+						"title": "Q",
 						"type": "`$STRING`",
+						"short": "Search query",
 					},
 					map[string]any{
 						"name": "results",
+						"title": "Results",
 						"type": "`$ARRAY`",
-						"union": map[string]any{
-							"branches": 3,
-							"count": 1,
-							"depth": 1,
-						},
 					},
 				},
 				"name": "search",
@@ -864,29 +990,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "context",
-											"orig": "context",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/search",
@@ -895,19 +998,43 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.results`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "context",
+											"orig": "context",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"context",
 										"format",
 										"q",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.results`",
-								},
-								"parts": []any{
-									"search",
 								},
 							},
 						},
@@ -921,22 +1048,26 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "isSubscribing",
-						"short": "Whether logged in user follows this user",
+						"title": "Is Subscribing",
 						"type": "`$BOOLEAN`",
+						"short": "Whether logged in user follows this user",
 					},
 					map[string]any{
 						"name": "uId",
-						"short": "User ID",
+						"title": "U Id",
 						"type": "`$STRING`",
+						"short": "User ID",
 					},
 					map[string]any{
 						"name": "uNm",
-						"short": "User name",
+						"title": "U Nm",
 						"type": "`$STRING`",
+						"short": "User name",
 					},
 				},
 				"id": map[string]any{
@@ -950,38 +1081,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "is_subscr",
-											"orig": "is_subscr",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"example": 50,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "skip",
-											"orig": "skip",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/follow/fetchFollowers/{id}",
@@ -999,6 +1098,49 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"api",
+									"follow",
+									"fetchFollowers",
+									"{id}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "is_subscr",
+											"orig": "is_subscr",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+										map[string]any{
+											"name": "skip",
+											"orig": "skip",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"id",
@@ -1007,50 +1149,8 @@ func MakeConfig() map[string]any {
 										"skip",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"api",
-									"follow",
-									"fetchFollowers",
-									"{id}",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "is_subscr",
-											"orig": "is_subscr",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"example": 50,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "skip",
-											"orig": "skip",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/follow/fetchFollowing/{id}",
@@ -1068,6 +1168,49 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"api",
+									"follow",
+									"fetchFollowing",
+									"{id}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "is_subscr",
+											"orig": "is_subscr",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+										map[string]any{
+											"name": "skip",
+											"orig": "skip",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"id",
@@ -1075,16 +1218,6 @@ func MakeConfig() map[string]any {
 										"limit",
 										"skip",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"api",
-									"follow",
-									"fetchFollowing",
-									"{id}",
 								},
 							},
 						},
@@ -1098,23 +1231,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
-						"short": "Playlist number",
+						"title": "Id",
 						"type": "`$INTEGER`",
+						"short": "Playlist number",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Playlist name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Playlist name",
 					},
 					map[string]any{
 						"name": "nbTracks",
-						"short": "Number of tracks in playlist",
+						"title": "Nb Tracks",
 						"type": "`$INTEGER`",
+						"short": "Number of tracks in playlist",
 					},
 					map[string]any{
 						"name": "url",
-						"short": "Playlist URL",
+						"title": "Url",
 						"type": "`$STRING`",
+						"short": "Playlist URL",
 					},
 				},
 				"id": map[string]any{
@@ -1128,7 +1265,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/api/user",
@@ -1140,15 +1276,17 @@ func MakeConfig() map[string]any {
 										"lit": "user",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"api",
 									"user",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -1157,40 +1295,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "count_like",
-											"orig": "count_like",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "count_post",
-											"orig": "count_post",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "id",
-											"orig": "id",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "include_subscr",
-											"orig": "include_subscr",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "is_subscr",
-											"orig": "is_subscr",
-											"type": "`$BOOLEAN`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/user",
@@ -1202,6 +1306,49 @@ func MakeConfig() map[string]any {
 										"lit": "user",
 									},
 								},
+								"parts": []any{
+									"api",
+									"user",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "count_like",
+											"orig": "count_like",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "count_post",
+											"orig": "count_post",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "include_subscr",
+											"orig": "include_subscr",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "is_subscr",
+											"orig": "is_subscr",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"count_like",
@@ -1211,27 +1358,8 @@ func MakeConfig() map[string]any {
 										"is_subscr",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"api",
-									"user",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "username",
-											"orig": "username",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/{username}/info",
@@ -1243,18 +1371,30 @@ func MakeConfig() map[string]any {
 										"lit": "info",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"username",
-									},
+								"parts": []any{
+									"{username}",
+									"info",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"{username}",
-									"info",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "username",
+											"orig": "username",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"username",
+									},
 								},
 							},
 						},

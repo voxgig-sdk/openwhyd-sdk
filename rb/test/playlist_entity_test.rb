@@ -52,7 +52,7 @@ class PlaylistEntityTest < Minitest::Test
     setup = playlist_basic_setup(nil)
     # Per-op sdk-test-control.json skip.
     _live = setup[:live] || false
-    ["list"].each do |_op|
+    ["list", "load"].each do |_op|
       _should_skip, _reason = Runner.is_control_skipped("entityOp", "playlist." + _op, _live ? "live" : "unit")
       if _should_skip
         skip(_reason || "skipped via sdk-test-control.json")
@@ -83,6 +83,15 @@ class PlaylistEntityTest < Minitest::Test
 
     playlist_ref01_list_result = playlist_ref01_ent.list(playlist_ref01_match, nil)
     assert playlist_ref01_list_result.is_a?(Array)
+
+    # LOAD
+    playlist_ref01_match_dt0 = {
+      "id" => playlist_ref01_data["id"],
+    }
+    playlist_ref01_data_dt0_loaded = playlist_ref01_ent.load(playlist_ref01_match_dt0, nil)
+    playlist_ref01_data_dt0_load_result = Helpers.to_map(playlist_ref01_data_dt0_loaded.respond_to?(:data_get) ? playlist_ref01_data_dt0_loaded.data_get : playlist_ref01_data_dt0_loaded)
+    assert !playlist_ref01_data_dt0_load_result.nil?
+    assert_equal playlist_ref01_data_dt0_load_result["id"], playlist_ref01_data["id"]
 
   end
 end

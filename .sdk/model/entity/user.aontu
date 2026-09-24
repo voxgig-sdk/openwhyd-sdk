@@ -1,0 +1,186 @@
+# Entity: user
+
+main: kit: entity: user: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Playlist number"
+      t: "`$INTEGER`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Playlist name"
+      t: "`$STRING`"
+    }
+    nbTracks: {
+      h: "Nb Tracks"
+      n: "nbTracks"
+      r: false
+      sh: "Number of tracks in playlist"
+      t: "`$INTEGER`"
+    }
+    url: {
+      h: "Url"
+      n: "url"
+      r: false
+      sh: "Playlist URL"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "user"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/user"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/user"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "user"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/user"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "count_like"
+                or: "count_like"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "count_post"
+                or: "count_post"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "id"
+                or: "id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "include_subscr"
+                or: "include_subscr"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "is_subscr"
+                or: "is_subscr"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/user"
+          q: {
+            exist: [
+              "count_like"
+              "count_post"
+              "id"
+              "include_subscr"
+              "is_subscr"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "user"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /{username}/info"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "username"
+                or: "username"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{username}/info"
+          q: {
+            exist: [
+              "username"
+            ]
+          }
+          s: [
+            {
+              var: "username"
+            }
+            {
+              lit: "info"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

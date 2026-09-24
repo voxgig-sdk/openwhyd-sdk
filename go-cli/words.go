@@ -9,18 +9,6 @@ import (
 	sdk "github.com/voxgig-sdk/openwhyd-sdk/go"
 )
 
-// registerSDKWords installs three native boru words bound to the SDK:
-// list / load / update. Each is declared with two overloads matching
-// the signature  [query?:(Node or Scalar) entity:atom]:
-//
-//   [entity:Atom]            — no query (e.g. `list book`)
-//   [query:Any entity:Atom]  — query is any Node or Scalar (e.g.
-//                              `load {id:1} book`, `load 1 book`)
-//
-// The entity slot is /q-quoted so a bareword `book` parses as the
-// Atom "book" rather than dispatching as an undefined word. Both
-// overloads are all-forward (BarrierAllForward), so args are collected
-// from the tokens following the word.
 func registerSDKWords(r *eng.Registry, client *sdk.OpenwhydSDK) {
 	for _, op := range []string{"list", "load", "update"} {
 		op := op
@@ -93,10 +81,10 @@ func entityFor(client *sdk.OpenwhydSDK, name string) (sdk.OpenwhydEntity, error)
 		return client.Authentication(nil), nil
 	case "get_user_post":
 		return client.GetUserPost(nil), nil
+	case "hot":
+		return client.Hot(nil), nil
 	case "playlist":
 		return client.Playlist(nil), nil
-	case "post":
-		return client.Post(nil), nil
 	case "search":
 		return client.Search(nil), nil
 	case "subscription":

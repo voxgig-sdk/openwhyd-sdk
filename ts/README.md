@@ -35,17 +35,14 @@ const client = new OpenwhydSDK({
 })
 ```
 
-### 3. Load a post
+### 3. Load an authentication
 
-Post is nested under genre, so provide the `genre`.
 `load()` returns the entity directly and throws on failure:
 
 ```ts
 try {
-  const post = await client.Post().load({
-    genre: 'example_genre',
-  })
-  console.log(post)
+  const authentication = await client.Authentication().load({ action: 'example_action' })
+  console.log(authentication)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -243,8 +240,8 @@ new OpenwhydSDK(options?: {
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
 | `Authentication(data?)` | `AuthenticationEntity` | Create an Authentication entity instance. |
 | `GetUserPost(data?)` | `GetUserPostEntity` | Create a GetUserPost entity instance. |
+| `Hot(data?)` | `HotEntity` | Create a Hot entity instance. |
 | `Playlist(data?)` | `PlaylistEntity` | Create a Playlist entity instance. |
-| `Post(data?)` | `PostEntity` | Create a Post entity instance. |
 | `Search(data?)` | `SearchEntity` | Create a Search entity instance. |
 | `Subscription(data?)` | `SubscriptionEntity` | Create a Subscription entity instance. |
 | `User(data?)` | `UserEntity` | Create an User entity instance. |
@@ -371,20 +368,7 @@ Operations: list.
 
 API path: `/{username}`
 
-#### Playlist
-
-| Field | Description |
-| --- | --- |
-| `id` | Playlist number |
-| `name` | Playlist name |
-| `nbTracks` | Number of tracks in playlist |
-| `url` | Playlist URL |
-
-Operations: list.
-
-API path: `/{username}/playlists`
-
-#### Post
+#### Hot
 
 | Field | Description |
 | --- | --- |
@@ -405,7 +389,31 @@ API path: `/{username}/playlists`
 
 Operations: load.
 
-API path: `/{username}/playlist/{playlistId}`
+API path: `/hot/{genre}`
+
+#### Playlist
+
+| Field | Description |
+| --- | --- |
+| `ctx` | Context |
+| `eId` | External ID (platform identifier) |
+| `id` | Post ID |
+| `img` | Track image URL |
+| `lov` | User IDs who liked this post |
+| `name` | Track name |
+| `nbP` | Number of plays |
+| `nbR` | Number of reposts |
+| `nbTracks` | Number of tracks in playlist |
+| `score` | Search relevance score |
+| `src` |  |
+| `text` | Post text/comment |
+| `uId` | User ID of poster |
+| `uNm` | User name of poster |
+| `url` | Direct URL to track |
+
+Operations: list, load.
+
+API path: `/{username}/playlists`
 
 #### Search
 
@@ -538,35 +546,9 @@ const get_user_posts = await client.GetUserPost().list({ id: "example" })
 ```
 
 
-### Playlist
+### Hot
 
-Create an instance: `const playlist = client.Playlist()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list(match)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `number` | Playlist number |
-| `name` | `string` | Playlist name |
-| `nbTracks` | `number` | Number of tracks in playlist |
-| `url` | `string` | Playlist URL |
-
-#### Example: List
-
-```ts
-const playlists = await client.Playlist().list({ username: "example" })
-```
-
-
-### Post
-
-Create an instance: `const post = client.Post()`
+Create an instance: `const hot = client.Hot()`
 
 #### Operations
 
@@ -596,7 +578,51 @@ Create an instance: `const post = client.Post()`
 #### Example: Load
 
 ```ts
-const post = await client.Post().load({ genre: 'genre' })
+const hot = await client.Hot().load({ id: 'hot_id' })
+```
+
+
+### Playlist
+
+Create an instance: `const playlist = client.Playlist()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+| `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `ctx` | `string` | Context |
+| `eId` | `string` | External ID (platform identifier) |
+| `id` | `string` | Post ID |
+| `img` | `string` | Track image URL |
+| `lov` | `any[]` | User IDs who liked this post |
+| `name` | `string` | Track name |
+| `nbP` | `number` | Number of plays |
+| `nbR` | `number` | Number of reposts |
+| `nbTracks` | `number` | Number of tracks in playlist |
+| `score` | `number` | Search relevance score |
+| `src` | `Record<string, any>` |  |
+| `text` | `string` | Post text/comment |
+| `uId` | `string` | User ID of poster |
+| `uNm` | `string` | User name of poster |
+| `url` | `string` | Direct URL to track |
+
+#### Example: Load
+
+```ts
+const playlist = await client.Playlist().load({ id: 'playlist_id', username: 'username' })
+```
+
+#### Example: List
+
+```ts
+const playlists = await client.Playlist().list({ username: "example" })
 ```
 
 

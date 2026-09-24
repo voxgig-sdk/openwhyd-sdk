@@ -1,0 +1,184 @@
+# Entity: hot
+
+main: kit: entity: hot: {
+
+  alias: field: {}
+
+  fields: {
+    ctx: {
+      h: "Ctx"
+      n: "ctx"
+      r: false
+      sh: "Context"
+      t: "`$STRING`"
+    }
+    eId: {
+      h: "E Id"
+      n: "eId"
+      r: false
+      sh: "External ID (platform identifier)"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Post ID"
+      t: "`$STRING`"
+    }
+    img: {
+      h: "Img"
+      n: "img"
+      r: false
+      sh: "Track image URL"
+      t: "`$STRING`"
+    }
+    lov: {
+      h: "Lov"
+      n: "lov"
+      r: false
+      sh: "User IDs who liked this post"
+      t: "`$ARRAY`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Track name"
+      t: "`$STRING`"
+    }
+    nbP: {
+      h: "Nb P"
+      n: "nbP"
+      r: false
+      sh: "Number of plays"
+      t: "`$INTEGER`"
+    }
+    nbR: {
+      h: "Nb R"
+      n: "nbR"
+      r: false
+      sh: "Number of reposts"
+      t: "`$INTEGER`"
+    }
+    score: {
+      h: "Score"
+      n: "score"
+      r: false
+      sh: "Search relevance score"
+      t: "`$NUMBER`"
+    }
+    src: {
+      h: "Src"
+      n: "src"
+      r: false
+      t: "`$OBJECT`"
+    }
+    text: {
+      h: "Text"
+      n: "text"
+      r: false
+      sh: "Post text/comment"
+      t: "`$STRING`"
+    }
+    uId: {
+      h: "U Id"
+      n: "uId"
+      r: false
+      sh: "User ID of poster"
+      t: "`$STRING`"
+    }
+    uNm: {
+      h: "U Nm"
+      n: "uNm"
+      r: false
+      sh: "User name of poster"
+      t: "`$STRING`"
+    }
+    url: {
+      h: "Url"
+      n: "url"
+      r: false
+      sh: "Direct URL to track"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "hot"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /hot/{genre}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "genre"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 20
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/hot/{genre}"
+          q: {
+            exist: [
+              "format"
+              "id"
+              "limit"
+            ]
+          }
+          r: {
+            param: {
+              genre: "id"
+            }
+          }
+          s: [
+            {
+              lit: "hot"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

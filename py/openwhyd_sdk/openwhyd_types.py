@@ -1,7 +1,7 @@
 # Typed models for the Openwhyd SDK.
 #
-# GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-# params (op.<name>.points[].args.params[]). Field/param types come from the
+# GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+# params (op.<name>.points[].g.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
 #
@@ -107,22 +107,7 @@ class GetUserPostListMatch(GetUserPostListMatchRequired, total=False):
     limit: int
 
 
-class Playlist(TypedDict, total=False):
-    id: int
-    name: str
-    nbTracks: int
-    url: str
-
-
-class PlaylistListMatchRequired(TypedDict):
-    username: str
-
-
-class PlaylistListMatch(PlaylistListMatchRequired, total=False):
-    format: str
-
-
-class Post(TypedDict, total=False):
+class Hot(TypedDict, total=False):
     ctx: str
     eId: str
     id: str
@@ -139,13 +124,50 @@ class Post(TypedDict, total=False):
     url: str
 
 
-class PostLoadMatchRequired(TypedDict):
-    genre: str
+class HotLoadMatchRequired(TypedDict):
+    id: str
 
 
-class PostLoadMatch(PostLoadMatchRequired, total=False):
+class HotLoadMatch(HotLoadMatchRequired, total=False):
     format: str
     limit: int
+
+
+class Playlist(TypedDict, total=False):
+    ctx: str
+    eId: str
+    id: str
+    img: str
+    lov: list
+    name: str
+    nbP: int
+    nbR: int
+    nbTracks: int
+    score: float
+    src: dict
+    text: str
+    uId: str
+    uNm: str
+    url: str
+
+
+class PlaylistLoadMatchRequired(TypedDict):
+    id: str
+    username: str
+
+
+class PlaylistLoadMatch(PlaylistLoadMatchRequired, total=False):
+    after: str
+    format: str
+    limit: int
+
+
+class PlaylistListMatchRequired(TypedDict):
+    username: str
+
+
+class PlaylistListMatch(PlaylistListMatchRequired, total=False):
+    format: str
 
 
 class Search(TypedDict, total=False):

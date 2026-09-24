@@ -1,0 +1,49 @@
+# BasicPlaylistFlow
+
+main: kit: flow: BasicPlaylistFlow:
+{
+  entity: "playlist",
+  kind: "basic",
+  name: "BasicPlaylistFlow",
+  step: [
+    {
+      m: {
+        username: "username01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "playlist_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "playlist_ref01",
+        srcdatavar: "playlist_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "playlist01",
+        username: "username01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-playlist_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPlaylistFlow"
+}

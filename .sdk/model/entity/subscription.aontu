@@ -1,0 +1,193 @@
+# Entity: subscription
+
+main: kit: entity: subscription: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    isSubscribing: {
+      h: "Is Subscribing"
+      n: "isSubscribing"
+      r: false
+      sh: "Whether logged in user follows this user"
+      t: "`$BOOLEAN`"
+    }
+    uId: {
+      h: "U Id"
+      n: "uId"
+      r: false
+      sh: "User ID"
+      t: "`$STRING`"
+    }
+    uNm: {
+      h: "U Nm"
+      n: "uNm"
+      r: false
+      sh: "User name"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "subscription"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/follow/fetchFollowers/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "is_subscr"
+                or: "is_subscr"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: 50
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "skip"
+                or: "skip"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/follow/fetchFollowers/{id}"
+          q: {
+            exist: [
+              "id"
+              "is_subscr"
+              "limit"
+              "skip"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "follow"
+            }
+            {
+              lit: "fetchFollowers"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/follow/fetchFollowing/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "is_subscr"
+                or: "is_subscr"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: 50
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "skip"
+                or: "skip"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/follow/fetchFollowing/{id}"
+          q: {
+            exist: [
+              "id"
+              "is_subscr"
+              "limit"
+              "skip"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "follow"
+            }
+            {
+              lit: "fetchFollowing"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

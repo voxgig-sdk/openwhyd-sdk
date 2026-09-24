@@ -377,6 +377,20 @@ function OpenwhydSDK:GetUserPost(data)
 end
 
 
+-- Idiomatic facade: client:Hot():list() / client:Hot():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function OpenwhydSDK:Hot(data)
+  local EntityMod = require("entity.hot_entity")
+  if data == nil then
+    if self._hot == nil then
+      self._hot = EntityMod.new(self, nil)
+    end
+    return self._hot
+  end
+  return EntityMod.new(self, data)
+end
+
+
 -- Idiomatic facade: client:Playlist():list() / client:Playlist():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
 function OpenwhydSDK:Playlist(data)
@@ -386,20 +400,6 @@ function OpenwhydSDK:Playlist(data)
       self._playlist = EntityMod.new(self, nil)
     end
     return self._playlist
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:Post():list() / client:Post():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenwhydSDK:Post(data)
-  local EntityMod = require("entity.post_entity")
-  if data == nil then
-    if self._post == nil then
-      self._post = EntityMod.new(self, nil)
-    end
-    return self._post
   end
   return EntityMod.new(self, data)
 end

@@ -1,0 +1,36 @@
+# BasicAuthenticationFlow
+
+main: kit: flow: BasicAuthenticationFlow:
+{
+  entity: "authentication",
+  kind: "basic",
+  name: "BasicAuthenticationFlow",
+  step: [
+    {
+      i: {
+        ref: "authentication_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      i: {
+        ref: "authentication_ref01",
+        srcdatavar: "authentication_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-authentication_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAuthenticationFlow"
+}

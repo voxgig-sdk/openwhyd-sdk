@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetUserPostEntity = void 0;
 const OpenwhydEntityBase_1 = require("../OpenwhydEntityBase");
-// TODO: needs Entity superclass
 class GetUserPostEntity extends OpenwhydEntityBase_1.OpenwhydEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

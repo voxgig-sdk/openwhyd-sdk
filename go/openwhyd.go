@@ -47,11 +47,11 @@ func init() {
 	core.NewGetUserPostEntityFunc = func(client *core.OpenwhydSDK, entopts map[string]any) core.OpenwhydEntity {
 		return entity.NewGetUserPostEntity(client, entopts)
 	}
+	core.NewHotEntityFunc = func(client *core.OpenwhydSDK, entopts map[string]any) core.OpenwhydEntity {
+		return entity.NewHotEntity(client, entopts)
+	}
 	core.NewPlaylistEntityFunc = func(client *core.OpenwhydSDK, entopts map[string]any) core.OpenwhydEntity {
 		return entity.NewPlaylistEntity(client, entopts)
-	}
-	core.NewPostEntityFunc = func(client *core.OpenwhydSDK, entopts map[string]any) core.OpenwhydEntity {
-		return entity.NewPostEntity(client, entopts)
 	}
 	core.NewSearchEntityFunc = func(client *core.OpenwhydSDK, entopts map[string]any) core.OpenwhydEntity {
 		return entity.NewSearchEntity(client, entopts)

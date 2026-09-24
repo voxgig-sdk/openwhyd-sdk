@@ -1,0 +1,326 @@
+# Entity: authentication
+
+main: kit: entity: authentication: {
+
+  alias: field: {}
+
+  fields: {
+    bio: {
+      h: "Bio"
+      n: "bio"
+      r: false
+      sh: "User biography"
+      t: "`$STRING`"
+    }
+    cvrImg: {
+      h: "Cvr Img"
+      n: "cvrImg"
+      r: false
+      sh: "Cover image URL"
+      t: "`$STRING`"
+    }
+    email: {
+      h: "Email"
+      n: "email"
+      r: false
+      sh: "Email address"
+      t: "`$STRING`"
+    }
+    error: {
+      h: "Error"
+      n: "error"
+      r: false
+      sh: "Error message if any"
+      t: "`$STRING`"
+    }
+    handle: {
+      h: "Handle"
+      n: "handle"
+      r: false
+      sh: "Username/handle"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "User ID"
+      t: "`$STRING`"
+    }
+    img: {
+      h: "Img"
+      n: "img"
+      r: false
+      sh: "Avatar URL"
+      t: "`$STRING`"
+    }
+    isSubscribing: {
+      h: "Is Subscribing"
+      n: "isSubscribing"
+      r: false
+      sh: "Whether logged in user subscribes to this user"
+      t: "`$BOOLEAN`"
+    }
+    lastArtists: {
+      h: "Last Artists"
+      n: "lastArtists"
+      r: false
+      sh: "Recently posted artists"
+      t: "`$ARRAY`"
+    }
+    lastFm: {
+      h: "Last Fm"
+      n: "lastFm"
+      r: false
+      t: "`$OBJECT`"
+    }
+    lnk: {
+      h: "Lnk"
+      n: "lnk"
+      r: false
+      t: "`$OBJECT`"
+    }
+    loc: {
+      h: "Loc"
+      n: "loc"
+      r: false
+      sh: "User location"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Full name"
+      t: "`$STRING`"
+    }
+    nbLikes: {
+      h: "Nb Likes"
+      n: "nbLikes"
+      r: false
+      sh: "Number of likes"
+      t: "`$INTEGER`"
+    }
+    nbPosts: {
+      h: "Nb Posts"
+      n: "nbPosts"
+      r: false
+      sh: "Number of posts"
+      t: "`$INTEGER`"
+    }
+    nbSubscribers: {
+      h: "Nb Subscribers"
+      n: "nbSubscribers"
+      r: false
+      sh: "Number of subscribers"
+      t: "`$INTEGER`"
+    }
+    nbSubscriptions: {
+      h: "Nb Subscriptions"
+      n: "nbSubscriptions"
+      r: false
+      sh: "Number of subscriptions"
+      t: "`$INTEGER`"
+    }
+    pl: {
+      h: "Pl"
+      n: "pl"
+      r: false
+      sh: "User playlists"
+      t: "`$ARRAY`"
+    }
+    redirect: {
+      h: "Redirect"
+      n: "redirect"
+      r: false
+      sh: "URL to redirect to"
+      t: "`$STRING`"
+    }
+    twId: {
+      h: "Tw Id"
+      n: "twId"
+      r: false
+      sh: "Twitter handle"
+      t: "`$STRING`"
+    }
+    twSec: {
+      h: "Tw Sec"
+      n: "twSec"
+      r: false
+      sh: "Twitter session secret"
+      t: "`$STRING`"
+    }
+    twTok: {
+      h: "Tw Tok"
+      n: "twTok"
+      r: false
+      sh: "Twitter session token"
+      t: "`$STRING`"
+    }
+    uId: {
+      h: "U Id"
+      n: "uId"
+      r: false
+      sh: "ID of new user if successful"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "authentication"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /login"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/login"
+          s: [
+            {
+              lit: "login"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.user`"
+          }
+        }
+        {
+          co: {
+            id: "POST /register"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/register"
+          s: [
+            {
+              lit: "register"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /login"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "action"
+                or: "action"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "ajax"
+                or: "ajax"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "email"
+                or: "email"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "include_user"
+                or: "include_user"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "md5"
+                or: "md5"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/login"
+          q: {
+            exist: [
+              "action"
+              "ajax"
+              "email"
+              "include_user"
+              "md5"
+            ]
+          }
+          s: [
+            {
+              lit: "login"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.user`"
+          }
+        }
+        {
+          co: {
+            id: "GET /logout"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "ajax"
+                or: "ajax"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/logout"
+          q: {
+            exist: [
+              "ajax"
+            ]
+          }
+          s: [
+            {
+              lit: "logout"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

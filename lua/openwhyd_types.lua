@@ -1,7 +1,7 @@
 -- Typed models for the Openwhyd SDK (LuaLS annotations).
 --
--- GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
--- params (op.<name>.points[].args.params[]). Field/param types come from the
+-- GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+-- params (op.<name>.points[].g.params[]). Field/param types come from the
 -- canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 -- @voxgig/apidef VALID_CANON). Annotations only — no runtime effect. Do not
 -- edit by hand.
@@ -86,17 +86,7 @@
 ---@field format? string
 ---@field limit? number
 
----@class Playlist
----@field id? number
----@field name? string
----@field nbTracks? number
----@field url? string
-
----@class PlaylistListMatch
----@field username string
----@field format? string
-
----@class Post
+---@class Hot
 ---@field ctx? string
 ---@field eId? string
 ---@field id? string
@@ -112,10 +102,38 @@
 ---@field uNm? string
 ---@field url? string
 
----@class PostLoadMatch
----@field genre string
+---@class HotLoadMatch
+---@field id string
 ---@field format? string
 ---@field limit? number
+
+---@class Playlist
+---@field ctx? string
+---@field eId? string
+---@field id? string
+---@field img? string
+---@field lov? table
+---@field name? string
+---@field nbP? number
+---@field nbR? number
+---@field nbTracks? number
+---@field score? number
+---@field src? table
+---@field text? string
+---@field uId? string
+---@field uNm? string
+---@field url? string
+
+---@class PlaylistLoadMatch
+---@field id string
+---@field username string
+---@field after? string
+---@field format? string
+---@field limit? number
+
+---@class PlaylistListMatch
+---@field username string
+---@field format? string
 
 ---@class Search
 ---@field q? string

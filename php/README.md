@@ -33,15 +33,13 @@ $client = new OpenwhydSDK([
 ]);
 ```
 
-### 3. Load a post
-
-Post is nested under genre, so provide the `genre`.
+### 3. Load an authentication
 
 ```php
 try {
-    // load() returns the ENTITY — call data_get() for the Post record (throws on error).
-    $post = $client->Post()->load(["genre" => "example_genre"]);
-    print_r($post->data_get());
+    // load() returns the ENTITY — call data_get() for the Authentication record (throws on error).
+    $authentication = $client->Authentication()->load(["action" => "example_action"]);
+    print_r($authentication->data_get());
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -135,13 +133,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```php
 $client = OpenwhydSDK::test([
-    "entity" => ["subscription" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["playlist" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the ENTITY (throws on error);
+// list() returns entity instances (throws on error);
 // call data_get() for the mock record.
-$subscription = $client->Subscription()->load(["id" => "test01"]);
-print_r($subscription->data_get());
+$playlist = $client->Playlist()->list();
+print_r(array_map(fn($item) => $item->data_get(), $playlist));
 ```
 
 ### Use a custom fetch function
@@ -224,8 +222,8 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
 | `Authentication` | `($data): AuthenticationEntity` | Create an Authentication entity instance. |
 | `GetUserPost` | `($data): GetUserPostEntity` | Create a GetUserPost entity instance. |
+| `Hot` | `($data): HotEntity` | Create a Hot entity instance. |
 | `Playlist` | `($data): PlaylistEntity` | Create a Playlist entity instance. |
-| `Post` | `($data): PostEntity` | Create a Post entity instance. |
 | `Search` | `($data): SearchEntity` | Create a Search entity instance. |
 | `Subscription` | `($data): SubscriptionEntity` | Create a Subscription entity instance. |
 | `User` | `($data): UserEntity` | Create an User entity instance. |
@@ -321,20 +319,7 @@ Operations: List.
 
 API path: `/{username}`
 
-#### Playlist
-
-| Field | Description |
-| --- | --- |
-| `id` | Playlist number |
-| `name` | Playlist name |
-| `nbTracks` | Number of tracks in playlist |
-| `url` | Playlist URL |
-
-Operations: List.
-
-API path: `/{username}/playlists`
-
-#### Post
+#### Hot
 
 | Field | Description |
 | --- | --- |
@@ -355,7 +340,31 @@ API path: `/{username}/playlists`
 
 Operations: Load.
 
-API path: `/{username}/playlist/{playlistId}`
+API path: `/hot/{genre}`
+
+#### Playlist
+
+| Field | Description |
+| --- | --- |
+| `ctx` | Context |
+| `eId` | External ID (platform identifier) |
+| `id` | Post ID |
+| `img` | Track image URL |
+| `lov` | User IDs who liked this post |
+| `name` | Track name |
+| `nbP` | Number of plays |
+| `nbR` | Number of reposts |
+| `nbTracks` | Number of tracks in playlist |
+| `score` | Search relevance score |
+| `src` |  |
+| `text` | Post text/comment |
+| `uId` | User ID of poster |
+| `uNm` | User name of poster |
+| `url` | Direct URL to track |
+
+Operations: List, Load.
+
+API path: `/{username}/playlists`
 
 #### Search
 
@@ -490,36 +499,9 @@ $get_user_posts = $client->GetUserPost()->list();
 ```
 
 
-### Playlist
+### Hot
 
-Create an instance: `$playlist = $client->Playlist();`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list(match)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `int` | Playlist number |
-| `name` | `string` | Playlist name |
-| `nbTracks` | `int` | Number of tracks in playlist |
-| `url` | `string` | Playlist URL |
-
-#### Example: List
-
-```php
-// list() returns an array of Playlist records (throws on error).
-$playlists = $client->Playlist()->list();
-```
-
-
-### Post
-
-Create an instance: `$post = $client->Post();`
+Create an instance: `$hot = $client->Hot();`
 
 #### Operations
 
@@ -549,8 +531,54 @@ Create an instance: `$post = $client->Post();`
 #### Example: Load
 
 ```php
-// load() returns the ENTITY — call data_get() for the Post record (throws on error).
-$post = $client->Post()->load(["genre" => "genre"]);
+// load() returns the ENTITY — call data_get() for the Hot record (throws on error).
+$hot = $client->Hot()->load(["id" => "hot_id"]);
+```
+
+
+### Playlist
+
+Create an instance: `$playlist = $client->Playlist();`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+| `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `ctx` | `string` | Context |
+| `eId` | `string` | External ID (platform identifier) |
+| `id` | `string` | Post ID |
+| `img` | `string` | Track image URL |
+| `lov` | `array` | User IDs who liked this post |
+| `name` | `string` | Track name |
+| `nbP` | `int` | Number of plays |
+| `nbR` | `int` | Number of reposts |
+| `nbTracks` | `int` | Number of tracks in playlist |
+| `score` | `float` | Search relevance score |
+| `src` | `array` |  |
+| `text` | `string` | Post text/comment |
+| `uId` | `string` | User ID of poster |
+| `uNm` | `string` | User name of poster |
+| `url` | `string` | Direct URL to track |
+
+#### Example: Load
+
+```php
+// load() returns the ENTITY — call data_get() for the Playlist record (throws on error).
+$playlist = $client->Playlist()->load(["id" => "playlist_id", "username" => "username"]);
+```
+
+#### Example: List
+
+```php
+// list() returns an array of Playlist records (throws on error).
+$playlists = $client->Playlist()->list();
 ```
 
 

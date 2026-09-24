@@ -303,17 +303,17 @@ class OpenwhydSDK
   end
 
 
+  # Canonical facade: client.Hot.list / client.Hot.load({ "id" => ... })
+  def Hot(data = nil)
+    require_relative 'entity/hot_entity'
+    HotEntity.new(self, data)
+  end
+
+
   # Canonical facade: client.Playlist.list / client.Playlist.load({ "id" => ... })
   def Playlist(data = nil)
     require_relative 'entity/playlist_entity'
     PlaylistEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.Post.list / client.Post.load({ "id" => ... })
-  def Post(data = nil)
-    require_relative 'entity/post_entity'
-    PostEntity.new(self, data)
   end
 
 

@@ -1,0 +1,262 @@
+# Entity: playlist
+
+main: kit: entity: playlist: {
+
+  alias: field: {}
+
+  fields: {
+    ctx: {
+      h: "Ctx"
+      n: "ctx"
+      r: false
+      sh: "Context"
+      t: "`$STRING`"
+    }
+    eId: {
+      h: "E Id"
+      n: "eId"
+      r: false
+      sh: "External ID (platform identifier)"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Post ID"
+      t: "`$STRING`"
+    }
+    img: {
+      h: "Img"
+      n: "img"
+      r: false
+      sh: "Track image URL"
+      t: "`$STRING`"
+    }
+    lov: {
+      h: "Lov"
+      n: "lov"
+      r: false
+      sh: "User IDs who liked this post"
+      t: "`$ARRAY`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Track name"
+      t: "`$STRING`"
+    }
+    nbP: {
+      h: "Nb P"
+      n: "nbP"
+      r: false
+      sh: "Number of plays"
+      t: "`$INTEGER`"
+    }
+    nbR: {
+      h: "Nb R"
+      n: "nbR"
+      r: false
+      sh: "Number of reposts"
+      t: "`$INTEGER`"
+    }
+    nbTracks: {
+      h: "Nb Tracks"
+      n: "nbTracks"
+      r: false
+      sh: "Number of tracks in playlist"
+      t: "`$INTEGER`"
+    }
+    score: {
+      h: "Score"
+      n: "score"
+      r: false
+      sh: "Search relevance score"
+      t: "`$NUMBER`"
+    }
+    src: {
+      h: "Src"
+      n: "src"
+      r: false
+      t: "`$OBJECT`"
+    }
+    text: {
+      h: "Text"
+      n: "text"
+      r: false
+      sh: "Post text/comment"
+      t: "`$STRING`"
+    }
+    uId: {
+      h: "U Id"
+      n: "uId"
+      r: false
+      sh: "User ID of poster"
+      t: "`$STRING`"
+    }
+    uNm: {
+      h: "U Nm"
+      n: "uNm"
+      r: false
+      sh: "User name of poster"
+      t: "`$STRING`"
+    }
+    url: {
+      h: "Url"
+      n: "url"
+      r: false
+      sh: "Direct URL to track"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "playlist"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /{username}/playlists"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "username"
+                or: "username"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{username}/playlists"
+          q: {
+            exist: [
+              "format"
+              "username"
+            ]
+          }
+          s: [
+            {
+              var: "username"
+            }
+            {
+              lit: "playlists"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /{username}/playlist/{playlistId}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "playlist_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "username"
+                or: "username"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "after"
+                or: "after"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 20
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{username}/playlist/{playlistId}"
+          q: {
+            exist: [
+              "after"
+              "format"
+              "id"
+              "limit"
+              "username"
+            ]
+          }
+          r: {
+            param: {
+              playlistId: "id"
+            }
+          }
+          s: [
+            {
+              var: "username"
+            }
+            {
+              lit: "playlist"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

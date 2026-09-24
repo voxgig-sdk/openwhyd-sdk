@@ -19,7 +19,6 @@ import type {
   SearchListMatch,
 } from '../OpenwhydTypes'
 
-// TODO: needs Entity superclass
 class SearchEntity extends OpenwhydEntityBase<Search> {
 
   constructor(client: OpenwhydSDK, entopts: any) {

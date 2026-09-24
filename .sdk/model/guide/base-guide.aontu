@@ -1,0 +1,76 @@
+# Generated from the API definition and overwritten on every build: do not
+# edit this file. Put customizations in the guide entry file, which includes
+# this one and overrides its defaults:
+#   guide.aontu
+
+guide: {
+  metrics: count: entity: 7
+  metrics: count: path: 12
+  metrics: count: method: 14
+
+  entity: authentication: {
+    path: "/login": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.user`")|top
+      op: load: method: *GET
+      op: load: transform: res: *("`body.user`")|top
+    }
+    path: "/logout": {
+      op: load: method: *GET
+    }
+    path: "/register": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: get_user_post: {
+    path: "/{username}": {
+      rename: param: "username": *"id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: hot: {
+    path: "/hot/{genre}": {
+      rename: param: "genre": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: playlist: {
+    path: "/{username}/playlist/{playlistId}": {
+      rename: param: "playlistId": *"id"
+      op: load: method: *GET
+    }
+    path: "/{username}/playlists": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: search: {
+    path: "/search": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.results`")|top
+    }
+  }
+
+  entity: subscription: {
+    path: "/api/follow/fetchFollowers/{id}": {
+      op: load: method: *GET
+    }
+    path: "/api/follow/fetchFollowing/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: user: {
+    path: "/api/user": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/{username}/info": {
+      op: list: method: *GET
+    }
+  }
+
+}

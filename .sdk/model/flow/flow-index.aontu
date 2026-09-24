@@ -1,0 +1,9 @@
+# Flows
+
+@"./BasicAuthenticationFlow.aontu"
+@"./BasicGetUserPostFlow.aontu"
+@"./BasicHotFlow.aontu"
+@"./BasicPlaylistFlow.aontu"
+@"./BasicSearchFlow.aontu"
+@"./BasicSubscriptionFlow.aontu"
+@"./BasicUserFlow.aontu"

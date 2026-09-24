@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SDK = exports.OpenwhydSDK = exports.OpenwhydEntityBase = exports.BaseFeature = exports.config = exports.stdutil = void 0;
 const AuthenticationEntity_1 = require("./entity/AuthenticationEntity");
 const GetUserPostEntity_1 = require("./entity/GetUserPostEntity");
+const HotEntity_1 = require("./entity/HotEntity");
 const PlaylistEntity_1 = require("./entity/PlaylistEntity");
-const PostEntity_1 = require("./entity/PostEntity");
 const SearchEntity_1 = require("./entity/SearchEntity");
 const SubscriptionEntity_1 = require("./entity/SubscriptionEntity");
 const UserEntity_1 = require("./entity/UserEntity");
@@ -90,7 +90,6 @@ class OpenwhydSDK {
             ctrl: fetchargs.ctrl || {},
         }, this._rootctx);
         const options = this._options;
-        // Build spec directly from SDK options + user-provided fetch args.
         const spec = {
             base: options.base,
             prefix: options.prefix,
@@ -104,14 +103,12 @@ class OpenwhydSDK {
             step: 'start',
         };
         ctx.spec = spec;
-        // Merge user-provided headers over SDK defaults.
         if (fetchargs.headers) {
             const uheaders = fetchargs.headers;
             for (let key in uheaders) {
                 spec.headers[key] = uheaders[key];
             }
         }
-        // Apply SDK auth (apikey, auth prefix, etc.)
         const authResult = prepareAuth(ctx);
         if (authResult instanceof Error) {
             return authResult;
@@ -186,18 +183,6 @@ class OpenwhydSDK {
             return { ok: false, err };
         }
     }
-    // Raw GraphQL access: the pressure valve that makes the generated
-    // surface's deliberate omissions (per-call selection sets, typed filter
-    // builders, batching, subscriptions) livable — the whole schema stays
-    // reachable.
-    //
-    // Thin wrapper over the same prepare/fetch path `direct` uses, with the
-    // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
-    // HTTP 200 as a top-level `errors` array, so status alone would report a
-    // failed query as ok.
-    //
-    // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
-    // ratelimit or paging features apply.
     async graphql(query, variables, ctrl) {
         const options = this._options;
         if (!options.allow.op.includes('graphql')) {
@@ -245,19 +230,19 @@ class OpenwhydSDK {
         const self = this;
         return new GetUserPostEntity_1.GetUserPostEntity(self, entopts);
     }
+    // Entity access: `client.Hot().list()` / `client.Hot().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    Hot(entopts) {
+        const self = this;
+        return new HotEntity_1.HotEntity(self, entopts);
+    }
     // Entity access: `client.Playlist().list()` / `client.Playlist().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
     Playlist(entopts) {
         const self = this;
         return new PlaylistEntity_1.PlaylistEntity(self, entopts);
-    }
-    // Entity access: `client.Post().list()` / `client.Post().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    Post(entopts) {
-        const self = this;
-        return new PostEntity_1.PostEntity(self, entopts);
     }
     // Entity access: `client.Search().list()` / `client.Search().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity

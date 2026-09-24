@@ -50,13 +50,13 @@ Create a new `AuthenticationEntity` instance. Pass `None` for no initial data.
 
 Create a new `GetUserPostEntity` instance. Pass `None` for no initial data.
 
+#### `Hot(data=None)`
+
+Create a new `HotEntity` instance. Pass `None` for no initial data.
+
 #### `Playlist(data=None)`
 
 Create a new `PlaylistEntity` instance. Pass `None` for no initial data.
-
-#### `Post(data=None)`
-
-Create a new `PostEntity` instance. Pass `None` for no initial data.
 
 #### `Search(data=None)`
 
@@ -250,66 +250,10 @@ Return the entity name.
 
 ---
 
-## PlaylistEntity
+## HotEntity
 
 ```python
-playlist = client.Playlist()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `id` | `int` | No | Playlist number |
-| `name` | `str` | No | Playlist name |
-| `nbTracks` | `int` | No | Number of tracks in playlist |
-| `url` | `str` | No | Playlist URL |
-
-### Operations
-
-#### `list(reqmatch=None, ctrl=None) -> list`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
-
-```python
-results = client.Playlist().list({"username": "example"})
-for playlist in results:
-    print(playlist)
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `PlaylistEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## PostEntity
-
-```python
-post = client.Post()
+hot = client.Hot()
 ```
 
 ### Fields
@@ -338,7 +282,7 @@ post = client.Post()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Post().load({"genre": "genre"})
+result = client.Hot().load({"id": "hot_id"})
 ```
 
 ### Common Methods
@@ -361,7 +305,82 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `PostEntity` instance with the same options.
+Create a new `HotEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
+
+
+---
+
+## PlaylistEntity
+
+```python
+playlist = client.Playlist()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `ctx` | `str` | No | Context |
+| `eId` | `str` | No | External ID (platform identifier) |
+| `id` | `str` | No | Post ID |
+| `img` | `str` | No | Track image URL |
+| `lov` | `list` | No | User IDs who liked this post |
+| `name` | `str` | No | Track name |
+| `nbP` | `int` | No | Number of plays |
+| `nbR` | `int` | No | Number of reposts |
+| `nbTracks` | `int` | No | Number of tracks in playlist |
+| `score` | `float` | No | Search relevance score |
+| `src` | `dict` | No |  |
+| `text` | `str` | No | Post text/comment |
+| `uId` | `str` | No | User ID of poster |
+| `uNm` | `str` | No | User name of poster |
+| `url` | `str` | No | Direct URL to track |
+
+### Operations
+
+#### `list(reqmatch=None, ctrl=None) -> list`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+
+```python
+results = client.Playlist().list({"username": "example"})
+for playlist in results:
+    print(playlist)
+```
+
+#### `load(reqmatch, ctrl=None) -> dict`
+
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
+
+```python
+result = client.Playlist().load({"id": "playlist_id", "username": "username"})
+```
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `PlaylistEntity` instance with the same options.
 
 #### `get_name() -> str`
 

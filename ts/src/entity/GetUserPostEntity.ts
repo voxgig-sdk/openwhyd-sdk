@@ -19,7 +19,6 @@ import type {
   GetUserPostListMatch,
 } from '../OpenwhydTypes'
 
-// TODO: needs Entity superclass
 class GetUserPostEntity extends OpenwhydEntityBase<GetUserPost> {
 
   constructor(client: OpenwhydSDK, entopts: any) {

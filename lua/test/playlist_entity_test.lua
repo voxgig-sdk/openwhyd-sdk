@@ -60,7 +60,7 @@ describe("PlaylistEntity", function()
     local setup = playlist_basic_setup(nil)
     -- Per-op sdk-test-control.json skip.
     local _live = setup.live or false
-    for _, _op in ipairs({"list"}) do
+    for _, _op in ipairs({"list", "load"}) do
       local _should_skip, _reason = runner.is_control_skipped("entityOp", "playlist." .. _op, _live and "live" or "unit")
       if _should_skip then
         pending(_reason or "skipped via sdk-test-control.json")
@@ -92,6 +92,16 @@ describe("PlaylistEntity", function()
     local playlist_ref01_list_result, err = playlist_ref01_ent:list(playlist_ref01_match, nil)
     assert.is_nil(err)
     assert.is_table(playlist_ref01_list_result)
+
+    -- LOAD
+    local playlist_ref01_match_dt0 = {
+      id = playlist_ref01_data["id"],
+    }
+    local playlist_ref01_data_dt0_loaded, err = playlist_ref01_ent:load(playlist_ref01_match_dt0, nil)
+    assert.is_nil(err)
+    local playlist_ref01_data_dt0_load_result = helpers.to_map(type(playlist_ref01_data_dt0_loaded) == 'table' and playlist_ref01_data_dt0_loaded.data_get and playlist_ref01_data_dt0_loaded:data_get() or playlist_ref01_data_dt0_loaded)
+    assert.is_not_nil(playlist_ref01_data_dt0_load_result)
+    assert.are.equal(playlist_ref01_data_dt0_load_result["id"], playlist_ref01_data["id"])
 
   end)
 end)

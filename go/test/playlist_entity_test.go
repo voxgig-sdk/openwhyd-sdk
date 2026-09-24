@@ -80,7 +80,7 @@ func TestPlaylistEntity(t *testing.T) {
 		if setup.live {
 			_mode = "live"
 		}
-		for _, _op := range []string{"list"} {
+		for _, _op := range []string{"list", "load"} {
 			if _shouldSkip, _reason := isControlSkipped("entityOp", "playlist." + _op, _mode); _shouldSkip {
 				if _reason == "" {
 					_reason = "skipped via sdk-test-control.json"
@@ -120,6 +120,22 @@ func TestPlaylistEntity(t *testing.T) {
 		_, playlistRef01ListOk := playlistRef01ListResult.([]any)
 		if !playlistRef01ListOk {
 			t.Fatalf("expected list result to be an array, got %T", playlistRef01ListResult)
+		}
+
+		// LOAD
+		playlistRef01MatchDt0 := map[string]any{
+			"id": playlistRef01Data["id"],
+		}
+		playlistRef01DataDt0Loaded, err := playlistRef01Ent.Load(playlistRef01MatchDt0, nil)
+		if err != nil {
+			t.Fatalf("load failed: %v", err)
+		}
+		playlistRef01DataDt0LoadResult := core.ToMapAny(entityData(playlistRef01DataDt0Loaded))
+		if playlistRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if playlistRef01DataDt0LoadResult["id"] != playlistRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

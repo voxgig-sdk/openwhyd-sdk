@@ -39,15 +39,14 @@ client = OpenwhydSDK({
 })
 ```
 
-### 3. Load a post
+### 3. Load an authentication
 
-Post is nested under genre, so provide the `genre`.
 `load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
-    post = client.Post().load({"genre": "example_genre"})
-    print(post)
+    authentication = client.Authentication().load({"action": "example_action"})
+    print(authentication)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -217,8 +216,8 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `Authentication` | `(data) -> AuthenticationEntity` | Create an Authentication entity instance. |
 | `GetUserPost` | `(data) -> GetUserPostEntity` | Create a GetUserPost entity instance. |
+| `Hot` | `(data) -> HotEntity` | Create a Hot entity instance. |
 | `Playlist` | `(data) -> PlaylistEntity` | Create a Playlist entity instance. |
-| `Post` | `(data) -> PostEntity` | Create a Post entity instance. |
 | `Search` | `(data) -> SearchEntity` | Create a Search entity instance. |
 | `Subscription` | `(data) -> SubscriptionEntity` | Create a Subscription entity instance. |
 | `User` | `(data) -> UserEntity` | Create an User entity instance. |
@@ -314,20 +313,7 @@ Operations: List.
 
 API path: `/{username}`
 
-#### Playlist
-
-| Field | Description |
-| --- | --- |
-| `id` | Playlist number |
-| `name` | Playlist name |
-| `nbTracks` | Number of tracks in playlist |
-| `url` | Playlist URL |
-
-Operations: List.
-
-API path: `/{username}/playlists`
-
-#### Post
+#### Hot
 
 | Field | Description |
 | --- | --- |
@@ -348,7 +334,31 @@ API path: `/{username}/playlists`
 
 Operations: Load.
 
-API path: `/{username}/playlist/{playlistId}`
+API path: `/hot/{genre}`
+
+#### Playlist
+
+| Field | Description |
+| --- | --- |
+| `ctx` | Context |
+| `eId` | External ID (platform identifier) |
+| `id` | Post ID |
+| `img` | Track image URL |
+| `lov` | User IDs who liked this post |
+| `name` | Track name |
+| `nbP` | Number of plays |
+| `nbR` | Number of reposts |
+| `nbTracks` | Number of tracks in playlist |
+| `score` | Search relevance score |
+| `src` |  |
+| `text` | Post text/comment |
+| `uId` | User ID of poster |
+| `uNm` | User name of poster |
+| `url` | Direct URL to track |
+
+Operations: List, Load.
+
+API path: `/{username}/playlists`
 
 #### Search
 
@@ -481,35 +491,9 @@ get_user_posts = client.GetUserPost().list({"id": "example"})
 ```
 
 
-### Playlist
+### Hot
 
-Create an instance: `playlist = client.Playlist()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list()` | List entities, optionally matching the given criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `int` | Playlist number |
-| `name` | `str` | Playlist name |
-| `nbTracks` | `int` | Number of tracks in playlist |
-| `url` | `str` | Playlist URL |
-
-#### Example: List
-
-```python
-playlists = client.Playlist().list({"username": "example"})
-```
-
-
-### Post
-
-Create an instance: `post = client.Post()`
+Create an instance: `hot = client.Hot()`
 
 #### Operations
 
@@ -539,7 +523,51 @@ Create an instance: `post = client.Post()`
 #### Example: Load
 
 ```python
-post = client.Post().load({"genre": "genre"})
+hot = client.Hot().load({"id": "hot_id"})
+```
+
+
+### Playlist
+
+Create an instance: `playlist = client.Playlist()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list()` | List entities, optionally matching the given criteria. |
+| `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `ctx` | `str` | Context |
+| `eId` | `str` | External ID (platform identifier) |
+| `id` | `str` | Post ID |
+| `img` | `str` | Track image URL |
+| `lov` | `list` | User IDs who liked this post |
+| `name` | `str` | Track name |
+| `nbP` | `int` | Number of plays |
+| `nbR` | `int` | Number of reposts |
+| `nbTracks` | `int` | Number of tracks in playlist |
+| `score` | `float` | Search relevance score |
+| `src` | `dict` |  |
+| `text` | `str` | Post text/comment |
+| `uId` | `str` | User ID of poster |
+| `uNm` | `str` | User name of poster |
+| `url` | `str` | Direct URL to track |
+
+#### Example: Load
+
+```python
+playlist = client.Playlist().load({"id": "playlist_id", "username": "username"})
+```
+
+#### Example: List
+
+```python
+playlists = client.Playlist().list({"username": "example"})
 ```
 
 

@@ -20,7 +20,7 @@ local SDK_MODULE = "openwhyd_sdk"
 -- A test-mode client seeded with a fixture for every entity. The constructor
 -- of each runnable snippet is rewritten to this form so the offline mock has
 -- data to return.
-local TEST_SEED = '{ entity = { ["authentication"] = { ["test01"] = { id = "test01" } }, ["get_user_post"] = { ["test01"] = { id = "test01" } }, ["playlist"] = { ["test01"] = { id = "test01" } }, ["post"] = { ["test01"] = { id = "test01" } }, ["search"] = { ["test01"] = { id = "test01" } }, ["subscription"] = { ["test01"] = { id = "test01" } }, ["user"] = { ["test01"] = { id = "test01" } } } }'
+local TEST_SEED = '{ entity = { ["authentication"] = { ["test01"] = { id = "test01" } }, ["get_user_post"] = { ["test01"] = { id = "test01" } }, ["hot"] = { ["test01"] = { id = "test01" } }, ["playlist"] = { ["test01"] = { id = "test01" } }, ["search"] = { ["test01"] = { id = "test01" } }, ["subscription"] = { ["test01"] = { id = "test01" } }, ["user"] = { ["test01"] = { id = "test01" } } } }'
 local TEST_CTOR = "sdk.test(" .. TEST_SEED .. ")"
 
 local function script_dir()

@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SearchEntity = void 0;
 const OpenwhydEntityBase_1 = require("../OpenwhydEntityBase");
-// TODO: needs Entity superclass
 class SearchEntity extends OpenwhydEntityBase_1.OpenwhydEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

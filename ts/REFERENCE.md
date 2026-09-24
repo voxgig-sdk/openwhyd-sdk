@@ -73,6 +73,18 @@ Create a new `GetUserPost` entity instance.
 
 **Returns:** `GetUserPostEntity` instance.
 
+#### `Hot(data?: object)`
+
+Create a new `Hot` entity instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `data` | `object` | Initial entity data. |
+
+**Returns:** `HotEntity` instance.
+
 #### `Playlist(data?: object)`
 
 Create a new `Playlist` entity instance.
@@ -84,18 +96,6 @@ Create a new `Playlist` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `PlaylistEntity` instance.
-
-#### `Post(data?: object)`
-
-Create a new `Post` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `PostEntity` instance.
 
 #### `Search(data?: object)`
 
@@ -323,63 +323,10 @@ Return a copy of the entity options.
 
 ---
 
-## PlaylistEntity
+## HotEntity
 
 ```ts
-const playlist = client.Playlist()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `id` | `number` | No | Playlist number |
-| `name` | `string` | No | Playlist name |
-| `nbTracks` | `number` | No | Number of tracks in playlist |
-| `url` | `string` | No | Playlist URL |
-
-### Operations
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Returns an array.
-
-```ts
-const results = await client.Playlist().list({ username: "example" })
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `PlaylistEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenwhydSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## PostEntity
-
-```ts
-const post = client.Post()
+const hot = client.Hot()
 ```
 
 ### Fields
@@ -408,7 +355,7 @@ const post = client.Post()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Post().load({ genre: 'genre' })
+const result = await client.Hot().load({ id: 'hot_id' })
 ```
 
 ### Common Methods
@@ -425,7 +372,79 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `PostEntity` instance with the same client and
+Create a new `HotEntity` instance with the same client and
+options.
+
+#### `client()`
+
+Return the parent `OpenwhydSDK` instance.
+
+#### `entopts()`
+
+Return a copy of the entity options.
+
+
+---
+
+## PlaylistEntity
+
+```ts
+const playlist = client.Playlist()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `ctx` | `string` | No | Context |
+| `eId` | `string` | No | External ID (platform identifier) |
+| `id` | `string` | No | Post ID |
+| `img` | `string` | No | Track image URL |
+| `lov` | `any[]` | No | User IDs who liked this post |
+| `name` | `string` | No | Track name |
+| `nbP` | `number` | No | Number of plays |
+| `nbR` | `number` | No | Number of reposts |
+| `nbTracks` | `number` | No | Number of tracks in playlist |
+| `score` | `number` | No | Search relevance score |
+| `src` | `Record<string, any>` | No |  |
+| `text` | `string` | No | Post text/comment |
+| `uId` | `string` | No | User ID of poster |
+| `uNm` | `string` | No | User name of poster |
+| `url` | `string` | No | Direct URL to track |
+
+### Operations
+
+#### `list(match: object, ctrl?: object)`
+
+List entities matching the given criteria. Returns an array.
+
+```ts
+const results = await client.Playlist().list({ username: "example" })
+```
+
+#### `load(match: object, ctrl?: object)`
+
+Load a single entity matching the given criteria.
+
+```ts
+const result = await client.Playlist().load({ id: 'playlist_id', username: 'username' })
+```
+
+### Common Methods
+
+#### `data(data?: object)`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `match(match?: object)`
+
+Get or set the entity match criteria. Works the same as `data()`.
+
+#### `make()`
+
+Create a new `PlaylistEntity` instance with the same client and
 options.
 
 #### `client()`

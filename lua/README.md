@@ -35,14 +35,12 @@ local client = sdk.new({
 })
 ```
 
-### 3. Load a post
-
-Post is nested under genre, so provide the `genre`.
+### 3. Load an authentication
 
 ```lua
-local post, err = client:Post():load({ genre = "example_genre" })
+local authentication, err = client:Authentication():load({ action = "example_action" })
 if err then error(err) end
-print(post)
+print(authentication)
 ```
 
 ### 4. Create, update, and remove
@@ -202,8 +200,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
 | `Authentication` | `(data) -> AuthenticationEntity` | Create an Authentication entity instance. |
 | `GetUserPost` | `(data) -> GetUserPostEntity` | Create a GetUserPost entity instance. |
+| `Hot` | `(data) -> HotEntity` | Create a Hot entity instance. |
 | `Playlist` | `(data) -> PlaylistEntity` | Create a Playlist entity instance. |
-| `Post` | `(data) -> PostEntity` | Create a Post entity instance. |
 | `Search` | `(data) -> SearchEntity` | Create a Search entity instance. |
 | `Subscription` | `(data) -> SubscriptionEntity` | Create a Subscription entity instance. |
 | `User` | `(data) -> UserEntity` | Create an User entity instance. |
@@ -300,20 +298,7 @@ Operations: List.
 
 API path: `/{username}`
 
-#### Playlist
-
-| Field | Description |
-| --- | --- |
-| `id` | Playlist number |
-| `name` | Playlist name |
-| `nbTracks` | Number of tracks in playlist |
-| `url` | Playlist URL |
-
-Operations: List.
-
-API path: `/{username}/playlists`
-
-#### Post
+#### Hot
 
 | Field | Description |
 | --- | --- |
@@ -334,7 +319,31 @@ API path: `/{username}/playlists`
 
 Operations: Load.
 
-API path: `/{username}/playlist/{playlistId}`
+API path: `/hot/{genre}`
+
+#### Playlist
+
+| Field | Description |
+| --- | --- |
+| `ctx` | Context |
+| `eId` | External ID (platform identifier) |
+| `id` | Post ID |
+| `img` | Track image URL |
+| `lov` | User IDs who liked this post |
+| `name` | Track name |
+| `nbP` | Number of plays |
+| `nbR` | Number of reposts |
+| `nbTracks` | Number of tracks in playlist |
+| `score` | Search relevance score |
+| `src` |  |
+| `text` | Post text/comment |
+| `uId` | User ID of poster |
+| `uNm` | User name of poster |
+| `url` | Direct URL to track |
+
+Operations: List, Load.
+
+API path: `/{username}/playlists`
 
 #### Search
 
@@ -467,35 +476,9 @@ local get_user_posts, err = client:GetUserPost():list()
 ```
 
 
-### Playlist
+### Hot
 
-Create an instance: `local playlist = client:Playlist(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list(match)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `number` | Playlist number |
-| `name` | `string` | Playlist name |
-| `nbTracks` | `number` | Number of tracks in playlist |
-| `url` | `string` | Playlist URL |
-
-#### Example: List
-
-```lua
-local playlists, err = client:Playlist():list()
-```
-
-
-### Post
-
-Create an instance: `local post = client:Post(nil)`
+Create an instance: `local hot = client:Hot(nil)`
 
 #### Operations
 
@@ -525,7 +508,51 @@ Create an instance: `local post = client:Post(nil)`
 #### Example: Load
 
 ```lua
-local post, err = client:Post():load({ genre = "genre" })
+local hot, err = client:Hot():load({ id = "hot_id" })
+```
+
+
+### Playlist
+
+Create an instance: `local playlist = client:Playlist(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+| `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `ctx` | `string` | Context |
+| `eId` | `string` | External ID (platform identifier) |
+| `id` | `string` | Post ID |
+| `img` | `string` | Track image URL |
+| `lov` | `table` | User IDs who liked this post |
+| `name` | `string` | Track name |
+| `nbP` | `number` | Number of plays |
+| `nbR` | `number` | Number of reposts |
+| `nbTracks` | `number` | Number of tracks in playlist |
+| `score` | `number` | Search relevance score |
+| `src` | `table` |  |
+| `text` | `string` | Post text/comment |
+| `uId` | `string` | User ID of poster |
+| `uNm` | `string` | User name of poster |
+| `url` | `string` | Direct URL to track |
+
+#### Example: Load
+
+```lua
+local playlist, err = client:Playlist():load({ id = "playlist_id", username = "username" })
+```
+
+#### Example: List
+
+```lua
+local playlists, err = client:Playlist():list()
 ```
 
 

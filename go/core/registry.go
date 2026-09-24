@@ -16,9 +16,9 @@ var NewAuthenticationEntityFunc func(client *OpenwhydSDK, entopts map[string]any
 
 var NewGetUserPostEntityFunc func(client *OpenwhydSDK, entopts map[string]any) OpenwhydEntity
 
-var NewPlaylistEntityFunc func(client *OpenwhydSDK, entopts map[string]any) OpenwhydEntity
+var NewHotEntityFunc func(client *OpenwhydSDK, entopts map[string]any) OpenwhydEntity
 
-var NewPostEntityFunc func(client *OpenwhydSDK, entopts map[string]any) OpenwhydEntity
+var NewPlaylistEntityFunc func(client *OpenwhydSDK, entopts map[string]any) OpenwhydEntity
 
 var NewSearchEntityFunc func(client *OpenwhydSDK, entopts map[string]any) OpenwhydEntity
 

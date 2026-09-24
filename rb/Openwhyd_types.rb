@@ -2,8 +2,8 @@
 
 # Typed models for the Openwhyd SDK.
 #
-# GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-# params (op.<name>.points[].args.params[]). Member types come from the
+# GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+# params (op.<name>.points[].g.params[]). Member types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Ruby types are unenforced; these YARD
 # annotations document the shapes. Do not edit by hand.
@@ -313,41 +313,7 @@ GetUserPostListMatch = Struct.new(
   keyword_init: true
 )
 
-# Playlist entity data model.
-#
-# @!attribute [rw] id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] nbTracks
-#   @return [Integer, nil]
-#
-# @!attribute [rw] url
-#   @return [String, nil]
-Playlist = Struct.new(
-  :id,
-  :name,
-  :nbTracks,
-  :url,
-  keyword_init: true
-)
-
-# Request payload for Playlist#list.
-#
-# @!attribute [rw] username
-#   @return [String]
-#
-# @!attribute [rw] format
-#   @return [String, nil]
-PlaylistListMatch = Struct.new(
-  :username,
-  :format,
-  keyword_init: true
-)
-
-# Post entity data model.
+# Hot entity data model.
 #
 # @!attribute [rw] ctx
 #   @return [String, nil]
@@ -390,7 +356,7 @@ PlaylistListMatch = Struct.new(
 #
 # @!attribute [rw] url
 #   @return [String, nil]
-Post = Struct.new(
+Hot = Struct.new(
   :ctx,
   :eId,
   :id,
@@ -408,9 +374,9 @@ Post = Struct.new(
   keyword_init: true
 )
 
-# Request payload for Post#load.
+# Request payload for Hot#load.
 #
-# @!attribute [rw] genre
+# @!attribute [rw] id
 #   @return [String]
 #
 # @!attribute [rw] format
@@ -418,10 +384,113 @@ Post = Struct.new(
 #
 # @!attribute [rw] limit
 #   @return [Integer, nil]
-PostLoadMatch = Struct.new(
-  :genre,
+HotLoadMatch = Struct.new(
+  :id,
   :format,
   :limit,
+  keyword_init: true
+)
+
+# Playlist entity data model.
+#
+# @!attribute [rw] ctx
+#   @return [String, nil]
+#
+# @!attribute [rw] eId
+#   @return [String, nil]
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+#
+# @!attribute [rw] img
+#   @return [String, nil]
+#
+# @!attribute [rw] lov
+#   @return [Array, nil]
+#
+# @!attribute [rw] name
+#   @return [String, nil]
+#
+# @!attribute [rw] nbP
+#   @return [Integer, nil]
+#
+# @!attribute [rw] nbR
+#   @return [Integer, nil]
+#
+# @!attribute [rw] nbTracks
+#   @return [Integer, nil]
+#
+# @!attribute [rw] score
+#   @return [Float, nil]
+#
+# @!attribute [rw] src
+#   @return [Hash, nil]
+#
+# @!attribute [rw] text
+#   @return [String, nil]
+#
+# @!attribute [rw] uId
+#   @return [String, nil]
+#
+# @!attribute [rw] uNm
+#   @return [String, nil]
+#
+# @!attribute [rw] url
+#   @return [String, nil]
+Playlist = Struct.new(
+  :ctx,
+  :eId,
+  :id,
+  :img,
+  :lov,
+  :name,
+  :nbP,
+  :nbR,
+  :nbTracks,
+  :score,
+  :src,
+  :text,
+  :uId,
+  :uNm,
+  :url,
+  keyword_init: true
+)
+
+# Request payload for Playlist#load.
+#
+# @!attribute [rw] id
+#   @return [String]
+#
+# @!attribute [rw] username
+#   @return [String]
+#
+# @!attribute [rw] after
+#   @return [String, nil]
+#
+# @!attribute [rw] format
+#   @return [String, nil]
+#
+# @!attribute [rw] limit
+#   @return [Integer, nil]
+PlaylistLoadMatch = Struct.new(
+  :id,
+  :username,
+  :after,
+  :format,
+  :limit,
+  keyword_init: true
+)
+
+# Request payload for Playlist#list.
+#
+# @!attribute [rw] username
+#   @return [String]
+#
+# @!attribute [rw] format
+#   @return [String, nil]
+PlaylistListMatch = Struct.new(
+  :username,
+  :format,
   keyword_init: true
 )
 

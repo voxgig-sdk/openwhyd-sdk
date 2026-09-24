@@ -78,17 +78,7 @@ export interface GetUserPostListMatch {
     format?: string;
     limit?: number;
 }
-export interface Playlist {
-    id?: number;
-    name?: string;
-    nbTracks?: number;
-    url?: string;
-}
-export interface PlaylistListMatch {
-    username: string;
-    format?: string;
-}
-export interface Post {
+export interface Hot {
     ctx?: string;
     eId?: string;
     id?: string;
@@ -104,10 +94,38 @@ export interface Post {
     uNm?: string;
     url?: string;
 }
-export interface PostLoadMatch {
-    genre: string;
+export interface HotLoadMatch {
+    id: string;
     format?: string;
     limit?: number;
+}
+export interface Playlist {
+    ctx?: string;
+    eId?: string;
+    id?: string;
+    img?: string;
+    lov?: any[];
+    name?: string;
+    nbP?: number;
+    nbR?: number;
+    nbTracks?: number;
+    score?: number;
+    src?: Record<string, any>;
+    text?: string;
+    uId?: string;
+    uNm?: string;
+    url?: string;
+}
+export interface PlaylistLoadMatch {
+    id: string;
+    username: string;
+    after?: string;
+    format?: string;
+    limit?: number;
+}
+export interface PlaylistListMatch {
+    username: string;
+    format?: string;
 }
 export interface Search {
     q?: string;

@@ -1,0 +1,26 @@
+# BasicGetUserPostFlow
+
+main: kit: flow: BasicGetUserPostFlow:
+{
+  entity: "get_user_post",
+  kind: "basic",
+  name: "BasicGetUserPostFlow",
+  step: [
+    {
+      m: {
+        username: "username01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "get_user_post_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGetUserPostFlow"
+}

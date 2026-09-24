@@ -32,15 +32,13 @@ client = OpenwhydSDK.new({
 })
 ```
 
-### 3. Load a post
-
-Post is nested under genre, so provide the `genre`.
+### 3. Load an authentication
 
 ```ruby
 begin
-  # load returns the ENTITY — call data_get for the Post record (raises on error).
-  post = client.Post.load({ "genre" => "example_genre" })
-  puts post
+  # load returns the ENTITY — call data_get for the Authentication record (raises on error).
+  authentication = client.Authentication.load({ "action" => "example_action" })
+  puts authentication
 rescue => err
   warn "load failed: #{err}"
 end
@@ -124,10 +122,13 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = OpenwhydSDK.test
+client = OpenwhydSDK.test({
+  "entity" => { "playlist" => { "test01" => { "id" => "test01" } } },
+})
 
 # Entity ops return the ENTITY (raises on error);
 # call data_get for the mock record.
@@ -212,8 +213,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
 | `Authentication` | `(data) -> AuthenticationEntity` | Create an Authentication entity instance. |
 | `GetUserPost` | `(data) -> GetUserPostEntity` | Create a GetUserPost entity instance. |
+| `Hot` | `(data) -> HotEntity` | Create a Hot entity instance. |
 | `Playlist` | `(data) -> PlaylistEntity` | Create a Playlist entity instance. |
-| `Post` | `(data) -> PostEntity` | Create a Post entity instance. |
 | `Search` | `(data) -> SearchEntity` | Create a Search entity instance. |
 | `Subscription` | `(data) -> SubscriptionEntity` | Create a Subscription entity instance. |
 | `User` | `(data) -> UserEntity` | Create an User entity instance. |
@@ -308,20 +309,7 @@ Operations: List.
 
 API path: `/{username}`
 
-#### Playlist
-
-| Field | Description |
-| --- | --- |
-| `id` | Playlist number |
-| `name` | Playlist name |
-| `nbTracks` | Number of tracks in playlist |
-| `url` | Playlist URL |
-
-Operations: List.
-
-API path: `/{username}/playlists`
-
-#### Post
+#### Hot
 
 | Field | Description |
 | --- | --- |
@@ -342,7 +330,31 @@ API path: `/{username}/playlists`
 
 Operations: Load.
 
-API path: `/{username}/playlist/{playlistId}`
+API path: `/hot/{genre}`
+
+#### Playlist
+
+| Field | Description |
+| --- | --- |
+| `ctx` | Context |
+| `eId` | External ID (platform identifier) |
+| `id` | Post ID |
+| `img` | Track image URL |
+| `lov` | User IDs who liked this post |
+| `name` | Track name |
+| `nbP` | Number of plays |
+| `nbR` | Number of reposts |
+| `nbTracks` | Number of tracks in playlist |
+| `score` | Search relevance score |
+| `src` |  |
+| `text` | Post text/comment |
+| `uId` | User ID of poster |
+| `uNm` | User name of poster |
+| `url` | Direct URL to track |
+
+Operations: List, Load.
+
+API path: `/{username}/playlists`
 
 #### Search
 
@@ -477,36 +489,9 @@ get_user_posts = client.GetUserPost.list
 ```
 
 
-### Playlist
+### Hot
 
-Create an instance: `playlist = client.Playlist`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list(match)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `Integer` | Playlist number |
-| `name` | `String` | Playlist name |
-| `nbTracks` | `Integer` | Number of tracks in playlist |
-| `url` | `String` | Playlist URL |
-
-#### Example: List
-
-```ruby
-# list returns an Array of Playlist records (raises on error).
-playlists = client.Playlist.list
-```
-
-
-### Post
-
-Create an instance: `post = client.Post`
+Create an instance: `hot = client.Hot`
 
 #### Operations
 
@@ -536,8 +521,54 @@ Create an instance: `post = client.Post`
 #### Example: Load
 
 ```ruby
-# load returns the ENTITY — call data_get for the Post record (raises on error).
-post = client.Post.load({ "genre" => "genre" })
+# load returns the ENTITY — call data_get for the Hot record (raises on error).
+hot = client.Hot.load({ "id" => "hot_id" })
+```
+
+
+### Playlist
+
+Create an instance: `playlist = client.Playlist`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+| `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `ctx` | `String` | Context |
+| `eId` | `String` | External ID (platform identifier) |
+| `id` | `String` | Post ID |
+| `img` | `String` | Track image URL |
+| `lov` | `Array` | User IDs who liked this post |
+| `name` | `String` | Track name |
+| `nbP` | `Integer` | Number of plays |
+| `nbR` | `Integer` | Number of reposts |
+| `nbTracks` | `Integer` | Number of tracks in playlist |
+| `score` | `Float` | Search relevance score |
+| `src` | `Hash` |  |
+| `text` | `String` | Post text/comment |
+| `uId` | `String` | User ID of poster |
+| `uNm` | `String` | User name of poster |
+| `url` | `String` | Direct URL to track |
+
+#### Example: Load
+
+```ruby
+# load returns the ENTITY — call data_get for the Playlist record (raises on error).
+playlist = client.Playlist.load({ "id" => "playlist_id", "username" => "username" })
+```
+
+#### Example: List
+
+```ruby
+# list returns an Array of Playlist records (raises on error).
+playlists = client.Playlist.list
 ```
 
 

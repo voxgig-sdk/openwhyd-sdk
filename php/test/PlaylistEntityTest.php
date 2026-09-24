@@ -62,7 +62,7 @@ class PlaylistEntityTest extends TestCase
         $setup = playlist_basic_setup(null);
         // Per-op sdk-test-control.json skip.
         $_live = !empty($setup["live"]);
-        foreach (["list"] as $_op) {
+        foreach (["list", "load"] as $_op) {
             [$_shouldSkip, $_reason] = Runner::is_control_skipped("entityOp", "playlist." . $_op, $_live ? "live" : "unit");
             if ($_shouldSkip) {
                 $this->markTestSkipped($_reason ?? "skipped via sdk-test-control.json");
@@ -93,6 +93,15 @@ class PlaylistEntityTest extends TestCase
 
         $playlist_ref01_list_result = $playlist_ref01_ent->list($playlist_ref01_match, null);
         $this->assertIsArray($playlist_ref01_list_result);
+
+        // LOAD
+        $playlist_ref01_match_dt0 = [
+            "id" => $playlist_ref01_data["id"],
+        ];
+        $playlist_ref01_data_dt0_loaded = $playlist_ref01_ent->load($playlist_ref01_match_dt0, null);
+        $playlist_ref01_data_dt0_load_result = Helpers::to_map(is_object($playlist_ref01_data_dt0_loaded) && method_exists($playlist_ref01_data_dt0_loaded, 'data_get') ? $playlist_ref01_data_dt0_loaded->data_get() : $playlist_ref01_data_dt0_loaded);
+        $this->assertNotNull($playlist_ref01_data_dt0_load_result);
+        $this->assertEquals($playlist_ref01_data_dt0_load_result["id"], $playlist_ref01_data["id"]);
 
     }
 }

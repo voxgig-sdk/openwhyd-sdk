@@ -1,7 +1,7 @@
 import { AuthenticationEntity } from './entity/AuthenticationEntity';
 import { GetUserPostEntity } from './entity/GetUserPostEntity';
+import { HotEntity } from './entity/HotEntity';
 import { PlaylistEntity } from './entity/PlaylistEntity';
-import { PostEntity } from './entity/PostEntity';
 import { SearchEntity } from './entity/SearchEntity';
 import { SubscriptionEntity } from './entity/SubscriptionEntity';
 import { UserEntity } from './entity/UserEntity';
@@ -52,8 +52,8 @@ declare class OpenwhydSDK {
     graphql(query: string, variables?: any, ctrl?: any): Promise<any>;
     Authentication(entopts?: Record<string, any>): AuthenticationEntity;
     GetUserPost(entopts?: Record<string, any>): GetUserPostEntity;
+    Hot(entopts?: Record<string, any>): HotEntity;
     Playlist(entopts?: Record<string, any>): PlaylistEntity;
-    Post(entopts?: Record<string, any>): PostEntity;
     Search(entopts?: Record<string, any>): SearchEntity;
     Subscription(entopts?: Record<string, any>): SubscriptionEntity;
     User(entopts?: Record<string, any>): UserEntity;

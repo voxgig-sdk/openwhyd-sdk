@@ -45,8 +45,8 @@ class ReadmeExamplesTest < Minitest::Test
   ENTITIES = {
     "Authentication" => "authentication",
     "GetUserPost" => "get_user_post",
+    "Hot" => "hot",
     "Playlist" => "playlist",
-    "Post" => "post",
     "Search" => "search",
     "Subscription" => "subscription",
     "User" => "user",

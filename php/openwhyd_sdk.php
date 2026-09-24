@@ -377,6 +377,24 @@ class OpenwhydSDK
     }
 
 
+    private $_hot = null;
+
+    // Canonical facade: $client->Hot()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->hot()
+    // resolves here too.
+    public function Hot($data = null)
+    {
+        require_once __DIR__ . '/entity/hot_entity.php';
+        if ($data === null) {
+            if ($this->_hot === null) {
+                $this->_hot = new HotEntity($this, null);
+            }
+            return $this->_hot;
+        }
+        return new HotEntity($this, $data);
+    }
+
+
     private $_playlist = null;
 
     // Canonical facade: $client->Playlist()->list() / ->load(["id" => ...]).
@@ -392,24 +410,6 @@ class OpenwhydSDK
             return $this->_playlist;
         }
         return new PlaylistEntity($this, $data);
-    }
-
-
-    private $_post = null;
-
-    // Canonical facade: $client->Post()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->post()
-    // resolves here too.
-    public function Post($data = null)
-    {
-        require_once __DIR__ . '/entity/post_entity.php';
-        if ($data === null) {
-            if ($this->_post === null) {
-                $this->_post = new PostEntity($this, null);
-            }
-            return $this->_post;
-        }
-        return new PostEntity($this, $data);
     }
 
 

@@ -14,7 +14,7 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
+> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
@@ -70,7 +70,7 @@ print(playlists)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = OpenwhydSDK::test([
-    "entity" => ["playlist" => ["test01" => []]],
+    "entity" => ["playlist" => ["test01" => ["id" => "test01"]]],
 ]);
 $playlists = $client->Playlist()->list();
 ```
@@ -89,7 +89,7 @@ result, err := client.Playlist(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = OpenwhydSDK.test({
-  "entity" => { "playlist" => { "test01" => {} } },
+  "entity" => { "playlist" => { "test01" => { "id" => "test01" } } },
 })
 playlists = client.Playlist.list()
 ```
@@ -125,12 +125,9 @@ const client = new OpenwhydSDK({
   apikey: process.env.OPENWHYD_APIKEY,
 })
 
-
-// Load a specific post (returns a Post)
-const post = await client.Post().load({
-  genre: 'example_genre',
-})
-console.log(post)
+// Load authentication data (returns a Authentication)
+const authentication = await client.Authentication().load()
+console.log(authentication)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -173,8 +170,8 @@ The API exposes 7 entities:
 | --- | --- | --- |
 | **Authentication** | The Authentication entity (create, load). | `/login` |
 | **GetUserPost** | The GetUserPost entity (list). | `/{username}` |
-| **Playlist** | The Playlist entity (list). | `/{username}/playlists` |
-| **Post** | The Post entity (load). | `/{username}/playlist/{playlistId}` |
+| **Hot** | The Hot entity (load). | `/hot/{genre}` |
+| **Playlist** | The Playlist entity (list, load). | `/{username}/playlists` |
 | **Search** | The Search entity (list). | `/search` |
 | **Subscription** | The Subscription entity (load). | `/api/follow/fetchFollowers/{id}` |
 | **User** | The User entity (create, list). | `/api/user` |
@@ -225,15 +222,12 @@ client := sdk.NewOpenwhydSDK(map[string]any{
     "apikey": os.Getenv("OPENWHYD_APIKEY"),
 })
 
-
-// Load a specific post
-post, err := client.Post(nil).Load(
-    map[string]any{"genre": "example_genre"}, nil,
-)
+// Load authentication data
+authentication, err := client.Authentication(nil).Load(map[string]any{"action": "example_action"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(post)
+fmt.Println(authentication)
 ```
 
 ### Ruby

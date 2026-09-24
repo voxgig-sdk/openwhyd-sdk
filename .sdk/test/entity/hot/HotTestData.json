@@ -1,0 +1,80 @@
+{
+  "existing": {
+    "hot": {
+      "HOT00": {
+        "ctx": "s8c",
+        "eId": "s8d",
+        "id": "HOT00",
+        "img": "s8f",
+        "lov": [],
+        "name": "s91",
+        "nbP": 146,
+        "nbR": 147,
+        "score": 148,
+        "src": {},
+        "text": "s96",
+        "uId": "s97",
+        "uNm": "s98",
+        "url": "s99"
+      },
+      "HOT01": {
+        "ctx": "s118",
+        "eId": "s119",
+        "id": "HOT01",
+        "img": "s11b",
+        "lov": [],
+        "name": "s11d",
+        "nbP": 286,
+        "nbR": 287,
+        "score": 288,
+        "src": {},
+        "text": "s122",
+        "uId": "s123",
+        "uNm": "s124",
+        "url": "s125"
+      },
+      "HOT02": {
+        "ctx": "s1a4",
+        "eId": "s1a5",
+        "id": "HOT02",
+        "img": "s1a7",
+        "lov": [],
+        "name": "s1a9",
+        "nbP": 426,
+        "nbR": 427,
+        "score": 428,
+        "src": {},
+        "text": "s1ae",
+        "uId": "s1af",
+        "uNm": "s1b0",
+        "url": "s1b1"
+      }
+    }
+  },
+  "new": {
+    "hot": {
+      "hot_ref01": {
+        "ctx": "s230",
+        "eId": "s231",
+        "img": "s233",
+        "lov": [],
+        "name": "s235",
+        "nbP": 566,
+        "nbR": 567,
+        "score": 568,
+        "src": {},
+        "text": "s23a",
+        "uId": "s23b",
+        "uNm": "s23c",
+        "url": "s23d"
+      }
+    }
+  },
+  "requests": {
+    "GET /hot/{genre}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

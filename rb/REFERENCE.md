@@ -50,13 +50,13 @@ Create a new `Authentication` entity instance. Pass `nil` for no initial data.
 
 Create a new `GetUserPost` entity instance. Pass `nil` for no initial data.
 
+#### `Hot(data = nil)`
+
+Create a new `Hot` entity instance. Pass `nil` for no initial data.
+
 #### `Playlist(data = nil)`
 
 Create a new `Playlist` entity instance. Pass `nil` for no initial data.
-
-#### `Post(data = nil)`
-
-Create a new `Post` entity instance. Pass `nil` for no initial data.
 
 #### `Search(data = nil)`
 
@@ -256,65 +256,10 @@ Return the entity name.
 
 ---
 
-## PlaylistEntity
+## HotEntity
 
 ```ruby
-playlist = client.Playlist
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `id` | `Integer` | No | Playlist number |
-| `name` | `String` | No | Playlist name |
-| `nbTracks` | `Integer` | No | Number of tracks in playlist |
-| `url` | `String` | No | Playlist URL |
-
-### Operations
-
-#### `list(reqmatch = nil, ctrl = nil) -> Array`
-
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
-
-```ruby
-results = client.Playlist.list
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `PlaylistEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## PostEntity
-
-```ruby
-post = client.Post
+hot = client.Hot
 ```
 
 ### Fields
@@ -343,7 +288,7 @@ post = client.Post
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Post.load({ "genre" => "genre" })
+result = client.Hot.load({ "id" => "hot_id" })
 ```
 
 ### Common Methods
@@ -366,7 +311,81 @@ Set the entity match criteria.
 
 #### `make -> Entity`
 
-Create a new `PostEntity` instance with the same client and
+Create a new `HotEntity` instance with the same client and
+options.
+
+#### `get_name -> String`
+
+Return the entity name.
+
+
+---
+
+## PlaylistEntity
+
+```ruby
+playlist = client.Playlist
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `ctx` | `String` | No | Context |
+| `eId` | `String` | No | External ID (platform identifier) |
+| `id` | `String` | No | Post ID |
+| `img` | `String` | No | Track image URL |
+| `lov` | `Array` | No | User IDs who liked this post |
+| `name` | `String` | No | Track name |
+| `nbP` | `Integer` | No | Number of plays |
+| `nbR` | `Integer` | No | Number of reposts |
+| `nbTracks` | `Integer` | No | Number of tracks in playlist |
+| `score` | `Float` | No | Search relevance score |
+| `src` | `Hash` | No |  |
+| `text` | `String` | No | Post text/comment |
+| `uId` | `String` | No | User ID of poster |
+| `uNm` | `String` | No | User name of poster |
+| `url` | `String` | No | Direct URL to track |
+
+### Operations
+
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+
+```ruby
+results = client.Playlist.list
+```
+
+#### `load(reqmatch, ctrl = nil) -> result`
+
+Load a single entity matching the given criteria. Raises on error.
+
+```ruby
+result = client.Playlist.load({ "id" => "playlist_id", "username" => "username" })
+```
+
+### Common Methods
+
+#### `data_get -> Hash`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get -> Hash`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make -> Entity`
+
+Create a new `PlaylistEntity` instance with the same client and
 options.
 
 #### `get_name -> String`

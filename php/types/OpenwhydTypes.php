@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 // Typed models for the Openwhyd SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 //
@@ -107,24 +107,8 @@ class GetUserPostListMatch
     public ?int $limit = null;
 }
 
-/** Playlist entity data model. */
-class Playlist
-{
-    public ?int $id = null;
-    public ?string $name = null;
-    public ?int $nbTracks = null;
-    public ?string $url = null;
-}
-
-/** Request payload for Playlist#list. */
-class PlaylistListMatch
-{
-    public string $username;
-    public ?string $format = null;
-}
-
-/** Post entity data model. */
-class Post
+/** Hot entity data model. */
+class Hot
 {
     public ?string $ctx = null;
     public ?string $eId = null;
@@ -142,12 +126,49 @@ class Post
     public ?string $url = null;
 }
 
-/** Request payload for Post#load. */
-class PostLoadMatch
+/** Request payload for Hot#load. */
+class HotLoadMatch
 {
-    public string $genre;
+    public string $id;
     public ?string $format = null;
     public ?int $limit = null;
+}
+
+/** Playlist entity data model. */
+class Playlist
+{
+    public ?string $ctx = null;
+    public ?string $eId = null;
+    public ?string $id = null;
+    public ?string $img = null;
+    public ?array $lov = null;
+    public ?string $name = null;
+    public ?int $nbP = null;
+    public ?int $nbR = null;
+    public ?int $nbTracks = null;
+    public ?float $score = null;
+    public ?array $src = null;
+    public ?string $text = null;
+    public ?string $uId = null;
+    public ?string $uNm = null;
+    public ?string $url = null;
+}
+
+/** Request payload for Playlist#load. */
+class PlaylistLoadMatch
+{
+    public string $id;
+    public string $username;
+    public ?string $after = null;
+    public ?string $format = null;
+    public ?int $limit = null;
+}
+
+/** Request payload for Playlist#list. */
+class PlaylistListMatch
+{
+    public string $username;
+    public ?string $format = null;
 }
 
 /** Search entity data model. */

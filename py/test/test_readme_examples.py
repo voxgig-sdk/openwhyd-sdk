@@ -78,8 +78,8 @@ _CLIENT_VARS = ("client", "sdk")
 _ENTITIES = {
     "Authentication": "authentication",
     "GetUserPost": "get_user_post",
+    "Hot": "hot",
     "Playlist": "playlist",
-    "Post": "post",
     "Search": "search",
     "Subscription": "subscription",
     "User": "user",

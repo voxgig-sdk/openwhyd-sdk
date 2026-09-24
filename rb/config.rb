@@ -98,8 +98,8 @@ module OpenwhydConfig
         "entity" => {
           "authentication" => {},
           "get_user_post" => {},
+          "hot" => {},
           "playlist" => {},
-          "post" => {},
           "search" => {},
           "subscription" => {},
           "user" => {},
@@ -110,116 +110,139 @@ module OpenwhydConfig
           "fields" => [
             {
               "name" => "bio",
-              "short" => "User biography",
+              "title" => "Bio",
               "type" => "`$STRING`",
+              "short" => "User biography",
             },
             {
               "name" => "cvrImg",
-              "short" => "Cover image URL",
+              "title" => "Cvr Img",
               "type" => "`$STRING`",
+              "short" => "Cover image URL",
             },
             {
               "name" => "email",
-              "short" => "Email address",
+              "title" => "Email",
               "type" => "`$STRING`",
+              "short" => "Email address",
             },
             {
               "name" => "error",
-              "short" => "Error message if any",
+              "title" => "Error",
               "type" => "`$STRING`",
+              "short" => "Error message if any",
             },
             {
               "name" => "handle",
-              "short" => "Username/handle",
+              "title" => "Handle",
               "type" => "`$STRING`",
+              "short" => "Username/handle",
             },
             {
               "name" => "id",
-              "short" => "User ID",
+              "title" => "Id",
               "type" => "`$STRING`",
+              "short" => "User ID",
             },
             {
               "name" => "img",
-              "short" => "Avatar URL",
+              "title" => "Img",
               "type" => "`$STRING`",
+              "short" => "Avatar URL",
             },
             {
               "name" => "isSubscribing",
-              "short" => "Whether logged in user subscribes to this user",
+              "title" => "Is Subscribing",
               "type" => "`$BOOLEAN`",
+              "short" => "Whether logged in user subscribes to this user",
             },
             {
               "name" => "lastArtists",
-              "short" => "Recently posted artists",
+              "title" => "Last Artists",
               "type" => "`$ARRAY`",
+              "short" => "Recently posted artists",
             },
             {
               "name" => "lastFm",
+              "title" => "Last Fm",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "lnk",
+              "title" => "Lnk",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "loc",
-              "short" => "User location",
+              "title" => "Loc",
               "type" => "`$STRING`",
+              "short" => "User location",
             },
             {
               "name" => "name",
-              "short" => "Full name",
+              "title" => "Name",
               "type" => "`$STRING`",
+              "short" => "Full name",
             },
             {
               "name" => "nbLikes",
-              "short" => "Number of likes",
+              "title" => "Nb Likes",
               "type" => "`$INTEGER`",
+              "short" => "Number of likes",
             },
             {
               "name" => "nbPosts",
-              "short" => "Number of posts",
+              "title" => "Nb Posts",
               "type" => "`$INTEGER`",
+              "short" => "Number of posts",
             },
             {
               "name" => "nbSubscribers",
-              "short" => "Number of subscribers",
+              "title" => "Nb Subscribers",
               "type" => "`$INTEGER`",
+              "short" => "Number of subscribers",
             },
             {
               "name" => "nbSubscriptions",
-              "short" => "Number of subscriptions",
+              "title" => "Nb Subscriptions",
               "type" => "`$INTEGER`",
+              "short" => "Number of subscriptions",
             },
             {
               "name" => "pl",
-              "short" => "User playlists",
+              "title" => "Pl",
               "type" => "`$ARRAY`",
+              "short" => "User playlists",
             },
             {
               "name" => "redirect",
-              "short" => "URL to redirect to",
+              "title" => "Redirect",
               "type" => "`$STRING`",
+              "short" => "URL to redirect to",
             },
             {
               "name" => "twId",
-              "short" => "Twitter handle",
+              "title" => "Tw Id",
               "type" => "`$STRING`",
+              "short" => "Twitter handle",
             },
             {
               "name" => "twSec",
-              "short" => "Twitter session secret",
+              "title" => "Tw Sec",
               "type" => "`$STRING`",
+              "short" => "Twitter session secret",
             },
             {
               "name" => "twTok",
-              "short" => "Twitter session token",
+              "title" => "Tw Tok",
               "type" => "`$STRING`",
+              "short" => "Twitter session token",
             },
             {
               "name" => "uId",
-              "short" => "ID of new user if successful",
+              "title" => "U Id",
               "type" => "`$STRING`",
+              "short" => "ID of new user if successful",
             },
           ],
           "id" => {
@@ -233,7 +256,6 @@ module OpenwhydConfig
               "name" => "create",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/login",
@@ -242,17 +264,18 @@ module OpenwhydConfig
                       "lit" => "login",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "login",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.user`",
                   },
-                  "parts" => [
-                    "login",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/register",
@@ -261,14 +284,16 @@ module OpenwhydConfig
                       "lit" => "register",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "register",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "register",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
@@ -277,41 +302,6 @@ module OpenwhydConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "action",
-                        "orig" => "action",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "ajax",
-                        "orig" => "ajax",
-                        "type" => "`$BOOLEAN`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "email",
-                        "orig" => "email",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "include_user",
-                        "orig" => "include_user",
-                        "type" => "`$BOOLEAN`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "md5",
-                        "orig" => "md5",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/login",
@@ -320,6 +310,49 @@ module OpenwhydConfig
                       "lit" => "login",
                     },
                   ],
+                  "parts" => [
+                    "login",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.user`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "action",
+                        "orig" => "action",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "reqd" => true,
+                      },
+                      {
+                        "name" => "ajax",
+                        "orig" => "ajax",
+                        "type" => "`$BOOLEAN`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "email",
+                        "orig" => "email",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "include_user",
+                        "orig" => "include_user",
+                        "type" => "`$BOOLEAN`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "md5",
+                        "orig" => "md5",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "action",
@@ -329,25 +362,8 @@ module OpenwhydConfig
                       "md5",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.user`",
-                  },
-                  "parts" => [
-                    "login",
-                  ],
                 },
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "ajax",
-                        "orig" => "ajax",
-                        "type" => "`$BOOLEAN`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/logout",
@@ -356,18 +372,29 @@ module OpenwhydConfig
                       "lit" => "logout",
                     },
                   ],
+                  "parts" => [
+                    "logout",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "ajax",
+                        "orig" => "ajax",
+                        "type" => "`$BOOLEAN`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "ajax",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "logout",
-                  ],
                 },
               ],
             },
@@ -380,72 +407,86 @@ module OpenwhydConfig
           "fields" => [
             {
               "name" => "ctx",
-              "short" => "Context",
+              "title" => "Ctx",
               "type" => "`$STRING`",
+              "short" => "Context",
             },
             {
               "name" => "eId",
-              "short" => "External ID (platform identifier)",
+              "title" => "E Id",
               "type" => "`$STRING`",
+              "short" => "External ID (platform identifier)",
             },
             {
               "name" => "id",
-              "short" => "Post ID",
+              "title" => "Id",
               "type" => "`$STRING`",
+              "short" => "Post ID",
             },
             {
               "name" => "img",
-              "short" => "Track image URL",
+              "title" => "Img",
               "type" => "`$STRING`",
+              "short" => "Track image URL",
             },
             {
               "name" => "lov",
-              "short" => "User IDs who liked this post",
+              "title" => "Lov",
               "type" => "`$ARRAY`",
+              "short" => "User IDs who liked this post",
             },
             {
               "name" => "name",
-              "short" => "Track name",
+              "title" => "Name",
               "type" => "`$STRING`",
+              "short" => "Track name",
             },
             {
               "name" => "nbP",
-              "short" => "Number of plays",
+              "title" => "Nb P",
               "type" => "`$INTEGER`",
+              "short" => "Number of plays",
             },
             {
               "name" => "nbR",
-              "short" => "Number of reposts",
+              "title" => "Nb R",
               "type" => "`$INTEGER`",
+              "short" => "Number of reposts",
             },
             {
               "name" => "score",
-              "short" => "Search relevance score",
+              "title" => "Score",
               "type" => "`$NUMBER`",
+              "short" => "Search relevance score",
             },
             {
               "name" => "src",
+              "title" => "Src",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "text",
-              "short" => "Post text/comment",
+              "title" => "Text",
               "type" => "`$STRING`",
+              "short" => "Post text/comment",
             },
             {
               "name" => "uId",
-              "short" => "User ID of poster",
+              "title" => "U Id",
               "type" => "`$STRING`",
+              "short" => "User ID of poster",
             },
             {
               "name" => "uNm",
-              "short" => "User name of poster",
+              "title" => "U Nm",
               "type" => "`$STRING`",
+              "short" => "User name of poster",
             },
             {
               "name" => "url",
-              "short" => "Direct URL to track",
+              "title" => "Url",
               "type" => "`$STRING`",
+              "short" => "Direct URL to track",
             },
           ],
           "id" => {
@@ -459,57 +500,64 @@ module OpenwhydConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "id",
-                        "orig" => "username",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "after",
-                        "orig" => "after",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "callback",
-                        "orig" => "callback",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "format",
-                        "orig" => "format",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => 20,
-                        "kind" => "query",
-                        "name" => "limit",
-                        "orig" => "limit",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{username}",
-                  "rename" => {
-                    "param" => {
-                      "username" => "id",
-                    },
-                  },
                   "segments" => [
                     {
                       "var" => "id",
                     },
                   ],
+                  "parts" => [
+                    "{id}",
+                  ],
+                  "rename" => {
+                    "param" => {
+                      "username" => "id",
+                    },
+                  },
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "id",
+                        "orig" => "username",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "after",
+                        "orig" => "after",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "callback",
+                        "orig" => "callback",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "format",
+                        "orig" => "format",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "limit",
+                        "orig" => "limit",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 20,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "after",
@@ -519,13 +567,168 @@ module OpenwhydConfig
                       "limit",
                     ],
                   },
+                },
+              ],
+            },
+          },
+          "relations" => {
+            "ancestors" => [],
+          },
+        },
+        "hot" => {
+          "fields" => [
+            {
+              "name" => "ctx",
+              "title" => "Ctx",
+              "type" => "`$STRING`",
+              "short" => "Context",
+            },
+            {
+              "name" => "eId",
+              "title" => "E Id",
+              "type" => "`$STRING`",
+              "short" => "External ID (platform identifier)",
+            },
+            {
+              "name" => "id",
+              "title" => "Id",
+              "type" => "`$STRING`",
+              "short" => "Post ID",
+            },
+            {
+              "name" => "img",
+              "title" => "Img",
+              "type" => "`$STRING`",
+              "short" => "Track image URL",
+            },
+            {
+              "name" => "lov",
+              "title" => "Lov",
+              "type" => "`$ARRAY`",
+              "short" => "User IDs who liked this post",
+            },
+            {
+              "name" => "name",
+              "title" => "Name",
+              "type" => "`$STRING`",
+              "short" => "Track name",
+            },
+            {
+              "name" => "nbP",
+              "title" => "Nb P",
+              "type" => "`$INTEGER`",
+              "short" => "Number of plays",
+            },
+            {
+              "name" => "nbR",
+              "title" => "Nb R",
+              "type" => "`$INTEGER`",
+              "short" => "Number of reposts",
+            },
+            {
+              "name" => "score",
+              "title" => "Score",
+              "type" => "`$NUMBER`",
+              "short" => "Search relevance score",
+            },
+            {
+              "name" => "src",
+              "title" => "Src",
+              "type" => "`$OBJECT`",
+            },
+            {
+              "name" => "text",
+              "title" => "Text",
+              "type" => "`$STRING`",
+              "short" => "Post text/comment",
+            },
+            {
+              "name" => "uId",
+              "title" => "U Id",
+              "type" => "`$STRING`",
+              "short" => "User ID of poster",
+            },
+            {
+              "name" => "uNm",
+              "title" => "U Nm",
+              "type" => "`$STRING`",
+              "short" => "User name of poster",
+            },
+            {
+              "name" => "url",
+              "title" => "Url",
+              "type" => "`$STRING`",
+              "short" => "Direct URL to track",
+            },
+          ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
+          "name" => "hot",
+          "op" => {
+            "load" => {
+              "input" => "data",
+              "name" => "load",
+              "points" => [
+                {
+                  "kind" => "http",
+                  "method" => "GET",
+                  "orig" => "/hot/{genre}",
+                  "segments" => [
+                    {
+                      "lit" => "hot",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
+                  "parts" => [
+                    "hot",
+                    "{id}",
+                  ],
+                  "rename" => {
+                    "param" => {
+                      "genre" => "id",
+                    },
+                  },
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "{id}",
-                  ],
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "id",
+                        "orig" => "genre",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "format",
+                        "orig" => "format",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "limit",
+                        "orig" => "limit",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 20,
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "format",
+                      "id",
+                      "limit",
+                    ],
+                  },
                 },
               ],
             },
@@ -537,24 +740,93 @@ module OpenwhydConfig
         "playlist" => {
           "fields" => [
             {
+              "name" => "ctx",
+              "title" => "Ctx",
+              "type" => "`$STRING`",
+              "short" => "Context",
+            },
+            {
+              "name" => "eId",
+              "title" => "E Id",
+              "type" => "`$STRING`",
+              "short" => "External ID (platform identifier)",
+            },
+            {
               "name" => "id",
-              "short" => "Playlist number",
-              "type" => "`$INTEGER`",
+              "title" => "Id",
+              "type" => "`$STRING`",
+              "short" => "Post ID",
+            },
+            {
+              "name" => "img",
+              "title" => "Img",
+              "type" => "`$STRING`",
+              "short" => "Track image URL",
+            },
+            {
+              "name" => "lov",
+              "title" => "Lov",
+              "type" => "`$ARRAY`",
+              "short" => "User IDs who liked this post",
             },
             {
               "name" => "name",
-              "short" => "Playlist name",
+              "title" => "Name",
               "type" => "`$STRING`",
+              "short" => "Track name",
+            },
+            {
+              "name" => "nbP",
+              "title" => "Nb P",
+              "type" => "`$INTEGER`",
+              "short" => "Number of plays",
+            },
+            {
+              "name" => "nbR",
+              "title" => "Nb R",
+              "type" => "`$INTEGER`",
+              "short" => "Number of reposts",
             },
             {
               "name" => "nbTracks",
-              "short" => "Number of tracks in playlist",
+              "title" => "Nb Tracks",
               "type" => "`$INTEGER`",
+              "short" => "Number of tracks in playlist",
+            },
+            {
+              "name" => "score",
+              "title" => "Score",
+              "type" => "`$NUMBER`",
+              "short" => "Search relevance score",
+            },
+            {
+              "name" => "src",
+              "title" => "Src",
+              "type" => "`$OBJECT`",
+            },
+            {
+              "name" => "text",
+              "title" => "Text",
+              "type" => "`$STRING`",
+              "short" => "Post text/comment",
+            },
+            {
+              "name" => "uId",
+              "title" => "U Id",
+              "type" => "`$STRING`",
+              "short" => "User ID of poster",
+            },
+            {
+              "name" => "uNm",
+              "title" => "U Nm",
+              "type" => "`$STRING`",
+              "short" => "User name of poster",
             },
             {
               "name" => "url",
-              "short" => "Playlist URL",
+              "title" => "Url",
               "type" => "`$STRING`",
+              "short" => "Direct URL to track",
             },
           ],
           "id" => {
@@ -568,25 +840,6 @@ module OpenwhydConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "username",
-                        "orig" => "username",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "format",
-                        "orig" => "format",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{username}/playlists",
@@ -598,158 +851,51 @@ module OpenwhydConfig
                       "lit" => "playlists",
                     },
                   ],
+                  "parts" => [
+                    "{username}",
+                    "playlists",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "username",
+                        "orig" => "username",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "format",
+                        "orig" => "format",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "format",
                       "username",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "{username}",
-                    "playlists",
-                  ],
                 },
               ],
             },
-          },
-          "relations" => {
-            "ancestors" => [],
-          },
-        },
-        "post" => {
-          "fields" => [
-            {
-              "name" => "ctx",
-              "short" => "Context",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "eId",
-              "short" => "External ID (platform identifier)",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "id",
-              "short" => "Post ID",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "img",
-              "short" => "Track image URL",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "lov",
-              "short" => "User IDs who liked this post",
-              "type" => "`$ARRAY`",
-            },
-            {
-              "name" => "name",
-              "short" => "Track name",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "nbP",
-              "short" => "Number of plays",
-              "type" => "`$INTEGER`",
-            },
-            {
-              "name" => "nbR",
-              "short" => "Number of reposts",
-              "type" => "`$INTEGER`",
-            },
-            {
-              "name" => "score",
-              "short" => "Search relevance score",
-              "type" => "`$NUMBER`",
-            },
-            {
-              "name" => "src",
-              "type" => "`$OBJECT`",
-            },
-            {
-              "name" => "text",
-              "short" => "Post text/comment",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "uId",
-              "short" => "User ID of poster",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "uNm",
-              "short" => "User name of poster",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "url",
-              "short" => "Direct URL to track",
-              "type" => "`$STRING`",
-            },
-          ],
-          "id" => {
-            "field" => "id",
-            "name" => "id",
-          },
-          "name" => "post",
-          "op" => {
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "playlist_id",
-                        "orig" => "playlist_id",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "param",
-                        "name" => "username",
-                        "orig" => "username",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "after",
-                        "orig" => "after",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "format",
-                        "orig" => "format",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => 20,
-                        "kind" => "query",
-                        "name" => "limit",
-                        "orig" => "limit",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{username}/playlist/{playlistId}",
-                  "rename" => {
-                    "param" => {
-                      "playlistId" => "playlist_id",
-                    },
-                  },
                   "segments" => [
                     {
                       "var" => "username",
@@ -758,111 +904,91 @@ module OpenwhydConfig
                       "lit" => "playlist",
                     },
                     {
-                      "var" => "playlist_id",
+                      "var" => "id",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "after",
-                      "format",
-                      "limit",
-                      "playlist_id",
-                      "username",
-                    ],
+                  "parts" => [
+                    "{username}",
+                    "playlist",
+                    "{id}",
+                  ],
+                  "rename" => {
+                    "param" => {
+                      "playlistId" => "id",
+                    },
                   },
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "{username}",
-                    "playlist",
-                    "{playlist_id}",
-                  ],
-                },
-                {
                   "args" => {
                     "params" => [
                       {
-                        "kind" => "param",
-                        "name" => "genre",
-                        "orig" => "genre",
-                        "reqd" => true,
+                        "name" => "id",
+                        "orig" => "playlist_id",
                         "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                      {
+                        "name" => "username",
+                        "orig" => "username",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
                       },
                     ],
                     "query" => [
                       {
+                        "name" => "after",
+                        "orig" => "after",
+                        "type" => "`$STRING`",
                         "kind" => "query",
+                      },
+                      {
                         "name" => "format",
                         "orig" => "format",
                         "type" => "`$STRING`",
+                        "kind" => "query",
                       },
                       {
-                        "example" => 20,
-                        "kind" => "query",
                         "name" => "limit",
                         "orig" => "limit",
                         "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 20,
                       },
                     ],
                   },
-                  "kind" => "http",
-                  "method" => "GET",
-                  "orig" => "/hot/{genre}",
-                  "segments" => [
-                    {
-                      "lit" => "hot",
-                    },
-                    {
-                      "var" => "genre",
-                    },
-                  ],
                   "select" => {
                     "exist" => [
+                      "after",
                       "format",
-                      "genre",
+                      "id",
                       "limit",
+                      "username",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "hot",
-                    "{genre}",
-                  ],
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "hot",
-              ],
-              [
-                "playlist",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
         "search" => {
           "fields" => [
             {
               "name" => "q",
-              "short" => "Search query",
+              "title" => "Q",
               "type" => "`$STRING`",
+              "short" => "Search query",
             },
             {
               "name" => "results",
+              "title" => "Results",
               "type" => "`$ARRAY`",
-              "union" => {
-                "branches" => 3,
-                "count" => 1,
-                "depth" => 1,
-              },
             },
           ],
           "name" => "search",
@@ -872,29 +998,6 @@ module OpenwhydConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "context",
-                        "orig" => "context",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "format",
-                        "orig" => "format",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "q",
-                        "orig" => "q",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/search",
@@ -903,6 +1006,37 @@ module OpenwhydConfig
                       "lit" => "search",
                     },
                   ],
+                  "parts" => [
+                    "search",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.results`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "context",
+                        "orig" => "context",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "format",
+                        "orig" => "format",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "q",
+                        "orig" => "q",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "context",
@@ -910,13 +1044,6 @@ module OpenwhydConfig
                       "q",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.results`",
-                  },
-                  "parts" => [
-                    "search",
-                  ],
                 },
               ],
             },
@@ -929,22 +1056,26 @@ module OpenwhydConfig
           "fields" => [
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
             {
               "name" => "isSubscribing",
-              "short" => "Whether logged in user follows this user",
+              "title" => "Is Subscribing",
               "type" => "`$BOOLEAN`",
+              "short" => "Whether logged in user follows this user",
             },
             {
               "name" => "uId",
-              "short" => "User ID",
+              "title" => "U Id",
               "type" => "`$STRING`",
+              "short" => "User ID",
             },
             {
               "name" => "uNm",
-              "short" => "User name",
+              "title" => "U Nm",
               "type" => "`$STRING`",
+              "short" => "User name",
             },
           ],
           "id" => {
@@ -958,38 +1089,6 @@ module OpenwhydConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "id",
-                        "orig" => "id",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "is_subscr",
-                        "orig" => "is_subscr",
-                        "type" => "`$BOOLEAN`",
-                      },
-                      {
-                        "example" => 50,
-                        "kind" => "query",
-                        "name" => "limit",
-                        "orig" => "limit",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "skip",
-                        "orig" => "skip",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/follow/fetchFollowers/{id}",
@@ -1007,6 +1106,49 @@ module OpenwhydConfig
                       "var" => "id",
                     },
                   ],
+                  "parts" => [
+                    "api",
+                    "follow",
+                    "fetchFollowers",
+                    "{id}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "id",
+                        "orig" => "id",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "is_subscr",
+                        "orig" => "is_subscr",
+                        "type" => "`$BOOLEAN`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "limit",
+                        "orig" => "limit",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 50,
+                      },
+                      {
+                        "name" => "skip",
+                        "orig" => "skip",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "id",
@@ -1015,50 +1157,8 @@ module OpenwhydConfig
                       "skip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "api",
-                    "follow",
-                    "fetchFollowers",
-                    "{id}",
-                  ],
                 },
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "id",
-                        "orig" => "id",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "is_subscr",
-                        "orig" => "is_subscr",
-                        "type" => "`$BOOLEAN`",
-                      },
-                      {
-                        "example" => 50,
-                        "kind" => "query",
-                        "name" => "limit",
-                        "orig" => "limit",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "skip",
-                        "orig" => "skip",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/follow/fetchFollowing/{id}",
@@ -1076,6 +1176,49 @@ module OpenwhydConfig
                       "var" => "id",
                     },
                   ],
+                  "parts" => [
+                    "api",
+                    "follow",
+                    "fetchFollowing",
+                    "{id}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "id",
+                        "orig" => "id",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "is_subscr",
+                        "orig" => "is_subscr",
+                        "type" => "`$BOOLEAN`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "limit",
+                        "orig" => "limit",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 50,
+                      },
+                      {
+                        "name" => "skip",
+                        "orig" => "skip",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "id",
@@ -1084,16 +1227,6 @@ module OpenwhydConfig
                       "skip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "api",
-                    "follow",
-                    "fetchFollowing",
-                    "{id}",
-                  ],
                 },
               ],
             },
@@ -1106,23 +1239,27 @@ module OpenwhydConfig
           "fields" => [
             {
               "name" => "id",
-              "short" => "Playlist number",
+              "title" => "Id",
               "type" => "`$INTEGER`",
+              "short" => "Playlist number",
             },
             {
               "name" => "name",
-              "short" => "Playlist name",
+              "title" => "Name",
               "type" => "`$STRING`",
+              "short" => "Playlist name",
             },
             {
               "name" => "nbTracks",
-              "short" => "Number of tracks in playlist",
+              "title" => "Nb Tracks",
               "type" => "`$INTEGER`",
+              "short" => "Number of tracks in playlist",
             },
             {
               "name" => "url",
-              "short" => "Playlist URL",
+              "title" => "Url",
               "type" => "`$STRING`",
+              "short" => "Playlist URL",
             },
           ],
           "id" => {
@@ -1136,7 +1273,6 @@ module OpenwhydConfig
               "name" => "create",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/user",
@@ -1148,15 +1284,17 @@ module OpenwhydConfig
                       "lit" => "user",
                     },
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                   "parts" => [
                     "api",
                     "user",
                   ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
@@ -1165,40 +1303,6 @@ module OpenwhydConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "count_like",
-                        "orig" => "count_like",
-                        "type" => "`$BOOLEAN`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "count_post",
-                        "orig" => "count_post",
-                        "type" => "`$BOOLEAN`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "id",
-                        "orig" => "id",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "include_subscr",
-                        "orig" => "include_subscr",
-                        "type" => "`$BOOLEAN`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "is_subscr",
-                        "orig" => "is_subscr",
-                        "type" => "`$BOOLEAN`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/user",
@@ -1210,6 +1314,49 @@ module OpenwhydConfig
                       "lit" => "user",
                     },
                   ],
+                  "parts" => [
+                    "api",
+                    "user",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "count_like",
+                        "orig" => "count_like",
+                        "type" => "`$BOOLEAN`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "count_post",
+                        "orig" => "count_post",
+                        "type" => "`$BOOLEAN`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "id",
+                        "orig" => "id",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "include_subscr",
+                        "orig" => "include_subscr",
+                        "type" => "`$BOOLEAN`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "is_subscr",
+                        "orig" => "is_subscr",
+                        "type" => "`$BOOLEAN`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "count_like",
@@ -1219,27 +1366,8 @@ module OpenwhydConfig
                       "is_subscr",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "api",
-                    "user",
-                  ],
                 },
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "username",
-                        "orig" => "username",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{username}/info",
@@ -1251,19 +1379,31 @@ module OpenwhydConfig
                       "lit" => "info",
                     },
                   ],
+                  "parts" => [
+                    "{username}",
+                    "info",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "username",
+                        "orig" => "username",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "username",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "{username}",
-                    "info",
-                  ],
                 },
               ],
             },
